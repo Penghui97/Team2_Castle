@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MyPlansInfoNearbyActivity">
+
+    <ListView
+        android:id="@+id/poiList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:divider="@color/white"
+        android:dividerHeight="10dp">
+
+    </ListView>
+    <Button
+        android:id="@+id/poiReturn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="15"
+        android:layout_marginHorizontal="120dp"
+        android:onClick="onClick"
+        android:text="return">
+
+    </Button>
+
+
+</LinearLayout>

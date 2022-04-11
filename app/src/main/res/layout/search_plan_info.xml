@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3F3F3"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    tools:context=".SearchPlanInfoActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="20dp">
+
+            <TextView
+                android:id="@+id/searchPlanInfoFrom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="from:  "
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/searchPlanInfoTo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="to:  "
+                android:textSize="20dp" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_marginVertical="5dp"
+                android:background="@color/gray" />
+            <LinearLayout
+                android:id="@+id/searchPlanInfoLateSignal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/searchPlanInfoDisappear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="routes:  " />
+
+                <LinearLayout
+                    android:id="@+id/searchPlanInfoRoutes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:orientation="vertical"></LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/searchPlanAllReturnViews"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="2dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/gray" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="return routes:  " />
+
+                    <LinearLayout
+                        android:id="@+id/searchPlanInfoReturnRoutes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:orientation="vertical"></LinearLayout>
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="2dp"
+                    android:layout_marginVertical="5dp"
+                    android:background="@color/gray" />
+
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:layout_marginTop="10dp"-->
+                <!--                android:orientation="horizontal">-->
+
+                <!--                <TextView-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:textAlignment="center"-->
+                <!--                    android:text="depart time: "-->
+                <!--                    android:textSize="13dp" />-->
+
+                <!--                <Spinner-->
+                <!--                    android:id="@+id/departTime"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:entries="@array/departTime"-->
+                <!--                    android:textAlignment="center" />-->
+                <!--            </LinearLayout>-->
+
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal">-->
+
+                <!--                <TextView-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:textAlignment="center"-->
+                <!--                    android:text="return time: "-->
+                <!--                    android:textSize="13dp" />-->
+
+                <!--                <Spinner-->
+                <!--                    android:id="@+id/returnTime"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:entries="@array/returnTime"-->
+                <!--                    android:textAlignment="center" />-->
+                <!--            </LinearLayout>-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="adult number: "
+                        android:textAlignment="center"
+                        android:textSize="13dp" />
+
+                    <Spinner
+                        android:id="@+id/adultNum"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:entries="@array/adultNum"
+                        android:textAlignment="center" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="kid number: "
+                        android:textAlignment="center"
+                        android:textSize="13dp" />
+
+                    <Spinner
+                        android:id="@+id/kidNum"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:entries="@array/kidNum"
+                        android:textAlignment="center" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="2dp"
+                    android:layout_marginVertical="5dp"
+                    android:background="@color/gray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp">
+
+                    <Button
+                        android:id="@+id/searchPlanInfoReturn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="15dp"
+                        android:layout_weight="1"
+                        android:onClick="onClick"
+                        android:text="return" />
+
+                    <Button
+                        android:id="@+id/searchPlanInfoSave"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="15dp"
+                        android:layout_weight="1"
+                        android:onClick="onClick"
+                        android:text="save" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

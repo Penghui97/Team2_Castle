@@ -1,0 +1,42 @@
+<resources>
+
+    <string name="app_name"><b><font color="#6FB5FF">C</font></b>astle</string>
+
+    <string name="user_name">User Name</string>
+    <string name="Email">xxxx@mail.com</string>
+    <string name="title_activity_test">TestActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <array name="departure">
+        <item>Haymarket Bus Station</item>
+        <item>Eldon Square Bus Station</item>
+        <item>Newcastle Central</item>
+    </array>
+    <array name="direction">
+        <item>Alnwick Castle</item>
+        <item>Auckland Castle</item>
+        <item>Barnard Castle</item>
+        <item>Bamburgh Castle</item>
+    </array>
+    <array name="adultNum">
+        <item>"0"</item>
+        <item>"1"</item>
+        <item>"2"</item>
+        <item>"3"</item>
+        <item>"4"</item>
+        <item>"5"</item>
+    </array>
+    <array name="kidNum">
+        <item>"0"</item>
+        <item>"1"</item>
+        <item>"2"</item>
+        <item>"3"</item>
+        <item>"4"</item>
+        <item>"5"</item>
+    </array>
+
+</resources>

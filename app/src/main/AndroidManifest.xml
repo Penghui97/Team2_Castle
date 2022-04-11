@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.mywork2">
+    <!-- access horsePay api and remote mysql -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyWork2"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".MyPlansInfoNearbyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Avatar"
+            android:exported="false" />
+        <activity
+            android:name=".AboutThisApp"
+            android:exported="false" />
+        <activity
+            android:name=".SearchPlans"
+            android:exported="false" />
+        <activity
+            android:name=".CastleDetails"
+            android:exported="false" />
+        <activity
+            android:name=".MyPlansInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SearchPlanInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SearchPlanDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LogInActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+    </application>
+
+</manifest>

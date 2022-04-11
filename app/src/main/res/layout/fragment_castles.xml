@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainFragment.CastlesFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <include layout="@layout/castle_view_symbol1"
+                android:id="@+id/castle1"/>
+            <include layout="@layout/castle_view_symbol2"
+                android:id="@+id/castle2"/>
+            <include layout="@layout/castle_view_symbol3"
+                android:id="@+id/castle3"/>
+            <include layout="@layout/castle_view_symbol4"
+                android:id="@+id/castle4"/>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</FrameLayout>

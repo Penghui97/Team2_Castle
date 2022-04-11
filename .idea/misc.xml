@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/cs/AndroidStudioProjects/projects/Mywork2/app/src/main/res/layout/activity_main.xml" value="0.12335359675785208" />
+        <entry key="..\:/cs/AndroidStudioProjects/projects/Mywork2/app/src/main/res/layout/castle_view_symbol1.xml" value="0.25364583333333335" />
+        <entry key="..\:/cs/AndroidStudioProjects/projects/Mywork2/app/src/main/res/layout/drawer_main.xml" value="0.25364583333333335" />
+        <entry key="..\:/cs/AndroidStudioProjects/projects/Mywork2/app/src/main/res/layout/fragment_castles.xml" value="0.25364583333333335" />
+        <entry key="..\:/cs/AndroidStudioProjects/projects/Mywork2/app/src/main/res/layout/fragment_my_plans.xml" value="0.264" />
+        <entry key="..\:/cs/AndroidStudioProjects/projects/Mywork2/app/src/main/res/layout/fragment_search.xml" value="0.25364583333333335" />
+        <entry key="..\:/cs/AndroidStudioProjects/projects/Mywork2/app/src/main/res/layout/my_plans_info.xml" value="0.264" />
+        <entry key="..\:/cs/AndroidStudioProjects/projects/Mywork2/app/src/main/res/layout/my_plans_info_nearby.xml" value="0.25364583333333335" />
+        <entry key="..\:/cs/AndroidStudioProjects/projects/Mywork2/app/src/main/res/layout/my_plans_info_nearby_item.xml" value="0.2390625" />
+        <entry key="..\:/cs/AndroidStudioProjects/projects/Mywork2/app/src/main/res/layout/my_plans_item.xml" value="0.1" />
+        <entry key="..\:/cs/AndroidStudioProjects/projects/Mywork2/app/src/main/res/layout/search_plan_details.xml" value="0.2341485507246377" />
+        <entry key="..\:/cs/AndroidStudioProjects/projects/Mywork2/app/src/main/res/layout/search_plan_info.xml" value="0.25364583333333335" />
+        <entry key="..\:/cs/AndroidStudioProjects/projects/Mywork2/app/src/main/res/layout/search_plan_item.xml" value="0.25364583333333335" />
+        <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/activity_log_in.xml" value="0.25364583333333335" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
