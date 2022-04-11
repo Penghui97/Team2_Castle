@@ -25,14 +25,14 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
-        userName = findViewById(R.id.username);
+        /*userName = findViewById(R.id.username);
         userName.setOnClickListener(this);
         password = findViewById(R.id.password);
         password.setOnClickListener(this);
         logIn = findViewById(R.id.LOGIN);
         logIn.setOnClickListener(this);
         forgetPassword = findViewById(R.id.forget_password);
-        forgetPassword.setOnClickListener(this);
+        forgetPassword.setOnClickListener(this);*/
         createAccount = findViewById(R.id.create_account);
         createAccount.setOnClickListener(this);
         customer = findViewById(R.id.customer_login);
@@ -44,12 +44,12 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.LOGIN:
+            /*case R.id.LOGIN:
                 Toast.makeText(LogInActivity.this,"Log in",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.forget_password:
                 Toast.makeText(LogInActivity.this,"Forget Password",Toast.LENGTH_SHORT).show();
-                break;
+                break;*/
             case R.id.create_account:
                 Toast.makeText(LogInActivity.this,"Create Account",Toast.LENGTH_SHORT).show();
                 break;
