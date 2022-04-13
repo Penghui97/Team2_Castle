@@ -9,14 +9,22 @@
         <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/activity_log_in.xml" value="0.17" />
         <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/activity_search_plans.xml" value="0.1" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/castle_view_symbol3.xml" value="0.17916666666666667" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/castle_view_symbol4.xml" value="0.17916666666666667" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/fragment_castles.xml" value="0.190625" />
         <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/fragment_google_twitter_facebook_log_in.xml" value="0.175" />
         <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/fragment_log_in_main.xml" value="0.184375" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/fragment_my_plans.xml" value="0.33" />
         <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/fragment_new__account_.xml" value="0.184375" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/fragment_search.xml" value="0.17916666666666667" />
         <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/fragment_user__log__in_.xml" value="0.184375" />
         <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/my_plans_info.xml" value="0.25" />
-        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/my_plans_info_nearby.xml" value="0.17916666666666667" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/my_plans_info_nearby.xml" value="0.33" />
         <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/my_plans_info_nearby_item.xml" value="0.5" />
-        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/my_plans_item.xml" value="0.33" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/my_plans_item.xml" value="0.25" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/search_plan_details.xml" value="0.17916666666666667" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/search_plan_info.xml" value="0.17916666666666667" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/search_plan_item.xml" value="0.25" />
         <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/menu/account_nav.xml" value="0.1398148148148148" />
         <entry key="..\:/cs/AndroidStudioProjects/projects/Mywork2/app/src/main/res/layout/activity_main.xml" value="0.12335359675785208" />
         <entry key="..\:/cs/AndroidStudioProjects/projects/Mywork2/app/src/main/res/layout/castle_view_symbol1.xml" value="0.25364583333333335" />

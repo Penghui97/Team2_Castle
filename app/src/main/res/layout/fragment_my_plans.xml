@@ -9,47 +9,53 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/myPlansLayout1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/background">
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_margin="20dp"
-            app:cardBackgroundColor="#64FFDA">
+            app:cardBackgroundColor="#6200EE">
 
             <TextView
                 android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:gravity="center"
                 android:text="My Plans" />
 
         </androidx.cardview.widget.CardView>
-        <ScrollView
+
+        <!--        show the empty message-->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
-            <!--        show the empty message-->
-            <LinearLayout
-                android:id="@+id/myPlansNoPlansLayout"
+            android:orientation="vertical">
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:id="@+id/myPlanNoPlanSignal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="no plans"/>
+
+            <!--show the plan list-->
+            <ListView
+                android:id="@+id/myPlansListView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/myPlanNoPlanSignal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="no plans"/>
-            </LinearLayout>
-        </ScrollView>
-        <!--show the plan list-->
-        <ListView
-            android:id="@+id/myPlansListView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@color/white"
-            android:dividerHeight="10dp">
+                android:divider="@color/white"
+                android:dividerHeight="10dp"
+                >
 
-        </ListView>
+
+            </ListView>
+
+        </LinearLayout>
+
     </LinearLayout>
 </FrameLayout>
