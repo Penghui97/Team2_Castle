@@ -8,7 +8,7 @@
     android:id="@+id/searchPlanDetailsLayout"
     android:orientation="vertical">
 
-
+    <include layout ="@layout/general_action_bar"/>
     <ListView
         android:id="@+id/planListView"
         android:layout_width="match_parent"
