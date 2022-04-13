@@ -1,6 +1,8 @@
 package com.example.mywork2.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,16 +10,19 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.mywork2.R;
+import com.example.mywork2.SearchPlanDetailsActivity;
+import com.example.mywork2.SearchPlanInfoActivity;
 import com.example.mywork2.Util.*;
 import com.example.mywork2.domain.*;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 public class PlanDetailAdapter extends BaseAdapter {
     private ArrayList<Journey> journeys;
-    private Context context;
+    private SearchPlanDetailsActivity context;
 
-    public PlanDetailAdapter(ArrayList<Journey> journeys, Context context) {
+    public PlanDetailAdapter(ArrayList<Journey> journeys, SearchPlanDetailsActivity context) {
         this.journeys = journeys;
         this.context = context;
     }
@@ -48,6 +53,7 @@ public class PlanDetailAdapter extends BaseAdapter {
             //put the textView of list_item to the viewHolder
             viewHolder.time = view.findViewById(R.id.planDetailTime);
             viewHolder.price = view.findViewById(R.id.planDetailPrice);
+            viewHolder.viewDetails = view.findViewById(R.id.searchPlanViewDetailsButton);
             /**
              * comment by J.Cheng
              * the transferNum is better in detials part
@@ -64,7 +70,13 @@ public class PlanDetailAdapter extends BaseAdapter {
         //set the content of the textView in the holder
         viewHolder.time.setText(journeys.get(i).getSingleDuration() + " min ");
         viewHolder.price.setText(" ￡ " + journeys.get(i).getTotalPrice() + " pp ");
-        viewHolder.transferNum.setText(journeys.get(i).getRoutes().size() + "");
+//        viewHolder.transferNum.setText(journeys.get(i).getRoutes().size() + "");
+        viewHolder.viewDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                context.toSearchPlanInfo(i);
+            }
+        });
         return view;
     }
 
@@ -72,6 +84,7 @@ public class PlanDetailAdapter extends BaseAdapter {
     private final class ViewHolder{
         TextView time;
         TextView price;
-        TextView transferNum;
+//        TextView transferNum;
+        TextView viewDetails;
     }
 }

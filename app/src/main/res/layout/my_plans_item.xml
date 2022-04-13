@@ -178,6 +178,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" >
                 <TextView
+                    android:id="@+id/myPlanViewDetailButton"
                     android:layout_width="match_parent"
                     android:gravity="center"
                     android:layout_height="wrap_content"

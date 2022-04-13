@@ -21,11 +21,12 @@ import com.example.mywork2.domain.Journey;
 import java.util.ArrayList;
 
 /**
- *this class is for showing the sorted plans based on the users' requirements
+ * this class is for showing the sorted plans based on the users' requirements
  */
 public class SearchPlanDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private LinearLayout searchPlanDetailsLayout;
+    private ArrayList<Journey> journeys;
     private String date;
     private String time;
 
@@ -37,7 +38,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
             switch (msg.what) {
                 case 0x11:
                     //receive the searched journeys
-                    ArrayList<Journey> journeys = (ArrayList<Journey>) msg.obj;
+                    journeys = (ArrayList<Journey>) msg.obj;
                     showJourneys(journeys);
                     break;
             }
@@ -73,7 +74,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.planDetailsReturn:
                 finish();
                 break;
@@ -112,19 +113,32 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
             //put the journey list into the listView
             ListView listView = findViewById(R.id.planListView);
             listView.setAdapter(new PlanDetailAdapter(journeys, this));
+            /**
+             * (Jing)
+             * the click listener is set on the button in the adapter
+             */
             //set the items listener
             //jump to the info activity with the particular journey id
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    Intent intent = new Intent(SearchPlanDetailsActivity.this, SearchPlanInfoActivity.class);
-                    intent.putExtra("journeyId", journeys.get(i).getJourneyId());
-                    intent.putExtra("date", date);
-                    intent.putExtra("time", time);
-                    startActivity(intent);
-                }
-            });
+//            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                @Override
+//                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                    Intent intent = new Intent(SearchPlanDetailsActivity.this, SearchPlanInfoActivity.class);
+//                    intent.putExtra("journeyId", journeys.get(i).getJourneyId());
+//                    intent.putExtra("date", date);
+//                    intent.putExtra("time", time);
+//                    startActivity(intent);
+//                }
+//            });
         }
 
+    }
+
+    //used by the adapter
+    public void toSearchPlanInfo(int index) {
+        Intent intent = new Intent(SearchPlanDetailsActivity.this, SearchPlanInfoActivity.class);
+        intent.putExtra("journeyId", journeys.get(index).getJourneyId());
+        intent.putExtra("date", date);
+        intent.putExtra("time", time);
+        startActivity(intent);
     }
 }
