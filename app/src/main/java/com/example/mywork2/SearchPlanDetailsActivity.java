@@ -61,6 +61,14 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
 
         //sort the journeys
         getJourneys(departure, destination);
+
+        /**@J Cheng
+         * the destination and the departure place
+         */
+        TextView departurePlace = findViewById(R.id.journey_from);
+        departurePlace.setText(departure);
+        TextView destinationPlace = findViewById(R.id.journey_to);
+        destinationPlace.setText(destination);
     }
 
     @Override

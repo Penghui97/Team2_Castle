@@ -48,7 +48,12 @@ public class PlanDetailAdapter extends BaseAdapter {
             //put the textView of list_item to the viewHolder
             viewHolder.time = view.findViewById(R.id.planDetailTime);
             viewHolder.price = view.findViewById(R.id.planDetailPrice);
-            viewHolder.transferNum = view.findViewById(R.id.planDetailTransferNum);
+            /**
+             * comment by J.Cheng
+             * the transferNum is better in detials part
+             * viewHolder.transferNum = view.findViewById(R.id.planDetailTransferNum);
+             */
+
             //put the holder into the view's tag
             //in case to use next time
             view.setTag(viewHolder);
