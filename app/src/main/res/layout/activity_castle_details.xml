@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".CastleDetails">
 
+    <include
+        layout="@layout/general_action_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/castleName"
         android:layout_width="150dp"

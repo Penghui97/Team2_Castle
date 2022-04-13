@@ -35,13 +35,20 @@
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
             android:orientation="vertical">
-            <TextView
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:id="@+id/myPlanNoPlanSignal"
+            <LinearLayout
+                android:id="@+id/myPlansNoPlansLayout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="no plans"/>
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/myPlanNoPlanSignal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="no plans"/>
+
+            </LinearLayout>
+
 
             <!--show the plan list-->
             <ListView
