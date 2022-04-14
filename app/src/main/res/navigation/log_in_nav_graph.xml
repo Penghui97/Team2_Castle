@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/log_in_nav_graph"
+    app:startDestination="@id/logInMainFragment">
+
+    <fragment
+        android:id="@+id/logInMainFragment"
+        android:name="com.example.mywork2.LogInFragment.LogInMainFragment"
+        android:label="fragment_log_in_main"
+        tools:layout="@layout/fragment_log_in_main" >
+        <action
+            android:id="@+id/action_logInMainFragment_to_userLogInFragment"
+            app:destination="@id/userLogInFragment" />
+        <action
+            android:id="@+id/action_logInMainFragment_to_newAccountFragment"
+            app:destination="@id/newAccountFragment" />
+        <action
+            android:id="@+id/action_logInMainFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
+        <action
+            android:id="@+id/action_logInMainFragment_to_googleTwitterFacebookLogIn"
+            app:destination="@id/googleTwitterFacebookLogIn" />
+    </fragment>
+    <fragment
+        android:id="@+id/userLogInFragment"
+        android:name="com.example.mywork2.LogInFragment.UserLogInFragment"
+        android:label="fragment_user__log__in_"
+        tools:layout="@layout/fragment_user__log__in_" />
+    <fragment
+        android:id="@+id/newAccountFragment"
+        android:name="com.example.mywork2.LogInFragment.NewAccountFragment"
+        android:label="fragment_new__account_"
+        tools:layout="@layout/fragment_new__account_" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.mywork2.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/googleTwitterFacebookLogIn"
+        android:name="com.example.mywork2.LogInFragment.GoogleTwitterFacebookLogIn"
+        android:label="fragment_google_twitter_facebook_log_in"
+        tools:layout="@layout/fragment_google_twitter_facebook_log_in" />
+</navigation>
