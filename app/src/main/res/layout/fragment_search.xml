@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#5CE8E3E3">
+        android:background="@drawable/background">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
@@ -31,13 +31,15 @@
 
                 <com.google.android.material.tabs.TabLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    >
 
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:icon="@drawable/ic_baseline_directions_bus_24"
-                        android:text="Bus" />
+                        android:text="Bus"
+                        />
 
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"

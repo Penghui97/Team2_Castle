@@ -99,13 +99,17 @@ public class MyPlansFragment extends Fragment {
             ListView listView = this.view.findViewById(R.id.myPlansListView);
             listView.setVisibility(View.VISIBLE);
             listView.setAdapter(new MyPlansAdapter(tickets, this.view.findViewById(R.id.myPlansLayout1).getContext()));
+            /**
+             * (Jing)
+             * the click listener is set on the button
+             */
             //set the item onclick listener
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    toMyPlanInfo(tickets.get(i).getTicketId());
-                }
-            });
+//            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                @Override
+//                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                    toMyPlanInfo(tickets.get(i).getTicketId());
+//                }
+//            });
         }
     }
 

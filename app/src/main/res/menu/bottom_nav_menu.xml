@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/castlesFragment"
-        android:icon="@drawable/ic_baseline_home_24"
+        android:icon="@drawable/icons8_castle_58"
         android:title="Castles" />
     <item
         android:id="@+id/searchFragment"

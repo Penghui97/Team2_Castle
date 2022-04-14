@@ -20,7 +20,7 @@ public class DBUtil {
 
     //local test ip
 //    private static String url = "jdbc:mysql://10.0.2.2:3306/csc8019_team02";
-//    private static String user = "root";
+//    private static String user = "user";
 //    private static String password = "333";
 
     //load the driver
@@ -66,7 +66,7 @@ public class DBUtil {
         //close the resultSet
         if(resultSet != null){
             try {
-                connection.close();
+                resultSet.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
