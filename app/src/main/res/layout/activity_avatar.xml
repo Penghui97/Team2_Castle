@@ -9,18 +9,78 @@
 
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardview1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="125dp"
+        android:layout_marginTop="50dp"
         app:cardBackgroundColor="@color/white"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <ImageView
+            android:id="@+id/avatar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/ic_baseline_person_24"/>
 
     </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview2"
+        android:layout_marginTop="420dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="@id/cardview1"
+        app:layout_constraintStart_toStartOf="@id/cardview1"
+        app:layout_constraintTop_toTopOf="@id/cardview1">
+        >
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/from_camera"
+            android:text="FROM CAMERA"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview3"
+        android:layout_marginTop="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="@id/cardview2"
+        app:layout_constraintStart_toStartOf="@id/cardview2"
+        app:layout_constraintTop_toTopOf="@id/cardview2">
+        >
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/from_gallery"
+            android:text="FROM GALLERY"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview4"
+        android:layout_marginTop="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="@id/cardview3"
+        app:layout_constraintStart_toStartOf="@id/cardview3"
+        app:layout_constraintTop_toTopOf="@id/cardview3">
+        >
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/save"
+            android:text="SAVE"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
