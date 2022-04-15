@@ -19,13 +19,16 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mywork2.Util.ImageUtil;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -38,7 +41,8 @@ public class Avatar extends AppCompatActivity {
     final int REQUEST_CODE_TAKE = 1;
     final int REQUEST_CODE_GALLERY = 2;
     ImageView imageView;
-    Button from_cam, from_gallery, save;
+    //TextView from_cam, from_gallery, save;
+    BottomSheetDialog bottomSheetDialog;
     Uri imageUri;
     private String imageBase64;
     File imageTemp;
@@ -50,14 +54,29 @@ public class Avatar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_avatar);
 
+        //set bottom view
+        bottomSheetDialog = new BottomSheetDialog(Avatar.this,R.style.BottomSheetDialogTheme);
+        View bottomView = LayoutInflater.from(getApplicationContext()).inflate(
+                R.layout.avatar_bottom_sheet,
+                findViewById(R.id.avatar_bottom_sheet)
+        );
+
+        //set the listener for take photo
+        bottomView.findViewById(R.id.from_camera).setOnClickListener(this::takePhoto);
+
+        bottomView.findViewById(R.id.save).setOnClickListener(this::save);
+
+        bottomSheetDialog.setContentView(bottomView);
 
         imageView = findViewById(R.id.avatar);
-        from_cam = findViewById(R.id.from_camera);
+        imageView.setOnClickListener(this::bottomSheet);
+
+        /*from_cam = findViewById(R.id.from_camera);
         from_cam.setOnClickListener(this::takePhoto);
 
         save = findViewById(R.id.save);
         save.setOnClickListener(this::save);
-        initData();
+        initData();*/
 
 
     }
@@ -67,6 +86,7 @@ public class Avatar extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
     }
+
 
     //take a photo from camera
     public void takePhoto(View view){
@@ -154,6 +174,7 @@ public class Avatar extends AppCompatActivity {
 
 
         this.finish();
+        bottomSheetDialog.dismiss();
 
 
     }
@@ -168,6 +189,16 @@ public class Avatar extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void initData(){
         getDataFromSpf();
+    }
+
+    /**
+     * create by J. Cheng
+     * @param view
+     */
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void bottomSheet(View view){
+
+        bottomSheetDialog.show();
     }
 
 }

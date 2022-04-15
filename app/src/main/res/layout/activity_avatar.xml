@@ -12,8 +12,8 @@
         android:id="@+id/cardview1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="50dp"
         app:cardBackgroundColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,11 +23,11 @@
             android:id="@+id/avatar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_baseline_person_24"/>
+            android:src="@drawable/ic_baseline_person_24" />
 
     </androidx.cardview.widget.CardView>
 
-
+    <!--
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview2"
         android:layout_marginTop="420dp"
@@ -55,6 +55,7 @@
         app:layout_constraintStart_toStartOf="@id/cardview2"
         app:layout_constraintTop_toTopOf="@id/cardview2">
         >
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -73,14 +74,15 @@
         app:layout_constraintStart_toStartOf="@id/cardview3"
         app:layout_constraintTop_toTopOf="@id/cardview3">
         >
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/save"
-            android:text="SAVE"
-            />
 
-    </androidx.cardview.widget.CardView>
+       <Button
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:id="@+id/save"
+           android:text="SAVE"
+           />
+
+   </androidx.cardview.widget.CardView>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
