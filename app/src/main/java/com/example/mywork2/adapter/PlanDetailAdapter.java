@@ -74,7 +74,11 @@ public class PlanDetailAdapter extends BaseAdapter {
         viewHolder.viewDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context.toSearchPlanInfo(i);
+//                context.toSearchPlanInfo(i);
+                //show the info page
+                //and update the content
+                context.getJourneyById(journeys.get(i).getJourneyId());
+                context.searchPlanInfoAllContent.setVisibility(View.VISIBLE);
             }
         });
         return view;

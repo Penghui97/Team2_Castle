@@ -6,8 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+
+import com.example.mywork2.MainFragment.MyPlansFragment;
 import com.example.mywork2.MyPlansInfoActivity;
 import com.example.mywork2.R;
 import com.example.mywork2.domain.*;
@@ -17,10 +21,12 @@ import java.util.ArrayList;
 public class MyPlansAdapter extends BaseAdapter {
     private ArrayList<Ticket> tickets;
     private Context context;
+    private MyPlansFragment myPlansFragment;
 
-    public MyPlansAdapter(ArrayList<Ticket> tickets, Context context) {
+    public MyPlansAdapter(ArrayList<Ticket> tickets, Context context, MyPlansFragment myPlansFragment) {
         this.tickets = tickets;
         this.context = context;
+        this.myPlansFragment = myPlansFragment;
     }
 
     @Override
@@ -71,9 +77,18 @@ public class MyPlansAdapter extends BaseAdapter {
         viewHolder.viewDetailsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), MyPlansInfoActivity.class);
-                intent.putExtra("ticketId", tickets.get(i).getTicketId());
-                view.getContext().startActivity(intent);
+                /**
+                 * (Jing)
+                 * the myPlanInfoActivity is canceled
+                 * the layout will be showed in the myPlansFragment
+                 */
+//                Intent intent = new Intent(view.getContext(), MyPlansInfoActivity.class);
+//                intent.putExtra("ticketId", tickets.get(i).getTicketId());
+//                view.getContext().startActivity(intent);
+
+                myPlansFragment.getTicketById(tickets.get(i).getTicketId());
+                myPlansFragment.myPlanInfoLayout.setVisibility(View.VISIBLE);
+
             }
         });
         return view;
