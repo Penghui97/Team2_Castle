@@ -1,6 +1,7 @@
 package com.example.mywork2;
 
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
@@ -11,23 +12,36 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
+import com.example.mywork2.Util.ImageUtil;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private DrawerLayout drawer;
+    //drawerImage is the imageview in the drawerlayout. headImage is the imageview in drawer_head
+    private ImageView imageView, drawerImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.drawer_main);
+        setContentView(R.layout.drawer_main);//avatar
+
+        //init view, 23.2
+        initView();
+
+
 
         //ActionBar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -55,10 +69,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         CardView account_avatar_head = drawerView.getHeaderView(0).findViewById(R.id.account_avatar_head);
         account_avatar_head.setOnClickListener(this);
 
+        drawerImage = drawerView.getHeaderView(0).findViewById(R.id.avatar);
+
+
+
 
 
     }
 
+    //override onresume function to get the information changed.
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //init data, 23.2
+        initData();
+
+    }
+
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -77,6 +106,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
     }
+
+    /**
+     * method to initialize views
+     */
+    private void initView(){
+        imageView = findViewById(R.id.avatar);
+    }
+
+    /**
+     * methods to initialize data
+     */
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void initData(){
+        getDataFromSpf();
+    }
+
+    //get data
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void getDataFromSpf(){
+        SharedPreferences spfRecord = getSharedPreferences("spfRecord", MODE_PRIVATE);
+        String image64 = spfRecord.getString("image_64","");
+        imageView.setImageBitmap(ImageUtil.base64ToImage(image64));
+        drawerImage.setImageBitmap(ImageUtil.base64ToImage(image64));
+
+        //change avatars in other layouts
+        //created by Penghui
+        //reference from https://blog.csdn.net/yu_qiushui/article/details/84784958
+//        LayoutInflater inflater1 = LayoutInflater.from(MainActivity.this);
+//        View v = inflater1.inflate(R.layout.activity_avatar,null);
+//        avatar2 = (ImageView) v.findViewById(R.id.avatar);
+//        avatar2.setImageBitmap(ImageUtil.base64ToImage(image64));
+
+
+    }
+
+
+
 
 
     /**

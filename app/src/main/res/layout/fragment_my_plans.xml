@@ -29,9 +29,9 @@
 
         <!--        show the empty message-->
         <LinearLayout
+            android:background="@drawable/background"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
             android:orientation="vertical">
@@ -55,8 +55,8 @@
                 android:id="@+id/myPlansListView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:divider="@color/white"
-                android:dividerHeight="10dp"
+                android:divider="#6200EE"
+                android:dividerHeight="3dp"
                 >
 
 
