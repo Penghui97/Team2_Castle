@@ -29,10 +29,10 @@
             android:layout_height="2dp"
             android:background="#E8E8E8"/>
         <TextView
-            android:id="@+id/from_gallery"
+            android:id="@+id/from_album"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="From gallery"
+            android:text="From album"
             android:textSize="15dp"
             android:textColor="@color/black"
             android:gravity="center"

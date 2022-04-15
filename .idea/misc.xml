@@ -3,18 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-<<<<<<< Updated upstream
-        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/drawable/bottom_sheet_background.xml" value="0.1125" />
-        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/activity_avatar.xml" value="0.1734375" />
-        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/activity_log_in.xml" value="0.14375" />
-        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/avatar_bottom_sheet.xml" value="0.33" />
-        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/fragment_search.xml" value="0.14375" />
-        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/search_plan_info.xml" value="0.25" />
-=======
-        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/activity_log_in.xml" value="0.14375" />
-        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/fragment_search.xml" value="0.14375" />
->>>>>>> Stashed changes
-        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/search_plan_item.xml" value="0.14375" />
         <entry key="..\:/cs/AndroidStudioProjects/projects/Mywork2/app/src/main/res/layout/activity_main.xml" value="0.12335359675785208" />
         <entry key="..\:/cs/AndroidStudioProjects/projects/Mywork2/app/src/main/res/layout/castle_view_symbol1.xml" value="0.25364583333333335" />
         <entry key="..\:/cs/AndroidStudioProjects/projects/Mywork2/app/src/main/res/layout/drawer_main.xml" value="0.25364583333333335" />
@@ -32,6 +20,7 @@
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/activity_avatar.xml" value="0.25364583333333335" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/activity_log_in.xml" value="0.25364583333333335" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/activity_main.xml" value="0.25364583333333335" />
+        <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/avatar_bottom_sheet.xml" value="0.25364583333333335" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/castle_view_symbol1.xml" value="0.25364583333333335" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/drawer_head.xml" value="0.25364583333333335" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/drawer_main.xml" value="0.25364583333333335" />
@@ -44,7 +33,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
