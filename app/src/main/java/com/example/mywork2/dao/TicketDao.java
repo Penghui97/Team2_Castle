@@ -32,7 +32,7 @@ public class TicketDao {
                 int adultQuantity = rs.getInt("adultQuantity");
                 int kidsQuantity = rs.getInt("kidsQuantity");
                 int totalPrice = rs.getInt("totalPrice");
-                boolean isPaid = rs.getInt("isPaid") == 0 ? false : true;
+                boolean isPaid = rs.getInt("isPaid") != 0;
                 tickets.add(new Ticket(ticketId, castleName, username, journeyId, date, time, returnTime, adultQuantity, kidsQuantity, totalPrice, isPaid));
             }
         } catch (SQLException e) {
