@@ -2,9 +2,13 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="My account"
+    <item
+        android:id="@+id/accountEditActivity"
+        android:title="My account"
         android:icon="@drawable/ic_baseline_person_24"/>
-    <item android:title="Settings"
+    <item
+        android:title="Settings"
+        android:id="@+id/appSettingsActivity"
         android:icon="@drawable/ic_baseline_settings_24"/>
     <item android:title="Help center"
         android:icon="@drawable/ic_baseline_help_outline_24"/>

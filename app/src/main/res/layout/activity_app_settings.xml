@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F2F2F2"
+    tools:context=".MyAccount.AppSettingsActivity">
+
+    <include layout="@layout/general_action_bar"/>
+    <TextView
+        android:id="@+id/settings_language"
+        android:background="@color/white"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="30dp"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableRight="@drawable/ic_baseline_navigate_next_24"
+        android:text="Language"
+        android:textSize="20dp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/settings_theme"
+        android:background="@color/white"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableRight="@drawable/ic_baseline_navigate_next_24"
+        android:text="App Theme"
+        android:textSize="20dp"
+        android:textColor="@color/black"/>
+
+
+
+
+</LinearLayout>

@@ -7,19 +7,33 @@
     tools:context=".CastleDetails">
 
     <include
+        android:id="@+id/include_header"
         layout="@layout/general_action_bar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/castleName"
-        android:layout_width="150dp"
-        android:layout_height="188dp"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="261dp"
-        android:layout_marginEnd="131dp"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/castle_tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#CDEEEEEE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include_header">
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/castleViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/castle_tabLayout" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
