@@ -13,6 +13,7 @@ public class UserDao {
     //to get the user's tickets
     private TicketDao ticketDao = new TicketDao();
 
+
     // get a particular user by his username
     public User getUserByUsername(String username){
         String sql = "select * from Users where username = ?";
