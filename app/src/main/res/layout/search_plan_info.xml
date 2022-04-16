@@ -20,19 +20,43 @@
             android:orientation="vertical"
             android:paddingTop="20dp">
 
-            <TextView
-                android:id="@+id/searchPlanInfoFrom"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="from:  "
-                android:textSize="20dp" />
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="from:  "
+                    android:textSize="20dp" />
+                <TextView
+                    android:id="@+id/searchPlanInfoFrom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="from"
+                    android:textSize="20dp" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/searchPlanInfoTo"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="to:  "
-                android:textSize="20dp" />
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="to:  "
+                    android:textSize="20dp" />
+                <TextView
+                    android:id="@+id/searchPlanInfoTo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="to"
+                    android:textSize="20dp" />
+            </LinearLayout>
 
             <View
                 android:layout_width="wrap_content"
