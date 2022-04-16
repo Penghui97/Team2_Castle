@@ -8,15 +8,20 @@ public class User {
     private String nickname;
     private String email;
     private String password;
-    private ArrayList<Ticket> tickets;
 
-    public User(String username, String profileId, String nickname, String email, String password, ArrayList<Ticket> tickets) {
+    public User(String username, String nickname, String email, String password) {
+        this.username = username;
+        this.nickname = nickname;
+        this.email = email;
+        this.password = password;
+    }
+
+    public User(String username, String profileId, String nickname, String email, String password) {
         this.username = username;
         this.profileId = profileId;
         this.nickname = nickname;
         this.email = email;
         this.password = password;
-        this.tickets = tickets;
     }
 
     public String getUsername() {
@@ -59,14 +64,6 @@ public class User {
         this.password = password;
     }
 
-    public ArrayList<Ticket> getTickets() {
-        return tickets;
-    }
-
-    public void setTickets(ArrayList<Ticket> tickets) {
-        this.tickets = tickets;
-    }
-
     @Override
     public String toString() {
         return "User{" +
@@ -75,7 +72,6 @@ public class User {
                 ", nickname='" + nickname + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", tickets=" + tickets +
                 '}';
     }
 }
