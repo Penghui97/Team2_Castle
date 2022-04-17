@@ -31,6 +31,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="9"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
             android:orientation="vertical">
@@ -61,7 +62,22 @@
 
             </ListView>
 
+
+        </LinearLayout>
+        <!--the info page-->
+        <LinearLayout
+            android:id="@+id/myPlanInfoAllContentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#F3F3F3"
+            android:orientation="vertical"
+            android:paddingHorizontal="10dp">
+            <include layout="@layout/my_plans_info"/>
         </LinearLayout>
 
+
     </LinearLayout>
+
+
 </FrameLayout>

@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:background="#F3F3F3"
     android:orientation="vertical"
-    android:paddingHorizontal="10dp"
-    tools:context=".MyPlansInfoActivity">
+    android:paddingHorizontal="10dp">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,17 +23,23 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:textSize="17dp"
+                    android:text="castle : " />
+                <TextView
                     android:id="@+id/myPlanInfoCastle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:textSize="17dp"
-                    android:text="castle : " />
+                    android:text="castleName" />
                 <TextView
                     android:id="@+id/myPlanInfoNearby"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="4"
                     android:textSize="17dp"
                     android:textAlignment="center"
                     android:text="nearby"
@@ -50,41 +55,103 @@
                 android:layout_marginVertical="5dp"
                 android:background="@color/gray"/>
 
-            <TextView
-                android:id="@+id/myPlanInfoDate"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="date : " />
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="date : " />
+                <TextView
+                    android:id="@+id/myPlanInfoDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="date" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/myPlanInfoDepartTime"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="depart time : " />
-
-            <TextView
-                android:id="@+id/myPlanInfoReturnTime"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="depart time : " />
+                <TextView
+                    android:id="@+id/myPlanInfoDepartTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="depart time" />
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="return time : " />
-
-            <TextView
-                android:id="@+id/myPlanInfoAdultNum"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="return time : " />
+                <TextView
+                    android:id="@+id/myPlanInfoReturnTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="return time" />
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="adult number : " />
-
-            <TextView
-                android:id="@+id/myPlanInfoKidsNum"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="adult number : " />
+                <TextView
+                    android:id="@+id/myPlanInfoAdultNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="adult number" />
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="kid number : " />
-
-            <TextView
-                android:id="@+id/myPlanInfoTotalPrice"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="kid number : " />
+                <TextView
+                    android:id="@+id/myPlanInfoKidsNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="kid number" />
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="total price : " />
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="total price : " />
+                <TextView
+                    android:id="@+id/myPlanInfoTotalPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="total price" />
+            </LinearLayout>
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="2dp"
@@ -138,7 +205,7 @@
                     android:layout_weight="1"
                     android:layout_marginHorizontal="10dp"
                     android:layout_height="wrap_content"
-                    android:onClick="onClick"
+                    android:onClick="removeInfo"
                     android:text="return" />
 
                 <Button

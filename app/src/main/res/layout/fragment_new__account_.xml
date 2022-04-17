@@ -91,13 +91,20 @@
                     android:inputType="text"
                     android:padding="15dp"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/black"
+                    android:textColorHint="@color/gray"
 
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
 
                     app:layout_constraintVertical_bias="0.297" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#f00"
+                    android:id="@+id/username_warn"
+
+                    />
 
                 <EditText
                     android:id="@+id/email_registry"
@@ -111,7 +118,14 @@
                     android:inputType="text"
                     android:padding="15dp"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+                    android:textColorHint="@color/gray" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#f00"
+                    android:id="@+id/email_warn"
+
+                    />
 
                 <EditText
                     android:id="@+id/password_registry"
@@ -125,7 +139,14 @@
                     android:inputType="textPassword"
                     android:padding="15dp"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+                    android:textColorHint="@color/gray" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#f00"
+                    android:id="@+id/password_warn"
+
+                    />
 
                 <EditText
                     android:id="@+id/confirm_password_registry"
@@ -139,7 +160,14 @@
                     android:inputType="textPassword"
                     android:padding="15dp"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+                    android:textColorHint="@color/gray" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#f00"
+                    android:id="@+id/confirm_warn"
+
+                    />
 
                 <Button
                     android:id="@+id/btn_regstery"

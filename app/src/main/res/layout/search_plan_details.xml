@@ -82,6 +82,20 @@
             android:onClick="onClick"/>
     </LinearLayout>
 
+    <!--the particular info of one plan-->
+    <LinearLayout
+        android:id="@+id/searchPlanInfoAllContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F3F3F3"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <include layout="@layout/search_plan_info"/>
+
+    </LinearLayout>
+
 
 
 
