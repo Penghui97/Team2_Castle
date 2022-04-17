@@ -60,7 +60,7 @@ public class NewAccountFragment extends Fragment {
 
             new Thread(() -> {
                 initView();
-                checkInfo();
+                checkInfoAndLogin();
 
             }).start();
 
@@ -75,9 +75,9 @@ public class NewAccountFragment extends Fragment {
         password_warn.setText("");
     }
 
-    //check the information is right
+    //check the information is right and log in
     @SuppressLint("SetTextI18n")
-    private void checkInfo() {
+    private void checkInfoAndLogin() {
         boolean information = false;//to control the loop
         while (!information){
             //to check email address
@@ -111,7 +111,8 @@ public class NewAccountFragment extends Fragment {
                 String name = username.getText().toString();
                 String emailAddress = email.getText().toString();
                 String _password = password.getText().toString();
-                StringBuffer encryptedPassword = new StringBuffer(_password.toString());//encrypt the password via DES algorithm
+                //encrypt the password via DES algorithm
+                StringBuffer encryptedPassword = new StringBuffer(_password);
                 int mode = 0;
                 DESUtil instance = null;
                 try {
@@ -126,6 +127,8 @@ public class NewAccountFragment extends Fragment {
                 if (instance != null) {
                     user = new User(name,name,emailAddress,instance.getCiphertext().toString());
                 }
+
+                //check the database
                 UserDao userDao = new UserDao();
                 if (user != null) {
                     if (userDao.addUser(user)==1){//username has been used
