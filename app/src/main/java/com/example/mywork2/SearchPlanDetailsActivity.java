@@ -43,6 +43,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
     private ArrayList<Journey> journeys;
     private String date;
     private String time;
+    private String username;
 
     //receive the data from the database
     @SuppressLint("HandlerLeak")
@@ -79,6 +80,8 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_plan_details);
 
+        //get the user from the
+
         //not show the info page until one particular plan is clicked
         searchPlanDetailsLayout = findViewById(R.id.searchPlanDetailsLayout);
         searchPlanInfoAllContent = findViewById(R.id.searchPlanInfoAllContent);
@@ -91,6 +94,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         String destination = (String) extras.get("destination");
         time = (String) extras.get("time");
         date = (String) extras.get("date");
+        username = (String) extras.get("username");
 
         //sort the journeys
         getJourneys(departure, destination);
@@ -382,7 +386,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
             @Override
             public void run() {
                 date = transferTimeFormat(date);
-                Ticket ticket = currentJourney.toTicket("root", date, time, returnTime, inputAdultNum, inputKidsNum);
+                Ticket ticket = currentJourney.toTicket(username, date, time, returnTime, inputAdultNum, inputKidsNum);
                 TicketDao ticketDao = new TicketDao();
                 ticketDao.addTicket(ticket);
             }

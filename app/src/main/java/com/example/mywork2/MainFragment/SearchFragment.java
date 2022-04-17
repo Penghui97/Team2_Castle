@@ -18,9 +18,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.example.mywork2.MainActivity;
 import com.example.mywork2.R;
 import com.example.mywork2.SearchPlanDetailsActivity;
 import com.example.mywork2.SearchPlans;
+import com.example.mywork2.domain.User;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.Calendar;
@@ -32,6 +34,7 @@ public class SearchFragment extends Fragment {
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private TimePickerDialog.OnTimeSetListener onTimeSetListener;
     private View view;
+    private User user;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -44,10 +47,12 @@ public class SearchFragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_search, container, false);
 
+        MainActivity mainActivity = (MainActivity) getActivity();
+        user = mainActivity.user;
+
         setDepartureTime();
 
         Button findPlans = view.findViewById(R.id.find_plans);
-
         findPlans.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -132,6 +137,7 @@ public class SearchFragment extends Fragment {
         intent.putExtra("departure", departure.getSelectedItem().toString());
         intent.putExtra("destination", destination.getSelectedItem().toString());
         intent.putExtra("date", departureDate.getText());
+        intent.putExtra("username", user.getUsername());
         String strTime = (String) departureTime.getText();
         //transfer the format of the time
         if(strTime.length() == 4){
