@@ -70,6 +70,8 @@ public class UserLogInFragment extends Fragment {
         String name, plain_password;
         boolean information = false;
         while (!information){
+            //regex to check email
+            //referenced from https://blog.csdn.net/qq_60750453/article/details/123709670
             String reg = "^[A-Za-z\\d]+([-_.][A-Za-z\\d]+)*@([A-Za-z\\d]+[-.])+[A-Za-z\\d]{2,4}$";
             if(username.getText().toString().length() == 0 ) {//no username found
                 username_warn.setText("Please enter a username !!!");
