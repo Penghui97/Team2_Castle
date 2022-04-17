@@ -3,12 +3,288 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".CastleFragment.PanelOverCastleFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="main fragment" />
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/castle_picture"
+                android:layout_width="match_parent"
+                android:layout_height="264dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:fontFamily="monospace"
+                    android:text="ALNWIC CASTAL  "
+                    android:textColor="#585859"
+                    android:textSize="20sp"
+                    android:textStyle="normal|bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:src="@android:drawable/ic_menu_today" />
+
+                    <EditText
+                        style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:duplicateParentState="false"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:gravity="left"
+                        android:inputType="none"
+                        android:shadowColor="@color/white"
+                        android:singleLine="false"
+                        android:text="create data"
+                        android:textColor="#585859"
+                        android:textColorHighlight="#6FB5FF"
+                        android:textColorLink="#6FB5FF"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:duplicateParentState="false"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:inputType="none"
+                        android:shadowColor="@color/white"
+                        android:singleLine="false"
+                        android:text="1890"
+                        android:textColor="#6FB5FF"
+                        android:textColorHighlight="#6FB5FF"
+                        android:textColorLink="#6FB5FF"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:src="@android:drawable/ic_menu_today" />
+
+                    <EditText
+                        style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:duplicateParentState="false"
+                        android:editable="false"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:gravity="center"
+                        android:inputType="none"
+                        android:shadowColor="@color/white"
+                        android:singleLine="false"
+                        android:text="location"
+                        android:textColor="#585859"
+                        android:textColorHighlight="#6FB5FF"
+                        android:textColorLink="#6FB5FF"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:duplicateParentState="false"
+                        android:editable="false"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:inputType="none"
+                        android:shadowColor="@color/white"
+                        android:singleLine="false"
+                        android:text="Brut - BBBB-BBBB"
+                        android:textColor="#6FB5FF"
+                        android:textColorHighlight="#6FB5FF"
+                        android:textColorLink="#6FB5FF"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:fontFamily="monospace"
+                    android:text="Brief "
+                    android:textColor="#585859"
+                    android:textSize="20sp"
+                    android:textStyle="normal|bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="6dp"
+                        android:layout_weight="1"
+                        android:duplicateParentState="false"
+                        android:ems="10"
+
+                        android:padding="5dp"
+                        android:shadowColor="@color/white"
+                        android:singleLine="false"
+                        android:text="     Welcome to Bamburgh Castle, the Kingdom of Northumbria’s epicentre and home of the Armstrong family since 1894. Crowning nine acres of the Great Whin Sill"
+                        android:textAlignment="viewStart"
+                        android:textColor="#131313"
+                        android:textColorHighlight="#6FB5FF"
+                        android:textColorLink="#6FB5FF"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:fontFamily="monospace"
+                    android:text="Opening Times  "
+                    android:textColor="#585859"
+                    android:textSize="20sp"
+                    android:textStyle="normal|bold"
+                    android:layout_marginBottom="15dp"/>
+
+
+                <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="33dp"
+                            android:background="#6FB5FF"
+                            android:text="Plice"
+                            android:gravity="center|left"
+                            android:paddingLeft="20dp"
+                            android:textColor="@color/white"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="33dp"
+                            android:text="TextView"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="33dp"
+                            android:text="TextView"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="33dp"
+                            android:text="TextView"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="33dp"
+                            android:text="TextView"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="33dp"
+                            android:background="#6FB5FF"
+                            android:text="Time"
+                            android:gravity="center|left"
+                            android:paddingLeft="20dp"
+                            android:textColor="@color/white"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="33dp"
+                            android:text="TextView"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="33dp"
+                            android:text="TextView"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="33dp"
+                            android:text="TextView"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="33dp"
+                            android:text="TextView"/>
+                    </LinearLayout>
+
+
+
+                            
+                   
+
+                </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>
