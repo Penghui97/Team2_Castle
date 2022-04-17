@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.mywork2.MainActivity;
 import com.example.mywork2.R;
+import com.example.mywork2.Util.UserThreadLocal;
 import com.example.mywork2.dao.UserDao;
 import com.example.mywork2.domain.User;
 
@@ -68,6 +69,7 @@ public class UserLogInFragment extends Fragment {
     @SuppressLint("SetTextI18n")
     private void checkInfoAndLogin() throws UnsupportedEncodingException {
         String name, plain_password;
+        User user = null;
         boolean information = false;
         while (!information){
             //regex to check email
@@ -91,7 +93,6 @@ public class UserLogInFragment extends Fragment {
             }else {
                 //check the database and verify
                 UserDao userDao = new UserDao();
-                User user = null;
                 name = username.getText().toString();
                 plain_password = password.getText().toString();
 
@@ -133,10 +134,14 @@ public class UserLogInFragment extends Fragment {
 
             }
         }
-        Intent intent = new Intent(getActivity(), MainActivity.class);
-        startActivity(intent);
-    }
 
+        //if the user login successfully
+        //pass his username to the MainActivity
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        intent.putExtra("username", user.getUsername());
+        startActivity(intent);
+
+    }
 
     //initialize the warn text views
     private void initView() {

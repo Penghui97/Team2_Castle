@@ -1,6 +1,7 @@
 package com.example.mywork2;
 
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -17,6 +18,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,17 +28,44 @@ import android.widget.Toast;
 
 
 import com.example.mywork2.Util.ImageUtil;
+import com.example.mywork2.Util.UserThreadLocal;
+import com.example.mywork2.dao.UserDao;
+import com.example.mywork2.domain.DepartureTime;
+import com.example.mywork2.domain.Journey;
+import com.example.mywork2.domain.Ticket;
+import com.example.mywork2.domain.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private DrawerLayout drawer;
     //drawerImage is the imageview in the drawerlayout. headImage is the imageview in drawer_head
     private ImageView imageView, drawerImage;
 
+    public User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /**
+         * (Jing)
+         * get the user by username
+         */
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        String username = (String)extras.get("username");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                UserDao userDao = new UserDao();
+                user = userDao.getUserByUsername(username);
+            }
+        }).start();
+
+
         setContentView(R.layout.drawer_main);//avatar
 
         //init view, 23.2

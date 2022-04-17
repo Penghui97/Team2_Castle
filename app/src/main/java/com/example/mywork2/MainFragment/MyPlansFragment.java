@@ -28,6 +28,7 @@ import com.example.mywork2.MyPlansInfoActivity;
 import com.example.mywork2.MyPlansInfoNearbyActivity;
 import com.example.mywork2.R;
 import com.example.mywork2.Util.PayUtil;
+import com.example.mywork2.Util.UserThreadLocal;
 import com.example.mywork2.adapter.MyPlansAdapter;
 import com.example.mywork2.dao.DepartureTimeDao;
 import com.example.mywork2.dao.JourneyDao;
@@ -37,11 +38,13 @@ import com.example.mywork2.domain.Journey;
 import com.example.mywork2.domain.Route;
 import com.example.mywork2.domain.Ticket;
 import com.example.mywork2.domain.Time;
+import com.example.mywork2.domain.User;
 
 import java.util.ArrayList;
 
 public class MyPlansFragment extends Fragment{
     private View view;
+    private User user;
 
     public MyPlansFragment() {
         // Required empty public constructor
@@ -99,15 +102,21 @@ public class MyPlansFragment extends Fragment{
         myPlansNoPlansLayout = this.view.findViewById(R.id.myPlansNoPlansLayout);
         myPlanInfoLayout = this.view.findViewById(R.id.myPlanInfoAllContentLayout);
         myPlanInfoLayout.setVisibility(View.GONE);
+        //get the user from the ThreadLocal
+        MainActivity mainActivity = (MainActivity) getActivity();
+        user = mainActivity.user;
+        //start to get the users information from the database
         getTickets();
 
-        //set the click listeners
+        //set the click listeners in the info page
+        //the return button
         this.view.findViewById(R.id.myPlanInfoReturn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 myPlanInfoLayout.setVisibility(View.GONE);
             }
         });
+        //the by button
         this.view.findViewById(R.id.myPlanInfoBuy).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,6 +124,7 @@ public class MyPlansFragment extends Fragment{
                 horsePay(currentTicket.getUsername(), transactionAmount);
             }
         });
+        //the remove button
         this.view.findViewById(R.id.myPlanInfoRemove).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -126,6 +136,7 @@ public class MyPlansFragment extends Fragment{
                 }
             }
         });
+        //the nearby button
         this.view.findViewById(R.id.myPlanInfoNearby).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -150,7 +161,9 @@ public class MyPlansFragment extends Fragment{
             @Override
             public void run() {
                 TicketDao ticketDao = new TicketDao();
-                ArrayList<Ticket> tickets = ticketDao.getTicketsByUsername("root");
+                ArrayList<Ticket> tickets;
+                if(user == null) tickets = ticketDao.getTicketsByUsername("root");
+                else tickets = ticketDao.getTicketsByUsername(user.getUsername());
                 Message message = handler.obtainMessage();
                 message.what = 0x99;
                 message.obj = tickets;
