@@ -58,7 +58,7 @@
             android:layout_marginRight="20dp"
             android:backgroundTint="#2988EE"
             android:gravity="center"
-            android:text="Sign in with Username"
+            android:text="Sign in with Username/Email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.175"
             app:layout_constraintStart_toStartOf="parent"

@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.mywork2.MainActivity;
+import com.example.mywork2.LogInActivity;
 import com.example.mywork2.R;
 import com.example.mywork2.Util.DESUtil;
 import com.example.mywork2.dao.UserDao;
@@ -58,20 +58,13 @@ public class NewAccountFragment extends Fragment {
 
         register.setOnClickListener(view1 -> {
 
-            new Thread(new Runnable(){
-                @SuppressLint("LongLogTag")
-                @Override
-                public void run() {
-                    initView();
-                    checkInfo();
+            new Thread(() -> {
+                initView();
+                checkInfo();
 
-                }
             }).start();
 
         });
-
-
-
     }
 
     //to initialize the warning textviews
@@ -146,7 +139,7 @@ public class NewAccountFragment extends Fragment {
                         return;
                     }else {
                         information = true;
-                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        Intent intent = new Intent(getActivity(), LogInActivity.class);
                         startActivity(intent);
 
                     }
