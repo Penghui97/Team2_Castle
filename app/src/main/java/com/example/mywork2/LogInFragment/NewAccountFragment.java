@@ -17,9 +17,10 @@ import android.widget.TextView;
 
 import com.example.mywork2.LogInActivity;
 import com.example.mywork2.R;
-import com.example.mywork2.Util.DESUtil;
 import com.example.mywork2.dao.UserDao;
 import com.example.mywork2.domain.User;
+
+import java.io.UnsupportedEncodingException;
 
 
 public class NewAccountFragment extends Fragment {
@@ -28,7 +29,7 @@ public class NewAccountFragment extends Fragment {
     private EditText password;
     private EditText confirmPassword;
     private TextView username_warn, email_warn, password_warn, confirm_warn;
-    private final StringBuffer key = new StringBuffer("12345678");
+    private final StringBuffer key = new StringBuffer("12345678");//key for encryption
 
     public NewAccountFragment() {
         // Required empty public constructor
@@ -60,7 +61,11 @@ public class NewAccountFragment extends Fragment {
 
             new Thread(() -> {
                 initView();
-                checkInfoAndLogin();
+                try {
+                    checkInfoAndRegister();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
 
             }).start();
 
@@ -75,9 +80,9 @@ public class NewAccountFragment extends Fragment {
         password_warn.setText("");
     }
 
-    //check the information is right and log in
+    //check the information is right and register
     @SuppressLint("SetTextI18n")
-    private void checkInfoAndLogin() {
+    private void checkInfoAndRegister() throws UnsupportedEncodingException {
         boolean information = false;//to control the loop
         while (!information){
             //to check email address
@@ -111,48 +116,63 @@ public class NewAccountFragment extends Fragment {
                 String name = username.getText().toString();
                 String emailAddress = email.getText().toString();
                 String _password = password.getText().toString();
-                //encrypt the password via DES algorithm
-                StringBuffer encryptedPassword = new StringBuffer(_password);
-                int mode = 0;
-                DESUtil instance = null;
-                try {
-                    instance = new DESUtil(encryptedPassword, key, mode);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                if (instance != null) {
-                    instance.start();
-                }
-                User user = null;
-                if (instance != null) {
-                    user = new User(name,name,emailAddress,instance.getCiphertext().toString());
-                }
+                //save the user into database, convert the password to hex
+                User user = new User(name,name,emailAddress,str2Hex(_password));
 
                 //check the database
                 UserDao userDao = new UserDao();
-                if (user != null) {
-                    if (userDao.addUser(user)==1){//username has been used
-                        username_warn.setText("Your username has been used !!!");
-                        return;
-                    }else if(userDao.addUser(user)==2){//email address has been used
-                        email_warn.setText("Your email has been used !!!");
-                        return;
-                    }else if(userDao.addUser(user)==-1){//something wrong with the database
-                        confirm_warn.setText("There is something wrong with our database");
-                        return;
-                    }else {
-                        information = true;
-                        Intent intent = new Intent(getActivity(), LogInActivity.class);
-                        startActivity(intent);
+                if (userDao.addUser(user)==1){//username has been used
+                    username_warn.setText("Your username has been used !!!");
+                    return;
+                }else if(userDao.addUser(user)==2){//email address has been used
+                    email_warn.setText("Your email has been used !!!");
+                    return;
+                }else if(userDao.addUser(user)==-1){//something wrong with the database
+                    confirm_warn.setText("There is something wrong with our database");
+                    return;
+                }else {
+                    information = true;
+                    Intent intent = new Intent(getActivity(), LogInActivity.class);
+                    startActivity(intent);
 
-                    }
                 }
             }
 
         }
 
 
-
-
     }
+
+    //convert string to hex
+    //Penghui Xiao, reference from https://blog.csdn.net/qq_29752857/article/details/118220714
+    public static String str2Hex(String string) {
+        char[] chars = "0123456789ABCDEF".toCharArray();
+        StringBuilder sBuilder = new StringBuilder("");
+        byte[] bs = string.getBytes();
+        int bit;
+        for (byte b : bs) {
+            bit = (b & 0x0f0) >> 4;
+            sBuilder.append(chars[bit]);
+            bit = b & 0x0f;
+            sBuilder.append(chars[bit]);
+
+        }
+        return sBuilder.toString().trim();
+    }
+
+    //convert hex to string
+    //Penghui Xiao, reference from https://blog.csdn.net/qq_29752857/article/details/118220714
+    public static String hex2Str(String hex) {
+        String string = "0123456789ABCDEF";
+        char[] hexs = hex.toCharArray();
+        byte[] bytes = new byte[hex.length()/2];
+        int n;
+        for(int i =0;i<bytes.length;i++) {
+            n=string.indexOf(hexs[2*i])*16;
+            n+=string.indexOf(hexs[2*i+1]);
+            bytes[i] = (byte) (n & 0xff);
+        }
+        return new String(bytes);
+    }
+
 }

@@ -1,5 +1,7 @@
 package com.example.mywork2.LogInFragment;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,14 +11,22 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.mywork2.MainActivity;
 import com.example.mywork2.R;
+import com.example.mywork2.dao.UserDao;
+import com.example.mywork2.domain.User;
+
+import java.io.UnsupportedEncodingException;
 
 public class UserLogInFragment extends Fragment {
     private EditText username, password;
     private TextView username_warn, password_warn;
+    Button login;
+    private final StringBuffer key = new StringBuffer("12345678");//key for decryption
 
     public UserLogInFragment() {
         // Required empty public constructor
@@ -35,6 +45,100 @@ public class UserLogInFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         username = view.findViewById(R.id.username_login);
+        username_warn = view.findViewById(R.id.username_login_warn);
+        password = view.findViewById(R.id.password_login);
+        password_warn = view.findViewById(R.id.password_login_warn);
+        
+        login = view.findViewById(R.id.btn_login);
+        login.setOnClickListener(view1 -> {
+            new Thread(() -> {
+                initView();
+                try {
+                    checkInfoAndLogin();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
 
+            }).start();
+            
+        });
+    }
+
+    //check the information is right and login
+    @SuppressLint("SetTextI18n")
+    private void checkInfoAndLogin() throws UnsupportedEncodingException {
+        String name, plain_password;
+        boolean information = false;
+        while (!information){
+            String reg = "^[A-Za-z\\d]+([-_.][A-Za-z\\d]+)*@([A-Za-z\\d]+[-.])+[A-Za-z\\d]{2,4}$";
+            if(username.getText().toString().length() == 0 ) {//no username found
+                username_warn.setText("Please enter a username !!!");
+                return;
+            }else if (username.getText().toString().length()>25){//username's length should be less than 25
+                username_warn.setText("Username's length should not be longer than 25 !!!");
+                return;
+            }else if(password.getText().toString().length()==0) {//no password found
+                password_warn.setText("Please enter your password !!!");
+                return;
+            }else if(password.getText().toString().length()>16){//password's length should be less than 16
+                password_warn.setText("Password's length should be less than 16 !!!");
+                return;
+            }else if(username.getText().toString().contains("@")&&!username.getText().toString().matches(reg)){//wrong email address
+                username_warn.setText("Email address is incorrect !!!");
+                return;
+            }else {
+                //check the database and verify
+                UserDao userDao = new UserDao();
+                User user = null;
+                name = username.getText().toString();
+                plain_password = password.getText().toString();
+
+                if(name.contains("@")){//if the user login with email
+                    try {
+                        user = userDao.getUserByEmail(name);
+                        if(user == null) {//no user found
+                            username_warn.setText("Your email has not been registered !!!");
+                            return;
+                        }else {
+                            if (!plain_password.equals(NewAccountFragment.hex2Str(user.getPassword()))){//password is wrong
+                                password_warn.setText("Your password is incorrect !!!");
+
+                            }else {
+                                information = true;
+                            }
+                        }
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
+                }else {//if the user login with username
+                    try {
+                        user = userDao.getUserByUsername(name);
+                        if(user == null) {//no user found
+                            username_warn.setText("Your username has not been registered !!!");
+                            return;
+                        }else {
+                            if (!plain_password.equals(NewAccountFragment.hex2Str(user.getPassword()))){//password is wrong
+                                password_warn.setText("Your password is incorrect !!!");
+                            }else {
+                                information = true;
+                            }
+                        }
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+        }
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        startActivity(intent);
+    }
+
+
+    //initialize the warn text views
+    private void initView() {
+        username_warn.setText("");
+        password_warn.setText("");
     }
 }
