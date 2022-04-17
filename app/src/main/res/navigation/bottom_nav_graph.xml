@@ -19,4 +19,14 @@
         android:id="@+id/myPlansFragment"
         android:name="com.example.mywork2.MainFragment.MyPlansFragment"
         android:label="MyPlansFragment" />
+    <activity
+        android:id="@+id/accountEditActivity"
+        android:name="com.example.mywork2.MyAccount.AccountEditActivity"
+        android:label="activity_account_edit"
+        tools:layout="@layout/activity_account_edit" />
+    <activity
+        android:id="@+id/appSettingsActivity"
+        android:name="com.example.mywork2.MyAccount.AppSettingsActivity"
+        android:label="activity_app_settings"
+        tools:layout="@layout/activity_app_settings" />
 </navigation>

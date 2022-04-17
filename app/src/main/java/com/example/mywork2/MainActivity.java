@@ -50,13 +50,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         FragmentContainerView fragmentContainerView = findViewById(R.id.mainpage_fragment_container_view_tag);
         NavHostFragment navHostFragment = fragmentContainerView.getFragment();
         //get Navigation Controller from the Host fragment
-        NavController NavController = navHostFragment.getNavController();
-        NavigationUI.setupWithNavController(botNavView,NavController);
+        NavController navController = navHostFragment.getNavController();
+        NavigationUI.setupWithNavController(botNavView,navController);
 
         //drawer Navigation
         drawer = findViewById(R.id.drawer_layout);
         NavigationView drawerView = findViewById(R.id.drawerNavView);
-        NavigationUI.setupWithNavController(drawerView,NavController);
+        NavigationUI.setupWithNavController(drawerView,navController);
 
         CardView account = findViewById(R.id.account_avatar);
         account.setOnClickListener(this);
