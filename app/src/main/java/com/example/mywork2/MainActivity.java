@@ -14,6 +14,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import android.annotation.SuppressLint;
+import android.content.ClipData;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -22,8 +23,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -41,11 +44,15 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private DrawerLayout drawer;
-    //drawerImage is the imageview in the drawerlayout. headImage is the imageview in drawer_head
+    //drawerImage is the imageview in the drawerlayout.
     private ImageView imageView, drawerImage;
+    //username_v is the username textview.
+    private TextView username_v, email_v;
 
-    public User user;
-    public String username, email;
+
+
+    public User user, customer;
+    public String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,13 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         username = (String)extras.get("username");
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                UserDao userDao = new UserDao();
-                user = userDao.getUserByUsername(username);
-            }
-        }).start();
+
 
 
         setContentView(R.layout.drawer_main);//avatar
@@ -100,6 +101,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         drawerImage = drawerView.getHeaderView(0).findViewById(R.id.avatar);
 
+        username_v = drawerView.getHeaderView(0).findViewById(R.id.username_profile);
+
+        email_v = drawerView.getHeaderView(0).findViewById(R.id.user_email);
+
+
+
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                UserDao userDao = new UserDao();
+                user = userDao.getUserByUsername(username);
+                customer = userDao.getUserByUsername("root");
+
+                if(user != null){
+                    username_v.setText(username);//set the username on the view
+                    email_v.setText(user.getEmail());//set the email on the view
+                }else {
+                    username_v.setText(customer.getUsername());//set the customer's username on the view
+                    email_v.setText(customer.getEmail());//set the customer's email on the view
+                }
+                //logout. clear the user and go back to the login page
+                drawerView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()){
+                            case R.id.app_logout:
+                                user = null;
+                                Intent intent1 = new Intent(MainActivity.this,LogInActivity.class);
+                                startActivity(intent1);
+                                break;
+
+                            default:
+                                break;
+
+                        }
+                        return true;
+                    }
+                });
+            }
+        }).start();
 
 
 
@@ -148,6 +190,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void initData(){
+
+
+
         getDataFromSpf();
     }
 

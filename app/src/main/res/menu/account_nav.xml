@@ -11,7 +11,9 @@
         android:id="@+id/appSettingsActivity"
         android:icon="@drawable/ic_baseline_settings_24"/>
     <item android:title="Help center"
+        android:id="@+id/menu_help"
         android:icon="@drawable/ic_baseline_help_outline_24"/>
     <item android:title="Log out"
+        android:id="@+id/app_logout"
         android:icon="@drawable/ic_baseline_logout_24"/>
 </menu>
