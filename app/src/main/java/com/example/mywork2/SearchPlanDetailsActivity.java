@@ -386,9 +386,11 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
             @Override
             public void run() {
                 date = transferTimeFormat(date);
-                Ticket ticket = currentJourney.toTicket(username, date, time, returnTime, inputAdultNum, inputKidsNum);
-                TicketDao ticketDao = new TicketDao();
-                ticketDao.addTicket(ticket);
+                if(currentJourney != null){
+                    Ticket ticket = currentJourney.toTicket(username, date, time, returnTime, inputAdultNum, inputKidsNum);
+                    TicketDao ticketDao = new TicketDao();
+                    ticketDao.addTicket(ticket);
+                }
             }
         }).start();
     }

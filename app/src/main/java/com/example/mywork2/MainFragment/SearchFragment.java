@@ -48,7 +48,9 @@ public class SearchFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_search, container, false);
 
         MainActivity mainActivity = (MainActivity) getActivity();
-        user = mainActivity.user;
+        if (mainActivity != null) {
+            user = mainActivity.user;
+        }
 
         setDepartureTime();
 
@@ -137,7 +139,8 @@ public class SearchFragment extends Fragment {
         intent.putExtra("departure", departure.getSelectedItem().toString());
         intent.putExtra("destination", destination.getSelectedItem().toString());
         intent.putExtra("date", departureDate.getText());
-        intent.putExtra("username", user.getUsername());
+        if(user == null) intent.putExtra("username", "root");
+        else intent.putExtra("username", user.getUsername());
         String strTime = (String) departureTime.getText();
         //transfer the format of the time
         if(strTime.length() == 4){
