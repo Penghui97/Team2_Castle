@@ -51,6 +51,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public User user, customer;
     public String username;
 
+
+    //receive the data from the database
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            switch (msg.what) {
+                case 0x11:
+                    username_v.setText(username);//set the username on the view
+                    email_v.setText(user.getEmail());//set the email on the view
+                    break;
+                case 0x22:
+                    username_v.setText(customer.getUsername());//set the customer's username on the view
+                    email_v.setText(customer.getEmail());//set the customer's email on the view
+                    break;
+            }
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +81,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         username = (String)extras.get("username");
-
+        //show the particular user's info
+        showUserInfo();
 
 
         setContentView(R.layout.drawer_main);//avatar
@@ -105,21 +125,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-        new Thread(() -> {
-            UserDao userDao = new UserDao();
-            user = userDao.getUserByUsername(username);
-            customer = userDao.getUserByUsername("root");
-
-            if(user != null){
-                username_v.setText(username);//set the username on the view
-                email_v.setText(user.getEmail());//set the email on the view
-            }else {
-                username_v.setText(customer.getUsername());//set the customer's username on the view
-                email_v.setText(customer.getEmail());//set the customer's email on the view
-            }
-
-        }).start();
-
         //logout. clear the user and go back to the login page
         drawerView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @SuppressLint("NonConstantResourceId")
@@ -133,7 +138,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
             }
         });
-
 
 
 
@@ -225,5 +229,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    //show the particular user's info
+    public void showUserInfo(){
+        new Thread(() -> {
+            UserDao userDao = new UserDao();
+            user = userDao.getUserByUsername(username);
+            customer = userDao.getUserByUsername("root");
+
+            if(user != null){
+                Message message = handler.obtainMessage();
+                message.what = 0x11;
+                handler.sendMessage(message);
+            }else {
+                Message message = handler.obtainMessage();
+                message.what = 0x22;
+                handler.sendMessage(message);
+            }
+        }).start();
     }
 }
