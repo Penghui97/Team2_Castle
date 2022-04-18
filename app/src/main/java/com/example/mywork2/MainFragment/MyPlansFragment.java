@@ -41,6 +41,7 @@ import com.example.mywork2.domain.Time;
 import com.example.mywork2.domain.User;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MyPlansFragment extends Fragment{
     private View view;
@@ -104,7 +105,9 @@ public class MyPlansFragment extends Fragment{
         myPlanInfoLayout.setVisibility(View.GONE);
         //get the user from the ThreadLocal
         MainActivity mainActivity = (MainActivity) getActivity();
-        user = mainActivity.user;
+        if (mainActivity != null) {
+            user = mainActivity.user;
+        }
         //start to get the users information from the database
         getTickets();
 
@@ -162,8 +165,8 @@ public class MyPlansFragment extends Fragment{
             public void run() {
                 TicketDao ticketDao = new TicketDao();
                 ArrayList<Ticket> tickets;
-                if(user == null) tickets = ticketDao.getTicketsByUsername("root");
-                else tickets = ticketDao.getTicketsByUsername(user.getUsername());
+                if(user == null) tickets = ticketDao.getTicketsByUsername("root");//if customer login
+                else tickets = ticketDao.getTicketsByUsername(user.getUsername());//user login
                 Message message = handler.obtainMessage();
                 message.what = 0x99;
                 message.obj = tickets;
@@ -177,7 +180,6 @@ public class MyPlansFragment extends Fragment{
         //if there is no plans
         if(tickets == null || tickets.size() == 0){
             this.view.findViewById(R.id.myPlansNoPlansLayout).setVisibility(View.VISIBLE);
-            return;
         }else{
             //set the my plan list
             ListView listView = this.view.findViewById(R.id.myPlansListView);
@@ -296,6 +298,7 @@ public class MyPlansFragment extends Fragment{
     }
 
     //show the detailed information
+    @SuppressLint("SetTextI18n")
     public void showInfo() {
         //init the status of the info page
         initInfo();
@@ -383,7 +386,7 @@ public class MyPlansFragment extends Fragment{
 
     //alert a success message
     public void alertMessage(String message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
         builder.setMessage(message)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override

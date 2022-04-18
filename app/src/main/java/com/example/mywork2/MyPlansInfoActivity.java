@@ -84,6 +84,7 @@ public class MyPlansInfoActivity extends AppCompatActivity implements View.OnCli
     }
 
     //the onclick listener
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         switch (view.getId()) {

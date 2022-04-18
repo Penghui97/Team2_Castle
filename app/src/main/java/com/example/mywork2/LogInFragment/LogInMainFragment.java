@@ -1,5 +1,6 @@
 package com.example.mywork2.LogInFragment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -61,6 +62,7 @@ public class LogInMainFragment extends Fragment implements View.OnClickListener{
 
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         switch (view.getId()){
