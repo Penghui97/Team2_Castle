@@ -212,13 +212,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-
-    /**
-     * Methods to return home page directly
-     * @param keyCode
-     * @param event
-     * @return
-     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
