@@ -108,39 +108,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                UserDao userDao = new UserDao();
-                user = userDao.getUserByUsername(username);
-                customer = userDao.getUserByUsername("root");
+        new Thread(() -> {
+            UserDao userDao = new UserDao();
+            user = userDao.getUserByUsername(username);
+            customer = userDao.getUserByUsername("root");
 
-                if(user != null){
-                    username_v.setText(username);//set the username on the view
-                    email_v.setText(user.getEmail());//set the email on the view
-                }else {
-                    username_v.setText(customer.getUsername());//set the customer's username on the view
-                    email_v.setText(customer.getEmail());//set the customer's email on the view
-                }
-                //logout. clear the user and go back to the login page
-                drawerView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        switch (item.getItemId()){
-                            case R.id.app_logout:
-                                user = null;
-                                Intent intent1 = new Intent(MainActivity.this,LogInActivity.class);
-                                startActivity(intent1);
-                                break;
-
-                            default:
-                                break;
-
-                        }
-                        return true;
-                    }
-                });
+            if(user != null){
+                username_v.setText(username);//set the username on the view
+                email_v.setText(user.getEmail());//set the email on the view
+            }else {
+                username_v.setText(customer.getUsername());//set the customer's username on the view
+                email_v.setText(customer.getEmail());//set the customer's email on the view
             }
+            //logout. clear the user and go back to the login page
+            drawerView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+                @SuppressLint("NonConstantResourceId")
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    switch (item.getItemId()){
+                        case R.id.app_logout:
+                            user = null;
+                            Intent intent1 = new Intent(MainActivity.this,LogInActivity.class);
+                            startActivity(intent1);
+                            break;
+
+                        default:
+                            break;
+
+                    }
+                    return true;
+                }
+            });
         }).start();
 
 
