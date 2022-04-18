@@ -66,6 +66,11 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
                 case 0x33:
                     //there is no appropriate bus
                     showJourneyInfo(currentJourney);
+                    break;
+                case 0x44:
+                    //the ticket is saved successfully
+                    alertSuccess();
+                    break;
                 case 0x99:
                     //receive the searched journeys
                     journeys = (ArrayList<Journey>) msg.obj;
@@ -120,7 +125,6 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
             case R.id.searchPlanInfoSave:
                 getInput();
                 saveJourney();
-                alertSuccess();
                 break;
         }
     }
@@ -385,11 +389,15 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         new Thread(new Runnable() {
             @Override
             public void run() {
-                date = transferTimeFormat(date);
                 if(currentJourney != null){
+                    date = transferTimeFormat(date);
                     Ticket ticket = currentJourney.toTicket(username, date, time, returnTime, inputAdultNum, inputKidsNum);
                     TicketDao ticketDao = new TicketDao();
                     ticketDao.addTicket(ticket);
+                    currentJourney = null;
+                    Message message = handler.obtainMessage();
+                    message.what = 0x44;
+                    handler.sendMessage(message);
                 }
             }
         }).start();
