@@ -54,6 +54,7 @@ public class Avatar extends AppCompatActivity {
     private String imageBase64;
     File imageTemp;
     Bitmap bitmap;
+    TextView savePhoto;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -68,13 +69,20 @@ public class Avatar extends AppCompatActivity {
                 findViewById(R.id.avatar_bottom_sheet)
         );
 
+
+
         //set the listener for take a photo
         bottomView.findViewById(R.id.from_camera).setOnClickListener(this::takePhoto);
 
         //set the listener to choose a photo from album
         bottomView.findViewById(R.id.from_album).setOnClickListener(this::choosePhoto);
 
-        bottomView.findViewById(R.id.save).setOnClickListener(this::save);
+        savePhoto = bottomView.findViewById(R.id.save);
+
+        //if no photo chosen and you click save, it will close the bottom sheet
+        savePhoto.setOnClickListener(view -> {
+            bottomSheetDialog.dismiss();
+        });
 
         bottomSheetDialog.setContentView(bottomView);
 
@@ -171,6 +179,8 @@ public class Avatar extends AppCompatActivity {
                 try (InputStream inputStream = getContentResolver().openInputStream(imageUri)) {
                     bitmap = BitmapFactory.decodeStream(inputStream);
                     imageView.setImageBitmap(bitmap);
+                    //now we can save the photo from camera
+                    savePhoto.setOnClickListener(this::save);
                     //Save the photo
                     //save the String
                     imageBase64 = ImageUtil.imageToBase64(bitmap);
@@ -188,7 +198,7 @@ public class Avatar extends AppCompatActivity {
         }
     }
     @TargetApi(21)
-    //method to get the image's path if API > 21
+    //method to get the image's path if API > 19
     private void handleImageOnApi19(Intent data){
         String imagePath = null;
         Uri uri = data.getData();
@@ -260,12 +270,16 @@ public class Avatar extends AppCompatActivity {
     }
 
 
-    //method to show the photo
+    //method to show the photo from album
     private void displayImage(String imagePath){
 
         if(imagePath!=null){
             Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
             imageView.setImageBitmap(bitmap);
+            //now we can save the photo from album
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                savePhoto.setOnClickListener(this::save);
+            }
             imageBase64 = ImageUtil.imageToBase64(bitmap);
         }
     }
@@ -297,12 +311,12 @@ public class Avatar extends AppCompatActivity {
 
         edit.putString("image_64", imageBase64);
         edit.apply();
-
-
-
+        //if no photo chosen and you click save, it will close the bottom sheet
+        savePhoto.setOnClickListener(view1 -> {
+            bottomSheetDialog.dismiss();
+        });
         this.finish();
         bottomSheetDialog.dismiss();
-
 
     }
 

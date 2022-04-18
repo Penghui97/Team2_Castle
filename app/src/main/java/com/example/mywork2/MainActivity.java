@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView imageView, drawerImage;
 
     public User user;
+    public String username, email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
          */
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        String username = (String)extras.get("username");
+        username = (String)extras.get("username");
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    //override onresume function to get the information changed.
+    //override on_resume function to get the information changed.
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onResume() {
@@ -165,7 +166,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        View v = inflater1.inflate(R.layout.activity_avatar,null);
 //        avatar2 = (ImageView) v.findViewById(R.id.avatar);
 //        avatar2.setImageBitmap(ImageUtil.base64ToImage(image64));
-
 
     }
 
