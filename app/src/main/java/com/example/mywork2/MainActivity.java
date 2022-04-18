@@ -48,9 +48,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView imageView, drawerImage;
     //username_v is the username textview.
     private TextView username_v, email_v;
-
-
-
     public User user, customer;
     public String username;
 
@@ -120,26 +117,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 username_v.setText(customer.getUsername());//set the customer's username on the view
                 email_v.setText(customer.getEmail());//set the customer's email on the view
             }
-            //logout. clear the user and go back to the login page
-            drawerView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-                @SuppressLint("NonConstantResourceId")
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    switch (item.getItemId()){
-                        case R.id.app_logout:
-                            user = null;
-                            Intent intent1 = new Intent(MainActivity.this,LogInActivity.class);
-                            startActivity(intent1);
-                            break;
 
-                        default:
-                            break;
-
-                    }
-                    return true;
-                }
-            });
         }).start();
+
+        //logout. clear the user and go back to the login page
+        drawerView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (item.getItemId() == R.id.app_logout) {
+                    user = null;
+                    Intent intent1 = new Intent(MainActivity.this, LogInActivity.class);
+                    startActivity(intent1);
+                }
+                return true;
+            }
+        });
 
 
 
