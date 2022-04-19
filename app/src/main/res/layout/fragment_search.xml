@@ -38,14 +38,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:icon="@drawable/ic_baseline_directions_bus_24"
-                        android:text="Bus"
+                        android:text="@string/bus"
                         />
 
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:icon="@drawable/ic_baseline_train_24"
-                        android:text="Train" />
+                        android:text="@string/train" />
 
                 </com.google.android.material.tabs.TabLayout>
 
@@ -59,7 +59,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
                         android:layout_marginTop="36dp"
-                        android:text="From"
+                        android:text="@string/from"
                         android:textColor="@color/black"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -86,7 +86,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="36dp"
                         android:layout_marginTop="40dp"
-                        android:text="To"
+                        android:text="@string/to"
                         android:textColor="@color/black"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/departure" />
@@ -112,7 +112,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="36dp"
                         android:layout_marginTop="60dp"
-                        android:text="Date"
+                        android:text="@string/date"
                         android:textColor="@color/black"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView_in_search" />
@@ -126,7 +126,7 @@
                         android:layout_marginEnd="80dp"
                         android:background="#5CE8E3E3"
                         android:gravity="center"
-                        android:text="Please Select Date"
+                        android:text="@string/please_select_date"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
@@ -137,7 +137,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="32dp"
                         android:layout_marginBottom="8dp"
-                        android:text="Time"
+                        android:text="@string/time"
                         android:textColor="@color/black"
                         app:layout_constraintBottom_toTopOf="@+id/black_line"
                         app:layout_constraintEnd_toStartOf="@+id/departure_time" />
@@ -151,7 +151,7 @@
                         android:layout_marginBottom="72dp"
                         android:background="#5CE8E3E3"
                         android:gravity="center"
-                        android:text="Please Select Time"
+                        android:text="@string/please_select_time"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -207,7 +207,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="77dp"
-                        android:text="Ticket count"
+                        android:text="@string/ticket_count"
                         android:textColor="@color/black"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/ticket_num"
@@ -227,7 +227,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="23dp"
-            android:text="find plans"
+            android:text="@string/find_plans"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView2" />

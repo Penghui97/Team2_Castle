@@ -32,12 +32,12 @@
                 android:gravity="center|right"
                 android:includeFontPadding="true"
                 android:singleLine="false"
-                android:text="Regstery in to "
+                android:text="@string/register_in_to"
                 android:textColor="#090909"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints"
+                tools:ignore="MissingConstraints,RtlHardcoded"
                 tools:layout_editor_absoluteX="٥dp" />
 
             <TextView
@@ -51,7 +51,7 @@
                 android:text="@string/app_name"
                 android:textSize="34sp"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints"
+                tools:ignore="MissingConstraints,RtlHardcoded"
                 tools:layout_editor_absoluteX="٥dp" />
         </LinearLayout>
 
@@ -87,7 +87,7 @@
                     android:background="#5CE8E3E3"
                     android:drawableStart="@drawable/ic_baseline_person_24"
                     android:drawablePadding="20dp"
-                    android:hint="Username"
+                    android:hint="@string/username"
                     android:inputType="text"
                     android:padding="15dp"
                     android:textColor="@color/black"
@@ -114,11 +114,12 @@
                     android:background="#5CE8E3E3"
                     android:drawableStart="@drawable/ic_baseline_person_24"
                     android:drawablePadding="20dp"
-                    android:hint="Email"
-                    android:inputType="text"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
                     android:padding="15dp"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/gray" />
+                    android:textColorHint="@color/gray"
+                    android:autofillHints="@gmail.com,@qq.com,@ncl.ac.uk,@hotmail.com" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -135,11 +136,12 @@
                     android:background="#5CE8E3E3"
                     android:drawableStart="@drawable/ic_baseline_info_24"
                     android:drawablePadding="20dp"
-                    android:hint="Password"
+                    android:hint="@string/password"
                     android:inputType="textPassword"
                     android:padding="15dp"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/gray" />
+                    android:textColorHint="@color/gray"
+                    android:importantForAutofill="no" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -156,11 +158,12 @@
                     android:background="#5CE8E3E3"
                     android:drawableStart="@drawable/ic_baseline_info_24"
                     android:drawablePadding="20dp"
-                    android:hint="Confirm Password"
+                    android:hint="@string/confirm_password"
                     android:inputType="textPassword"
                     android:padding="15dp"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/gray" />
+                    android:textColorHint="@color/gray"
+                    android:importantForAutofill="no" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -175,7 +178,7 @@
                     android:layout_height="wrap_content"
 
                     android:fontFamily="sans-serif-condensed-medium"
-                    android:text="Regster"
+                    android:text="@string/register"
                     android:textColor="@color/black"
                     android:theme="@style/Theme.AppCompat.Light"
                     app:icon="?attr/actionModeCloseDrawable"

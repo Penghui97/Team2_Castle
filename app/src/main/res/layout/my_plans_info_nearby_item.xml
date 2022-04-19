@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:textAlignment="center"
-            android:text="name:  "/>
+            android:text="@string/name"/>
         <TextView
             android:id="@+id/poiName"
             android:layout_width="match_parent"
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:textAlignment="center"
-            android:text="category:  "/>
+            android:text="@string/category"/>
         <TextView
             android:id="@+id/poiCategory"
             android:layout_width="match_parent"
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:textAlignment="center"
-            android:text="rating:  "/>
+            android:text="@string/rating"/>
         <TextView
             android:id="@+id/poiRating"
             android:layout_width="match_parent"

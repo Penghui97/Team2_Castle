@@ -416,12 +416,9 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
     public void alertSuccess() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("succeed to save")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                .setPositiveButton("Yes", (dialogInterface, i) -> {
 //                        startActivity(new Intent(SearchPlanDetailsActivity.this, MainActivity.class));
-                        searchPlanInfoAllContent.setVisibility(View.GONE);
-                    }
+                    searchPlanInfoAllContent.setVisibility(View.GONE);
                 })
                 .create()
                 .show();

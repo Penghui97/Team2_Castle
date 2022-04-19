@@ -26,7 +26,8 @@
         android:layout_weight="15"
         android:layout_marginHorizontal="120dp"
         android:onClick="onClick"
-        android:text="return">
+        android:text="@string/return_"
+        tools:ignore="UsingOnClickInXml">
 
     </Button>
 

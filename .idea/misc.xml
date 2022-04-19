@@ -25,9 +25,14 @@
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/activity_castle_details.xml" value="0.25364583333333335" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/activity_log_in.xml" value="0.25364583333333335" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/activity_main.xml" value="0.25364583333333335" />
+        <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/activity_search_plans.xml" value="0.25364583333333335" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/avatar_bottom_sheet.xml" value="0.25364583333333335" />
+        <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/bottom_sheet_account_edit.xml" value="0.25364583333333335" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/bottom_sheet_avatar.xml" value="0.25364583333333335" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/castle_view_symbol1.xml" value="0.25364583333333335" />
+        <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/castle_view_symbol2.xml" value="0.25364583333333335" />
+        <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/castle_view_symbol3.xml" value="0.25364583333333335" />
+        <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/castle_view_symbol4.xml" value="0.25364583333333335" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/drawer_head.xml" value="0.25364583333333335" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/drawer_main.xml" value="0.25364583333333335" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/fragment_castle_map.xml" value="0.25364583333333335" />
@@ -38,8 +43,11 @@
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/fragment_my_plans.xml" value="0.25364583333333335" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/fragment_new__account_.xml" value="0.25364583333333335" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/fragment_panel_over_castle.xml" value="0.25364583333333335" />
+        <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/fragment_panel_tickets.xml" value="0.25364583333333335" />
+        <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/fragment_search.xml" value="0.25364583333333335" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/fragment_user__log__in_.xml" value="0.25364583333333335" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/general_action_bar.xml" value="0.25364583333333335" />
+        <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/my_plans_info.xml" value="0.25364583333333335" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/my_plans_info_nearby.xml" value="0.25364583333333335" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/my_plans_info_nearby_item.xml" value="0.25364583333333335" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/my_plans_item.xml" value="0.25364583333333335" />

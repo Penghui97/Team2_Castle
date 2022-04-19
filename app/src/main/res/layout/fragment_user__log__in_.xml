@@ -58,7 +58,7 @@
                     android:background="#5CE8E3E3"
                     android:drawableStart="@drawable/ic_baseline_person_24"
                     android:drawablePadding="20dp"
-                    android:hint="Username/Email"
+                    android:hint="@string/username_email"
                     android:inputType="text"
                     android:padding="15dp"
                     android:textColor="@color/black"
@@ -68,7 +68,8 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/app_name_log_in"
-                    app:layout_constraintVertical_bias="0.297" />
+                    app:layout_constraintVertical_bias="0.297"
+                    android:importantForAutofill="no" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -85,7 +86,7 @@
                     android:background="#5CE8E3E3"
                     android:drawableStart="@drawable/ic_baseline_info_24"
                     android:drawablePadding="20dp"
-                    android:hint="Password"
+                    android:hint="@string/password"
                     android:inputType="textPassword"
                     android:padding="15dp"
                     android:textColor="@color/black"
@@ -93,7 +94,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/username_login" />
+                    app:layout_constraintTop_toBottomOf="@+id/username_login"
+                    android:importantForAutofill="no" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -108,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed-medium"
                     android:minHeight="48dp"
-                    android:text="login"
+                    android:text="@string/login"
                     android:textColor="@color/black"
                     android:theme="@style/Theme.AppCompat.Light"
                     app:icon="?attr/actionModeCloseDrawable"
@@ -127,7 +129,7 @@
                     android:layout_marginBottom="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Forget password ?"/>
+                    android:text="@string/forget_password"/>
 
 
             </LinearLayout>

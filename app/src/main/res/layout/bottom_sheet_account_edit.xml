@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="text"
+        android:text="@string/text"
         android:textSize="20dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"/>
@@ -23,7 +23,7 @@
         android:layout_marginRight="2dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="new text"
+        android:hint="@string/new_text"
         android:background="@color/white"
         android:paddingLeft="20dp"
         android:paddingTop="5dp"
@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="save" />
+            android:text="@string/save" />
     </RelativeLayout>
 
 

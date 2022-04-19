@@ -20,9 +20,9 @@
             android:paddingBottom="10dp"
             android:background="@color/white"
             android:gravity="center"
-            android:text="From camera"
+            android:text="@string/from_camera"
             android:textColor="@color/black"
-            android:textSize="15dp" />
+            android:textSize="15sp" />
 
         <View
             android:layout_width="match_parent"
@@ -32,8 +32,8 @@
             android:id="@+id/from_album"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="From album"
-            android:textSize="15dp"
+            android:text="@string/from_album"
+            android:textSize="15sp"
             android:textColor="@color/black"
             android:gravity="center"
             android:paddingTop="10dp"
@@ -47,8 +47,8 @@
             android:id="@+id/save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save"
-            android:textSize="15dp"
+            android:text="@string/save"
+            android:textSize="15sp"
             android:textColor="@color/black"
             android:gravity="center"
             android:paddingTop="10dp"

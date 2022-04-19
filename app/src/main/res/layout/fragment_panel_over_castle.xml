@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="18dp"
                     android:fontFamily="monospace"
-                    android:text="ALNWIC CASTAL  "
+                    android:text="@string/alnwic_castle"
                     android:textColor="#585859"
                     android:textSize="20sp"
                     android:textStyle="normal|bold" />
@@ -62,11 +62,13 @@
                         android:inputType="none"
                         android:shadowColor="@color/white"
                         android:singleLine="false"
-                        android:text="create data"
+                        android:text="@string/create_data"
                         android:textColor="#585859"
                         android:textColorHighlight="#6FB5FF"
                         android:textColorLink="#6FB5FF"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        tools:ignore="RtlHardcoded"
+                        android:importantForAutofill="no" />
 
                     <EditText
                         style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
@@ -79,11 +81,12 @@
                         android:inputType="none"
                         android:shadowColor="@color/white"
                         android:singleLine="false"
-                        android:text="1890"
+                        android:text="@string/_1890"
                         android:textColor="#6FB5FF"
                         android:textColorHighlight="#6FB5FF"
                         android:textColorLink="#6FB5FF"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:importantForAutofill="no" />
 
                 </LinearLayout>
 
@@ -113,7 +116,7 @@
                         android:inputType="none"
                         android:shadowColor="@color/white"
                         android:singleLine="false"
-                        android:text="location"
+                        android:text="@string/location"
                         android:textColor="#585859"
                         android:textColorHighlight="#6FB5FF"
                         android:textColorLink="#6FB5FF"
@@ -152,7 +155,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="18dp"
                     android:fontFamily="monospace"
-                    android:text="Brief "
+                    android:text="@string/brief"
                     android:textColor="#585859"
                     android:textSize="20sp"
                     android:textStyle="normal|bold" />
@@ -163,7 +166,7 @@
 
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="6dp"
                         android:layout_weight="1"
@@ -173,7 +176,7 @@
                         android:padding="5dp"
                         android:shadowColor="@color/white"
                         android:singleLine="false"
-                        android:text="     Welcome to Bamburgh Castle, the Kingdom of Northumbria’s epicentre and home of the Armstrong family since 1894. Crowning nine acres of the Great Whin Sill"
+                        android:text="@string/welcome_to_bamburgh"
                         android:textAlignment="viewStart"
                         android:textColor="#131313"
                         android:textColorHighlight="#6FB5FF"
@@ -193,7 +196,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="18dp"
                     android:fontFamily="monospace"
-                    android:text="Opening Times  "
+                    android:text="@string/opening_times"
                     android:textColor="#585859"
                     android:textSize="20sp"
                     android:textStyle="normal|bold"
@@ -218,10 +221,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="33dp"
                             android:background="#6FB5FF"
-                            android:text="Plice"
+                            android:text="@string/price"
                             android:gravity="center|left"
                             android:paddingLeft="20dp"
-                            android:textColor="@color/white"/>
+                            android:textColor="@color/white"
+                            tools:ignore="RtlHardcoded,RtlSymmetry" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="33dp"
@@ -250,7 +254,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="33dp"
                             android:background="#6FB5FF"
-                            android:text="Time"
+                            android:text="@string/time"
                             android:gravity="center|left"
                             android:paddingLeft="20dp"
                             android:textColor="@color/white"/>

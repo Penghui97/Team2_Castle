@@ -16,7 +16,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 public class AccountEditActivity extends AppCompatActivity implements View.OnClickListener{
     private BottomSheetDialog bottomSheetDialog;
     private View bottomView;
-    private ConstraintLayout username,email,phone;
+    private ConstraintLayout username,email;
     private TextView bottomHeader,warningMessage;
     private EditText change;
     private Button bottomSaveButton;
@@ -56,8 +56,7 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
         email = findViewById(R.id.account_email_edit);
         email.setOnClickListener(this);
 
-        phone = findViewById(R.id.account_phone_edit);
-        phone.setOnClickListener(this);
+
 
 
 
@@ -74,11 +73,6 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
             case R.id.account_email_edit:
                 bottomHeader.setText("new Email address");
                 change.setHint("your new Email address");
-                bottomSheetDialog.show();
-                break;
-            case R.id.account_phone_edit:
-                bottomHeader.setText("new tel number");
-                change.setHint("your new tel number");
                 bottomSheetDialog.show();
                 break;
             case R.id.button_bottom_save:
