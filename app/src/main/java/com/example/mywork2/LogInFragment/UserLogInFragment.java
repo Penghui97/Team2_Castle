@@ -155,6 +155,7 @@ public class UserLogInFragment extends Fragment {
 
     }
 
+
     //initialize the warn text views
     private void initView() {
         username_warn.setText("");
