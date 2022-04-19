@@ -25,9 +25,8 @@ import java.io.UnsupportedEncodingException;
 
 public class UserLogInFragment extends Fragment {
     private EditText username, password;
-    private TextView username_warn, password_warn;
+    private TextView username_warn, password_warn, forgot;
     Button login;
-    private final StringBuffer key = new StringBuffer("12345678");//key for decryption
 
     public UserLogInFragment() {
         // Required empty public constructor
@@ -63,6 +62,12 @@ public class UserLogInFragment extends Fragment {
             }).start();
             
         });
+
+        forgot = view.findViewById(R.id.forget_password);
+        forgot.setOnClickListener(view1 -> {
+            
+        });
+
     }
 
     //check the information is right and login

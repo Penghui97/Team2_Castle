@@ -43,7 +43,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="240sp"
+                android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -120,6 +120,14 @@
                     app:layout_constraintVertical_bias="0.924"
                     app:rippleColor="#00BCD4"
                     tools:ignore="TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/forget_password"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Forget password ?"/>
 
 
             </LinearLayout>
