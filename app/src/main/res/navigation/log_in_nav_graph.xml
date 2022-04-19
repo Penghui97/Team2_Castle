@@ -53,4 +53,6 @@
         android:name="com.example.mywork2.LogInFragment.ForgetPasswordFragment"
         android:label="fragment_forget_password"
         tools:layout="@layout/fragment_forget_password" />
+
+
 </navigation>

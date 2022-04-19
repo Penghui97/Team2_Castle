@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +29,7 @@ public class UserLogInFragment extends Fragment {
     private EditText username, password;
     private TextView username_warn, password_warn, forgot;
     Button login;
+    NavController navController;
 
     public UserLogInFragment() {
         // Required empty public constructor
@@ -63,10 +66,14 @@ public class UserLogInFragment extends Fragment {
             
         });
 
+
+        navController = Navigation.findNavController(view);
         forgot = view.findViewById(R.id.forget_password);
         forgot.setOnClickListener(view1 -> {
-            
+            navController.navigate(R.id.action_userLogInFragment_to_forgetPasswordFragment);
         });
+
+
 
     }
 
@@ -147,6 +154,7 @@ public class UserLogInFragment extends Fragment {
         startActivity(intent);
 
     }
+
 
     //initialize the warn text views
     private void initView() {
