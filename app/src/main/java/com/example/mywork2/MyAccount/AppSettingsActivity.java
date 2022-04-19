@@ -42,6 +42,7 @@ public class AppSettingsActivity extends AppCompatActivity implements View.OnCli
         language = findViewById(R.id.settings_language);
         rgLanguage = findViewById(R.id.rg_language);
         logout = findViewById(R.id.setting_logout);
+        setting_warn = findViewById(R.id.setting_warn);
 
         //set listener on radio group
         rgLanguage.setOnCheckedChangeListener(this::onCheckedChanged);
@@ -81,6 +82,7 @@ public class AppSettingsActivity extends AppCompatActivity implements View.OnCli
         //set strings from resources
         language.setText(R.string.language);
         logout.setText(R.string.log_out);
+        setting_warn.setText(R.string.update_language);
     }
 
     @Override
