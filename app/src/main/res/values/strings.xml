@@ -128,5 +128,7 @@
     <string name="log_out">Log out</string>
     <string name="castles">Castles</string>
     <string name="book">Book</string>
+    <string name="update_language">After selecting a language, you need to login again to update the language</string>
+    <string name="sign_in_to_your_account">Sign in to your account</string>
 
 </resources>

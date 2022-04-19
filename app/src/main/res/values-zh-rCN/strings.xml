@@ -97,4 +97,6 @@
     <string name="log_out">退出登录</string>
     <string name="castles">城堡</string>
     <string name="book">预定</string>
+    <string name="update_language">选择语言后，您需要重新登录以便初始化应用语言</string>
+    <string name="sign_in_to_your_account">登入你的账号</string>
 </resources>
