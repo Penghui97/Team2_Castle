@@ -14,28 +14,48 @@
         android:background="@color/white"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:paddingLeft="30dp"
+        android:paddingStart="30dp"
         android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableRight="@drawable/ic_baseline_navigate_next_24"
         android:text="@string/language"
         android:textSize="20sp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        app:drawableRightCompat="@drawable/ic_baseline_navigate_next_24"
+        tools:ignore="RtlSymmetry" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rg_language"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/rb_english"
+            android:text="English"
+            android:padding="8dp"
+            android:checked="true"/>
+
+
+    </RadioGroup>
 
     <TextView
         android:id="@+id/settings_theme"
         android:background="@color/white"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:paddingLeft="30dp"
+        android:paddingStart="30dp"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableRight="@drawable/ic_baseline_navigate_next_24"
         android:text="@string/app_theme"
         android:textSize="20sp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        tools:ignore="RtlSymmetry"
+        app:drawableRightCompat="@drawable/ic_baseline_navigate_next_24" />
 
 
 

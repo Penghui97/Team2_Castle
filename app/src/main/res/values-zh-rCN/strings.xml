@@ -85,4 +85,16 @@
     <string name="name">名称:</string>
     <string name="category">类别:</string>
     <string name="rating">rating:</string>
+    <string name="postcode">邮编:</string>
+    <string name="castle_name">城堡名</string>
+    <string name="count">数量</string>
+    <string name="status">状态:</string>
+    <string name="view_details">查看详情</string>
+    <string name="plan_1">方案 1</string>
+    <string name="my_account">我的账户</string>
+    <string name="settings">设置</string>
+    <string name="help_center">帮助中心</string>
+    <string name="log_out">退出登录</string>
+    <string name="castles">城堡</string>
+    <string name="book">预定</string>
 </resources>

@@ -30,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.mywork2.MyAccount.AppSettingsActivity;
 import com.example.mywork2.Util.ImageUtil;
 import com.example.mywork2.Util.UserThreadLocal;
 import com.example.mywork2.dao.UserDao;
@@ -130,6 +131,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (item.getItemId() == R.id.app_logout) {
                 user = null;
                 Intent intent1 = new Intent(MainActivity.this, LogInActivity.class);
+                startActivity(intent1);
+            } else if(item.getItemId() == R.id.appSettingsActivity) {
+                Intent intent1 = new Intent(MainActivity.this, AppSettingsActivity.class);
                 startActivity(intent1);
             }
             return true;
