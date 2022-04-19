@@ -27,7 +27,12 @@
         android:id="@+id/userLogInFragment"
         android:name="com.example.mywork2.LogInFragment.UserLogInFragment"
         android:label="fragment_user__log__in_"
-        tools:layout="@layout/fragment_user__log__in_" />
+        tools:layout="@layout/fragment_user__log__in_" >
+        <action
+            android:id="@+id/action_userLogInFragment_to_forgetPasswordFragment"
+            app:destination="@id/forgetPasswordFragment"
+            app:popUpTo="@id/logInMainFragment" />
+    </fragment>
     <fragment
         android:id="@+id/newAccountFragment"
         android:name="com.example.mywork2.LogInFragment.NewAccountFragment"
@@ -43,4 +48,9 @@
         android:name="com.example.mywork2.LogInFragment.GoogleTwitterFacebookLogIn"
         android:label="fragment_google_twitter_facebook_log_in"
         tools:layout="@layout/fragment_google_twitter_facebook_log_in" />
+    <fragment
+        android:id="@+id/forgetPasswordFragment"
+        android:name="com.example.mywork2.LogInFragment.ForgetPasswordFragment"
+        android:label="fragment_forget_password"
+        tools:layout="@layout/fragment_forget_password" />
 </navigation>
