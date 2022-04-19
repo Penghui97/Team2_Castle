@@ -16,7 +16,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+
 import com.example.mywork2.R;
+import com.example.mywork2.dao.UserDao;
 import com.example.mywork2.domain.User;
 
 
@@ -27,20 +29,22 @@ public class ForgetPasswordFragment extends Fragment {
         // Required empty public constructor
     }
 
-    private TextView username_v, email_v, remind_password;
-    private EditText username_w, email_w;
+    private EditText username_v, email_v;
+    private TextView username_w, email_w,remind_password;
     private Button find;
     public User user;
-    public String username;
+    public String username, email, password;
 
 
     //receive the data from the database
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
+        @SuppressLint("SetTextI18n")
         @Override
         public void handleMessage(@NonNull Message msg) {
             if (msg.what == 0x11) {
-
+                password = NewAccountFragment.hex2Str(user.getPassword());
+                remind_password.setText("Your password is: "+password);
             }
         }
     };
@@ -53,6 +57,7 @@ public class ForgetPasswordFragment extends Fragment {
 
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -66,6 +71,10 @@ public class ForgetPasswordFragment extends Fragment {
         find.setOnClickListener(view1 -> {
             initWarn();//init the warn view to blank
             checkLocalInfo();
+            //now we get the username and email
+            //check the database and verify, show password
+            showPassword();
+
 
         });
 
@@ -96,10 +105,38 @@ public class ForgetPasswordFragment extends Fragment {
                 email_w.setText("Email address is incorrect !!!");
                 return;
             } else {
+                username = username_v.getText().toString();
+                email = email_v.getText().toString();
                 information = true;
             }
 
         }
 
     }
+
+    @SuppressLint("SetTextI18n")
+    public void showPassword() {
+        new Thread(() ->{
+            UserDao userDao = new UserDao();
+            try {
+                user = userDao.getUserByUsername(username);
+                if(user == null){//no user found
+                    username_w.setText("Your username has not been registered !!!");
+                } else {//check the email
+                    if(!user.getEmail().equals(email)){//the email is incorrect
+                        email_w.setText("Your email is incorrect !!!");
+                    }else {//verify successfully
+                        Message message = handler.obtainMessage();
+                        message.what = 0x11;
+                        handler.sendMessage(message);
+
+                    }
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }).start();
+    }
+
 }
