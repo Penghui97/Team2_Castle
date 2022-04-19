@@ -126,17 +126,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         //logout. clear the user and go back to the login page
-        drawerView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @SuppressLint("NonConstantResourceId")
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId() == R.id.app_logout) {
-                    user = null;
-                    Intent intent1 = new Intent(MainActivity.this, LogInActivity.class);
-                    startActivity(intent1);
-                }
-                return true;
+        drawerView.setNavigationItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.app_logout) {
+                user = null;
+                Intent intent1 = new Intent(MainActivity.this, LogInActivity.class);
+                startActivity(intent1);
             }
+            return true;
         });
 
 
@@ -186,8 +182,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void initData(){
 
-
-
+        showUserInfo();
         getDataFromSpf();
     }
 
