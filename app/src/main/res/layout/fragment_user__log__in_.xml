@@ -18,7 +18,7 @@
 
 
         <TextView
-            android:id="@+id/forget_password_text"
+            android:id="@+id/login_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="144dp"
@@ -39,11 +39,11 @@
             app:cardCornerRadius="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/forget_password_text">
+            app:layout_constraintTop_toBottomOf="@+id/login_text">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="240sp"
                 android:background="@color/white"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -62,13 +62,20 @@
                     android:inputType="text"
                     android:padding="15dp"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/black"
+                    android:textColorHint="@color/gray"
                     app:layout_constraintBottom_toTopOf="@+id/password"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/app_name_log_in"
                     app:layout_constraintVertical_bias="0.297" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#f00"
+                    android:id="@+id/username_login_warn"
+
+                    />
 
                 <EditText
                     android:id="@+id/password_login"
@@ -82,17 +89,23 @@
                     android:inputType="textPassword"
                     android:padding="15dp"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/black"
+                    android:textColorHint="@color/gray"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/username_login" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#f00"
+                    android:id="@+id/password_login_warn"
+
+                    />
 
                 <Button
-                    android:id="@+id/btn_find_password"
+                    android:id="@+id/btn_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:fontFamily="sans-serif-condensed-medium"
                     android:minHeight="48dp"
                     android:text="login"
@@ -107,14 +120,6 @@
                     app:layout_constraintVertical_bias="0.924"
                     app:rippleColor="#00BCD4"
                     tools:ignore="TouchTargetSizeCheck" />
-
-                <TextView
-                    android:id="@+id/forget_password"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Forget password ?"/>
 
 
             </LinearLayout>
