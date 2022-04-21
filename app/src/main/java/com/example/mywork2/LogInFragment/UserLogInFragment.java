@@ -78,7 +78,6 @@ public class UserLogInFragment extends Fragment {
     }
 
     //check the information is right and login
-    @SuppressLint("SetTextI18n")
     private void checkInfoAndLogin() throws UnsupportedEncodingException {
         String name, plain_password;
         User user = null;
@@ -86,21 +85,22 @@ public class UserLogInFragment extends Fragment {
         while (!information){
             //regex to check email
             //referenced from https://blog.csdn.net/qq_60750453/article/details/123709670
-            String reg = "^[A-Za-z\\d]+([-_.][A-Za-z\\d]+)*@([A-Za-z\\d]+[-.])+[A-Za-z\\d]{2,4}$";
+            String reg = getString(R.string.reg);
             if(username.getText().toString().length() == 0 ) {//no username found
-                username_warn.setText("Please enter a username !!!");
+                username_warn.setText(R.string.please_enter_username);
                 return;
             }else if (username.getText().toString().length()>25){//username's length should be less than 25
-                username_warn.setText("Username's length should not be longer than 25 !!!");
+                username_warn.setText(R.string.username_too_long);
                 return;
             }else if(password.getText().toString().length()==0) {//no password found
-                password_warn.setText("Please enter your password !!!");
+                password_warn.setText(R.string.enter_password);
                 return;
             }else if(password.getText().toString().length()>16){//password's length should be less than 16
-                password_warn.setText("Password's length should be less than 16 !!!");
+                password_warn.setText(R.string.password_long);
                 return;
-            }else if(username.getText().toString().contains("@")&&!username.getText().toString().matches(reg)){//wrong email address
-                username_warn.setText("Email address is incorrect !!!");
+            }else if(username.getText().toString().contains("@")&&!username.getText().toString().matches(reg)
+            ||!username.getText().toString().endsWith(".ac.uk")){//wrong email address
+                username_warn.setText(R.string.email_end);
                 return;
             }else {
                 //check the database and verify

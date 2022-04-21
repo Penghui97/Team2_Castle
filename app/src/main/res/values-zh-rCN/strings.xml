@@ -127,6 +127,16 @@
     <string name="Edit_email">编辑邮箱</string>
     <string name="nickname">昵称</string>
     <string name="your_nickname">你的昵称</string>
+    <string name="please_enter_username">请输入用户名 !!!</string>
+    <string name="username_too_long">用户名的长度不能超过25 !!!</string>
+    <string name="enter_password">请输入密码 !!!</string>
+    <string name="password_long">密码长度不能超过16</string>
+    <string name="email_end">输入一个以 .ac.uk结尾且正确的邮箱地址 !!!</string>
+    <string name="reg">^[A-Za-z\\d]+([-_.][A-Za-z\\d]+)*@([A-Za-z\\d]+[-.])+[A-Za-z\\d]{2,4}$</string>
+    <string name="reg2">/(.+(?=[.ac.uk]$))</string>
+    <string name="username_no_at">用户名不能包含 @ !!!</string>
+    <string name="please_confirm">请确认密码 !!!</string>
+    <string name="confirm_failed">确认密码失败 !!!</string>
 
 
 </resources>

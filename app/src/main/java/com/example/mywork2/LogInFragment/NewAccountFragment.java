@@ -81,35 +81,34 @@ public class NewAccountFragment extends Fragment {
     }
 
     //check the information is right and register
-    @SuppressLint("SetTextI18n")
     private void checkInfoAndRegister() throws UnsupportedEncodingException {
         boolean information = false;//to control the loop
         while (!information){
             //to check email address
-            String reg = "^[A-Za-z\\d]+([-_.][A-Za-z\\d]+)*@([A-Za-z\\d]+[-.])+[A-Za-z\\d]{2,4}$";
+            String reg = getString(R.string.reg);
             if(username.getText().toString().length() == 0 ){//no username found
-                username_warn.setText("Please enter a username !!!");
+                username_warn.setText(R.string.please_enter_username);
                 return;
             }else if(username.getText().toString().contains("@")){//username should not contain @
-                username_warn.setText("Username should not contain @ !!!");
+                username_warn.setText(R.string.username_no_at);
                 return;
             }else if (username.getText().toString().length()>25){//username's length should be less than 25
-                username_warn.setText("Username's length should not be longer than 25 !!!");
+                username_warn.setText(R.string.username_too_long);
                 return;
-            }else if(!email.getText().toString().matches(reg)){//wrong email address
-                email_warn.setText("Email address is incorrect !!!");
+            }else if(!email.getText().toString().matches(reg)||!email.getText().toString().endsWith(".ac.uk")){//wrong email address
+                email_warn.setText(R.string.email_end);
                 return;
             }else if(password.getText().toString().length()>16){//password's length should be less than 16
-                password_warn.setText("Password's length should be less than 16 !!!");
+                password_warn.setText(R.string.password_long);
                 return;
             }else if(password.getText().toString().length()==0) {//no password found
-                password_warn.setText("Please enter your password !!!");
+                password_warn.setText(R.string.enter_password);
                 return;
             }else if(confirmPassword.getText().toString().length()==0){//no confirmation
-                confirm_warn.setText("Please confirm your password !!!");
+                confirm_warn.setText(R.string.please_confirm);
                 return;
             }else if(!password.getText().toString().equals(confirmPassword.getText().toString())){
-                confirm_warn.setText("Password conformation failed !!!");
+                confirm_warn.setText(R.string.confirm_failed);
                 return;
             } else {
                 //add the new user to the database
