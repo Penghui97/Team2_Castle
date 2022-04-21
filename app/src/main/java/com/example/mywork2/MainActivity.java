@@ -85,6 +85,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //show the particular user's info
         showUserInfo();
 
+        //
+        Intent intent2 = new Intent(MainActivity.this, AppSettingsActivity.class);
+        intent2.putExtra("username", username);
+
+
 
         setContentView(R.layout.drawer_main);//avatar
 
@@ -124,23 +129,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         email_v = drawerView.getHeaderView(0).findViewById(R.id.user_email);
 
 
-
-
-        //logout. clear the user and go back to the login page
-        drawerView.setNavigationItemSelectedListener(item -> {
-            if (item.getItemId() == R.id.app_logout) {
-                user = null;
-                Intent intent1 = new Intent(MainActivity.this, LogInActivity.class);
-                startActivity(intent1);
-            } else if(item.getItemId() == R.id.appSettingsActivity) {
-                Intent intent1 = new Intent(MainActivity.this, AppSettingsActivity.class);
-                startActivity(intent1);
-            }
-            return true;
-        });
-
-
-
     }
 
     //override on_resume function to get the information changed.
@@ -151,6 +139,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //init data, 23.2
         initData();
 
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        initData();
     }
 
     @SuppressLint("NonConstantResourceId")

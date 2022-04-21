@@ -64,12 +64,24 @@
         android:layout_gravity="center"
         android:layout_margin="8sp"
         />
+
+    <TextView
+        android:id="@+id/setting_warn_cn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/language_warn"
+        android:textColor="#f00"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:layout_margin="8sp"
+        />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/setting_logout"
+        android:id="@+id/setting_refresh"
         android:layout_gravity="center"
-        android:text="@string/log_out"
+        android:text="@string/refresh"
         />
 
 

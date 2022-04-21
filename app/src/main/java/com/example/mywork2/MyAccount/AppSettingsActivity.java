@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.example.mywork2.LogInActivity;
 import com.example.mywork2.LogInFragment.LogInMainFragment;
+import com.example.mywork2.MainActivity;
 import com.example.mywork2.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
@@ -25,9 +26,9 @@ import java.util.Locale;
 
 public class AppSettingsActivity extends AppCompatActivity implements View.OnClickListener{
     private BottomSheetDialog bottomSheetDialog;
-    private TextView language,setting_warn;
-    private RadioGroup rgLanguage;
-    private Button logout;
+    private TextView language,setting_warn, setting_cn;
+    private Button refresh;
+
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -40,15 +41,24 @@ public class AppSettingsActivity extends AppCompatActivity implements View.OnCli
             ;});
 
         language = findViewById(R.id.settings_language);
-        rgLanguage = findViewById(R.id.rg_language);
-        logout = findViewById(R.id.setting_logout);
+        RadioGroup rgLanguage = findViewById(R.id.rg_language);
+        refresh = findViewById(R.id.setting_refresh);
         setting_warn = findViewById(R.id.setting_warn);
+        setting_cn = findViewById(R.id.setting_warn_cn);
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        String username = (String) extras.get("username");
+
+        Intent intent1 = new Intent(AppSettingsActivity.this,MainActivity.class);
+        intent1.putExtra("username", username);
+
+
 
         //set listener on radio group
         rgLanguage.setOnCheckedChangeListener(this::onCheckedChanged);
-        logout.setOnClickListener(view -> {
-            Intent intent = new Intent(AppSettingsActivity.this, LogInActivity.class);
-            startActivity(intent);
+        refresh.setOnClickListener(view -> {
+            startActivity(intent1);
         });
         
 
@@ -58,7 +68,6 @@ public class AppSettingsActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onResume() {
         super.onResume();
-        rgLanguage.setOnCheckedChangeListener(this::onCheckedChanged);
     }
 
     private void setLocale(String lang) {
@@ -81,8 +90,9 @@ public class AppSettingsActivity extends AppCompatActivity implements View.OnCli
         super.onConfigurationChanged(newConfig);
         //set strings from resources
         language.setText(R.string.language);
-        logout.setText(R.string.log_out);
+        refresh.setText(R.string.refresh);
         setting_warn.setText(R.string.update_language);
+        setting_cn.setText(R.string.language_warn);
     }
 
     @Override
