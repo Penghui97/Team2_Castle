@@ -154,9 +154,15 @@
     <string name="tester">Tester</string>
     <string name="Developer_Email">Email :</string>
     <string name="debugger">Debugger</string>
+<<<<<<< Updated upstream
     <string name="comment">Comments</string>
     <string name="app_rating">app_rating</string>
     <string name="evaluate_this_app">evaluate this app</string>
+=======
+    <string name="cancel">cancel</string>
+    <string name="edit_name">edit username</string>
+    <string name="Edit_email">edit email</string>
+>>>>>>> Stashed changes
 
 
 </resources>
