@@ -153,6 +153,7 @@
     <string name="server_deployment">Server deployment</string>
     <string name="tester">Tester</string>
     <string name="Developer_Email">Email :</string>
+    <string name="debugger">Debugger</string>
 
 
 </resources>
