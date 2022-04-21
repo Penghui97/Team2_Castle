@@ -133,6 +133,26 @@
     <string name="refresh">Refresh</string>
     <string name="language_warn">选择语言后，您需要点击刷新以便初始化应用语言</string>
     <string name="editMyaccount">Edit My Account</string>
+    <string name="About_this_app">About this app</string>
+    <string name="team_2">Team 2</string>
+    <string name="front_end">Front end</string>
+    <string name="jiacheng_cheng">Jiacheng Cheng</string>
+    <string name="penghui_xiao">Penghui Xiao</string>
+    <string name="xu_jing">Xu Jing</string>
+    <string name="mai">Mai</string>
+    <string name="back_end">Back end</string>
+    <string name="database">Database</string>
+    <string name="document">Document</string>
+    <string name="responsibilities">responsibilities:</string>
+    <string name="team_member">Team member</string>
+    <string name="team_leader">Team Leader</string>
+    <string name="ui_designer">UI designer</string>
+    <string name="app_prototype">App prototype</string>
+    <string name="developed_document">Developed document</string>
+    <string name="product_owner">Product owner</string>
+    <string name="server_deployment">Server deployment</string>
+    <string name="tester">Tester</string>
+    <string name="Developer_Email">Email :</string>
 
 
 </resources>
