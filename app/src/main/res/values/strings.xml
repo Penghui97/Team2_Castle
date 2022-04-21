@@ -133,6 +133,7 @@
     <string name="refresh">Refresh</string>
     <string name="language_warn">选择语言后，您需要点击刷新以便初始化应用语言</string>
     <string name="editMyaccount">Edit My Account</string>
+<<<<<<< HEAD
     <string name="About_this_app">About this app</string>
     <string name="team_2">Team 2</string>
     <string name="front_end">Front end</string>
@@ -168,6 +169,11 @@
     <string name="username_no_at">Username should not contain @ !!!</string>
     <string name="please_confirm">Please confirm your password !!!</string>
     <string name="confirm_failed">Password conformation failed !!!</string>
+=======
+    <string name="cancel">Cancel</string>
+    <string name="edit_name">Edit username</string>
+    <string name="Edit_email">Edit Email address</string>
+>>>>>>> parent of 6ff9447 (Merge branch 'Jiacheng')
 
 
 </resources>
