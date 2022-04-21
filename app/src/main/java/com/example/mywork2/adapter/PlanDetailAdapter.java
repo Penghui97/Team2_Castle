@@ -78,8 +78,7 @@ public class PlanDetailAdapter extends BaseAdapter {
                 //show the info page
                 //and update the content
                 context.getJourneyById(journeys.get(i).getJourneyId());
-                //context.searchPlanInfoAllContent.setVisibility(View.VISIBLE);
-                context.bottomSheetDialog.show();
+                context.searchPlanInfoAllContent.setVisibility(View.VISIBLE);
             }
         });
         return view;
