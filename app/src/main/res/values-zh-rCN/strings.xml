@@ -122,5 +122,9 @@
     <string name="server_deployment">服务器部署</string>
     <string name="tester">产品测试</string>
     <string name="Developer_Email">Email :</string>
+    <string name="cancel">取消</string>
+    <string name="edit_name">编辑用户名</string>
+    <string name="Edit_email">编辑邮箱</string>
+
 
 </resources>

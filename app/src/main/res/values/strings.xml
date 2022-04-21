@@ -153,6 +153,9 @@
     <string name="server_deployment">Server deployment</string>
     <string name="tester">Tester</string>
     <string name="Developer_Email">Email :</string>
+    <string name="cancel">Cancel</string>
+    <string name="edit_name">Edit username</string>
+    <string name="Edit_email">Edit Email address</string>
 
 
 </resources>
