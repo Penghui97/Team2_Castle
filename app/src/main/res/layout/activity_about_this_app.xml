@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".AboutThisApp">
 
-<<<<<<< HEAD
     <include layout="@layout/general_action_bar"/>
 
     <ScrollView
@@ -64,7 +63,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                   >
+                    >
                     <TextView
                         android:textColor="@color/black"
                         android:paddingStart="20dp"
@@ -321,28 +320,30 @@
                         android:paddingStart="20dp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="@string/back_end"/>
+                        android:text="@string/back_end"
+                        tools:ignore="RtlSymmetry" />
                     <TextView
                         android:textColor="@color/black"
-                        android:paddingStart="20dp"
+                        android:paddingStart="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="@string/product_owner"/>
+                        android:text="@string/product_owner"
+                        tools:ignore="RtlSymmetry" />
 
                     <TextView
                         android:textColor="@color/black"
-                        android:paddingStart="20dp"
+                        android:paddingStart="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="@string/tester"/>
-
+                        android:text="@string/version_manager"
+                        tools:ignore="RtlSymmetry" />
                     <TextView
                         android:textColor="@color/black"
-                        android:paddingStart="20dp"
+                        android:paddingStart="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="@string/version_manager"/>
-
+                        android:text="@string/tester"
+                        tools:ignore="RtlSymmetry" />
                 </LinearLayout>
                 <TextView
                     android:textColor="@color/black"
@@ -429,17 +430,3 @@
 
 
 </LinearLayout>
-=======
-    <TextView
-        android:id="@+id/about_this_app"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="194dp"
-        android:layout_marginTop="313dp"
-        android:layout_marginEnd="122dp"
-        android:text="about_this_app activity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
->>>>>>> parent of 6ff9447 (Merge branch 'Jiacheng')
