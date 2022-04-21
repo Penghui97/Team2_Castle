@@ -1,16 +1,24 @@
 package com.example.mywork2.MyAccount;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.mywork2.MainActivity;
 import com.example.mywork2.R;
+import com.example.mywork2.dao.UserDao;
 import com.example.mywork2.domain.User;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
@@ -24,10 +32,34 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
     private User user;
     private String username_, email_;
 
+    //receive the data from the database
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            if (msg.what == 0x11) {
+
+            }
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_edit);
+
+        //get user from main activity
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        username_ = (String)extras.getString("username");
+        email_ = (String)extras.getString("email") ;
+
+        Intent intent1 = new Intent(AccountEditActivity.this, MainActivity.class);
+        intent1.putExtra("username", username_);
+        intent1.putExtra("email",email_);
+
+
+
 
         //set action bar
         TextView title = findViewById(R.id.header_title);
@@ -66,17 +98,18 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
 
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.account_username_edit:
-                bottomHeader.setText("new username");
-                change.setHint("your new username");
+                bottomHeader.setText(R.string.edit_name);
+                change.setHint(username_);
                 bottomSheetDialog.show();
                 break;
             case R.id.account_email_edit:
-                bottomHeader.setText("new Email address");
-                change.setHint("your new Email address");
+                bottomHeader.setText(R.string.Edit_email);
+                change.setHint(email_);
                 bottomSheetDialog.show();
                 break;
             case R.id.button_bottom_save:
@@ -86,5 +119,19 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
                 break;
         }
 
+    }
+
+    //show the particular user's info
+    public void showUserInfo(){
+        new Thread(() -> {
+            UserDao userDao = new UserDao();
+            user = userDao.getUserByUsername(username_);
+
+            if(user != null){
+                Message message = handler.obtainMessage();
+                message.what = 0x11;
+                handler.sendMessage(message);
+            }
+        }).start();
     }
 }

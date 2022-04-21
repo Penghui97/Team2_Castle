@@ -21,6 +21,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -87,13 +88,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //show the particular user's info
         showUserInfo();
 
-        //transmit
-        Intent intent2 = new Intent(MainActivity.this, AppSettingsActivity.class);
-        intent2.putExtra("username", username);
-
-        //transmit
-        Intent intent3 = new Intent(MainActivity.this, AccountEditActivity.class);
-        intent3.putExtra("user", (Serializable) user);
 
 
         setContentView(R.layout.drawer_main);
@@ -138,8 +132,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(MainActivity.this,LogInActivity.class)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK));
             }else if (item.getItemId()==R.id.accountEditActivity){//my account
+                //transmit
+                Intent intent3 = new Intent(MainActivity.this, AccountEditActivity.class);
+                if(username == null) {
+                    intent3.putExtra("username", customer.getUsername());
+                    intent3.putExtra("email", customer.getEmail());
+                }else {
+                    intent3.putExtra("username", username);
+                    intent3.putExtra("email",email_v.getText().toString());
+                }
                 startActivity(intent3);
             }else if (item.getItemId()==R.id.appSettingsActivity) {
+                //transmit
+                Intent intent2 = new Intent(MainActivity.this, AppSettingsActivity.class);
+                if(username == null)
+                    intent2.putExtra("username", customer.getUsername());
+                else
+                    intent2.putExtra("username", username);
                 startActivity(intent2);
             }
             return true;
