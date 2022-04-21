@@ -50,8 +50,10 @@ public class AppSettingsActivity extends AppCompatActivity implements View.OnCli
         Bundle extras = intent.getExtras();
         String username = (String) extras.get("username");
 
+
         Intent intent1 = new Intent(AppSettingsActivity.this,MainActivity.class);
         intent1.putExtra("username", username);
+
 
 
 

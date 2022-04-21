@@ -10,14 +10,7 @@
     <include layout="@layout/general_action_bar"/>
 
 
-    <TextView
-        android:layout_marginTop="35dp"
-        android:paddingStart="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/base"
-        android:textColor="@color/black"
-        tools:ignore="RtlSymmetry" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/account_username_edit"
         android:background="@color/white"

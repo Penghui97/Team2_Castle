@@ -30,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.mywork2.MyAccount.AccountEditActivity;
 import com.example.mywork2.MyAccount.AppSettingsActivity;
 import com.example.mywork2.Util.ImageUtil;
 import com.example.mywork2.Util.UserThreadLocal;
@@ -41,6 +42,7 @@ import com.example.mywork2.domain.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -85,13 +87,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //show the particular user's info
         showUserInfo();
 
-        //
+        //transmit
         Intent intent2 = new Intent(MainActivity.this, AppSettingsActivity.class);
         intent2.putExtra("username", username);
 
+        //transmit
+        Intent intent3 = new Intent(MainActivity.this, AccountEditActivity.class);
+        intent3.putExtra("user", (Serializable) user);
 
 
-        setContentView(R.layout.drawer_main);//avatar
+        setContentView(R.layout.drawer_main);
 
         //init view, 23.2
         initView();
@@ -127,6 +132,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         username_v = drawerView.getHeaderView(0).findViewById(R.id.username_profile);
 
         email_v = drawerView.getHeaderView(0).findViewById(R.id.user_email);
+
+        drawerView.setNavigationItemSelectedListener(item -> {
+            if(item.getItemId()==R.id.app_logout){//logout
+                startActivity(new Intent(MainActivity.this,LogInActivity.class)
+                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK));
+            }else if (item.getItemId()==R.id.accountEditActivity){//my account
+                startActivity(intent3);
+            }else if (item.getItemId()==R.id.appSettingsActivity) {
+                startActivity(intent2);
+            }
+            return true;
+        });
 
 
     }

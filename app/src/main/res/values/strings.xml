@@ -132,6 +132,7 @@
     <string name="sign_in_to_your_account">Sign in to your account</string>
     <string name="refresh">Refresh</string>
     <string name="language_warn">选择语言后，您需要点击刷新以便初始化应用语言</string>
+    <string name="editMyaccount">Edit My Account</string>
 
 
 </resources>

@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.mywork2.R;
+import com.example.mywork2.domain.User;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 public class AccountEditActivity extends AppCompatActivity implements View.OnClickListener{
@@ -20,6 +21,8 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
     private TextView bottomHeader,warningMessage;
     private EditText change;
     private Button bottomSaveButton;
+    private User user;
+    private String username_, email_;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +31,7 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
 
         //set action bar
         TextView title = findViewById(R.id.header_title);
-        title.setText("Edit My Account");
+        title.setText(R.string.editMyaccount);
         findViewById(R.id.back_button).setOnClickListener(view -> {
             this.finish()
             ;});
@@ -55,6 +58,7 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
 
         email = findViewById(R.id.account_email_edit);
         email.setOnClickListener(this);
+
 
 
 
