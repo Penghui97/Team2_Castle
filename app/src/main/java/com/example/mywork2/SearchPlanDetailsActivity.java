@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -18,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mywork2.MyAccount.AccountEditActivity;
 import com.example.mywork2.adapter.PlanDetailAdapter;
 import com.example.mywork2.dao.DepartureTimeDao;
 import com.example.mywork2.dao.JourneyDao;
@@ -27,6 +29,7 @@ import com.example.mywork2.domain.Journey;
 import com.example.mywork2.domain.Route;
 import com.example.mywork2.domain.Ticket;
 import com.example.mywork2.domain.Time;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -44,6 +47,8 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
     private String date;
     private String time;
     private String username;
+    public BottomSheetDialog bottomSheetDialog;
+    private View bottomView;
 
     //receive the data from the database
     @SuppressLint("HandlerLeak")
@@ -111,6 +116,16 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         departurePlace.setText(departure);
         TextView destinationPlace = findViewById(R.id.journey_to);
         destinationPlace.setText(destination);
+
+        //get bottom sheet view
+        bottomSheetDialog = new BottomSheetDialog(SearchPlanDetailsActivity.this,R.style.BottomSheetDialogTheme);
+        bottomView = LayoutInflater.from(getApplicationContext()).inflate(
+                R.layout.bottom_sheet_search,
+                findViewById(R.id.bottom_sheet_search)
+        );
+        bottomSheetDialog.setContentView(bottomView);
+
+
     }
 
     @Override
@@ -275,10 +290,10 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
     //clear all the content first
     //then fill it with particular content
     public void initJourneyInfo(){
-        TextView fromView = findViewById(R.id.searchPlanInfoFrom);
-        TextView toView = findViewById(R.id.searchPlanInfoTo);
-        LinearLayout routesLayout = findViewById(R.id.searchPlanInfoRoutes);
-        LinearLayout returnRoutesLayout = findViewById(R.id.searchPlanInfoReturnRoutes);
+        TextView fromView = bottomView.findViewById(R.id.searchPlanInfoFrom);
+        TextView toView = bottomView.findViewById(R.id.searchPlanInfoTo);
+        LinearLayout routesLayout = bottomView.findViewById(R.id.searchPlanInfoRoutes);
+        LinearLayout returnRoutesLayout = bottomView.findViewById(R.id.searchPlanInfoReturnRoutes);
 
         fromView.setText("");
         toView.setText("");
@@ -290,8 +305,8 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
     public void showJourneyInfo(Journey journey) {
         initJourneyInfo();
 
-        TextView fromView = findViewById(R.id.searchPlanInfoFrom);
-        TextView toView = findViewById(R.id.searchPlanInfoTo);
+        TextView fromView = bottomView.findViewById(R.id.searchPlanInfoFrom);
+        TextView toView = bottomView.findViewById(R.id.searchPlanInfoTo);
         fromView.append(journey.getDeparture());
         toView.append(journey.getCastle().getName());
 
@@ -306,7 +321,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         //create a time object to log the time
         Time currentTime = new Time(time);
 
-        LinearLayout routesLayout = findViewById(R.id.searchPlanInfoRoutes);
+        LinearLayout routesLayout = bottomView.findViewById(R.id.searchPlanInfoRoutes);
         for (int i = 0; i < journey.getRoutes().size(); i++) {
             Route route = journey.getRoutes().get(i);
 
@@ -317,7 +332,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
                 DepartureTime departureTime = routeDepartureTimes.remove(0);
                 currentTime.setTime(departureTime.getDepTime());
             }
-            TextView textView = new TextView(searchPlanInfoAllContent.getContext());
+            TextView textView = new TextView(bottomView.getContext());
             //set the bus stops' name
             textView.setText("from: " + route.getStart() + " (" + currentTime + ")" + "\n");
             textView.append("to: " + route.getStop() + " (" + currentTime.add(route.getDuration()) + ")" + "\n");
@@ -331,7 +346,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         currentTime.add(120);
         returnTime = currentTime.toString();
         //show the return routes
-        LinearLayout returnRoutesLayout = findViewById(R.id.searchPlanInfoReturnRoutes);
+        LinearLayout returnRoutesLayout = bottomView.findViewById(R.id.searchPlanInfoReturnRoutes);
 
         for (int i = 0; i < journey.getReturnRoutes().size(); i++) {
             Route route = journey.getReturnRoutes().get(i);
@@ -347,11 +362,11 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
                 //if the route is by vehicle
                 //get the next bus time
                 //set it as current time
-                DepartureTime departureTime = returnRouteDepartureTimes.remove(0);
+                DepartureTime departureTime =returnRouteDepartureTimes.remove(0);
                 currentTime.setTime(departureTime.getDepTime());
             }
 
-            TextView textView = new TextView(searchPlanInfoAllContent.getContext());
+            TextView textView = new TextView(bottomView.getContext());
 
             //set the bus stops' name
             textView.setText("from: " + route.getStart() + " (" + currentTime + ")" + "\n");
@@ -367,9 +382,9 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         //if there is no bus or train at this time at this stop
         //make the route views disappear
         //show a signal to the user
-        TextView textView = new TextView(searchPlanInfoAllContent.getContext());
+        TextView textView = new TextView(bottomView.getContext());
         textView.setText("your depart time is too late\n ");
-        Button button = new Button(searchPlanInfoAllContent.getContext());
+        Button button = new Button(bottomView.getContext());
         button.setText("return");
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -378,7 +393,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
             }
         });
 
-        LinearLayout searchPlanInfoLateSignal = findViewById(R.id.searchPlanInfoLateSignal);
+        LinearLayout searchPlanInfoLateSignal = bottomView.findViewById(R.id.searchPlanInfoLateSignal);
         searchPlanInfoLateSignal.addView(textView);
         searchPlanInfoLateSignal.addView(button);
         findViewById(R.id.searchPlanInfoDisappear).setVisibility(View.GONE);

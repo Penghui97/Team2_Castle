@@ -102,8 +102,25 @@
     <string name="refresh">刷新</string>
     <string name="language_warn">After selecting a language, you need to refresh to initialize the app language</string>
     <string name="editMyaccount">编辑账号信息</string>
-    <string name="cancel">取消</string>
-    <string name="edit_name">编辑用户名</string>
-    <string name="Edit_email">编辑邮箱</string>
+    <string name="About_this_app">关于</string>
+    <string name="team_2">2 小组</string>
+    <string name="front_end">前端</string>
+    <string name="jiacheng_cheng">程嘉成</string>
+    <string name="penghui_xiao">肖鹏辉</string>
+    <string name="xu_jing">徐靖</string>
+    <string name="mai">Mai</string>
+    <string name="back_end">后端</string>
+    <string name="database">数据库</string>
+    <string name="document">文档</string>
+    <string name="responsibilities">负责</string>
+    <string name="team_member">成员</string>
+    <string name="team_leader">组长</string>
+    <string name="ui_designer">UI 设计</string>
+    <string name="app_prototype">App 原型</string>
+    <string name="developed_document">文档</string>
+    <string name="product_owner">产品负责</string>
+    <string name="server_deployment">服务器部署</string>
+    <string name="tester">产品测试</string>
+    <string name="Developer_Email">Email :</string>
 
 </resources>
