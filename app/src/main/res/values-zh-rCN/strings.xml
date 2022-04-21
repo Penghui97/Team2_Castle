@@ -123,5 +123,8 @@
     <string name="tester">产品测试</string>
     <string name="Developer_Email">邮箱 :</string>
     <string name="debugger">测试员</string>
+    <string name="comment">用户评价</string>
+    <string name="app_rating">app_rating</string>
+    <string name="evaluate_this_app">评价</string>
 
 </resources>
