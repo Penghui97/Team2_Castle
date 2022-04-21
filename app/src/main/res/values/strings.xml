@@ -168,6 +168,7 @@
     <string name="username_no_at">Username should not contain @ !!!</string>
     <string name="please_confirm">Please confirm your password !!!</string>
     <string name="confirm_failed">Password conformation failed !!!</string>
+    <string name="version_manager">Version manager</string>
 
 
 </resources>

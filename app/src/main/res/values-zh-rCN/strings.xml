@@ -137,6 +137,7 @@
     <string name="username_no_at">用户名不能包含 @ !!!</string>
     <string name="please_confirm">请确认密码 !!!</string>
     <string name="confirm_failed">确认密码失败 !!!</string>
+    <string name="version_manager">版本控制</string>
 
 
 </resources>

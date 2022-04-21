@@ -327,6 +327,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="@string/product_owner"/>
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:paddingStart="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/tester"/>
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:paddingStart="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/version_manager"/>
+
                 </LinearLayout>
                 <TextView
                     android:textColor="@color/black"
@@ -382,12 +397,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="@string/database"/>
-                    <TextView
-                        android:textColor="@color/black"
-                        android:paddingStart="20dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="@string/tester"/>
+
                 </LinearLayout>
                 <TextView
                     android:textColor="@color/black"
