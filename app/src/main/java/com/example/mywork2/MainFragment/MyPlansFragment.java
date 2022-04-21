@@ -39,6 +39,8 @@ import com.example.mywork2.domain.Route;
 import com.example.mywork2.domain.Ticket;
 import com.example.mywork2.domain.Time;
 import com.example.mywork2.domain.User;
+import com.google.android.material.tabs.TabItem;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -46,14 +48,20 @@ import java.util.Objects;
 public class MyPlansFragment extends Fragment{
     private View view;
     private User user;
+    private LinearLayout myPlansNoPlansLayout;
+    private TabLayout myPlanInfoRemoveNum;
+    private Ticket currentTicket;
+    private Journey currentJourney;
+    private ArrayList<DepartureTime> routeDepartureTimes;
+    private ArrayList<DepartureTime> returnRouteDepartureTimes;
+    public LinearLayout myPlanInfoLayout;
+    public LinearLayout myPlanInfoRemoveNumLayout;
 
     public MyPlansFragment() {
         // Required empty public constructor
     }
 
-
     //the handler to receive the data from the dao thread
-    private LinearLayout myPlansNoPlansLayout;
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
         @Override
@@ -70,6 +78,7 @@ public class MyPlansFragment extends Fragment{
                     getDepartureTimes();
                     break;
                 case 0x23:
+                    //receive the departTimes
                     ArrayList both = (ArrayList) message.obj;
                     routeDepartureTimes = (ArrayList<DepartureTime>) both.get(0);
                     returnRouteDepartureTimes = (ArrayList<DepartureTime>) both.get(1);
@@ -86,8 +95,9 @@ public class MyPlansFragment extends Fragment{
                     alertMessage(resultMessage2);
                     break;
                 case 0x99:
+                    //receive all the tickets fit the requirements
                     ArrayList<Ticket> tickets = (ArrayList<Ticket>) message.obj;
-                    removeTickets();
+                    initTickets();
                     showTickets(tickets);
                     break;
             }
@@ -102,7 +112,11 @@ public class MyPlansFragment extends Fragment{
         //get the Linearlayout which holds the plans
         myPlansNoPlansLayout = this.view.findViewById(R.id.myPlansNoPlansLayout);
         myPlanInfoLayout = this.view.findViewById(R.id.myPlanInfoAllContentLayout);
+        myPlanInfoRemoveNumLayout = this.view.findViewById(R.id.myPlanInfoRemoveNumLayout);
+        myPlanInfoRemoveNum = this.view.findViewById(R.id.myPlanInfoRemoveNum);
         myPlanInfoLayout.setVisibility(View.GONE);
+        myPlanInfoRemoveNumLayout.setVisibility(View.GONE);
+
         //get the user from the ThreadLocal
         MainActivity mainActivity = (MainActivity) getActivity();
         if (mainActivity != null) {
@@ -123,19 +137,31 @@ public class MyPlansFragment extends Fragment{
         this.view.findViewById(R.id.myPlanInfoBuy).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String transactionAmount = "-" + currentTicket.getTotalPrice() + "";
-                horsePay(currentTicket.getUsername(), transactionAmount);
+                horsePay(currentTicket.getUsername());
             }
         });
         //the remove button
         this.view.findViewById(R.id.myPlanInfoRemove).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (currentTicket.isPaid()) {
-                    horseRefund(currentTicket.getUsername(), "+" + currentTicket.getTotalPrice());
-                } else {
-                    removeTicketById(currentTicket.getTicketId());
-                    alertMessage("remove success");
+//                if (currentTicket.isPaid()) {
+//                    horseRefund(currentTicket.getUsername(), "+" + currentTicket.getTotalPrice());
+//                } else {
+//                    removeAllTicketsById(currentTicket.getTicketId());
+//                    alertMessage("remove success");
+//                }
+                //if there is only 1 ticket
+                //remove all ticket"s" directly
+                if(currentTicket.getQuantity() == 1){
+                    if (currentTicket.isPaid()) {
+                        horseRefundAllTickets(currentTicket.getUsername());
+                    }else{
+                        removeAllTicketsById(currentTicket.getTicketId());
+                        alertMessage("remove success");
+                    }
+                }else{
+                    //give the number user can choose
+                    showRemoveNumLayout();
                 }
             }
         });
@@ -146,10 +172,38 @@ public class MyPlansFragment extends Fragment{
                 toNearby();
             }
         });
+        //the remove button in the removeNum layout
+        this.view.findViewById(R.id.myPlanInfoRemoveNumButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int removeNum = myPlanInfoRemoveNum.getSelectedTabPosition() + 1;
+                int boughtNum = currentTicket.getQuantity();
+                //something wrong with the code
+                if(removeNum > boughtNum) return;
+                //the user remove all tickets
+                if(removeNum == boughtNum){
+                    if (currentTicket.isPaid()) {
+                        horseRefundAllTickets(currentTicket.getUsername());
+                    } else {
+                        removeAllTicketsById(currentTicket.getTicketId());
+                        alertMessage("remove success");
+                    }
+                }
+                //the user remove not all tickets
+                if(removeNum < boughtNum){
+                    if (currentTicket.isPaid()) {
+                        horseRefundTickets(currentTicket.getUsername(), removeNum);
+                    } else {
+                        removeTicketsById(currentTicket.getTicketId(), removeNum);
+                        alertMessage("remove success");
+                    }
+                }
+                myPlanInfoRemoveNumLayout.setVisibility(View.GONE);
+            }
+        });
 
         return view;
     }
-
 
     //flush my plan list
     @Override
@@ -200,29 +254,19 @@ public class MyPlansFragment extends Fragment{
     }
 
     //remove the tickets
-    public void removeTickets(){
+    public void initTickets(){
         myPlansNoPlansLayout.setVisibility(View.GONE);
         ListView listView = this.view.findViewById(R.id.myPlansListView);
         listView.setVisibility(View.GONE);
     }
 
+    //not used now
     //jump to the detailed information of this plan
     public void toMyPlanInfo(String ticketId){
         Intent intent = new Intent(getActivity(), MyPlansInfoActivity.class);
         intent.putExtra("ticketId", ticketId);
         startActivity(intent);
     }
-
-
-    //the original content in MyPlansInfoActivity class
-    //---------------------------------------------------------------------
-
-    private Ticket currentTicket;
-    private Journey currentJourney;
-    private ArrayList<DepartureTime> routeDepartureTimes;
-    private ArrayList<DepartureTime> returnRouteDepartureTimes;
-    public LinearLayout myPlanInfoLayout;
-
 
     //get the ticket from database and put it into currentTicket
     public void getTicketById(String ticketId) {
@@ -307,16 +351,16 @@ public class MyPlansFragment extends Fragment{
         TextView date = this.view.findViewById(R.id.myPlanInfoDate);
         TextView departTime = this.view.findViewById(R.id.myPlanInfoDepartTime);
         TextView returnTime = this.view.findViewById(R.id.myPlanInfoReturnTime);
-        TextView adultNum = this.view.findViewById(R.id.myPlanInfoAdultNum);
-        TextView kidNum = this.view.findViewById(R.id.myPlanInfoKidsNum);
+        TextView adultNum = this.view.findViewById(R.id.myPlanInfoTicketCount);
+//        TextView kidNum = this.view.findViewById(R.id.myPlanInfoKidsNum);
         TextView totalPrice = this.view.findViewById(R.id.myPlanInfoTotalPrice);
 
         castle.append(currentTicket.getCastleName());
         date.append(currentTicket.getDate());
         departTime.append(currentTicket.getTime());
         returnTime.append(currentTicket.getReturnTime());
-        adultNum.append(Integer.toString(currentTicket.getAdultQuantity()));
-        kidNum.append(Integer.toString(currentTicket.getKidsQuantity()));
+        adultNum.append(Integer.toString(currentTicket.getQuantity()));
+//        kidNum.append(Integer.toString(currentTicket.getKidsQuantity()));
         totalPrice.append(Integer.toString(currentTicket.getTotalPrice()));
         //show the detailed routes
         ArrayList<Route> routes = currentJourney.getRoutes();
@@ -368,20 +412,62 @@ public class MyPlansFragment extends Fragment{
         if (currentTicket.isPaid()) {
             this.view.findViewById(R.id.myPlanInfoBuy).setVisibility(View.GONE);
             Button removeButton = this.view.findViewById(R.id.myPlanInfoRemove);
+            Button removeButton2 = this.view.findViewById(R.id.myPlanInfoRemoveNumButton);
             removeButton.setText("refund");
+            removeButton2.setText("refund");
         }
     }
 
-    //delete a ticket by its id or refund it
-    public void removeTicketById(String ticketId) {
+    //delete all tickets by its id or refund it
+    public void removeAllTicketsById(String ticketId) {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 TicketDao ticketDao = new TicketDao();
-                ticketDao.removeTicketById(ticketId);
+                ticketDao.removeAllTicketsById(ticketId);
+                currentTicket = null;
                 getTickets();
             }
         }).start();
+    }
+
+    //delete particular number ticket
+    public void removeTicketsById(String ticketId, int num){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                TicketDao ticketDao = new TicketDao();
+                ticketDao.removeTicketsById(ticketId, num);
+                updateCurrentTicket(num);
+                getTickets();
+            }
+        }).start();
+    }
+
+    //update the currentTicket after the remove
+    public void updateCurrentTicket(int removeNum){
+        int boughtNum = currentTicket.getQuantity();
+        int leftNum = boughtNum - removeNum;
+        int totalPrice = currentTicket.getTotalPrice();
+        int singlePrice = totalPrice / boughtNum;
+        currentTicket.setQuantity(leftNum);
+        currentTicket.setTotalPrice(leftNum * singlePrice);
+    }
+
+    //user can choose the num to remove or refund
+    public void showRemoveNumLayout(){
+        myPlanInfoRemoveNumLayout.setVisibility(View.VISIBLE);
+        int labelNum = myPlanInfoRemoveNum.getTabCount();
+        //show all the labels
+        for(int i = labelNum; i < 5; i++){
+            TabLayout.Tab tab = myPlanInfoRemoveNum.newTab().setText((i + 1) + "");
+            myPlanInfoRemoveNum.addTab(tab, i, false);
+        }
+        //remove unnecessary labels
+        int num = currentTicket.getQuantity();
+        for(int i = 4; i >= num; i--){
+            myPlanInfoRemoveNum.removeTabAt(i);
+        }
     }
 
     //alert a success message
@@ -401,11 +487,11 @@ public class MyPlansFragment extends Fragment{
     }
 
     //use the horsePay api to pay
-    public void horsePay(String customerId, String transactionAmount) {
+    public void horsePay(String customerId) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                boolean paidSuccess = PayUtil.pay(customerId, transactionAmount);
+                boolean paidSuccess = PayUtil.pay(customerId, "-" + currentTicket.getTotalPrice());
                 String resultMessage = "";
                 if (paidSuccess) {
                     resultMessage = "total £ " + currentTicket.getTotalPrice() + "\npayment success";
@@ -424,17 +510,16 @@ public class MyPlansFragment extends Fragment{
     }
 
     //use the horsePay to refund
-    public void horseRefund(String customerId, String transactionAmount) {
+    public void horseRefundAllTickets(String customerId) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                boolean paidSuccess = PayUtil.pay(customerId, transactionAmount);
+                boolean paidSuccess = PayUtil.pay(customerId, "+" + currentTicket.getTotalPrice());
                 String resultMessage = "";
                 if (paidSuccess) {
                     resultMessage = "total £ " + currentTicket.getTotalPrice() + "\nrefund success";
                     //remove the ticket in the database
-                    removeTicketById(currentTicket.getTicketId());
-                    getTickets();
+                    removeAllTicketsById(currentTicket.getTicketId());
                 } else {
                     resultMessage = "sorry, refund failed";
                 }
@@ -445,6 +530,31 @@ public class MyPlansFragment extends Fragment{
             }
         }).start();
     }
+
+    //use the horsePay to refund particular ticket num
+    public void horseRefundTickets(String customerId, int ticketNum) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                boolean paidSuccess = PayUtil.pay(customerId, "+" + (currentTicket.getSinglePrice() * ticketNum));
+                String resultMessage = "";
+                if (paidSuccess) {
+                    resultMessage = "£ " + (currentTicket.getSinglePrice() * ticketNum) + "\nrefund success";
+                    //remove the ticket in the database
+                    removeTicketsById(currentTicket.getTicketId(), ticketNum);
+                    getTicketById(currentTicket.getTicketId());
+                } else {
+                    resultMessage = "sorry, refund failed";
+                }
+                Message message = handler.obtainMessage();
+                message.what = 0x44;
+                message.obj = resultMessage;
+                handler.sendMessage(message);
+            }
+        }).start();
+    }
+
+
 
     //change the paid status of this ticket in the database
     public void payTicket(String ticketId) {
@@ -471,8 +581,8 @@ public class MyPlansFragment extends Fragment{
         TextView date = this.view.findViewById(R.id.myPlanInfoDate);
         TextView departTime = this.view.findViewById(R.id.myPlanInfoDepartTime);
         TextView returnTime = this.view.findViewById(R.id.myPlanInfoReturnTime);
-        TextView adultNum = this.view.findViewById(R.id.myPlanInfoAdultNum);
-        TextView kidNum = this.view.findViewById(R.id.myPlanInfoKidsNum);
+        TextView ticketCount = this.view.findViewById(R.id.myPlanInfoTicketCount);
+//        TextView kidNum = this.view.findViewById(R.id.myPlanInfoKidsNum);
         TextView totalPrice = this.view.findViewById(R.id.myPlanInfoTotalPrice);
         LinearLayout myPlanInfoRoutes = this.view.findViewById(R.id.myPlanInfoRoutes);
         LinearLayout myPlanInfoReturnRoutes = this.view.findViewById(R.id.myPlanInfoReturnRoutes);
@@ -481,8 +591,8 @@ public class MyPlansFragment extends Fragment{
         date.setText("");
         departTime.setText("");
         returnTime.setText("");
-        adultNum.setText("");
-        kidNum.setText("");
+        ticketCount.setText("");
+//        kidNum.setText("");
         totalPrice.setText("");
         myPlanInfoRoutes.removeAllViews();
         myPlanInfoReturnRoutes.removeAllViews();

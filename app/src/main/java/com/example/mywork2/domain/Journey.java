@@ -36,7 +36,7 @@ public class Journey {
     public int getSinglePrice(){
         int res = 0;
         for(Route route : routes){
-            res += route.getAdultPrice();
+            res += route.getPrice();
         }
         return res;
     }
@@ -44,32 +44,18 @@ public class Journey {
     public int getTotalPrice(){
         int res = getSinglePrice();
         for(Route route : returnRoutes){
-            res += route.getAdultPrice();
+            res += route.getPrice();
         }
-        res += castle.getAdultPrice();
+        res += castle.getPrice();
         return res;
     }
     //save a journey as a ticket
-    public Ticket toTicket(String username, String date, String time, String returnTime, int adultNum, int kidsNum){
+    public Ticket toTicket(String username, String date, String time, String returnTime, int quantity){
         //use the currentTimeMillis as the ticket id to avoid repetition
         String ticketId = Long.toString(System.currentTimeMillis());
         //calculate the price
-        int adultPrice = castle.getAdultPrice();
-        for(Route route : routes){
-            adultPrice += route.getAdultPrice();
-        }
-        for(Route route : returnRoutes){
-            adultPrice += route.getAdultPrice();
-        }
-        int kidsPrice = castle.getKidsPrice();
-        for(Route route : routes){
-            kidsPrice += route.getKidsPrice();
-        }
-        for(Route route : returnRoutes){
-            kidsPrice += route.getKidsPrice();
-        }
-        int totalPrice = adultPrice * adultNum + kidsPrice * kidsNum;
-        Ticket ticket = new Ticket(ticketId, castle.getName(), username, journeyId, date, time, returnTime, adultNum, kidsNum, totalPrice);
+        int totalPrice = getTotalPrice() * quantity;
+        Ticket ticket = new Ticket(ticketId, castle.getName(), username, journeyId, date, time, returnTime, quantity, totalPrice, false);
         return ticket;
     }
 

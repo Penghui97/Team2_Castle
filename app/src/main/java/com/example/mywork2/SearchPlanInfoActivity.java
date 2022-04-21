@@ -43,7 +43,7 @@ public class SearchPlanInfoActivity extends AppCompatActivity implements View.On
     private String time;
     private String returnTime;
     private int inputAdultNum;
-    private int inputKidsNum;
+//    private int inputKidsNum;
     private ArrayList<DepartureTime> routeDepartureTimes;
     private ArrayList<DepartureTime> returnRouteDepartureTimes;
 
@@ -93,7 +93,7 @@ public class SearchPlanInfoActivity extends AppCompatActivity implements View.On
                 finish();
                 break;
             case R.id.searchPlanInfoSave:
-                getInput();
+//                getInput();
                 saveJourney();
                 alertSuccess();
                 break;
@@ -273,20 +273,22 @@ public class SearchPlanInfoActivity extends AppCompatActivity implements View.On
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Ticket ticket = currentJourney.toTicket("root", date, time, returnTime, inputAdultNum, inputKidsNum);
+                Ticket ticket = currentJourney.toTicket("root", date, time, returnTime, inputAdultNum);
                 TicketDao ticketDao = new TicketDao();
                 ticketDao.addTicket(ticket);
             }
         }).start();
     }
 
+    //after drop the kid ticket functions
+    //it has been canceled
     //get all the information the user input
-    public void getInput() {
-        Spinner adultNum = findViewById(R.id.adultNum);
-        Spinner kidsNum = findViewById(R.id.kidNum);
-        inputAdultNum = Integer.parseInt(adultNum.getSelectedItem().toString());
-        inputKidsNum = Integer.parseInt(kidsNum.getSelectedItem().toString());
-    }
+//    public void getInput() {
+//        Spinner adultNum = findViewById(R.id.adultNum);
+//        Spinner kidsNum = findViewById(R.id.kidNum);
+//        inputAdultNum = Integer.parseInt(adultNum.getSelectedItem().toString());
+//        inputKidsNum = Integer.parseInt(kidsNum.getSelectedItem().toString());
+//    }
 
     //alert a friendly message to the user
     //when he save the plan successfully

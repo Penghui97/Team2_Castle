@@ -138,6 +138,8 @@ public class SearchFragment extends Fragment {
         Spinner destination = this.view.findViewById(R.id.destination);
         TextView departureDate = this.view.findViewById(R.id.departure_date);
         TextView departureTime = this.view.findViewById(R.id.departure_time);
+        TabLayout ticketNumLayout = this.view.findViewById(R.id.ticket_num);
+        int ticketNum = ticketNumLayout.getSelectedTabPosition() + 1;
         //check if the user has selected date and time
         String strDate = (String) departureDate.getText();
         if(!strDate.contains("/")) {
@@ -157,6 +159,7 @@ public class SearchFragment extends Fragment {
         }
         intent.putExtra("time", strTime);
         intent.putExtra("date", strDate);
+        intent.putExtra("ticketNum", ticketNum);
         if(user == null) intent.putExtra("username", "root");
         else intent.putExtra("username", user.getUsername());
 

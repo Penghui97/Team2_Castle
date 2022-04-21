@@ -44,6 +44,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
     private String date;
     private String time;
     private String username;
+    private int ticketNum;
 
     //receive the data from the database
     @SuppressLint("HandlerLeak")
@@ -100,6 +101,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         time = (String) extras.get("time");
         date = (String) extras.get("date");
         username = (String) extras.get("username");
+        ticketNum = (Integer) extras.get("ticketNum");
 
         //sort the journeys
         getJourneys(departure, destination);
@@ -123,7 +125,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
                 searchPlanInfoAllContent.setVisibility(View.GONE);
                 break;
             case R.id.searchPlanInfoSave:
-                getInput();
+//                getInput();
                 saveJourney();
                 break;
         }
@@ -197,8 +199,8 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
     //store the current journey
     private Journey currentJourney;
     private String returnTime;
-    private int inputAdultNum;
-    private int inputKidsNum;
+//    private int inputAdultNum;
+//    private int inputKidsNum;
     private ArrayList<DepartureTime> routeDepartureTimes;
     private ArrayList<DepartureTime> returnRouteDepartureTimes;
 
@@ -391,7 +393,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
             public void run() {
                 if(currentJourney != null){
                     date = transferTimeFormat(date);
-                    Ticket ticket = currentJourney.toTicket(username, date, time, returnTime, inputAdultNum, inputKidsNum);
+                    Ticket ticket = currentJourney.toTicket(username, date, time, returnTime, ticketNum);
                     TicketDao ticketDao = new TicketDao();
                     ticketDao.addTicket(ticket);
                     currentJourney = null;
@@ -403,13 +405,13 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         }).start();
     }
 
+    //after drop the kid ticket functions
+    //it has been canceled
     //get all the information the user input
-    public void getInput() {
-        Spinner adultNum = findViewById(R.id.adultNum);
-        Spinner kidsNum = findViewById(R.id.kidNum);
-        inputAdultNum = Integer.parseInt(adultNum.getSelectedItem().toString());
-        inputKidsNum = Integer.parseInt(kidsNum.getSelectedItem().toString());
-    }
+//    public void getInput() {
+//        Spinner adultNum = findViewById(R.id.adultNum);
+//        Spinner kidsNum = findViewById(R.id.kidNum);
+//    }
 
     //alert a friendly message to the user
     //when he save the plan successfully
