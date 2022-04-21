@@ -59,6 +59,7 @@ public class AppSettingsActivity extends AppCompatActivity implements View.OnCli
         rgLanguage.setOnCheckedChangeListener(this::onCheckedChanged);
         refresh.setOnClickListener(view -> {
             startActivity(intent1);
+            
         });
         
 
