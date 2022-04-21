@@ -127,16 +127,13 @@ public class MyPlansInfoActivity extends AppCompatActivity implements View.OnCli
 
     //get the journey information from the database
     public void getJourneyById(String journeyId) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                JourneyDao journeyDao = new JourneyDao();
-                Journey journey = journeyDao.getJourneyById(journeyId);
-                Message message = handler.obtainMessage();
-                message.what = 0x22;
-                message.obj = journey;
-                handler.sendMessage(message);
-            }
+        new Thread(() -> {
+            JourneyDao journeyDao = new JourneyDao();
+            Journey journey = journeyDao.getJourneyById(journeyId);
+            Message message = handler.obtainMessage();
+            message.what = 0x22;
+            message.obj = journey;
+            handler.sendMessage(message);
         }).start();
     }
 
