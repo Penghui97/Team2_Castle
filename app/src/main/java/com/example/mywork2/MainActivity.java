@@ -50,10 +50,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private DrawerLayout drawer;
     //drawerImage is the imageview in the drawerlayout.
     private ImageView imageView, drawerImage;
-    //username_v is the username textview.
-    private TextView username_v, email_v;
+    //nickname_v is the username textview.
+    private TextView nickname_v, email_v;
     public User user, customer;
-    public String username;
+    public String username, nickname;
 
 
     //receive the data from the database
@@ -63,11 +63,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         public void handleMessage(@NonNull Message msg) {
             switch (msg.what) {
                 case 0x11:
-                    username_v.setText(username);//set the username on the view
+                    nickname_v.setText(nickname);//set the username on the view
                     email_v.setText(user.getEmail());//set the email on the view
                     break;
                 case 0x22:
-                    username_v.setText(customer.getUsername());//set the customer's username on the view
+                    nickname_v.setText(customer.getNickname());//set the customer's username on the view
                     email_v.setText(customer.getEmail());//set the customer's email on the view
                     break;
             }
@@ -78,14 +78,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /**
-         * (Jing)
-         * get the user by username
-         */
+        //get username from login page
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         username = (String)extras.get("username");
         //show the particular user's info
+
         showUserInfo();
 
 
@@ -123,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         drawerImage = drawerView.getHeaderView(0).findViewById(R.id.avatar);
 
-        username_v = drawerView.getHeaderView(0).findViewById(R.id.username_profile);
+        nickname_v = drawerView.getHeaderView(0).findViewById(R.id.nickname_profile);
 
         email_v = drawerView.getHeaderView(0).findViewById(R.id.user_email);
 
@@ -251,13 +249,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             user = userDao.getUserByUsername(username);
             customer = userDao.getUserByUsername("root");
 
+
             if(user != null){
                 Message message = handler.obtainMessage();
                 message.what = 0x11;
+                nickname = user.getNickname();
                 handler.sendMessage(message);
             }else {
                 Message message = handler.obtainMessage();
                 message.what = 0x22;
+                nickname = customer.getNickname();
                 handler.sendMessage(message);
             }
         }).start();

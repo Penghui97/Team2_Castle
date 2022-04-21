@@ -156,6 +156,8 @@
     <string name="cancel">Cancel</string>
     <string name="edit_name">Edit username</string>
     <string name="Edit_email">Edit Email address</string>
+    <string name="nickname">Nickname</string>
+    <string name="your_nickname">your nickname</string>
 
 
 </resources>

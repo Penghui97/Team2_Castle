@@ -125,6 +125,8 @@
     <string name="cancel">取消</string>
     <string name="edit_name">编辑用户名</string>
     <string name="Edit_email">编辑邮箱</string>
+    <string name="nickname">昵称</string>
+    <string name="your_nickname">你的昵称</string>
 
 
 </resources>
