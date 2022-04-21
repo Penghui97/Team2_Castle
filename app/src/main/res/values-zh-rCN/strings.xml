@@ -124,4 +124,12 @@
     <string name="Developer_Email">邮箱 :</string>
     <string name="debugger">测试员</string>
 
+    <string name="comment">用户评价</string>
+    <string name="app_rating">app_rating</string>
+    <string name="evaluate_this_app">评价</string>
+    <string name="cancel">取消</string>
+    <string name="edit_name">编辑用户名</string>
+    <string name="Edit_email">编辑邮箱</string>
+
+
 </resources>
