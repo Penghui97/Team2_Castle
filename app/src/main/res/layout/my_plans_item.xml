@@ -144,15 +144,25 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="105dp"
+                android:text="@string/status"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/myPlanPaidStatus"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
                 android:id="@+id/myPlanPaidStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="104dp"
                 android:text="notPaid"
                 android:textAlignment="center"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.cardview.widget.CardView
@@ -174,17 +184,6 @@
                     android:textColor="@color/white"
                     android:text="@string/view_details"/>
             </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:textSize="15sp"
-                android:textColor="@color/black"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="82dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/status"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
