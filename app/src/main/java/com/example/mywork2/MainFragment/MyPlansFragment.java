@@ -408,14 +408,7 @@ public class MyPlansFragment extends Fragment{
             LinearLayout returnRoutesLayout = this.view.findViewById(R.id.myPlanInfoReturnRoutes);
             returnRoutesLayout.addView(textView);
         }
-        //change the status of the by button
-        if (currentTicket.isPaid()) {
-            this.view.findViewById(R.id.myPlanInfoBuy).setVisibility(View.GONE);
-            Button removeButton = this.view.findViewById(R.id.myPlanInfoRemove);
-            Button removeButton2 = this.view.findViewById(R.id.myPlanInfoRemoveNumButton);
-            removeButton.setText("refund");
-            removeButton2.setText("refund");
-        }
+
     }
 
     //delete all tickets by its id or refund it
@@ -596,6 +589,21 @@ public class MyPlansFragment extends Fragment{
         totalPrice.setText("");
         myPlanInfoRoutes.removeAllViews();
         myPlanInfoReturnRoutes.removeAllViews();
+
+        //change the status of the buy and remove buttons
+        if (currentTicket.isPaid()) {
+            this.view.findViewById(R.id.myPlanInfoBuy).setVisibility(View.GONE);
+            Button removeButton = this.view.findViewById(R.id.myPlanInfoRemove);
+            Button removeButton2 = this.view.findViewById(R.id.myPlanInfoRemoveNumButton);
+            removeButton.setText("refund");
+            removeButton2.setText("refund");
+        }else{
+            this.view.findViewById(R.id.myPlanInfoBuy).setVisibility(View.VISIBLE);
+            Button removeButton = this.view.findViewById(R.id.myPlanInfoRemove);
+            Button removeButton2 = this.view.findViewById(R.id.myPlanInfoRemoveNumButton);
+            removeButton.setText("remove");
+            removeButton2.setText("remove");
+        }
     }
 
 }
