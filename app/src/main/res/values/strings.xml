@@ -169,6 +169,9 @@
     <string name="please_confirm">Please confirm your password !!!</string>
     <string name="confirm_failed">Password conformation failed !!!</string>
     <string name="version_manager">Version manager</string>
+    <string name="evaluate_this_app">evaluate</string>
+    <string name="app_rating">rating</string>
+    <string name="comment">Comments</string>
 
 
 </resources>

@@ -138,6 +138,10 @@
     <string name="please_confirm">请确认密码 !!!</string>
     <string name="confirm_failed">确认密码失败 !!!</string>
     <string name="version_manager">版本控制</string>
+    <string name="app_rating">评分</string>
+    <string name="comment">用户评价</string>
+    <string name="evaluate_this_app">评价</string>
+
 
 
 </resources>
