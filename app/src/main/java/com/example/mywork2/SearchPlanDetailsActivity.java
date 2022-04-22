@@ -121,9 +121,9 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
             case R.id.planDetailsReturn:
                 finish();
                 break;
-            case R.id.searchPlanInfoReturn:
+            /*case R.id.searchPlanInfoReturn:
                 searchPlanInfoAllContent.setVisibility(View.GONE);
-                break;
+                break;*/
             case R.id.searchPlanInfoSave:
 //                getInput();
                 saveJourney();

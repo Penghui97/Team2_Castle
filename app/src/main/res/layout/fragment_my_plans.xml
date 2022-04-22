@@ -57,11 +57,7 @@
                 android:id="@+id/myPlansListView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:divider="#6200EE"
-                android:dividerHeight="3dp"
                 >
-
-
             </ListView>
 
 
