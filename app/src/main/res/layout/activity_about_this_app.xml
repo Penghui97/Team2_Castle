@@ -63,7 +63,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                   >
+                    >
                     <TextView
                         android:textColor="@color/black"
                         android:paddingStart="20dp"
@@ -320,13 +320,30 @@
                         android:paddingStart="20dp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="@string/back_end"/>
+                        android:text="@string/back_end"
+                        tools:ignore="RtlSymmetry" />
                     <TextView
                         android:textColor="@color/black"
-                        android:paddingStart="20dp"
+                        android:paddingStart="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="@string/product_owner"/>
+                        android:text="@string/product_owner"
+                        tools:ignore="RtlSymmetry" />
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:paddingStart="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/version_manager"
+                        tools:ignore="RtlSymmetry" />
+                    <TextView
+                        android:textColor="@color/black"
+                        android:paddingStart="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/tester"
+                        tools:ignore="RtlSymmetry" />
                 </LinearLayout>
                 <TextView
                     android:textColor="@color/black"
@@ -382,12 +399,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="@string/database"/>
-                    <TextView
-                        android:textColor="@color/black"
-                        android:paddingStart="20dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="@string/tester"/>
+
                 </LinearLayout>
                 <TextView
                     android:textColor="@color/black"
@@ -403,7 +415,7 @@
                     android:textColor="#3700B3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="b8011641@newcastle.ac.uk"/>
+                    android:text="XXXXX@newcastle.ac.uk"/>
 
 
             </LinearLayout>

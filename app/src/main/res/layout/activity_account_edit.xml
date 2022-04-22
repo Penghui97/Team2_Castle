@@ -12,7 +12,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/account_username_edit"
+        android:id="@+id/account_nickname_edit"
         android:background="@color/white"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="@string/username"
+            android:text="@string/nickname"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,11 +33,11 @@
             app:layout_constraintVertical_bias="0.52" />
 
         <TextView
-            android:id="@+id/account_user_name"
+            android:id="@+id/account_nick_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="59dp"
-            android:text="@string/your_username"
+            android:text="@string/your_nickname"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

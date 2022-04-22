@@ -153,25 +153,25 @@
     <string name="server_deployment">Server deployment</string>
     <string name="tester">Tester</string>
     <string name="Developer_Email">Email :</string>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
+    <string name="cancel">Cancel</string>
+    <string name="edit_name">Edit username</string>
+    <string name="Edit_email">Edit Email address</string>
+    <string name="nickname">Nickname</string>
+    <string name="your_nickname">your nickname</string>
+    <string name="please_enter_username">Please enter a username !!!</string>
+    <string name="username_too_long">Username\'s length should not be longer than 25 !!!</string>
+    <string name="enter_password">Please enter your password !!!</string>
+    <string name="password_long">Password\'s length should be less than 16 !!!</string>
+    <string name="email_end">Enter a correct email address end with .ac.uk !!!</string>
+    <string name="reg">^[A-Za-z\\d]+([-_.][A-Za-z\\d]+)*@([A-Za-z\\d]+[-.])+[A-Za-z\\d]{2,4}$</string>
+    <string name="reg2">/(.+(?=[.ac.uk]$))</string>
+    <string name="username_no_at">Username should not contain @ !!!</string>
+    <string name="please_confirm">Please confirm your password !!!</string>
+    <string name="confirm_failed">Password conformation failed !!!</string>
+    <string name="version_manager">Version manager</string>
+    <string name="evaluate_this_app">evaluate</string>
+    <string name="app_rating">rating</string>
     <string name="comment">Comments</string>
-    <string name="app_rating">app_rating</string>
-    <string name="evaluate_this_app">evaluate this app</string>
-=======
-    <string name="debugger">Debugger</string>
->>>>>>> parent of eac6dcc (update comments xml)
-
-    <string name="cancel">cancel</string>
-    <string name="edit_name">edit username</string>
-    <string name="Edit_email">edit email</string>
-
-=======
->>>>>>> parent of 5379f79 (update penghui‘ s)
-=======
->>>>>>> parent of 412fb85 (Merge branch 'Jiacheng')
 
 
 </resources>

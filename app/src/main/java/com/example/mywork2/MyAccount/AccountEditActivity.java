@@ -26,11 +26,11 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
     private BottomSheetDialog bottomSheetDialog;
     private View bottomView;
     private ConstraintLayout username,email;
-    private TextView bottomHeader,warningMessage;
+    private TextView bottomHeader,warningMessage, account_nickname, account_email;
     private EditText change;
     private Button bottomSaveButton;
-    private User user;
-    private String username_, email_;
+    private User user, customer;
+    private String username_, email_, nickname;
 
     //receive the data from the database
     @SuppressLint("HandlerLeak")
@@ -38,7 +38,11 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
         @Override
         public void handleMessage(@NonNull Message msg) {
             if (msg.what == 0x11) {
-
+                account_nickname.setText(nickname);
+                account_email.setText(email_);
+            }else if (msg.what == 0x22) {
+                account_nickname.setText(customer.getNickname());
+                account_email.setText(customer.getEmail());
             }
         }
     };
@@ -68,6 +72,13 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
             this.finish()
             ;});
 
+        account_nickname = findViewById(R.id.account_nick_name);
+        account_email = findViewById(R.id.account_email_address);
+
+//        account_nickname.setText(nickname);
+//        account_email.setText(email_);
+
+
         //get bottom sheet view
         bottomSheetDialog = new BottomSheetDialog(AccountEditActivity.this,R.style.BottomSheetDialogTheme);
         bottomView = LayoutInflater.from(getApplicationContext()).inflate(
@@ -85,26 +96,27 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
 
         bottomSheetDialog.setContentView(bottomView);
 
-        username = findViewById(R.id.account_username_edit);
+        username = findViewById(R.id.account_nickname_edit);
         username.setOnClickListener(this);
 
         email = findViewById(R.id.account_email_edit);
         email.setOnClickListener(this);
 
-
+        showUserInfo();
 
 
 
 
     }
 
+
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.account_username_edit:
+            case R.id.account_nickname_edit:
                 bottomHeader.setText(R.string.edit_name);
-                change.setHint(username_);
+                change.setHint(nickname);
                 bottomSheetDialog.show();
                 break;
             case R.id.account_email_edit:
@@ -126,10 +138,17 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
         new Thread(() -> {
             UserDao userDao = new UserDao();
             user = userDao.getUserByUsername(username_);
+            customer = userDao.getUserByUsername("root");
 
             if(user != null){
                 Message message = handler.obtainMessage();
                 message.what = 0x11;
+                nickname = user.getNickname();
+                handler.sendMessage(message);
+            }else {
+                Message message = handler.obtainMessage();
+                message.what = 0x22;
+                nickname = customer.getNickname();
                 handler.sendMessage(message);
             }
         }).start();
