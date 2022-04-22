@@ -22,7 +22,7 @@ public class DBUtil {
 
     private static String url = "jdbc:mysql://10.0.2.2:3306/csc8019_team02";
     private static String user = "root";
-    private static String password = "123";
+    private static String password = "aA05586947521";
 
     //load the driver
     static {
