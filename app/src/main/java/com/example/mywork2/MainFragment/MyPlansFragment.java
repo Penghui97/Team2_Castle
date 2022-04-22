@@ -89,12 +89,12 @@ public class MyPlansFragment extends Fragment{
                 case 0x33:
                     //receive the paid result
                     String resultMessage = (String) message.obj;
-                    alertMessage(resultMessage);
+                    //alertMessage(resultMessage);
                     break;
                 case 0x44:
                     //receive the refund result
                     String resultMessage2 = (String) message.obj;
-                    alertMessage(resultMessage2);
+                    //alertMessage(resultMessage2);
                     break;
                 case 0x99:
                     //receive all the tickets fit the requirements
@@ -604,6 +604,9 @@ public class MyPlansFragment extends Fragment{
             removeButton.setText("refund");
             removeButton2.setText("refund");
             myPlansDialoge.setDialogTitle("Refund tickets?");
+            myPlansDialoge.setRemoveOrRefund("refund");
+            myPlansDialoge.setTicketNums(currentTicket.getQuantity());
+            myPlansDialoge.setDialogText("How many tickets are you going to refund ?");
         }else{
             this.view.findViewById(R.id.myPlanInfoBuy).setVisibility(View.VISIBLE);
             Button removeButton = this.view.findViewById(R.id.myPlanInfoRemove);
@@ -611,6 +614,9 @@ public class MyPlansFragment extends Fragment{
             removeButton.setText("remove");
             removeButton2.setText("remove");
             myPlansDialoge.setDialogTitle("Remove this plan?");
+            myPlansDialoge.setRemoveOrRefund("remove");
+            myPlansDialoge.setTicketNums(currentTicket.getQuantity());
+            myPlansDialoge.setDialogText("How many people are you going to remove in this plan ?");
         }
     }
 
