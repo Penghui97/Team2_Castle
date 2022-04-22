@@ -123,6 +123,9 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
                 R.layout.bottom_sheet_search,
                 findViewById(R.id.bottom_sheet_search)
         );
+
+        Button saveTicket = bottomView.findViewById(R.id.searchPlanInfoSave);
+        saveTicket.setOnClickListener(this);
         bottomSheetDialog.setContentView(bottomView);
 
 
@@ -133,9 +136,6 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         switch (view.getId()) {
             case R.id.planDetailsReturn:
                 finish();
-                break;
-            case R.id.searchPlanInfoReturn:
-                searchPlanInfoAllContent.setVisibility(View.GONE);
                 break;
             case R.id.searchPlanInfoSave:
                 getInput();
@@ -384,18 +384,18 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         //show a signal to the user
         TextView textView = new TextView(bottomView.getContext());
         textView.setText("your depart time is too late\n ");
-        Button button = new Button(bottomView.getContext());
-        button.setText("return");
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
+        //Button button = new Button(bottomView.getContext());
+       // button.setText("return");
+        /*button.setOnClickListener(new View.OnClickListener() {
+            @Overrid
             public void onClick(View view) {
                 finish();
             }
-        });
+        });*/
 
         LinearLayout searchPlanInfoLateSignal = bottomView.findViewById(R.id.searchPlanInfoLateSignal);
         searchPlanInfoLateSignal.addView(textView);
-        searchPlanInfoLateSignal.addView(button);
+       // searchPlanInfoLateSignal.addView(button);
         findViewById(R.id.searchPlanInfoDisappear).setVisibility(View.GONE);
     }
 

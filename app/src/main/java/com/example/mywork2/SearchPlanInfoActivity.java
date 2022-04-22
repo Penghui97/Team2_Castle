@@ -89,9 +89,6 @@ public class SearchPlanInfoActivity extends AppCompatActivity implements View.On
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.searchPlanInfoReturn:
-                finish();
-                break;
             case R.id.searchPlanInfoSave:
                 getInput();
                 saveJourney();
