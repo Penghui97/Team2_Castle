@@ -3,13 +3,16 @@ package com.example.mywork2;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -339,14 +342,60 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
                 DepartureTime departureTime = routeDepartureTimes.remove(0);
                 currentTime.setTime(departureTime.getDepTime());
             }
-            TextView textView = new TextView(bottomView.getContext());
-            //set the bus stops' name
-            textView.setText("from: " + route.getStart() + " (" + currentTime + ")" + "\n");
-            textView.append("to: " + route.getStop() + " (" + currentTime.add(route.getDuration()) + ")" + "\n");
-            textView.append(route.getTransport().getType() + " (" + route.getTransport().getTransportId() + ")   ");
-            textView.append(route.getDuration() + " min\n ");
-            textView.setTextSize(15);
-            routesLayout.addView(textView);
+
+            // trans type
+            ImageView transIcon = new ImageView(bottomView.getContext());
+            switch (route.getTransport().getType()){
+                case "walk":
+                    transIcon.setImageResource(R.drawable.icons8_walking_24);
+                    break;
+                case "Train":
+                    transIcon.setImageResource(R.drawable.icons8_train_24);
+                    break;
+                case "Bus":
+                    transIcon.setImageResource(R.drawable.icons8_bus_24);
+                    break;
+                default:
+                    break;
+            }
+            //trans route details
+            TextView routeId = new TextView(bottomView.getContext());
+            routeId.setPadding(15,10,0,0);
+            routeId.setText(route.getTransport().getType() + " ("
+                    + route.getTransport().getTransportId() + ")                          "
+                    +route.getDuration() + " min\n ");
+            //linear layout for trans
+            LinearLayout transportLayout = new LinearLayout(bottomView.getContext());
+            transportLayout.setOrientation(LinearLayout.HORIZONTAL);
+            transportLayout.addView(transIcon);
+            transportLayout.addView(routeId);
+
+            //set start point of trans
+            TextView startPoint = new TextView(bottomView.getContext());
+            startPoint.setText(route.getStart() + " (" + currentTime + ")" + "");
+            startPoint.setTextSize(15);
+
+            //arrow image
+            ImageView downArrow = new ImageView(bottomView.getContext());
+            downArrow.setPadding(0,20,0,20);
+            downArrow.setImageResource(R.drawable.icons8_down_arrow_48);
+
+            //arrow layout
+            LinearLayout arrowLayout = new LinearLayout(bottomView.getContext());
+            arrowLayout.addView(downArrow);
+            //set end point of trans
+            TextView endPoint = new TextView(bottomView.getContext());
+            endPoint.setText(route.getStop() + " (" + currentTime.add(route.getDuration()) + ")" + "\n");
+            endPoint.setTextSize(15);
+            //textView.append(route.getTransport().getType() + " (" + route.getTransport().getTransportId() + ")   ");
+            //textView.append(route.getDuration() + " min\n ");
+
+            // structure the layout
+            routesLayout.addView(transportLayout);
+            routesLayout.addView(startPoint);
+            routesLayout.addView(arrowLayout);
+            routesLayout.addView(endPoint);
+
         }
 
         //give 2 hours to explore the castle
@@ -373,15 +422,58 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
                 currentTime.setTime(departureTime.getDepTime());
             }
 
-            TextView textView = new TextView(bottomView.getContext());
+            // trans type
+            ImageView transIcon = new ImageView(bottomView.getContext());
+            switch (route.getTransport().getType()){
+                case "walk":
+                    transIcon.setImageResource(R.drawable.icons8_walking_24);
+                    break;
+                case "Train":
+                    transIcon.setImageResource(R.drawable.icons8_train_24);
+                    break;
+                case "Bus":
+                    transIcon.setImageResource(R.drawable.icons8_bus_24);
+                    break;
+                default:
+                    break;
+            }
+            //trans route details
+            TextView routeId = new TextView(bottomView.getContext());
+            routeId.setPadding(15,10,0,0);
+            routeId.setText(route.getTransport().getType() + " ("
+                    + route.getTransport().getTransportId() + ")                          "
+                    +route.getDuration() + " min\n ");
+            //linear layout for trans
+            LinearLayout transportLayout = new LinearLayout(bottomView.getContext());
+            transportLayout.setOrientation(LinearLayout.HORIZONTAL);
+            transportLayout.addView(transIcon);
+            transportLayout.addView(routeId);
 
-            //set the bus stops' name
-            textView.setText("from: " + route.getStart() + " (" + currentTime + ")" + "\n");
-            textView.append("to: " + route.getStop() + " (" + currentTime.add(route.getDuration()) + ")" + "\n");
-            textView.append(route.getTransport().getType() + " (" + route.getTransport().getTransportId() + ")   ");
-            textView.append(route.getDuration() + " min\n ");
-            textView.setTextSize(15);
-            returnRoutesLayout.addView(textView);
+            //set start point of trans
+            TextView startPoint = new TextView(bottomView.getContext());
+            startPoint.setText(route.getStart() + " (" + currentTime + ")" + "");
+            startPoint.setTextSize(15);
+
+            //arrow image
+            ImageView downArrow = new ImageView(bottomView.getContext());
+            downArrow.setPadding(0,20,0,20);
+            downArrow.setImageResource(R.drawable.icons8_down_arrow_48);
+
+            //arrow layout
+            LinearLayout arrowLayout = new LinearLayout(bottomView.getContext());
+            arrowLayout.addView(downArrow);
+            //set end point of trans
+            TextView endPoint = new TextView(bottomView.getContext());
+            endPoint.setText(route.getStop() + " (" + currentTime.add(route.getDuration()) + ")" + "\n");
+            endPoint.setTextSize(15);
+            //textView.append(route.getTransport().getType() + " (" + route.getTransport().getTransportId() + ")   ");
+            //textView.append(route.getDuration() + " min\n ");
+
+            // structure the layout
+            returnRoutesLayout.addView(transportLayout);
+            returnRoutesLayout.addView(startPoint);
+            returnRoutesLayout.addView(arrowLayout);
+            returnRoutesLayout.addView(endPoint);
         }
     }
 
