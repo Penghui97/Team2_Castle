@@ -3,6 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/dialog_layout.xml" value="0.15" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/my_plans_info.xml" value="0.33" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/my_plans_info_nearby.xml" value="0.10729166666666666" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/my_plans_info_nearby_item.xml" value="0.10729166666666666" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/my_plans_item.xml" value="0.10597826086956522" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/search_plan_details.xml" value="0.10597826086956522" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/search_plan_info.xml" value="0.10597826086956522" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/search_plan_item.xml" value="0.10729166666666666" />
         <entry key="..\:/cs/AndroidStudioProjects/projects/Mywork2/app/src/main/res/layout/activity_main.xml" value="0.12335359675785208" />
         <entry key="..\:/cs/AndroidStudioProjects/projects/Mywork2/app/src/main/res/layout/castle_view_symbol1.xml" value="0.25364583333333335" />
         <entry key="..\:/cs/AndroidStudioProjects/projects/Mywork2/app/src/main/res/layout/drawer_main.xml" value="0.25364583333333335" />

@@ -23,6 +23,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.mywork2.Dialog.MyPlansDialoge;
 import com.example.mywork2.MainActivity;
 import com.example.mywork2.MyPlansInfoActivity;
 import com.example.mywork2.MyPlansInfoNearbyActivity;
@@ -47,6 +48,7 @@ import java.util.Objects;
 
 public class MyPlansFragment extends Fragment{
     private View view;
+    private MyPlansDialoge myPlansDialoge;
     private User user;
     private LinearLayout myPlansNoPlansLayout;
     private TabLayout myPlanInfoRemoveNum;
@@ -161,6 +163,7 @@ public class MyPlansFragment extends Fragment{
                     }
                 }else{
                     //give the number user can choose
+                    myPlansDialoge.show(getParentFragmentManager(),"dia");
                     showRemoveNumLayout();
                 }
             }
@@ -201,6 +204,9 @@ public class MyPlansFragment extends Fragment{
                 myPlanInfoRemoveNumLayout.setVisibility(View.GONE);
             }
         });
+
+        // return dialog
+        myPlansDialoge = new MyPlansDialoge();
 
         return view;
     }
@@ -597,12 +603,14 @@ public class MyPlansFragment extends Fragment{
             Button removeButton2 = this.view.findViewById(R.id.myPlanInfoRemoveNumButton);
             removeButton.setText("refund");
             removeButton2.setText("refund");
+            myPlansDialoge.setDialogTitle("Refund tickets?");
         }else{
             this.view.findViewById(R.id.myPlanInfoBuy).setVisibility(View.VISIBLE);
             Button removeButton = this.view.findViewById(R.id.myPlanInfoRemove);
             Button removeButton2 = this.view.findViewById(R.id.myPlanInfoRemoveNumButton);
             removeButton.setText("remove");
             removeButton2.setText("remove");
+            myPlansDialoge.setDialogTitle("Remove this plan?");
         }
     }
 
