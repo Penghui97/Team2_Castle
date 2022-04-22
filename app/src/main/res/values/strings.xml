@@ -159,7 +159,7 @@
     <string name="nickname">Nickname</string>
     <string name="your_nickname">your nickname</string>
     <string name="please_enter_username">Please enter a username !!!</string>
-    <string name="username_too_long">Username\'s length should not be longer than 25 !!!</string>
+    <string name="username_too_long">Username or email should not be longer than 40 !!!</string>
     <string name="enter_password">Please enter your password !!!</string>
     <string name="password_long">Password\'s length should be less than 16 !!!</string>
     <string name="email_end">Enter a correct email address end with .ac.uk !!!</string>

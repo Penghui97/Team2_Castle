@@ -128,7 +128,7 @@
     <string name="nickname">昵称</string>
     <string name="your_nickname">你的昵称</string>
     <string name="please_enter_username">请输入用户名 !!!</string>
-    <string name="username_too_long">用户名的长度不能超过25 !!!</string>
+    <string name="username_too_long">用户名或邮箱的长度不能超过40 !!!</string>
     <string name="enter_password">请输入密码 !!!</string>
     <string name="password_long">密码长度不能超过16</string>
     <string name="email_end">输入一个以 .ac.uk结尾且正确的邮箱地址 !!!</string>
