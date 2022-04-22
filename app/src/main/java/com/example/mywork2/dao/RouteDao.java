@@ -37,10 +37,9 @@ public class RouteDao {
                 String start = rs.getString("start");
                 String stop = rs.getString("stop");
                 int duration = rs.getInt("duration");
-                int adultPrice = rs.getInt("adultPrice");
-                int kidsPrice = rs.getInt("kidsPrice");
+                int price = rs.getInt("price");
                 int leg = rs.getInt("led");
-                routes.add(new Route(routeId, journeyId, transport, start, stop, duration, adultPrice, kidsPrice, leg));
+                routes.add(new Route(routeId, journeyId, transport, start, stop, duration, price, leg));
             }
         } catch (SQLException e) {
             e.printStackTrace();

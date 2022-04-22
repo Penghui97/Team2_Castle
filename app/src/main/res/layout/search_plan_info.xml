@@ -166,55 +166,56 @@
                 <!--                    android:textAlignment="center" />-->
                 <!--            </LinearLayout>-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+<!--                the kid ticket has been canceled-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="@string/adult_number"
-                        android:textAlignment="center"
-                        android:textSize="13sp" />
+<!--                    <TextView-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:text="@string/adult_number"-->
+<!--                        android:textAlignment="center"-->
+<!--                        android:textSize="13sp" />-->
 
-                    <Spinner
-                        android:id="@+id/adultNum"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:entries="@array/adultNum"
-                        android:textAlignment="center" />
-                </LinearLayout>
+<!--                    <Spinner-->
+<!--                        android:id="@+id/adultNum"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:entries="@array/adultNum"-->
+<!--                        android:textAlignment="center" />-->
+<!--                </LinearLayout>-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="@string/kid_number"
-                        android:textAlignment="center"
-                        android:textSize="13sp" />
+<!--                    <TextView-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:text="@string/kid_number"-->
+<!--                        android:textAlignment="center"-->
+<!--                        android:textSize="13sp" />-->
 
-                    <Spinner
-                        android:id="@+id/kidNum"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:entries="@array/kidNum"
-                        android:textAlignment="center" />
-                </LinearLayout>
+<!--                    <Spinner-->
+<!--                        android:id="@+id/kidNum"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:entries="@array/kidNum"-->
+<!--                        android:textAlignment="center" />-->
+<!--                </LinearLayout>-->
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="2dp"
-                    android:layout_marginVertical="5dp"
-                    android:background="@color/gray" />
+<!--                <View-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="2dp"-->
+<!--                    android:layout_marginVertical="5dp"-->
+<!--                    android:background="@color/gray" />-->
 
                 <RelativeLayout
                     android:layout_width="match_parent"
