@@ -98,8 +98,8 @@ public class UserLogInFragment extends Fragment {
             }else if(password.getText().toString().length()>16){//password's length should be less than 16
                 password_warn.setText(R.string.password_long);
                 return;
-            }else if(username.getText().toString().contains("@")&&!username.getText().toString().matches(reg)
-            ||!username.getText().toString().endsWith(".ac.uk")){//wrong email address
+            }else if(username.getText().toString().contains("@")&&(!username.getText().toString().matches(reg)
+            ||!username.getText().toString().endsWith(".ac.uk"))){//wrong email address
                 username_warn.setText(R.string.email_end);
                 return;
             }else {

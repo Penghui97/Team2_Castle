@@ -52,7 +52,7 @@ public class Journey {
     //save a journey as a ticket
     public Ticket toTicket(String username, String date, String time, String returnTime, int adultNum, int kidsNum){
         //use the currentTimeMillis as the ticket id to avoid repetition
-        String ticketId = username + Long.toString(System.currentTimeMillis()+Long.parseLong(username));
+        String ticketId = Long.toString(System.currentTimeMillis());
         //calculate the price
         int adultPrice = castle.getAdultPrice();
         for(Route route : routes){

@@ -182,7 +182,7 @@
                         android:id="@+id/ticket_num"
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
-                        android:layout_marginEnd="24dp"
+                        android:layout_marginEnd="80dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/black_line">
@@ -201,26 +201,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="3" />
-
-                        <com.google.android.material.tabs.TabItem
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="4" />
-
-                        <com.google.android.material.tabs.TabItem
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="5" />
                     </com.google.android.material.tabs.TabLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="36dp"
+                        android:layout_marginEnd="77dp"
                         android:text="@string/ticket_count"
                         android:textColor="@color/black"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/ticket_num"
                         app:layout_constraintTop_toBottomOf="@+id/black_line" />
 
 
