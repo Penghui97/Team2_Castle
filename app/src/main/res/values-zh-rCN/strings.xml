@@ -141,7 +141,7 @@
     <string name="app_rating">评分</string>
     <string name="comment">用户评价</string>
     <string name="evaluate_this_app">评价</string>
-
+    <string name="evaluate_app">评价这个app</string>
 
 
 </resources>

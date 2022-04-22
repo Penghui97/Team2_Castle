@@ -13,6 +13,9 @@
     <item android:title="@string/help_center"
         android:id="@+id/menu_help"
         android:icon="@drawable/ic_baseline_help_outline_24"/>
+    <item android:title="@string/comment"
+        android:id="@+id/menu_comment"
+        android:icon="@drawable/icons8_comments_24"/>
     <item android:title="@string/log_out"
         android:id="@+id/app_logout"
         android:icon="@drawable/ic_baseline_logout_24"/>

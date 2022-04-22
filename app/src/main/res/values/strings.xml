@@ -172,6 +172,7 @@
     <string name="evaluate_this_app">evaluate</string>
     <string name="app_rating">rating</string>
     <string name="comment">Comments</string>
+    <string name="evaluate_app">evaluate this app</string>
 
 
 </resources>

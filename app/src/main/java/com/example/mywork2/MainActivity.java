@@ -33,6 +33,7 @@ import android.widget.Toast;
 
 import com.example.mywork2.MyAccount.AccountEditActivity;
 import com.example.mywork2.MyAccount.AppSettingsActivity;
+import com.example.mywork2.MyAccount.CommentsActivity;
 import com.example.mywork2.Util.ImageUtil;
 import com.example.mywork2.Util.UserThreadLocal;
 import com.example.mywork2.dao.UserDao;
@@ -148,6 +149,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 else
                     intent2.putExtra("username", username);
                 startActivity(intent2);
+            }else if (item.getItemId() == R.id.menu_comment){
+                startActivity(new Intent(MainActivity.this, CommentsActivity.class));
             }
             return true;
         });
