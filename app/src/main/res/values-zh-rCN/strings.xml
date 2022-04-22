@@ -121,8 +121,7 @@
     <string name="product_owner">产品负责</string>
     <string name="server_deployment">服务器部署</string>
     <string name="tester">产品测试</string>
-    <string name="Developer_Email">邮箱 :</string>
-    <string name="debugger">测试员</string>
+    <string name="Developer_Email">Email :</string>
 
     <string name="comment">用户评价</string>
     <string name="app_rating">app_rating</string>

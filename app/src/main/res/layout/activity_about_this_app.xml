@@ -327,12 +327,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="@string/product_owner"/>
-                    <TextView
-                        android:textColor="@color/black"
-                        android:paddingStart="20dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="@string/debugger"/>
                 </LinearLayout>
                 <TextView
                     android:textColor="@color/black"
