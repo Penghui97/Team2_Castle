@@ -3,6 +3,34 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+<<<<<<< HEAD
+=======
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/activity_about_this_app.xml" value="0.21873247335950646" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/activity_account_edit.xml" value="0.140625" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/activity_app_settings.xml" value="0.25" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/activity_castle_details.xml" value="0.140625" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/bottom_search_info.xml" value="0.25" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/bottom_sheet_account_edit.xml" value="0.140625" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/bottom_sheet_avatar.xml" value="0.140625" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/bottom_sheet_search.xml" value="0.140625" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/bottom_sheet_settings.xml" value="0.22" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/fragment_castle_map.xml" value="0.140625" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/fragment_castles.xml" value="0.14739583333333334" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/fragment_log_in_main.xml" value="0.140625" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/fragment_my_plans.xml" value="0.14739583333333334" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/fragment_new__account_.xml" value="0.14739583333333334" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/fragment_panel_tickets.xml" value="0.12182971014492754" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/fragment_search.xml" value="0.25" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/fragment_user__log__in_.xml" value="0.12182971014492754" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/my_plans_info.xml" value="0.14739583333333334" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/my_plans_info_nearby_item.xml" value="0.14739583333333334" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/my_plans_item.xml" value="0.33" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/search_plan_details.xml" value="0.140625" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/search_plan_info.xml" value="0.12182971014492754" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/layout/search_plan_item.xml" value="0.140625" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/menu/account_nav.xml" value="0.140625" />
+        <entry key="..\:/LearningData/Newcastle/CSC8019/penghui/Team2_Castle/app/src/main/res/menu/bottom_nav_menu.xml" value="0.140625" />
+>>>>>>> parent of eac6dcc (update comments xml)
         <entry key="..\:/cs/AndroidStudioProjects/projects/Mywork2/app/src/main/res/layout/activity_main.xml" value="0.12335359675785208" />
         <entry key="..\:/cs/AndroidStudioProjects/projects/Mywork2/app/src/main/res/layout/castle_view_symbol1.xml" value="0.25364583333333335" />
         <entry key="..\:/cs/AndroidStudioProjects/projects/Mywork2/app/src/main/res/layout/drawer_main.xml" value="0.25364583333333335" />

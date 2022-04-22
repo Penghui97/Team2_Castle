@@ -121,6 +121,7 @@
     <string name="product_owner">产品负责</string>
     <string name="server_deployment">服务器部署</string>
     <string name="tester">产品测试</string>
+<<<<<<< HEAD
     <string name="Developer_Email">Email :</string>
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -136,5 +137,9 @@
 >>>>>>> parent of 5379f79 (update penghui‘ s)
 =======
 >>>>>>> parent of 412fb85 (Merge branch 'Jiacheng')
+=======
+    <string name="Developer_Email">邮箱 :</string>
+    <string name="debugger">测试员</string>
+>>>>>>> parent of eac6dcc (update comments xml)
 
 </resources>
