@@ -16,6 +16,9 @@
         <entry key="..\:/cs/AndroidStudioProjects/projects/Mywork2/app/src/main/res/layout/search_plan_details.xml" value="0.2341485507246377" />
         <entry key="..\:/cs/AndroidStudioProjects/projects/Mywork2/app/src/main/res/layout/search_plan_info.xml" value="0.25364583333333335" />
         <entry key="..\:/cs/AndroidStudioProjects/projects/Mywork2/app/src/main/res/layout/search_plan_item.xml" value="0.25364583333333335" />
+        <entry key="..\:/cs/github/Team2_Castle/app/src/main/res/layout/activity_comments.xml" value="0.25364583333333335" />
+        <entry key="..\:/cs/github/Team2_Castle/app/src/main/res/layout/comment_item.xml" value="0.264" />
+        <entry key="..\:/cs/github/Team2_Castle/app/src/main/res/layout/drawer_main.xml" value="0.12335359675785208" />
         <entry key="..\:/cs/github/Team2_Castle/app/src/main/res/layout/fragment_my_plans.xml" value="0.264" />
         <entry key="..\:/cs/github/Team2_Castle/app/src/main/res/layout/fragment_search.xml" value="0.264" />
         <entry key="..\:/cs/github/Team2_Castle/app/src/main/res/layout/my_plans_info.xml" value="0.264" />
@@ -24,19 +27,14 @@
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/drawable/ic_baseline_info_24.xml" value="0.1685" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/drawable/ic_baseline_logout_24.xml" value="0.171" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1685" />
-        <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/activity_about_this_app.xml" value="0.12335359675785208" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/activity_account_edit.xml" value="0.25364583333333335" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/activity_app_settings.xml" value="0.25364583333333335" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/activity_avatar.xml" value="0.25364583333333335" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/activity_castle_details.xml" value="0.25364583333333335" />
-        <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/activity_comments.xml" value="0.1296875" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/activity_log_in.xml" value="0.25364583333333335" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/activity_main.xml" value="0.25364583333333335" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/avatar_bottom_sheet.xml" value="0.25364583333333335" />
-        <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/bottom_sheet_account_edit.xml" value="0.264" />
-        <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/bottom_sheet_search.xml" value="0.1296875" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/castle_view_symbol1.xml" value="0.25364583333333335" />
-        <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/comment_item.xml" value="0.4" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/drawer_head.xml" value="0.25364583333333335" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/drawer_main.xml" value="0.25364583333333335" />
         <entry key="..\:/learn/NU1/Mywork2/app/src/main/res/layout/fragment_castle_map.xml" value="0.25364583333333335" />

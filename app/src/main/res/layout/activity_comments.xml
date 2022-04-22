@@ -10,6 +10,7 @@
     <include layout = "@layout/general_action_bar"/>
 
     <ListView
+        android:id="@+id/commentListView"
         android:padding="2dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -22,6 +23,7 @@
         android:orientation="horizontal"
         >
         <EditText
+            android:id="@+id/commentInputContent"
             android:layout_margin="15dp"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -39,11 +41,12 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp">
             <TextView
+                android:id="@+id/commentSendButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="send"
                 android:textColor="@color/white"
-                android:gravity="center"/>
+                android:gravity="center" />
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 
