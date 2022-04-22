@@ -123,6 +123,7 @@
     <string name="tester">产品测试</string>
     <string name="Developer_Email">Email :</string>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     <string name="comment">用户评价</string>
     <string name="app_rating">app_rating</string>
@@ -133,5 +134,7 @@
 
 =======
 >>>>>>> parent of 5379f79 (update penghui‘ s)
+=======
+>>>>>>> parent of 412fb85 (Merge branch 'Jiacheng')
 
 </resources>
