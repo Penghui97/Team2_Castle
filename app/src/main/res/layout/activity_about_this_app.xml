@@ -327,6 +327,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="@string/product_owner"/>
+                    <TextView
+                        android:textColor="@color/black"
+                        android:paddingStart="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/debugger"/>
                 </LinearLayout>
                 <TextView
                     android:textColor="@color/black"
@@ -403,7 +409,7 @@
                     android:textColor="#3700B3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="XXXXX@newcastle.ac.uk"/>
+                    android:text="b8011641@newcastle.ac.uk"/>
 
 
             </LinearLayout>
