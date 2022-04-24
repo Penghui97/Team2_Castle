@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/text"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"/>
 
@@ -37,6 +37,53 @@
         android:layout_height="wrap_content"
         android:textColor="#f00"
         />
+
+    <EditText
+        android:id="@+id/bottom_sheet_edit_password"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="@string/enter_your_new_password_here"
+        android:background="@color/white"
+        android:paddingStart="20dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        tools:ignore="RtlSymmetry"
+        android:visibility="gone"
+        android:importantForAutofill="no" />
+    <TextView
+        android:id="@+id/warn_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#f00"
+        android:visibility="gone"
+        />
+
+    <EditText
+        android:id="@+id/bottom_sheet_edit_confirm"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/confirm_your_new_password_here"
+        android:background="@color/white"
+        android:paddingStart="20dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        tools:ignore="RtlSymmetry"
+        android:inputType="textPassword"
+        android:visibility="gone"
+        android:importantForAutofill="no" />
+    <TextView
+        android:id="@+id/warn_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#f00"
+        android:visibility="gone"
+        />
+
     <RelativeLayout
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
