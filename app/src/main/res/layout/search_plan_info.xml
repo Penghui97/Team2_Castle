@@ -16,23 +16,47 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingTop="20dp">
 
-            <TextView
-                android:id="@+id/searchPlanInfoFrom"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="from:  "
-                android:textSize="20dp" />
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="@string/from"
+                    android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/searchPlanInfoFrom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="from"
+                    android:textSize="20sp" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/searchPlanInfoTo"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="to:  "
-                android:textSize="20dp" />
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="@string/to"
+                    android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/searchPlanInfoTo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="to"
+                    android:textSize="20sp" />
+            </LinearLayout>
 
             <View
                 android:layout_width="wrap_content"
@@ -56,14 +80,14 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="routes:  " />
+                    android:text="@string/routes" />
 
                 <LinearLayout
                     android:id="@+id/searchPlanInfoRoutes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp"
-                    android:orientation="vertical"></LinearLayout>
+                    android:orientation="vertical" />
 
                 <LinearLayout
                     android:id="@+id/searchPlanAllReturnViews"
@@ -80,14 +104,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="return routes:  " />
+                        android:text="@string/return_routes" />
 
                     <LinearLayout
                         android:id="@+id/searchPlanInfoReturnRoutes"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="10dp"
-                        android:orientation="vertical"></LinearLayout>
+                        android:orientation="vertical" />
                 </LinearLayout>
 
 
@@ -151,9 +175,9 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="adult number: "
+                        android:text="@string/adult_number"
                         android:textAlignment="center"
-                        android:textSize="13dp" />
+                        android:textSize="13sp" />
 
                     <Spinner
                         android:id="@+id/adultNum"
@@ -173,9 +197,9 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="kid number: "
+                        android:text="@string/kid_number"
                         android:textAlignment="center"
-                        android:textSize="13dp" />
+                        android:textSize="13sp" />
 
                     <Spinner
                         android:id="@+id/kidNum"
@@ -195,6 +219,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp"
                     android:layout_marginTop="5dp">
 
                     <Button
@@ -204,7 +229,8 @@
                         android:layout_marginHorizontal="15dp"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="return" />
+                        android:text="@string/return_"
+                        tools:ignore="UsingOnClickInXml" />
 
                     <Button
                         android:id="@+id/searchPlanInfoSave"
@@ -213,7 +239,8 @@
                         android:layout_marginHorizontal="15dp"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="save" />
+                        android:text="@string/save"
+                        tools:ignore="UsingOnClickInXml" />
                 </LinearLayout>
             </LinearLayout>
 

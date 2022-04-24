@@ -2,12 +2,18 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="My account"
+    <item
+        android:id="@+id/accountEditActivity"
+        android:title="@string/my_account"
         android:icon="@drawable/ic_baseline_person_24"/>
-    <item android:title="Settings"
+    <item
+        android:title="@string/settings"
+        android:id="@+id/appSettingsActivity"
         android:icon="@drawable/ic_baseline_settings_24"/>
-    <item android:title="Help center"
+    <item android:title="@string/help_center"
+        android:id="@+id/menu_help"
         android:icon="@drawable/ic_baseline_help_outline_24"/>
-    <item android:title="Log out"
+    <item android:title="@string/log_out"
+        android:id="@+id/app_logout"
         android:icon="@drawable/ic_baseline_logout_24"/>
 </menu>

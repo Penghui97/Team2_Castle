@@ -20,7 +20,7 @@
             android:layout_marginTop="83dp"
             android:layout_marginEnd="12dp"
             android:layout_marginBottom="39dp"
-            android:text="Sign in to"
+            android:text="@string/sign_in_to"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/sign_in_with_username"
@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="50pt"
-            android:text="Customer"
+            android:text="@string/customer"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -58,7 +58,7 @@
             android:layout_marginRight="20dp"
             android:backgroundTint="#2988EE"
             android:gravity="center"
-            android:text="Sign in with Username"
+            android:text="@string/sign_in_with_username_email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.175"
             app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
-            android:text="or"
+            android:text="@string/or"
             android:textColor="#2988EE"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -83,21 +83,21 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="59dp"
             android:layout_marginEnd="44dp"
-            android:drawableLeft="@drawable/icons8_facebook_30"
             android:padding="10dp"
             app:layout_constraintEnd_toStartOf="@+id/google_sign_in"
-            app:layout_constraintTop_toBottomOf="@+id/sign_in_with_username" />
+            app:layout_constraintTop_toBottomOf="@+id/sign_in_with_username"
+            app:drawableLeftCompat="@drawable/icons8_facebook_30" />
 
         <TextView
             android:id="@+id/google_sign_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="19dp"
-            android:drawableLeft="@drawable/icons8_google_30"
             android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/alternative" />
+            app:layout_constraintTop_toBottomOf="@+id/alternative"
+            app:drawableLeftCompat="@drawable/icons8_google_30" />
 
         <TextView
             android:id="@+id/twitter_sign_in"
@@ -105,10 +105,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="44dp"
             android:layout_marginTop="59dp"
-            android:drawableLeft="@drawable/icons8_twitter_circled_30"
             android:padding="10dp"
             app:layout_constraintStart_toEndOf="@+id/google_sign_in"
-            app:layout_constraintTop_toBottomOf="@+id/sign_in_with_username" />
+            app:layout_constraintTop_toBottomOf="@+id/sign_in_with_username"
+            app:drawableLeftCompat="@drawable/icons8_twitter_circled_30" />
 
 
         <TextView
@@ -116,7 +116,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="44dp"
             android:layout_marginEnd="11dp"
-            android:text="New Customer?"
+            android:text="@string/new_user"
             app:layout_constraintEnd_toStartOf="@+id/create_account"
             app:layout_constraintTop_toBottomOf="@+id/facebook_sign_in" />
 
@@ -126,7 +126,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="44dp"
             android:layout_marginEnd="80dp"
-            android:text="Create an account"
+            android:text="@string/create_an_account"
             android:textColor="#2988EE"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/google_sign_in" />

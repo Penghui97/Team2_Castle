@@ -2,11 +2,13 @@ package com.example.mywork2.MainFragment;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -18,9 +20,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.example.mywork2.MainActivity;
 import com.example.mywork2.R;
 import com.example.mywork2.SearchPlanDetailsActivity;
 import com.example.mywork2.SearchPlans;
+import com.example.mywork2.domain.User;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.Calendar;
@@ -32,6 +36,7 @@ public class SearchFragment extends Fragment {
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private TimePickerDialog.OnTimeSetListener onTimeSetListener;
     private View view;
+    private User user;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -44,10 +49,14 @@ public class SearchFragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_search, container, false);
 
+        MainActivity mainActivity = (MainActivity) getActivity();
+        if (mainActivity != null) {
+            user = mainActivity.user;
+        }
+
         setDepartureTime();
 
         Button findPlans = view.findViewById(R.id.find_plans);
-
         findPlans.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -129,15 +138,43 @@ public class SearchFragment extends Fragment {
         Spinner destination = this.view.findViewById(R.id.destination);
         TextView departureDate = this.view.findViewById(R.id.departure_date);
         TextView departureTime = this.view.findViewById(R.id.departure_time);
+        //check if the user has selected date and time
+        String strDate = (String) departureDate.getText();
+        if(!strDate.contains("/")) {
+            alert("Please select a date");
+            return;
+        }
+        String strTime = (String) departureTime.getText();
+        if(!strTime.contains(":")){
+            alert("Please select a time");
+            return;
+        }
         intent.putExtra("departure", departure.getSelectedItem().toString());
         intent.putExtra("destination", destination.getSelectedItem().toString());
-        intent.putExtra("date", departureDate.getText());
-        String strTime = (String) departureTime.getText();
         //transfer the format of the time
         if(strTime.length() == 4){
             strTime = "0" + strTime;
         }
         intent.putExtra("time", strTime);
+        intent.putExtra("date", strDate);
+        if(user == null) intent.putExtra("username", "root");
+        else intent.putExtra("username", user.getUsername());
+
         startActivity(intent);
+    }
+
+    //alert a friendly message to the user
+    public void alert(String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage(message)
+                .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //no actions
+                        //just inform the user to select the time and date
+                    }
+                })
+                .create()
+                .show();
     }
 }

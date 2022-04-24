@@ -52,12 +52,12 @@
 
             <ImageView
                 android:id="@+id/app_helper"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="5dp"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:src="@drawable/ic_baseline_help_outline_24"/>
+                android:src="@drawable/ic_baseline_help_outline_24" />
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 

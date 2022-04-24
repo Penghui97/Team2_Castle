@@ -9,47 +9,77 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/myPlansLayout1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/background"
+        tools:ignore="UselessParent">
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_margin="20dp"
-            app:cardBackgroundColor="#64FFDA">
+            app:cardBackgroundColor="#6200EE">
 
             <TextView
                 android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:gravity="center"
-                android:text="My Plans" />
+                android:text="@string/my_plans" />
 
         </androidx.cardview.widget.CardView>
-        <ScrollView
+
+        <!--        show the empty message-->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="9"
+            android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
-            <!--        show the empty message-->
+            android:orientation="vertical">
             <LinearLayout
                 android:id="@+id/myPlansNoPlansLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
                 <TextView
                     android:id="@+id/myPlanNoPlanSignal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="no plans"/>
-            </LinearLayout>
-        </ScrollView>
-        <!--show the plan list-->
-        <ListView
-            android:id="@+id/myPlansListView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@color/white"
-            android:dividerHeight="10dp">
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/no_plans" />
 
-        </ListView>
+            </LinearLayout>
+
+
+            <!--show the plan list-->
+            <ListView
+                android:id="@+id/myPlansListView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="#6200EE"
+                android:dividerHeight="3dp"
+                >
+
+
+            </ListView>
+
+
+        </LinearLayout>
+        <!--the info page-->
+        <LinearLayout
+            android:id="@+id/myPlanInfoAllContentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#F3F3F3"
+            android:orientation="vertical"
+            android:paddingHorizontal="10dp">
+            <include layout="@layout/my_plans_info"/>
+        </LinearLayout>
+
+
     </LinearLayout>
+
+
 </FrameLayout>

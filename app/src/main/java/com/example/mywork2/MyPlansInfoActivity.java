@@ -84,6 +84,7 @@ public class MyPlansInfoActivity extends AppCompatActivity implements View.OnCli
     }
 
     //the onclick listener
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -214,8 +215,8 @@ public class MyPlansInfoActivity extends AppCompatActivity implements View.OnCli
                 currentTime.setTime(departureTime.getDepTime());
             }
             TextView textView = new TextView(this);
-            textView.setText("from: " + route.getStart() + "(" + currentTime + ")" + "\n");
-            textView.append("to: " + route.getStop() + "(" + currentTime.add(route.getDuration()) + ")" + "\n");
+            textView.setText("from: " + route.getStart() + " (" + currentTime + ")" + "\n");
+            textView.append("to: " + route.getStop() + " (" + currentTime.add(route.getDuration()) + ")" + "\n");
             textView.append(route.getTransport().getType() + " (" + route.getTransport().getTransportId() + ")   ");
             textView.append(route.getDuration() + " min\n ");
             LinearLayout routesLayout = findViewById(R.id.myPlanInfoRoutes);
@@ -239,8 +240,8 @@ public class MyPlansInfoActivity extends AppCompatActivity implements View.OnCli
                 currentTime.setTime(departureTime.getDepTime());
             }
             TextView textView = new TextView(this);
-            textView.setText("from: " + route.getStart() + "(" + currentTime + ")" + "\n");
-            textView.append("to: " + route.getStop() + "(" + currentTime.add(route.getDuration()) + ")" + "\n");
+            textView.setText("from: " + route.getStart() + " (" + currentTime + ")" + "\n");
+            textView.append("to: " + route.getStop() + " (" + currentTime.add(route.getDuration()) + ")" + "\n");
             textView.append(route.getTransport().getType() + " (" + route.getTransport().getTransportId() + ")   ");
             textView.append(route.getDuration() + " min\n ");
             LinearLayout returnRoutesLayout = findViewById(R.id.myPlanInfoReturnRoutes);

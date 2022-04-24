@@ -202,8 +202,8 @@ public class SearchPlanInfoActivity extends AppCompatActivity implements View.On
             }
             TextView textView = new TextView(SearchPlanInfoActivity.this);
             //set the bus stops' name
-            textView.setText("from: " + route.getStart() + "(" + currentTime + ")" + "\n");
-            textView.append("to: " + route.getStop() + "(" + currentTime.add(route.getDuration()) + ")" + "\n");
+            textView.setText("from: " + route.getStart() + " (" + currentTime + ")" + "\n");
+            textView.append("to: " + route.getStop() + " (" + currentTime.add(route.getDuration()) + ")" + "\n");
             textView.append(route.getTransport().getType() + " (" + route.getTransport().getTransportId() + ")   ");
             textView.append(route.getDuration() + " min\n ");
             textView.setTextSize(15);
@@ -237,8 +237,8 @@ public class SearchPlanInfoActivity extends AppCompatActivity implements View.On
             TextView textView = new TextView(SearchPlanInfoActivity.this);
 
             //set the bus stops' name
-            textView.setText("from: " + route.getStart() + "(" + currentTime + ")" + "\n");
-            textView.append("to: " + route.getStop() + "(" + currentTime.add(route.getDuration()) + ")" + "\n");
+            textView.setText("from: " + route.getStart() + " (" + currentTime + ")" + "\n");
+            textView.append("to: " + route.getStop() + " (" + currentTime.add(route.getDuration()) + ")" + "\n");
             textView.append(route.getTransport().getType() + " (" + route.getTransport().getTransportId() + ")   ");
             textView.append(route.getDuration() + " min\n ");
             textView.setTextSize(15);

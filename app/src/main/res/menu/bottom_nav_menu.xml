@@ -3,14 +3,14 @@
 
     <item
         android:id="@+id/castlesFragment"
-        android:icon="@drawable/ic_baseline_home_24"
-        android:title="Castles" />
+        android:icon="@drawable/icons8_castle_58"
+        android:title="@string/castles" />
     <item
         android:id="@+id/searchFragment"
         android:icon="@drawable/ic_baseline_search_24"
-        android:title="Search" />
+        android:title="@string/book" />
     <item
         android:id="@+id/myPlansFragment"
         android:icon="@drawable/ic_round_credit_card_24"
-        android:title="My Plans" />
+        android:title="@string/my_plans" />
 </menu>

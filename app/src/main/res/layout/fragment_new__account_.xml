@@ -3,15 +3,201 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".LogInFragment.NewAccountFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:textSize="50dp"
-        android:text="Create Account" />
+        >
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/cardView">
+
+            <TextView
+                android:id="@+id/editkkk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:fontFamily="sans-serif-condensed-light"
+
+                android:gravity="center|right"
+                android:includeFontPadding="true"
+                android:singleLine="false"
+                android:text="@string/register_in_to"
+                android:textColor="#090909"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints,RtlHardcoded"
+                tools:layout_editor_absoluteX="٥dp" />
+
+            <TextView
+                android:id="@+id/editTextlll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:gravity="center|left"
+                android:singleLine="true"
+                android:text="@string/app_name"
+                android:textSize="34sp"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints,RtlHardcoded"
+                tools:layout_editor_absoluteX="٥dp" />
+        </LinearLayout>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            app:cardBackgroundColor="#F3F3F3"
+            app:cardCornerRadius="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+
+                <EditText
+                    android:id="@+id/username_registry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:background="#5CE8E3E3"
+                    android:drawableStart="@drawable/ic_baseline_person_24"
+                    android:drawablePadding="20dp"
+                    android:hint="@string/username"
+                    android:inputType="text"
+                    android:padding="15dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+
+                    app:layout_constraintVertical_bias="0.297" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#f00"
+                    android:id="@+id/username_warn"
+
+                    />
+
+                <EditText
+                    android:id="@+id/email_registry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:background="#5CE8E3E3"
+                    android:drawableStart="@drawable/ic_baseline_person_24"
+                    android:drawablePadding="20dp"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:padding="15dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    android:autofillHints="@gmail.com,@qq.com,@ncl.ac.uk,@hotmail.com" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#f00"
+                    android:id="@+id/email_warn"
+
+                    />
+
+                <EditText
+                    android:id="@+id/password_registry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="#5CE8E3E3"
+                    android:drawableStart="@drawable/ic_baseline_info_24"
+                    android:drawablePadding="20dp"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:padding="15dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    android:importantForAutofill="no" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#f00"
+                    android:id="@+id/password_warn"
+
+                    />
+
+                <EditText
+                    android:id="@+id/confirm_password_registry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="#5CE8E3E3"
+                    android:drawableStart="@drawable/ic_baseline_info_24"
+                    android:drawablePadding="20dp"
+                    android:hint="@string/confirm_password"
+                    android:inputType="textPassword"
+                    android:padding="15dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    android:importantForAutofill="no" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#f00"
+                    android:id="@+id/confirm_warn"
+
+                    />
+
+                <Button
+                    android:id="@+id/btn_regstery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:text="@string/register"
+                    android:textColor="@color/black"
+                    android:theme="@style/Theme.AppCompat.Light"
+                    app:icon="?attr/actionModeCloseDrawable"
+                    app:iconGravity="textEnd"
+                    app:iconTint="#6FB5FF"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.924"
+                    app:rippleColor="#00BCD4" />
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </FrameLayout>
