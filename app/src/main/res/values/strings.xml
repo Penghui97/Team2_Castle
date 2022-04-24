@@ -159,10 +159,10 @@
     <string name="nickname">Nickname</string>
     <string name="your_nickname">your nickname</string>
     <string name="please_enter_username">Please enter a username !!!</string>
-    <string name="username_too_long">Username or email should not be longer than 40 !!!</string>
+    <string name="username_too_long">Username should not be longer than 40 !!!</string>
     <string name="enter_password">Please enter your password !!!</string>
     <string name="password_long">Password\'s length should be less than 16 !!!</string>
-    <string name="email_end">Enter a correct email address end with .ac.uk !!!</string>
+    <string name="email_end">Enter a correct email address end with .ac.uk and shorter than 40 characters !!!</string>
     <string name="reg">^[A-Za-z\\d]+([-_.][A-Za-z\\d]+)*@([A-Za-z\\d]+[-.])+[A-Za-z\\d]{2,4}$</string>
     <string name="reg2">/(.+(?=[.ac.uk]$))</string>
     <string name="username_no_at">Username should not contain @ !!!</string>
@@ -173,6 +173,18 @@
     <string name="app_rating">rating</string>
     <string name="comment">Comments</string>
     <string name="evaluate_app">evaluate this app</string>
+    <string name="cannotchange">Cannot change your username! You can only change your nickname and email</string>
+    <string name="nicknamechanged">You nickname is changed successfully!</string>
+    <string name="enternickname">Please enter a nickname !!!</string>
+    <string name="nicknametoolong">Nickname should be shorter than 40 characters !!!</string>
+    <string name="nicknamenochange">You haven\'t changed your nickname !!!</string>
+    <string name="emailhasnotbeenregistered">Your email has not been registered !!!</string>
+    <string name="passwordwrong">Your password is incorrect !!!</string>
+    <string name="usernamenotregister">Your username has not been registered !!!</string>
+    <string name="emailchanged">Your email is changed successfully !!!</string>
+    <string name="emailnochanged">You haven\'t changed your email !!!</string>
+    <string name="usernameused">Your username has been used !!!</string>
+    <string name="emailused">Your email has been used !!!</string>
 
 
 </resources>

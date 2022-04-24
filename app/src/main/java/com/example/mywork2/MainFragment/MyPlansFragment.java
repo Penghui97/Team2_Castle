@@ -473,13 +473,9 @@ public class MyPlansFragment extends Fragment{
     public void alertMessage(String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
         builder.setMessage(message)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                .setPositiveButton("Yes", (dialogInterface, i) -> {
 //                        finish();
-                        myPlanInfoLayout.setVisibility(View.GONE);
-                    }
-
+                    myPlanInfoLayout.setVisibility(View.GONE);
                 })
                 .create()
                 .show();

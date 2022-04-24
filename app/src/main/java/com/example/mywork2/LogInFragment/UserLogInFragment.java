@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.example.mywork2.MainActivity;
 import com.example.mywork2.R;
+import com.example.mywork2.Util.PasswordUtil;
 import com.example.mywork2.Util.UserThreadLocal;
 import com.example.mywork2.dao.UserDao;
 import com.example.mywork2.domain.User;
@@ -112,11 +113,11 @@ public class UserLogInFragment extends Fragment {
                     try {
                         user = userDao.getUserByEmail(name);
                         if(user == null) {//no user found
-                            username_warn.setText("Your email has not been registered !!!");
+                            username_warn.setText(R.string.emailhasnotbeenregistered);
                             return;
                         }else {
-                            if (!plain_password.equals(NewAccountFragment.hex2Str(user.getPassword()))){//password is wrong
-                                password_warn.setText("Your password is incorrect !!!");
+                            if (!plain_password.equals(PasswordUtil.hex2Str(user.getPassword()))){//password is wrong
+                                password_warn.setText(R.string.passwordwrong);
 
                             }else {
                                 information = true;
@@ -130,11 +131,11 @@ public class UserLogInFragment extends Fragment {
                     try {
                         user = userDao.getUserByUsername(name);
                         if(user == null) {//no user found
-                            username_warn.setText("Your username has not been registered !!!");
+                            username_warn.setText(R.string.usernamenotregister);
                             return;
                         }else {
-                            if (!plain_password.equals(NewAccountFragment.hex2Str(user.getPassword()))){//password is wrong
-                                password_warn.setText("Your password is incorrect !!!");
+                            if (!plain_password.equals(PasswordUtil.hex2Str(user.getPassword()))){//password is wrong
+                                password_warn.setText(R.string.passwordwrong);
                             }else {
                                 information = true;
                             }

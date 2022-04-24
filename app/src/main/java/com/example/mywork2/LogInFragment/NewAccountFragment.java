@@ -1,6 +1,5 @@
 package com.example.mywork2.LogInFragment;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -21,6 +20,8 @@ import com.example.mywork2.dao.UserDao;
 import com.example.mywork2.domain.User;
 
 import java.io.UnsupportedEncodingException;
+
+import static com.example.mywork2.Util.PasswordUtil.str2Hex;
 
 
 public class NewAccountFragment extends Fragment {
@@ -92,10 +93,11 @@ public class NewAccountFragment extends Fragment {
             }else if(username.getText().toString().contains("@")){//username should not contain @
                 username_warn.setText(R.string.username_no_at);
                 return;
-            }else if (username.getText().toString().length()>25){//username's length should be less than 25
+            }else if (username.getText().toString().length()>40){//username's length should be less than 25
                 username_warn.setText(R.string.username_too_long);
                 return;
-            }else if(!email.getText().toString().matches(reg)||!email.getText().toString().endsWith(".ac.uk")){//wrong email address
+            }else if(!email.getText().toString().matches(reg)||!email.getText().toString().endsWith(".ac.uk")
+            || !(email.getText().toString().length() <40)){//wrong email address
                 email_warn.setText(R.string.email_end);
                 return;
             }else if(password.getText().toString().length()>16){//password's length should be less than 16
@@ -121,10 +123,10 @@ public class NewAccountFragment extends Fragment {
                 //check the database
                 UserDao userDao = new UserDao();
                 if (userDao.addUser(user)==1){//username has been used
-                    username_warn.setText("Your username has been used !!!");
+                    username_warn.setText(R.string.usernameused);
                     return;
                 }else if(userDao.addUser(user)==2){//email address has been used
-                    email_warn.setText("Your email has been used !!!");
+                    email_warn.setText(R.string.emailused);
                     return;
                 }else if(userDao.addUser(user)==-1){//something wrong with the database
                     confirm_warn.setText("There is something wrong with our database");
@@ -142,36 +144,6 @@ public class NewAccountFragment extends Fragment {
 
     }
 
-    //convert string to hex
-    //Penghui Xiao, reference from https://blog.csdn.net/qq_29752857/article/details/118220714
-    public static String str2Hex(String string) {
-        char[] chars = "0123456789ABCDEF".toCharArray();
-        StringBuilder sBuilder = new StringBuilder("");
-        byte[] bs = string.getBytes();
-        int bit;
-        for (byte b : bs) {
-            bit = (b & 0x0f0) >> 4;
-            sBuilder.append(chars[bit]);
-            bit = b & 0x0f;
-            sBuilder.append(chars[bit]);
 
-        }
-        return sBuilder.toString().trim();
-    }
-
-    //convert hex to string
-    //Penghui Xiao, reference from https://blog.csdn.net/qq_29752857/article/details/118220714
-    public static String hex2Str(String hex) {
-        String string = "0123456789ABCDEF";
-        char[] hexs = hex.toCharArray();
-        byte[] bytes = new byte[hex.length()/2];
-        int n;
-        for(int i =0;i<bytes.length;i++) {
-            n=string.indexOf(hexs[2*i])*16;
-            n+=string.indexOf(hexs[2*i+1]);
-            bytes[i] = (byte) (n & 0xff);
-        }
-        return new String(bytes);
-    }
 
 }

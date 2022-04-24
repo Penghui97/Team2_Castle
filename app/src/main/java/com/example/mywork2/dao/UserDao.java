@@ -138,7 +138,7 @@ public class UserDao {
     //and return 0
     //if there is something wrong with the code
     //return -1
-    public int updateUserByUsername(User newUser){
+    public int updateUser(User newUser){
         User oldUser = getUserByUsername(newUser.getUsername());
         if(oldUser == null) return 1;
         //if the email is changed

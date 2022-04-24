@@ -49,18 +49,8 @@ public class MyPlansDialoge extends AppCompatDialogFragment {
         titleDia.setText(getDialogText());
         //build the dialog
         builder.setView(view).setTitle(getDialogTitle())
-                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dismiss();
-                    }
-                })
-                .setPositiveButton(getRemoveOrRefund(), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Log.d("asd",titleDia.getText().toString());
-                    }
-                });
+                .setNegativeButton("cancel", (dialogInterface, i) -> dismiss())
+                .setPositiveButton(getRemoveOrRefund(), (dialogInterface, i) -> Log.d("asd",titleDia.getText().toString()));
 
         return builder.create();
     }
