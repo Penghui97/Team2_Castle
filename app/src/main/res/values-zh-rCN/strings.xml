@@ -154,6 +154,14 @@
     <string name="emailnochanged">您没有更改邮箱 !!!</string>
     <string name="usernameused">用户名已被占用 !!!</string>
     <string name="emailused">此邮箱已被注册 !!!</string>
+    <string name="enter_you_old_password_here">在此输入您的旧密码</string>
+    <string name="enter_your_new_password_here">在此输入您的新密码</string>
+    <string name="confirm_your_new_password_here">在此确认您的新密码</string>
+    <string name="enter_oldpassword">请输入您的旧密码 !!!</string>
+    <string name="samepassword">与旧密码相同 !!!</string>
+    <string name="enterpasswaord">请输入一个少于16位的新密码</string>
+    <string name="passwordchanged">密码更改成功 !!!</string>
+    <string name="changepassword">修改密码</string>
 
 
 </resources>

@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.mywork2.LogInFragment.ForgetPasswordFragment;
 import com.example.mywork2.LogInFragment.NewAccountFragment;
 import com.example.mywork2.MainActivity;
 import com.example.mywork2.R;
@@ -30,12 +32,13 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 public class AccountEditActivity extends AppCompatActivity implements View.OnClickListener{
     private BottomSheetDialog bottomSheetDialog;
     private View bottomView;
-    private ConstraintLayout username,email,account_username;
-    private TextView bottomHeader,warningMessage, account_nickname, account_email ;
-    private EditText change;
+    private ConstraintLayout username,email,account_username, password_edit;
+    private TextView bottomHeader,warningMessage, account_nickname, account_email,
+            password_w, confirm_w;
+    private EditText change, password, confirm;
     private Button bottomSaveButton, bottomCancelButton;
     private User user, customer;
-    private String username_, email_, nickname;
+    private String username_, email_, nickname, old_password, new_password, password_confirm;
     private boolean email_changed = false;
 
     //receive the data from the database
@@ -59,6 +62,10 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
             }else if (msg.what == 0x44){
                 bottomSheetDialog.dismiss();
                 emailNotChanged();
+            }else if (msg.what == 0x55){
+                bottomSheetDialog.dismiss();
+                passwordChanged();
+                hideEditPassword();
             }
             super.handleMessage(msg);
         }
@@ -78,10 +85,13 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
         Intent intent1 = new Intent(AccountEditActivity.this, MainActivity.class);
         intent1.putExtra("username", username_);
         intent1.putExtra("email",email_);
+        initView();
 
+        showUserInfo();
 
+    }
 
-
+    public void initView(){
         //set action bar
         TextView title = findViewById(R.id.header_title);
         title.setText(R.string.editMyaccount);
@@ -94,8 +104,8 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
         account_username = findViewById(R.id.account_username_show);
         account_username.setOnClickListener(this);
 
-
-
+        password_edit = findViewById(R.id.account_password_edit);
+        password_edit.setOnClickListener(this);
 
         //get bottom sheet view
         bottomSheetDialog = new BottomSheetDialog(AccountEditActivity.this,R.style.BottomSheetDialogTheme);
@@ -105,16 +115,15 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
         );
         bottomHeader = bottomView.findViewById(R.id.change_item);
         change = bottomView.findViewById(R.id.bottom_sheet_edit_text);
-        
         //the warning messaging text
         warningMessage = bottomView.findViewById(R.id.warn_text);
         bottomSaveButton = bottomView.findViewById(R.id.button_bottom_save);
-
-
+        password = bottomView.findViewById(R.id.bottom_sheet_edit_password);
+        confirm = bottomView.findViewById(R.id.bottom_sheet_edit_confirm);
+        password_w = bottomView.findViewById(R.id.warn_password);
+        confirm_w = bottomView.findViewById(R.id.warn_confirm);
         bottomCancelButton = bottomView.findViewById(R.id._button_bottom_cancel);
         bottomCancelButton.setOnClickListener(this);
-
-
         bottomSheetDialog.setContentView(bottomView);
 
         username = findViewById(R.id.account_nickname_edit);
@@ -122,12 +131,6 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
 
         email = findViewById(R.id.account_email_edit);
         email.setOnClickListener(this);
-
-        showUserInfo();
-
-
-
-
     }
     //if email is changed, tell to user
     public void emailChanged(){
@@ -147,13 +150,15 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.account_nickname_edit:
+                hideEditPassword();
+
                 bottomHeader.setText(R.string.edit_name);
                 change.setHint(nickname);
                 change.setText(nickname);
                 bottomSheetDialog.show();
                 bottomSaveButton.setOnClickListener(view1 -> {
                     if(!change.getText().toString().equals(nickname)){//if nickname changed
-                        warningMessage.setText("");//initialize warning
+                        initWarn();//initialize warning
                         if(change.getText().toString().length()==0){ //empty nickname
                             warningMessage.setText(R.string.enternickname);
                         }else if (change.getText().toString().length()>40){
@@ -179,6 +184,7 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
                 });
                 break;
             case R.id.account_email_edit:
+                hideEditPassword();
                 bottomHeader.setText(R.string.Edit_email);
                 change.setHint(email_);
                 change.setText(email_);
@@ -187,7 +193,7 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
                     new Thread(() ->{
                         String reg = getString(R.string.reg);
                         if(!change.getText().toString().equals(email_)){//if email changed
-                            warningMessage.setText("");//initialize
+                            initWarn();//initialize
                             if(!change.getText().toString().matches(reg)||!change.getText().toString().endsWith(".ac.uk")
                                     ||!(change.getText().toString().length()<40)){//wrong email
                                 warningMessage.setText(R.string.email_end);
@@ -203,10 +209,7 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
                                     Message message = handler.obtainMessage();
                                     message.what = 0x33;
                                     handler.sendMessage(message);
-
                                 }
-
-
                             }
                         }else {//email not changed
                             Message message = handler.obtainMessage();
@@ -227,12 +230,90 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
                 builder.setMessage(R.string.cannotchange).setNegativeButton("OK"
                 , (dialogInterface,i) -> dialogInterface.dismiss()).show();
                 break;
+            case R.id.account_password_edit:
+                showEditPassword();
+                bottomHeader.setText(R.string.changepassword);
+                change.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                change.setHint(R.string.enter_you_old_password_here);
+                bottomSheetDialog.show();
+                bottomSaveButton.setOnClickListener(view1 -> {
+                    new Thread(()->{
+                        initWarn();
+                        old_password = change.getText().toString();
+                        if(old_password.length()==0){
+                            warningMessage.setText(R.string.enter_oldpassword);
+                        }else {
+                            //verify password
+                            if (!old_password.equals(PasswordUtil.hex2Str(user.getPassword()))){
+                                //if password is wrong
+                                warningMessage.setText(R.string.passwordwrong);
+                            }else {
+                                //password is right
+                                //check new password and confirm
+                                new_password = password.getText().toString();
+                                password_confirm = confirm.getText().toString();
+                                if (new_password.length()==0||new_password.length()>16){
+                                    //empty password or too long
+                                    password_w.setText(R.string.enterpasswaord);
+                                } else if (new_password.equals(old_password)){
+                                    //new password is as same as the old one
+                                    password_w.setText(R.string.samepassword);
+
+                                }else {//new password is different
+                                    if (!new_password.equals(password_confirm)){
+                                        //if confirmation failed
+                                        confirm_w.setText(R.string.confirm_failed);
+                                    }else {
+                                        //confirmation succeed
+                                        //save it to database
+                                        user.setPassword(PasswordUtil.str2Hex(new_password));
+                                        UserDao userDao = new UserDao();
+                                        userDao.updateUser(user);
+                                        Message message = handler.obtainMessage();
+                                        message.what = 0x55;
+                                        handler.sendMessage(message);
+                                    }
+                                }
+
+                            }
+                        }
+                    }).start();
+                });
+                break;
+
             default:
                 break;
         }
 
     }
 
+    public void initWarn(){
+        warningMessage.setText("");
+        confirm_w.setText("");
+        password_w.setText("");
+    }
+
+
+    //show the edit views of password
+    public void showEditPassword(){
+        change.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        change.setText("");
+        password.setText("");
+        confirm.setText("");
+        password.setVisibility(View.VISIBLE);
+        password_w.setVisibility(View.VISIBLE);
+        confirm.setVisibility(View.VISIBLE);
+        confirm_w.setVisibility(View.VISIBLE);
+    }
+
+    //hide the edit views of password
+    public void hideEditPassword(){
+        password.setVisibility(View.GONE);
+        password_w.setVisibility(View.GONE);
+        confirm.setVisibility(View.GONE);
+        confirm_w.setVisibility(View.GONE);
+        change.setInputType(InputType.TYPE_CLASS_TEXT);
+    }
     //tell user the email is not changed
     private void emailNotChanged() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -241,6 +322,12 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
         bottomSheetDialog.dismiss();
     }
 
+    public void passwordChanged(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.passwordchanged).setNegativeButton("OK"
+                , (dialogInterface,i) -> dialogInterface.dismiss()).show();
+        bottomSheetDialog.dismiss();
+    }
 
     private void changeUserInfo() {
         new Thread(() ->{

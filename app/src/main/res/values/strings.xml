@@ -185,6 +185,14 @@
     <string name="emailnochanged">You haven\'t changed your email !!!</string>
     <string name="usernameused">Your username has been used !!!</string>
     <string name="emailused">Your email has been used !!!</string>
+    <string name="enter_you_old_password_here">Enter you old password here</string>
+    <string name="enter_your_new_password_here">Enter your new password here</string>
+    <string name="confirm_your_new_password_here">Confirm your new password here</string>
+    <string name="enter_oldpassword">Please enter your old password !!!</string>
+    <string name="samepassword">Please do not enter the same password !!!</string>
+    <string name="enterpasswaord">Please enter a new password shorter than 16 digits</string>
+    <string name="passwordchanged">Password changed successfully !!!</string>
+    <string name="changepassword">Change your password</string>
 
 
 </resources>
