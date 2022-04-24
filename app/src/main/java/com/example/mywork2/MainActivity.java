@@ -83,6 +83,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         username = (String)extras.get("username");
+        if(username == null || username == ""){
+            username = "root";
+        }
         //show the particular user's info
 
         showUserInfo();
@@ -150,7 +153,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     intent2.putExtra("username", username);
                 startActivity(intent2);
             }else if (item.getItemId() == R.id.menu_comment){
-                startActivity(new Intent(MainActivity.this, CommentsActivity.class));
+                //give the username to the commentsActivity
+                Intent intent1 = new Intent(MainActivity.this, CommentsActivity.class);
+                intent1.putExtra("username", username);
+                startActivity(intent1);
             }
             return true;
         });
