@@ -26,7 +26,7 @@ public class CommentDao {
                 String username = rs.getString("username");
                 int rating = rs.getInt("rating");
                 String content = rs.getString("content");
-                String time = rs.getString("time");
+                String time = rs.getString("date");
                 comments.add(new Comment(commentId, username, rating, content, time));
             }
         } catch (SQLException throwables) {
@@ -52,7 +52,7 @@ public class CommentDao {
                 String commentId = rs.getString("commentId");
                 int rating = rs.getInt("rating");
                 String content = rs.getString("content");
-                String time = rs.getString("time");
+                String time = rs.getString("date");
                 comments.add(new Comment(commentId, username, rating, content, time));
             }
         } catch (SQLException throwables) {
@@ -78,7 +78,7 @@ public class CommentDao {
                 String commentId = rs.getString("commentId");
                 int rating = rs.getInt("rating");
                 String content = rs.getString("content");
-                String time = rs.getString("time");
+                String time = rs.getString("date");
                 comments.add(new Comment(commentId, username, rating, content, time));
             }
         } catch (SQLException throwables) {
@@ -93,7 +93,7 @@ public class CommentDao {
     //return true if the insert successfully
     //return false if something wrong happened in the database
     public boolean addComment(Comment comment){
-        String sql = "insert into comment(commentId, username, rating, content, time) values (?, ?, ?, ?, ?)";
+        String sql = "insert into comment(commentId, username, rating, content, date) values (?, ?, ?, ?, ?)";
         Connection connection = DBUtil.getConnection();
         PreparedStatement ps = null;
         boolean result = false;
