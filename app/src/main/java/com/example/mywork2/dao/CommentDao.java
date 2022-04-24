@@ -13,7 +13,7 @@ public class CommentDao {
 
     //get all comments from the database
     public ArrayList<Comment> getAllComments(){
-        String sql = "select * from comment";
+        String sql = "select * from comment order by commentId desc";
         ArrayList<Comment> comments = new ArrayList<>();
         Connection connection = DBUtil.getConnection();
         PreparedStatement ps = null;
@@ -39,7 +39,7 @@ public class CommentDao {
 
     //get comments by username
     public ArrayList<Comment> getCommentsByUsername(String username){
-        String sql = "select * from comment where username=?";
+        String sql = "select * from comment where username=? order by commentId desc";
         ArrayList<Comment> comments = new ArrayList<>();
         Connection connection = DBUtil.getConnection();
         PreparedStatement ps = null;
@@ -65,7 +65,7 @@ public class CommentDao {
 
     //get others' comments except user
     public ArrayList<Comment> getCommentsExceptUsername(String username){
-        String sql = "select * from comment where username!=?";
+        String sql = "select * from comment where username!=? order by commentId desc";
         ArrayList<Comment> comments = new ArrayList<>();
         Connection connection = DBUtil.getConnection();
         PreparedStatement ps = null;
@@ -115,14 +115,12 @@ public class CommentDao {
 
     //remove a comment from the database by its id
     public void removeCommentById(String commentId){
-        String sql = "remove from comment where commentId=?";
-        ArrayList<Comment> comments = new ArrayList<>();
+        String sql = "delete from comment where commentId=?";
         Connection connection = DBUtil.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
             ps = connection.prepareStatement(sql);
-            rs = ps.executeQuery();
             ps.setString(1, commentId);
             ps.executeUpdate();
         } catch (SQLException throwables) {

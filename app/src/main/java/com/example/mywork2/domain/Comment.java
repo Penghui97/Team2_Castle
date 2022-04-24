@@ -1,6 +1,7 @@
 package com.example.mywork2.domain;
 
-//the users' comments to our app
+
+//the users' comments for our app
 public class Comment {
     private String commentId;
     private String username;

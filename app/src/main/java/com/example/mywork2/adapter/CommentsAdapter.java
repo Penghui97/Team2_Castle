@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.example.mywork2.MyAccount.CommentsActivity;
 import com.example.mywork2.R;
 import com.example.mywork2.domain.Comment;
 
@@ -17,15 +18,17 @@ import java.util.ArrayList;
 public class CommentsAdapter extends BaseAdapter {
     private ArrayList<Comment> comments;
     private Context context;
+    private String currentUsername;
 
-    public CommentsAdapter(ArrayList<Comment> comments, Context context) {
+    public CommentsAdapter(ArrayList<Comment> comments, Context context, String username) {
         this.comments = comments;
         this.context = context;
+        this.currentUsername = username;
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return comments.size();
     }
 
     @Override
@@ -35,7 +38,7 @@ public class CommentsAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int i) {
-        return 0;
+        return i;
     }
 
     @Override
@@ -51,6 +54,7 @@ public class CommentsAdapter extends BaseAdapter {
             viewHolder.content = view.findViewById(R.id.comments);
             viewHolder.ratingBar = view.findViewById(R.id.rating);
             viewHolder.time = view.findViewById(R.id.comment_date_time);
+            viewHolder.removeButton = view.findViewById(R.id.commentRemove);
             //put the holder into the view's tag
             //in case to use next time
             view.setTag(viewHolder);
@@ -63,6 +67,20 @@ public class CommentsAdapter extends BaseAdapter {
         viewHolder.content.setText(comments.get(i).getContent() + "");
         viewHolder.ratingBar.setRating(comments.get(i).getRating());
         viewHolder.time.setText(comments.get(i).getTime() + "");
+        //just show the remove button
+        //when this comment is from this user
+        if(!comments.get(i).getUsername().equals(currentUsername)){
+            viewHolder.removeButton.setVisibility(View.GONE);
+        }else{
+            viewHolder.removeButton.setVisibility(View.VISIBLE);
+            viewHolder.removeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    CommentsActivity commentsActivity = (CommentsActivity) CommentsAdapter.this.context;
+                    commentsActivity.removeCommentById(comments.get(i).getCommentId());
+                }
+            });
+        }
         return view;
     }
 
@@ -72,5 +90,6 @@ public class CommentsAdapter extends BaseAdapter {
         TextView content;
         RatingBar ratingBar;
         TextView time;
+        ImageView removeButton;
     }
 }

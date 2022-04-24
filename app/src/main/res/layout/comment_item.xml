@@ -60,34 +60,34 @@
 
         </androidx.cardview.widget.CardView>
 
-        <ImageView
-            android:id="@+id/thumbs_up"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="12dp"
-            android:src="@drawable/icons8_thumbs_up_24"
-            app:layout_constraintEnd_toStartOf="@+id/thumbs_down"
-            app:layout_constraintTop_toBottomOf="@+id/Comment_card" />
+<!--        <ImageView-->
+<!--            android:id="@+id/thumbs_up"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="12dp"-->
+<!--            android:layout_marginEnd="12dp"-->
+<!--            android:src="@drawable/icons8_thumbs_up_24"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/thumbs_down"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/Comment_card" />-->
 
-        <ImageView
-            android:id="@+id/thumbs_down"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="36dp"
-            android:src="@drawable/icons8_thumbs_down_24"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Comment_card" />
+<!--        <ImageView-->
+<!--            android:id="@+id/thumbs_down"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="12dp"-->
+<!--            android:layout_marginEnd="36dp"-->
+<!--            android:src="@drawable/icons8_thumbs_down_24"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/Comment_card" />-->
 
         <TextView
             android:id="@+id/comment_date_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="17dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="48dp"
             android:text="25/04/2022 11:30 am"
-            app:layout_constraintEnd_toStartOf="@+id/thumbs_up"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Comment_card" />
 
         <TextView
@@ -102,6 +102,7 @@
 
         <RatingBar
             android:contentDescription="@string/app_rating"
+            android:isIndicator="true"
             android:rating="4"
             android:id="@+id/rating"
             android:layout_width="wrap_content"
@@ -113,8 +114,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/commentRemove"
+            android:layout_width="17dp"
+            android:layout_height="21dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </LinearLayout>

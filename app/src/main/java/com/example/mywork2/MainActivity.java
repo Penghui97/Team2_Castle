@@ -83,6 +83,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         username = (String)extras.get("username");
+        if(username == null || username == ""){
+            username = "root";
+        }
         //show the particular user's info
 
         showUserInfo();
