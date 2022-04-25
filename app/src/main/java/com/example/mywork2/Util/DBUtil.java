@@ -21,6 +21,9 @@ public class DBUtil {
     //local test ip
 
 //    private static String url = "jdbc:mysql://10.0.2.2:3306/csc8019_team02";//Jing's ip
+//    private static String user = "root";
+//    private static String password = "333";
+
 //    private static String url = "jdbc:mysql://192.168.1.105:3306/csc8019_team02";//Penghui's ip
 //    private static String user = "root";
 //    private static String password = "1234";

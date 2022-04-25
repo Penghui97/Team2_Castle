@@ -76,10 +76,11 @@ public class CommentDao {
             rs = ps.executeQuery();
             while(rs.next()){
                 String commentId = rs.getString("commentId");
+                String thisUsername = rs.getString("username");
                 int rating = rs.getInt("rating");
                 String content = rs.getString("content");
                 String time = rs.getString("date");
-                comments.add(new Comment(commentId, username, rating, content, time));
+                comments.add(new Comment(commentId, thisUsername, rating, content, time));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

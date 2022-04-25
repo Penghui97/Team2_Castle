@@ -23,7 +23,6 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.mywork2.Dialog.MyPlansDialoge;
 import com.example.mywork2.MainActivity;
 import com.example.mywork2.MyPlansInfoActivity;
 import com.example.mywork2.MyPlansInfoNearbyActivity;
@@ -48,7 +47,6 @@ import java.util.Objects;
 
 public class MyPlansFragment extends Fragment{
     private View view;
-    private MyPlansDialoge myPlansDialoge;
     private User user;
     private LinearLayout myPlansNoPlansLayout;
     private TabLayout myPlanInfoRemoveNum;
@@ -89,12 +87,12 @@ public class MyPlansFragment extends Fragment{
                 case 0x33:
                     //receive the paid result
                     String resultMessage = (String) message.obj;
-                    //alertMessage(resultMessage);
+                    alertMessage(resultMessage);
                     break;
                 case 0x44:
                     //receive the refund result
                     String resultMessage2 = (String) message.obj;
-                    //alertMessage(resultMessage2);
+                    alertMessage(resultMessage2);
                     break;
                 case 0x99:
                     //receive all the tickets fit the requirements
@@ -163,7 +161,6 @@ public class MyPlansFragment extends Fragment{
                     }
                 }else{
                     //give the number user can choose
-                    myPlansDialoge.show(getParentFragmentManager(),"dia");
                     showRemoveNumLayout();
                 }
             }
@@ -204,9 +201,6 @@ public class MyPlansFragment extends Fragment{
                 myPlanInfoRemoveNumLayout.setVisibility(View.GONE);
             }
         });
-
-        // return dialog
-        myPlansDialoge = new MyPlansDialoge();
 
         return view;
     }
@@ -473,9 +467,13 @@ public class MyPlansFragment extends Fragment{
     public void alertMessage(String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
         builder.setMessage(message)
-                .setPositiveButton("Yes", (dialogInterface, i) -> {
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
 //                        finish();
-                    myPlanInfoLayout.setVisibility(View.GONE);
+                        myPlanInfoLayout.setVisibility(View.GONE);
+                    }
+
                 })
                 .create()
                 .show();
@@ -599,20 +597,12 @@ public class MyPlansFragment extends Fragment{
             Button removeButton2 = this.view.findViewById(R.id.myPlanInfoRemoveNumButton);
             removeButton.setText("refund");
             removeButton2.setText("refund");
-            myPlansDialoge.setDialogTitle("Refund tickets?");
-            myPlansDialoge.setRemoveOrRefund("refund");
-            myPlansDialoge.setTicketNums(currentTicket.getQuantity());
-            myPlansDialoge.setDialogText("How many tickets are you going to refund ?");
         }else{
             this.view.findViewById(R.id.myPlanInfoBuy).setVisibility(View.VISIBLE);
             Button removeButton = this.view.findViewById(R.id.myPlanInfoRemove);
             Button removeButton2 = this.view.findViewById(R.id.myPlanInfoRemoveNumButton);
             removeButton.setText("remove");
             removeButton2.setText("remove");
-            myPlansDialoge.setDialogTitle("Remove this plan?");
-            myPlansDialoge.setRemoveOrRefund("remove");
-            myPlansDialoge.setTicketNums(currentTicket.getQuantity());
-            myPlansDialoge.setDialogText("How many people are you going to remove in this plan ?");
         }
     }
 
