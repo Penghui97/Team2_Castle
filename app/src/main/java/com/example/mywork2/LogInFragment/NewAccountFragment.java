@@ -1,5 +1,6 @@
 package com.example.mywork2.LogInFragment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -7,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,12 +33,55 @@ public class NewAccountFragment extends Fragment {
     private EditText password;
     private EditText confirmPassword;
     private TextView username_warn, email_warn, password_warn, confirm_warn;
-    private final StringBuffer key = new StringBuffer("12345678");//key for encryption
 
     public NewAccountFragment() {
         // Required empty public constructor
     }
-
+    //receive the data from the database
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            switch (msg.what) {
+                case 0x11:
+                    username_warn.setText(R.string.please_enter_username);
+                    break;
+                case 0x22:
+                    username_warn.setText(R.string.username_no_at);
+                    break;
+                case 0x33:
+                    username_warn.setText(R.string.username_too_long);
+                    break;
+                case 0x44:
+                    email_warn.setText(R.string.email_end);
+                    break;
+                case 0x55:
+                    password_warn.setText(R.string.password_long);
+                    break;
+                case 0x66:
+                    password_warn.setText(R.string.enter_password);
+                    break;
+                case 0x77:
+                    confirm_warn.setText(R.string.please_confirm);
+                    break;
+                case 0x88:
+                    confirm_warn.setText(R.string.confirm_failed);
+                    break;
+                case 0x91:
+                    username_warn.setText(R.string.usernameused);
+                    break;
+                case 0x92:
+                    email_warn.setText(R.string.emailused);
+                    break;
+                case 0x93:
+                    confirm_warn.setText(R.string.wrongdatabase);
+                    break;
+                case 0x94:
+                    initView();
+                    break;
+            }
+        }
+    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,7 +107,9 @@ public class NewAccountFragment extends Fragment {
         register.setOnClickListener(view1 -> {
 
             new Thread(() -> {
-                initView();
+                Message message = handler.obtainMessage();
+                message.what = 0x94;
+                handler.sendMessage(message);
                 try {
                     checkInfoAndRegister();
                 } catch (UnsupportedEncodingException e) {
@@ -83,34 +131,51 @@ public class NewAccountFragment extends Fragment {
 
     //check the information is right and register
     private void checkInfoAndRegister() throws UnsupportedEncodingException {
+        new Thread(()->{
         boolean information = false;//to control the loop
         while (!information){
             //to check email address
             String reg = getString(R.string.reg);
             if(username.getText().toString().length() == 0 ){//no username found
-                username_warn.setText(R.string.please_enter_username);
+                Message message = handler.obtainMessage();
+                message.what = 0x11;
+                handler.sendMessage(message);
                 return;
             }else if(username.getText().toString().contains("@")){//username should not contain @
-                username_warn.setText(R.string.username_no_at);
+                Message message = handler.obtainMessage();
+                message.what = 0x22;
+                handler.sendMessage(message);
                 return;
             }else if (username.getText().toString().length()>40){//username's length should be less than 25
-                username_warn.setText(R.string.username_too_long);
+                Message message = handler.obtainMessage();
+                message.what = 0x33;
+                handler.sendMessage(message);
                 return;
             }else if(!email.getText().toString().matches(reg)||!email.getText().toString().endsWith(".ac.uk")
-            || !(email.getText().toString().length() <40)){//wrong email address
-                email_warn.setText(R.string.email_end);
+                    || !(email.getText().toString().length() <40)){//wrong email address
+                Message message = handler.obtainMessage();
+                message.what = 0x44;
+                handler.sendMessage(message);
                 return;
             }else if(password.getText().toString().length()>16){//password's length should be less than 16
-                password_warn.setText(R.string.password_long);
+                Message message = handler.obtainMessage();
+                message.what = 0x55;
+                handler.sendMessage(message);
                 return;
             }else if(password.getText().toString().length()==0) {//no password found
-                password_warn.setText(R.string.enter_password);
+                Message message = handler.obtainMessage();
+                message.what = 0x66;
+                handler.sendMessage(message);
                 return;
             }else if(confirmPassword.getText().toString().length()==0){//no confirmation
-                confirm_warn.setText(R.string.please_confirm);
+                Message message = handler.obtainMessage();
+                message.what = 0x77;
+                handler.sendMessage(message);
                 return;
             }else if(!password.getText().toString().equals(confirmPassword.getText().toString())){
-                confirm_warn.setText(R.string.confirm_failed);
+                Message message = handler.obtainMessage();
+                message.what = 0x88;
+                handler.sendMessage(message);
                 return;
             } else {
                 //add the new user to the database
@@ -123,13 +188,19 @@ public class NewAccountFragment extends Fragment {
                 //check the database
                 UserDao userDao = new UserDao();
                 if (userDao.addUser(user)==1){//username has been used
-                    username_warn.setText(R.string.usernameused);
+                    Message message = handler.obtainMessage();
+                    message.what = 0x91;
+                    handler.sendMessage(message);
                     return;
                 }else if(userDao.addUser(user)==2){//email address has been used
-                    email_warn.setText(R.string.emailused);
+                    Message message = handler.obtainMessage();
+                    message.what = 0x92;
+                    handler.sendMessage(message);
                     return;
                 }else if(userDao.addUser(user)==-1){//something wrong with the database
-                    confirm_warn.setText("There is something wrong with our database");
+                    Message message = handler.obtainMessage();
+                    message.what = 0x93;
+                    handler.sendMessage(message);
                     return;
                 }else {
                     information = true;
@@ -140,6 +211,7 @@ public class NewAccountFragment extends Fragment {
             }
 
         }
+        }).start();
 
 
     }
