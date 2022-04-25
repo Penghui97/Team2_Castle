@@ -128,10 +128,10 @@
     <string name="nickname">昵称</string>
     <string name="your_nickname">你的昵称</string>
     <string name="please_enter_username">请输入用户名 !!!</string>
-    <string name="username_too_long">用户名的长度不能超过25 !!!</string>
+    <string name="username_too_long">用户名的长度不能超过40 !!!</string>
     <string name="enter_password">请输入密码 !!!</string>
     <string name="password_long">密码长度不能超过16</string>
-    <string name="email_end">输入一个以 .ac.uk结尾且正确的邮箱地址 !!!</string>
+    <string name="email_end">输入一个以 .ac.uk结尾,长度小于40且正确的邮箱地址 !!!</string>
     <string name="reg">^[A-Za-z\\d]+([-_.][A-Za-z\\d]+)*@([A-Za-z\\d]+[-.])+[A-Za-z\\d]{2,4}$</string>
     <string name="reg2">/(.+(?=[.ac.uk]$))</string>
     <string name="username_no_at">用户名不能包含 @ !!!</string>
@@ -142,6 +142,18 @@
     <string name="comment">用户评价</string>
     <string name="evaluate_this_app">评价</string>
     <string name="evaluate_app">评价这个app</string>
+    <string name="cannotchange">用户名不可更改！您只能更改昵称和邮箱</string>
+    <string name="nicknamechanged">昵称更改成功！</string>
+    <string name="enternickname">请输入昵称 !!!</string>
+    <string name="nicknametoolong">昵称必须小于40字符 !!!</string>
+    <string name="nicknamenochange">您没有更改昵称 !!!</string>
+    <string name="emailhasnotbeenregistered">此邮箱未被注册 !!!</string>
+    <string name="passwordwrong">密码错误 !!!</string>
+    <string name="usernamenotregister">此用户名未被注册 !!!</string>
+    <string name="emailchanged">邮箱更改成功 !!!</string>
+    <string name="emailnochanged">您没有更改邮箱 !!!</string>
+    <string name="usernameused">用户名已被占用 !!!</string>
+    <string name="emailused">此邮箱已被注册 !!!</string>
 
 
 </resources>
