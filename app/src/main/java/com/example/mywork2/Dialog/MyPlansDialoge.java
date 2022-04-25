@@ -12,7 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.fragment.app.Fragment;
 
+import com.example.mywork2.MainFragment.MyPlansFragment;
 import com.example.mywork2.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -24,6 +26,7 @@ public class MyPlansDialoge extends AppCompatDialogFragment {
     private String dialogText;
     public TabLayout myPlanInfoRemoveNum;
     public TextView titleDia;
+    private Fragment myFragment;
 
     @NonNull
     @Override
@@ -49,8 +52,15 @@ public class MyPlansDialoge extends AppCompatDialogFragment {
         titleDia.setText(getDialogText());
         //build the dialog
         builder.setView(view).setTitle(getDialogTitle())
-                .setNegativeButton("cancel", (dialogInterface, i) -> dismiss())
-                .setPositiveButton(getRemoveOrRefund(), (dialogInterface, i) -> Log.d("asd",titleDia.getText().toString()));
+                .setNegativeButton("cancel", (dialogInterface, i) ->
+                        dismiss())
+                .setPositiveButton(getRemoveOrRefund(),(new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        MyPlansFragment myPlansFragment = (MyPlansFragment) getMyFragment();
+                        myPlansFragment.returnTicketsInDialog(myPlanInfoRemoveNum.getSelectedTabPosition()+1);
+                    }
+                }));
 
         return builder.create();
     }
@@ -85,5 +95,13 @@ public class MyPlansDialoge extends AppCompatDialogFragment {
 
     public void setDialogText(String dialogText) {
         this.dialogText = dialogText;
+    }
+
+    public Fragment getMyFragment() {
+        return myFragment;
+    }
+
+    public void setMyFragment(Fragment myFragment) {
+        this.myFragment = myFragment;
     }
 }
