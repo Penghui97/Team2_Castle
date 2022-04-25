@@ -162,6 +162,7 @@
     <string name="enterpasswaord">请输入一个少于16位的新密码</string>
     <string name="passwordchanged">密码更改成功 !!!</string>
     <string name="changepassword">修改密码</string>
+    <string name="wrongdatabase">数据库错误</string>
 
 
 </resources>

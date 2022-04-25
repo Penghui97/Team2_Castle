@@ -193,6 +193,7 @@
     <string name="enterpasswaord">Please enter a new password shorter than 16 digits</string>
     <string name="passwordchanged">Password changed successfully !!!</string>
     <string name="changepassword">Change your password</string>
+    <string name="wrongdatabase">There is something wrong with our database</string>
 
 
 </resources>
