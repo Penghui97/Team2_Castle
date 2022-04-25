@@ -23,7 +23,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-
+        //abc
         FragmentContainerView fragmentContainerView = findViewById(R.id.log_in_nav_host_frag);
         NavHostFragment navHostFragment = fragmentContainerView.getFragment();
         //get Navigation Controller from the Host fragment
