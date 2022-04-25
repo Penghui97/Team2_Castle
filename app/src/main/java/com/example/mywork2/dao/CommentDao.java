@@ -13,7 +13,7 @@ public class CommentDao {
 
     //get all comments from the database
     public ArrayList<Comment> getAllComments(){
-        String sql = "select * from comment order by commentId desc";
+        String sql = "select * from Comments order by commentId desc";
         ArrayList<Comment> comments = new ArrayList<>();
         Connection connection = DBUtil.getConnection();
         PreparedStatement ps = null;
@@ -39,7 +39,7 @@ public class CommentDao {
 
     //get comments by username
     public ArrayList<Comment> getCommentsByUsername(String username){
-        String sql = "select * from comment where username=? order by commentId desc";
+        String sql = "select * from Comments where username=? order by commentId desc";
         ArrayList<Comment> comments = new ArrayList<>();
         Connection connection = DBUtil.getConnection();
         PreparedStatement ps = null;
@@ -65,7 +65,7 @@ public class CommentDao {
 
     //get others' comments except user
     public ArrayList<Comment> getCommentsExceptUsername(String username){
-        String sql = "select * from comment where username!=? order by commentId desc";
+        String sql = "select * from Comments where username!=? order by commentId desc";
         ArrayList<Comment> comments = new ArrayList<>();
         Connection connection = DBUtil.getConnection();
         PreparedStatement ps = null;
@@ -94,7 +94,7 @@ public class CommentDao {
     //return true if the insert successfully
     //return false if something wrong happened in the database
     public boolean addComment(Comment comment){
-        String sql = "insert into comment(commentId, username, rating, content, date) values (?, ?, ?, ?, ?)";
+        String sql = "insert into Comments(commentId, username, rating, content, date) values (?, ?, ?, ?, ?)";
         Connection connection = DBUtil.getConnection();
         PreparedStatement ps = null;
         boolean result = false;
@@ -116,7 +116,7 @@ public class CommentDao {
 
     //remove a comment from the database by its id
     public void removeCommentById(String commentId){
-        String sql = "delete from comment where commentId=?";
+        String sql = "delete from Comments where commentId=?";
         Connection connection = DBUtil.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
