@@ -21,6 +21,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -30,6 +31,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.mywork2.MyAccount.AccountEditActivity;
+import com.example.mywork2.MyAccount.AppSettingsActivity;
+import com.example.mywork2.MyAccount.CommentsActivity;
 import com.example.mywork2.Util.ImageUtil;
 import com.example.mywork2.Util.UserThreadLocal;
 import com.example.mywork2.dao.UserDao;
@@ -40,35 +44,55 @@ import com.example.mywork2.domain.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private DrawerLayout drawer;
     //drawerImage is the imageview in the drawerlayout.
     private ImageView imageView, drawerImage;
-    //username_v is the username textview.
-    private TextView username_v, email_v;
-
-
-
+    //nickname_v is the username textview.
+    private TextView nickname_v, email_v;
     public User user, customer;
-    public String username;
+    public String username, nickname;
+
+
+    //receive the data from the database
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            switch (msg.what) {
+                case 0x11:
+                    nickname_v.setText(nickname);//set the username on the view
+                    email_v.setText(user.getEmail());//set the email on the view
+                    break;
+                case 0x22:
+                    nickname_v.setText(customer.getNickname());//set the customer's username on the view
+                    email_v.setText(customer.getEmail());//set the customer's email on the view
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /**
-         * (Jing)
-         * get the user by username
-         */
+        //get username from login page
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         username = (String)extras.get("username");
+        if(username == null || username == ""){
+            username = "root";
+        }
+        //show the particular user's info
+
+        showUserInfo();
 
 
 
-        setContentView(R.layout.drawer_main);//avatar
+        setContentView(R.layout.drawer_main);
 
         //init view, 23.2
         initView();
@@ -101,49 +125,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         drawerImage = drawerView.getHeaderView(0).findViewById(R.id.avatar);
 
-        username_v = drawerView.getHeaderView(0).findViewById(R.id.username_profile);
+        nickname_v = drawerView.getHeaderView(0).findViewById(R.id.nickname_profile);
 
         email_v = drawerView.getHeaderView(0).findViewById(R.id.user_email);
 
-
-
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                UserDao userDao = new UserDao();
-                user = userDao.getUserByUsername(username);
-                customer = userDao.getUserByUsername("root");
-
-                if(user != null){
-                    username_v.setText(username);//set the username on the view
-                    email_v.setText(user.getEmail());//set the email on the view
+        drawerView.setNavigationItemSelectedListener(item -> {
+            if(item.getItemId()==R.id.app_logout){//logout
+                startActivity(new Intent(MainActivity.this,LogInActivity.class)
+                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK));
+            }else if (item.getItemId()==R.id.accountEditActivity){//my account
+                //transmit
+                Intent intent3 = new Intent(MainActivity.this, AccountEditActivity.class);
+                if(username == null) {
+                    intent3.putExtra("username", customer.getUsername());
+                    intent3.putExtra("email", customer.getEmail());
                 }else {
-                    username_v.setText(customer.getUsername());//set the customer's username on the view
-                    email_v.setText(customer.getEmail());//set the customer's email on the view
+                    intent3.putExtra("username", username);
+                    intent3.putExtra("email",email_v.getText().toString());
                 }
-                //logout. clear the user and go back to the login page
-                drawerView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        switch (item.getItemId()){
-                            case R.id.app_logout:
-                                user = null;
-                                Intent intent1 = new Intent(MainActivity.this,LogInActivity.class);
-                                startActivity(intent1);
-                                break;
-
-                            default:
-                                break;
-
-                        }
-                        return true;
-                    }
-                });
+                startActivity(intent3);
+            }else if (item.getItemId()==R.id.appSettingsActivity) {
+                //transmit
+                Intent intent2 = new Intent(MainActivity.this, AppSettingsActivity.class);
+                if(username == null)
+                    intent2.putExtra("username", customer.getUsername());
+                else
+                    intent2.putExtra("username", username);
+                startActivity(intent2);
+            }else if (item.getItemId() == R.id.menu_comment){
+                //give the username to the commentsActivity
+                Intent intent1 = new Intent(MainActivity.this, CommentsActivity.class);
+                intent1.putExtra("username", username);
+                startActivity(intent1);
             }
-        }).start();
-
-
+            return true;
+        });
 
 
     }
@@ -156,6 +172,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //init data, 23.2
         initData();
 
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        initData();
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -191,8 +214,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void initData(){
 
-
-
+        showUserInfo();
         getDataFromSpf();
     }
 
@@ -217,13 +239,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-
-    /**
-     * Methods to return home page directly
-     * @param keyCode
-     * @param event
-     * @return
-     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -234,5 +249,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    //show the particular user's info
+    public void showUserInfo(){
+        new Thread(() -> {
+            UserDao userDao = new UserDao();
+            user = userDao.getUserByUsername(username);
+            customer = userDao.getUserByUsername("root");
+
+
+            if(user != null){
+                Message message = handler.obtainMessage();
+                message.what = 0x11;
+                nickname = user.getNickname();
+                handler.sendMessage(message);
+            }else {
+                Message message = handler.obtainMessage();
+                message.what = 0x22;
+                nickname = customer.getNickname();
+                handler.sendMessage(message);
+            }
+        }).start();
     }
 }

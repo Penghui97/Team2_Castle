@@ -10,7 +10,8 @@
         android:layout_height="match_parent"
         android:id="@+id/myPlansLayout1"
         android:orientation="vertical"
-        android:background="@drawable/background">
+        android:background="@drawable/background"
+        tools:ignore="UselessParent">
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -23,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:gravity="center"
-                android:text="My Plans" />
+                android:text="@string/my_plans" />
 
         </androidx.cardview.widget.CardView>
 
@@ -39,13 +40,14 @@
                 android:id="@+id/myPlansNoPlansLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+
                 <TextView
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
                     android:id="@+id/myPlanNoPlanSignal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="no plans"/>
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/no_plans" />
 
             </LinearLayout>
 
@@ -55,11 +57,7 @@
                 android:id="@+id/myPlansListView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:divider="#6200EE"
-                android:dividerHeight="3dp"
                 >
-
-
             </ListView>
 
 
@@ -75,6 +73,7 @@
             android:paddingHorizontal="10dp">
             <include layout="@layout/my_plans_info"/>
         </LinearLayout>
+
 
 
     </LinearLayout>

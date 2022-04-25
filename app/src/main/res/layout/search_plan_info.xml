@@ -16,7 +16,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingTop="20dp">
 
@@ -28,15 +28,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
-                    android:text="from:  "
-                    android:textSize="20dp" />
+                    android:text="@string/from"
+                    android:textSize="20sp" />
                 <TextView
                     android:id="@+id/searchPlanInfoFrom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="from"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -47,15 +47,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
-                    android:text="to:  "
-                    android:textSize="20dp" />
+                    android:text="@string/to"
+                    android:textSize="20sp" />
                 <TextView
                     android:id="@+id/searchPlanInfoTo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="to"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <View
@@ -80,14 +80,14 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="routes:  " />
+                    android:text="@string/routes" />
 
                 <LinearLayout
                     android:id="@+id/searchPlanInfoRoutes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp"
-                    android:orientation="vertical"></LinearLayout>
+                    android:orientation="vertical" />
 
                 <LinearLayout
                     android:id="@+id/searchPlanAllReturnViews"
@@ -104,14 +104,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="return routes:  " />
+                        android:text="@string/return_routes" />
 
                     <LinearLayout
                         android:id="@+id/searchPlanInfoReturnRoutes"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="10dp"
-                        android:orientation="vertical"></LinearLayout>
+                        android:orientation="vertical" />
                 </LinearLayout>
 
 
@@ -166,79 +166,71 @@
                 <!--                    android:textAlignment="center" />-->
                 <!--            </LinearLayout>-->
 
-                <LinearLayout
+<!--                the kid ticket has been canceled-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:text="@string/adult_number"-->
+<!--                        android:textAlignment="center"-->
+<!--                        android:textSize="13sp" />-->
+
+<!--                    <Spinner-->
+<!--                        android:id="@+id/adultNum"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:entries="@array/adultNum"-->
+<!--                        android:textAlignment="center" />-->
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:text="@string/kid_number"-->
+<!--                        android:textAlignment="center"-->
+<!--                        android:textSize="13sp" />-->
+
+<!--                    <Spinner-->
+<!--                        android:id="@+id/kidNum"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:entries="@array/kidNum"-->
+<!--                        android:textAlignment="center" />-->
+<!--                </LinearLayout>-->
+
+<!--                <View-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="2dp"-->
+<!--                    android:layout_marginVertical="5dp"-->
+<!--                    android:background="@color/gray" />-->
+
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="adult number: "
-                        android:textAlignment="center"
-                        android:textSize="13dp" />
-
-                    <Spinner
-                        android:id="@+id/adultNum"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:entries="@array/adultNum"
-                        android:textAlignment="center" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="kid number: "
-                        android:textAlignment="center"
-                        android:textSize="13dp" />
-
-                    <Spinner
-                        android:id="@+id/kidNum"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:entries="@array/kidNum"
-                        android:textAlignment="center" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="2dp"
-                    android:layout_marginVertical="5dp"
-                    android:background="@color/gray" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp"
                     android:layout_marginTop="5dp">
 
                     <Button
-                        android:id="@+id/searchPlanInfoReturn"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginHorizontal="15dp"
-                        android:layout_weight="1"
-                        android:onClick="onClick"
-                        android:text="return" />
-
-                    <Button
                         android:id="@+id/searchPlanInfoSave"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
                         android:layout_marginHorizontal="15dp"
-                        android:layout_weight="1"
-                        android:onClick="onClick"
-                        android:text="save" />
-                </LinearLayout>
+                        android:text="@string/save" />
+                </RelativeLayout>
             </LinearLayout>
 
         </LinearLayout>

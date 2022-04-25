@@ -25,12 +25,11 @@ public class CastleDao {
             while(rs.next()){
                 String castleName = rs.getString("castleName");
                 String postcode = rs.getString("postcode");
-                int adultPrice = rs.getInt("adultPrice");
-                int kidsPrice = rs.getInt("kidsPrice");
+                int price = rs.getInt("price");
 
                 ArrayList<NearbyPOI> pois = poiDao.getPOIsByCastleName(castleName);
 
-                castles.add(new Castle(castleName, postcode, adultPrice, kidsPrice, pois));
+                castles.add(new Castle(castleName, postcode, price, pois));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -53,11 +52,10 @@ public class CastleDao {
             while(rs.next()){
                 String castleName = rs.getString("castleName");
                 String postcode = rs.getString("postcode");
-                int adultPrice = rs.getInt("adultPrice");
-                int kidsPrice = rs.getInt("kidsPrice");
+                int price = rs.getInt("price");
 
                 ArrayList<NearbyPOI> pois = poiDao.getPOIsByCastleName(castleName);
-                castle = new Castle(castleName, postcode, adultPrice, kidsPrice, pois);
+                castle = new Castle(castleName, postcode, price, pois);
             }
         } catch (SQLException e) {
             e.printStackTrace();

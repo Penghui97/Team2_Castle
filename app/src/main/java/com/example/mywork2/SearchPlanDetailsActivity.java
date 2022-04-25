@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -18,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mywork2.MyAccount.AccountEditActivity;
 import com.example.mywork2.adapter.PlanDetailAdapter;
 import com.example.mywork2.dao.DepartureTimeDao;
 import com.example.mywork2.dao.JourneyDao;
@@ -27,6 +29,7 @@ import com.example.mywork2.domain.Journey;
 import com.example.mywork2.domain.Route;
 import com.example.mywork2.domain.Ticket;
 import com.example.mywork2.domain.Time;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -39,11 +42,15 @@ import java.util.Date;
 public class SearchPlanDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private LinearLayout searchPlanDetailsLayout;
+    private Button save;
     public LinearLayout searchPlanInfoAllContent;
+    public BottomSheetDialog bottomSheetDialog;
+    private View bottomView;
     private ArrayList<Journey> journeys;
     private String date;
     private String time;
     private String username;
+    private int ticketNum;
 
     //receive the data from the database
     @SuppressLint("HandlerLeak")
@@ -66,6 +73,11 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
                 case 0x33:
                     //there is no appropriate bus
                     showJourneyInfo(currentJourney);
+                    break;
+                case 0x44:
+                    //the ticket is saved successfully
+                    alertSuccess();
+                    break;
                 case 0x99:
                     //receive the searched journeys
                     journeys = (ArrayList<Journey>) msg.obj;
@@ -80,6 +92,10 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_plan_details);
 
+        //set the actionbar
+        findViewById(R.id.back_button).setOnClickListener(view -> {
+            this.finish()
+            ;});
         //get the user from the
 
         //not show the info page until one particular plan is clicked
@@ -95,6 +111,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         time = (String) extras.get("time");
         date = (String) extras.get("date");
         username = (String) extras.get("username");
+        ticketNum = (Integer) extras.get("ticketNum");
 
         //sort the journeys
         getJourneys(departure, destination);
@@ -106,21 +123,30 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         departurePlace.setText(departure);
         TextView destinationPlace = findViewById(R.id.journey_to);
         destinationPlace.setText(destination);
+
+        //get bottom sheet view
+        bottomSheetDialog = new BottomSheetDialog(SearchPlanDetailsActivity.this,R.style.BottomSheetDialogTheme);
+        bottomView = LayoutInflater.from(getApplicationContext()).inflate(
+                R.layout.bottom_sheet_search,
+                findViewById(R.id.bottom_sheet_search)
+        );
+        save = bottomView.findViewById(R.id.searchPlanInfoSave);
+        save.setOnClickListener(this);
+        bottomSheetDialog.setContentView(bottomView);
+
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.planDetailsReturn:
-                finish();
-                break;
-            case R.id.searchPlanInfoReturn:
+
+            /*case R.id.searchPlanInfoReturn:
                 searchPlanInfoAllContent.setVisibility(View.GONE);
-                break;
+                break;*/
             case R.id.searchPlanInfoSave:
-                getInput();
+//                getInput();
                 saveJourney();
-                alertSuccess();
+                bottomSheetDialog.dismiss();
                 break;
         }
     }
@@ -193,8 +219,8 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
     //store the current journey
     private Journey currentJourney;
     private String returnTime;
-    private int inputAdultNum;
-    private int inputKidsNum;
+//    private int inputAdultNum;
+//    private int inputKidsNum;
     private ArrayList<DepartureTime> routeDepartureTimes;
     private ArrayList<DepartureTime> returnRouteDepartureTimes;
 
@@ -271,10 +297,10 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
     //clear all the content first
     //then fill it with particular content
     public void initJourneyInfo(){
-        TextView fromView = findViewById(R.id.searchPlanInfoFrom);
-        TextView toView = findViewById(R.id.searchPlanInfoTo);
-        LinearLayout routesLayout = findViewById(R.id.searchPlanInfoRoutes);
-        LinearLayout returnRoutesLayout = findViewById(R.id.searchPlanInfoReturnRoutes);
+        TextView fromView = bottomView.findViewById(R.id.searchPlanInfoFrom);
+        TextView toView = bottomView.findViewById(R.id.searchPlanInfoTo);
+        LinearLayout routesLayout = bottomView.findViewById(R.id.searchPlanInfoRoutes);
+        LinearLayout returnRoutesLayout = bottomView.findViewById(R.id.searchPlanInfoReturnRoutes);
 
         fromView.setText("");
         toView.setText("");
@@ -286,8 +312,8 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
     public void showJourneyInfo(Journey journey) {
         initJourneyInfo();
 
-        TextView fromView = findViewById(R.id.searchPlanInfoFrom);
-        TextView toView = findViewById(R.id.searchPlanInfoTo);
+        TextView fromView = bottomView.findViewById(R.id.searchPlanInfoFrom);
+        TextView toView = bottomView.findViewById(R.id.searchPlanInfoTo);
         fromView.append(journey.getDeparture());
         toView.append(journey.getCastle().getName());
 
@@ -302,7 +328,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         //create a time object to log the time
         Time currentTime = new Time(time);
 
-        LinearLayout routesLayout = findViewById(R.id.searchPlanInfoRoutes);
+        LinearLayout routesLayout = bottomView.findViewById(R.id.searchPlanInfoRoutes);
         for (int i = 0; i < journey.getRoutes().size(); i++) {
             Route route = journey.getRoutes().get(i);
 
@@ -313,7 +339,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
                 DepartureTime departureTime = routeDepartureTimes.remove(0);
                 currentTime.setTime(departureTime.getDepTime());
             }
-            TextView textView = new TextView(searchPlanInfoAllContent.getContext());
+            TextView textView = new TextView(bottomView.getContext());
             //set the bus stops' name
             textView.setText("from: " + route.getStart() + " (" + currentTime + ")" + "\n");
             textView.append("to: " + route.getStop() + " (" + currentTime.add(route.getDuration()) + ")" + "\n");
@@ -327,7 +353,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         currentTime.add(120);
         returnTime = currentTime.toString();
         //show the return routes
-        LinearLayout returnRoutesLayout = findViewById(R.id.searchPlanInfoReturnRoutes);
+        LinearLayout returnRoutesLayout = bottomView.findViewById(R.id.searchPlanInfoReturnRoutes);
 
         for (int i = 0; i < journey.getReturnRoutes().size(); i++) {
             Route route = journey.getReturnRoutes().get(i);
@@ -347,7 +373,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
                 currentTime.setTime(departureTime.getDepTime());
             }
 
-            TextView textView = new TextView(searchPlanInfoAllContent.getContext());
+            TextView textView = new TextView(bottomView.getContext());
 
             //set the bus stops' name
             textView.setText("from: " + route.getStart() + " (" + currentTime + ")" + "\n");
@@ -363,9 +389,9 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         //if there is no bus or train at this time at this stop
         //make the route views disappear
         //show a signal to the user
-        TextView textView = new TextView(searchPlanInfoAllContent.getContext());
+        TextView textView = new TextView(bottomView.getContext());
         textView.setText("your depart time is too late\n ");
-        Button button = new Button(searchPlanInfoAllContent.getContext());
+        Button button = new Button(bottomView.getContext());
         button.setText("return");
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -385,35 +411,36 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         new Thread(new Runnable() {
             @Override
             public void run() {
-                date = transferTimeFormat(date);
                 if(currentJourney != null){
-                    Ticket ticket = currentJourney.toTicket(username, date, time, returnTime, inputAdultNum, inputKidsNum);
+                    date = transferTimeFormat(date);
+                    Ticket ticket = currentJourney.toTicket(username, date, time, returnTime, ticketNum);
                     TicketDao ticketDao = new TicketDao();
                     ticketDao.addTicket(ticket);
+                    currentJourney = null;
+                    Message message = handler.obtainMessage();
+                    message.what = 0x44;
+                    handler.sendMessage(message);
                 }
             }
         }).start();
     }
 
+    //after drop the kid ticket functions
+    //it has been canceled
     //get all the information the user input
-    public void getInput() {
-        Spinner adultNum = findViewById(R.id.adultNum);
-        Spinner kidsNum = findViewById(R.id.kidNum);
-        inputAdultNum = Integer.parseInt(adultNum.getSelectedItem().toString());
-        inputKidsNum = Integer.parseInt(kidsNum.getSelectedItem().toString());
-    }
+//    public void getInput() {
+//        Spinner adultNum = findViewById(R.id.adultNum);
+//        Spinner kidsNum = findViewById(R.id.kidNum);
+//    }
 
     //alert a friendly message to the user
     //when he save the plan successfully
     public void alertSuccess() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("succeed to save")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                .setPositiveButton("Yes", (dialogInterface, i) -> {
 //                        startActivity(new Intent(SearchPlanDetailsActivity.this, MainActivity.class));
-                        searchPlanInfoAllContent.setVisibility(View.GONE);
-                    }
+                    //searchPlanInfoAllContent.setVisibility(View.GONE);
                 })
                 .create()
                 .show();

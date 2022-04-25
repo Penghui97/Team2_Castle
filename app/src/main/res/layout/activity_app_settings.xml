@@ -14,28 +14,77 @@
         android:background="@color/white"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:paddingLeft="30dp"
+        android:paddingStart="30dp"
         android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableRight="@drawable/ic_baseline_navigate_next_24"
-        android:text="Language"
-        android:textSize="20dp"
-        android:textColor="@color/black"/>
+        android:text="@string/language"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        app:drawableRightCompat="@drawable/ic_baseline_navigate_next_24"
+        tools:ignore="RtlSymmetry" />
 
-    <TextView
-        android:id="@+id/settings_theme"
-        android:background="@color/white"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="30dp"
-        android:layout_marginTop="5dp"
+    <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableRight="@drawable/ic_baseline_navigate_next_24"
-        android:text="App Theme"
-        android:textSize="20dp"
-        android:textColor="@color/black"/>
+        android:id="@+id/rg_language"
+        android:saveEnabled="true"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/rb_english"
+            android:text="English"
+            android:textSize="18sp"
+            android:padding="8dp"
+            />
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/rb_Chinese"
+            android:textSize="18sp"
+            android:text="简体中文"
+            android:padding="8dp"
+            />
+
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/setting_warn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/update_language"
+        android:textColor="#f00"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:layout_margin="8sp"
+        />
+
+    <TextView
+        android:id="@+id/setting_warn_cn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/language_warn"
+        android:textColor="#f00"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:layout_margin="8sp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/setting_refresh"
+        android:layout_gravity="center"
+        android:text="@string/refresh"
+        />
+
+
 
 
 

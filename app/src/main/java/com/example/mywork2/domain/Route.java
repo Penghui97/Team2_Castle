@@ -7,19 +7,18 @@ public class Route {
     private String start;
     private String stop;
     private int duration;
-    private int adultPrice;
-    private int kidsPrice;
+    private int price;
+//    private int kidsPrice;
     private int led;
 
-    public Route(String routeId, String journeyId, Transport transport, String start, String stop, int duration, int adultPrice, int kidsPrice, int led) {
+    public Route(String routeId, String journeyId, Transport transport, String start, String stop, int duration, int price, int led) {
         this.routeId = routeId;
         this.journeyId = journeyId;
         this.transport = transport;
         this.start = start;
         this.stop = stop;
         this.duration = duration;
-        this.adultPrice = adultPrice;
-        this.kidsPrice = kidsPrice;
+        this.price = price;
         this.led = led;
     }
 
@@ -63,20 +62,12 @@ public class Route {
         this.duration = duration;
     }
 
-    public int getAdultPrice() {
-        return adultPrice;
+    public int getPrice() {
+        return price;
     }
 
-    public void setAdultPrice(int adultPrice) {
-        this.adultPrice = adultPrice;
-    }
-
-    public int getKidsPrice() {
-        return kidsPrice;
-    }
-
-    public void setKidsPrice(int kidsPrice) {
-        this.kidsPrice = kidsPrice;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public int getLed() {
@@ -98,13 +89,13 @@ public class Route {
     @Override
     public String toString() {
         return "Route{" +
-                "journeyId='" + journeyId + '\'' +
+                "routeId='" + routeId + '\'' +
+                ", journeyId='" + journeyId + '\'' +
                 ", transport=" + transport +
                 ", start='" + start + '\'' +
                 ", stop='" + stop + '\'' +
                 ", duration=" + duration +
-                ", adultPrice=" + adultPrice +
-                ", kidsPrice=" + kidsPrice +
+                ", price=" + price +
                 ", led=" + led +
                 '}';
     }

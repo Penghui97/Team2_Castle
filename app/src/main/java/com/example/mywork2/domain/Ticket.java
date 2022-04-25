@@ -8,12 +8,11 @@ public class Ticket {
     private String date;
     private String time;
     private String returnTime;
-    private int adultQuantity;
-    private int kidsQuantity;
+    private int quantity;
     private int totalPrice;
     private boolean isPaid;
 
-    public Ticket(String ticketId, String castleName, String username, String journeyId, String date, String time, String returnTime, int adultQuantity, int kidsQuantity, int totalPrice) {
+    public Ticket(String ticketId, String castleName, String username, String journeyId, String date, String time, String returnTime, int quantity, int totalPrice, boolean isPaid) {
         this.ticketId = ticketId;
         this.castleName = castleName;
         this.username = username;
@@ -21,24 +20,24 @@ public class Ticket {
         this.date = date;
         this.time = time;
         this.returnTime = returnTime;
-        this.adultQuantity = adultQuantity;
-        this.kidsQuantity = kidsQuantity;
-        this.totalPrice = totalPrice;
-        this.isPaid = false;
-    }
-
-    public Ticket(String ticketId, String castleName, String username, String journeyId, String date, String time, String returnTime, int adultQuantity, int kidsQuantity, int totalPrice, boolean isPaid) {
-        this.ticketId = ticketId;
-        this.castleName = castleName;
-        this.username = username;
-        this.journeyId = journeyId;
-        this.date = date;
-        this.time = time;
-        this.returnTime = returnTime;
-        this.adultQuantity = adultQuantity;
-        this.kidsQuantity = kidsQuantity;
+        this.quantity = quantity;
         this.totalPrice = totalPrice;
         this.isPaid = isPaid;
+    }
+
+    public int getSinglePrice(){
+        return totalPrice / quantity;
+    }
+
+    //remove part but not all tickets
+    //if the num >= left num
+    //return -1
+    //else return the left num
+    public int removePartTickets(int num){
+        if(num > quantity) return -1;
+        totalPrice -= getSinglePrice() * num;
+        quantity -= num;
+        return quantity;
     }
 
     public String getTicketId() {
@@ -97,20 +96,12 @@ public class Ticket {
         this.returnTime = returnTime;
     }
 
-    public int getAdultQuantity() {
-        return adultQuantity;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setAdultQuantity(int adultQuantity) {
-        this.adultQuantity = adultQuantity;
-    }
-
-    public int getKidsQuantity() {
-        return kidsQuantity;
-    }
-
-    public void setKidsQuantity(int kidsQuantity) {
-        this.kidsQuantity = kidsQuantity;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public int getTotalPrice() {

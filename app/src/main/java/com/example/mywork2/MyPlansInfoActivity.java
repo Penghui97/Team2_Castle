@@ -127,16 +127,13 @@ public class MyPlansInfoActivity extends AppCompatActivity implements View.OnCli
 
     //get the journey information from the database
     public void getJourneyById(String journeyId) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                JourneyDao journeyDao = new JourneyDao();
-                Journey journey = journeyDao.getJourneyById(journeyId);
-                Message message = handler.obtainMessage();
-                message.what = 0x22;
-                message.obj = journey;
-                handler.sendMessage(message);
-            }
+        new Thread(() -> {
+            JourneyDao journeyDao = new JourneyDao();
+            Journey journey = journeyDao.getJourneyById(journeyId);
+            Message message = handler.obtainMessage();
+            message.what = 0x22;
+            message.obj = journey;
+            handler.sendMessage(message);
         }).start();
     }
 
@@ -190,16 +187,16 @@ public class MyPlansInfoActivity extends AppCompatActivity implements View.OnCli
         TextView date = findViewById(R.id.myPlanInfoDate);
         TextView departTime = findViewById(R.id.myPlanInfoDepartTime);
         TextView returnTime = findViewById(R.id.myPlanInfoReturnTime);
-        TextView adultNum = findViewById(R.id.myPlanInfoAdultNum);
-        TextView kidNum = findViewById(R.id.myPlanInfoKidsNum);
+        TextView adultNum = findViewById(R.id.myPlanInfoTicketCount);
+//        TextView kidNum = findViewById(R.id.myPlanInfoKidsNum);
         TextView totalPrice = findViewById(R.id.myPlanInfoTotalPrice);
 
         castle.append(currentTicket.getCastleName());
         date.append(currentTicket.getDate());
         departTime.append(currentTicket.getTime());
         returnTime.append(currentTicket.getReturnTime());
-        adultNum.append(Integer.toString(currentTicket.getAdultQuantity()));
-        kidNum.append(Integer.toString(currentTicket.getKidsQuantity()));
+        adultNum.append(Integer.toString(currentTicket.getQuantity()));
+//        kidNum.append(Integer.toString(currentTicket.getKidsQuantity()));
         totalPrice.append(Integer.toString(currentTicket.getTotalPrice()));
         //show the detailed routes
         ArrayList<Route> routes = currentJourney.getRoutes();
@@ -261,7 +258,7 @@ public class MyPlansInfoActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void run() {
                 TicketDao ticketDao = new TicketDao();
-                ticketDao.removeTicketById(ticketId);
+                ticketDao.removeAllTicketsById(ticketId);
             }
         }).start();
     }

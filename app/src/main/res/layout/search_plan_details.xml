@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="76dp"
             android:layout_marginTop="16dp"
-            android:text="From"
+            android:text="@string/from"
             android:textStyle="bold"
             android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="76dp"
-            android:text="To"
+            android:text="@string/to"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -68,19 +68,6 @@
         android:dividerHeight="10dp">
     </ListView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/planDetailsReturn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:text="return"
-            android:onClick="onClick"/>
-    </LinearLayout>
 
     <!--the particular info of one plan-->
     <LinearLayout

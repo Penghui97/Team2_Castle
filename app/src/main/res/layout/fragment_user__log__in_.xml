@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="144dp"
-            android:text="Sign in to your account"
+            android:text="@string/sign_in_to_your_account"
             android:textColor="#6FB5FF"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +43,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="240sp"
+                android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -58,7 +58,7 @@
                     android:background="#5CE8E3E3"
                     android:drawableStart="@drawable/ic_baseline_person_24"
                     android:drawablePadding="20dp"
-                    android:hint="Username/Email"
+                    android:hint="@string/username_email"
                     android:inputType="text"
                     android:padding="15dp"
                     android:textColor="@color/black"
@@ -68,7 +68,8 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/app_name_log_in"
-                    app:layout_constraintVertical_bias="0.297" />
+                    app:layout_constraintVertical_bias="0.297"
+                    android:importantForAutofill="no" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -85,7 +86,7 @@
                     android:background="#5CE8E3E3"
                     android:drawableStart="@drawable/ic_baseline_info_24"
                     android:drawablePadding="20dp"
-                    android:hint="Password"
+                    android:hint="@string/password"
                     android:inputType="textPassword"
                     android:padding="15dp"
                     android:textColor="@color/black"
@@ -93,7 +94,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/username_login" />
+                    app:layout_constraintTop_toBottomOf="@+id/username_login"
+                    android:importantForAutofill="no" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -108,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed-medium"
                     android:minHeight="48dp"
-                    android:text="login"
+                    android:text="@string/login"
                     android:textColor="@color/black"
                     android:theme="@style/Theme.AppCompat.Light"
                     app:icon="?attr/actionModeCloseDrawable"
@@ -120,6 +122,14 @@
                     app:layout_constraintVertical_bias="0.924"
                     app:rippleColor="#00BCD4"
                     tools:ignore="TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/forget_password"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/forget_password"/>
 
 
             </LinearLayout>

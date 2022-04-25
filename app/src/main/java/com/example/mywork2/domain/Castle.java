@@ -5,15 +5,15 @@ import java.util.ArrayList;
 public class Castle {
     private String name;
     private String postcode;
-    private int adultPrice;
-    private int kidsPrice;
+    private int price;
+//    private int adultPrice;
+//    private int kidsPrice;
     private ArrayList<NearbyPOI> nearbyPOIs;
 
-    public Castle(String name, String postcode, int adultPrice, int kidsPrice, ArrayList<NearbyPOI> nearbyPOIs) {
+    public Castle(String name, String postcode, int price, ArrayList<NearbyPOI> nearbyPOIs) {
         this.name = name;
         this.postcode = postcode;
-        this.adultPrice = adultPrice;
-        this.kidsPrice = kidsPrice;
+        this.price = price;
         this.nearbyPOIs = nearbyPOIs;
     }
 
@@ -33,20 +33,12 @@ public class Castle {
         this.postcode = postcode;
     }
 
-    public int getAdultPrice() {
-        return adultPrice;
+    public int getPrice() {
+        return price;
     }
 
-    public void setAdultPrice(int adultPrice) {
-        this.adultPrice = adultPrice;
-    }
-
-    public int getKidsPrice() {
-        return kidsPrice;
-    }
-
-    public void setKidsPrice(int kidsPrice) {
-        this.kidsPrice = kidsPrice;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public ArrayList<NearbyPOI> getNearbyPOIs() {
@@ -62,8 +54,7 @@ public class Castle {
         return "Castle{" +
                 "name='" + name + '\'' +
                 ", postcode='" + postcode + '\'' +
-                ", adultPrice=" + adultPrice +
-                ", kidsPrice=" + kidsPrice +
+                ", price=" + price +
                 ", nearbyPOIs=" + nearbyPOIs +
                 '}';
     }

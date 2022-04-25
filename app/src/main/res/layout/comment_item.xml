@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:paddingTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        >
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/header_view_comments"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" >
+
+            <ImageView
+                android:id="@+id/header_comment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_baseline_person_24" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/Comment_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="20dp"
+            android:minHeight="40dp"
+            android:padding="10dp"
+            app:cardBackgroundColor="#1886F7"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header_view_comments">
+            <TextView
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:id="@+id/comments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:hint="user comments ....."/>
+
+
+        </androidx.cardview.widget.CardView>
+
+<!--        <ImageView-->
+<!--            android:id="@+id/thumbs_up"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="12dp"-->
+<!--            android:layout_marginEnd="12dp"-->
+<!--            android:src="@drawable/icons8_thumbs_up_24"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/thumbs_down"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/Comment_card" />-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/thumbs_down"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="12dp"-->
+<!--            android:layout_marginEnd="36dp"-->
+<!--            android:src="@drawable/icons8_thumbs_down_24"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/Comment_card" />-->
+
+        <TextView
+            android:id="@+id/comment_date_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="48dp"
+            android:text="25/04/2022 11:30 am"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Comment_card" />
+
+        <TextView
+            android:id="@+id/account_name_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="29dp"
+            android:text="username"
+            app:layout_constraintStart_toEndOf="@+id/header_view_comments"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RatingBar
+            android:contentDescription="@string/app_rating"
+            android:isIndicator="true"
+            android:rating="4"
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="42dp"
+            android:layout_marginTop="18dp"
+            android:numStars="5"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/commentRemove"
+            android:layout_width="17dp"
+            android:layout_height="21dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

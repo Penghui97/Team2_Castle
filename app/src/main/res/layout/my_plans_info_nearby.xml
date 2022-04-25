@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_marginBottom="20dp"
     tools:context=".MyPlansInfoNearbyActivity">
 
 
@@ -26,7 +27,8 @@
         android:layout_weight="15"
         android:layout_marginHorizontal="120dp"
         android:onClick="onClick"
-        android:text="return">
+        android:text="@string/return_"
+        tools:ignore="UsingOnClickInXml">
 
     </Button>
 
