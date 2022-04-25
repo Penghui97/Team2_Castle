@@ -24,13 +24,13 @@
 
         <RatingBar
             android:id="@+id/commentInputRating"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="42dp"
-            android:paddingHorizontal="85dp"
-            android:contentDescription="@string/app_rating"
+
+
             android:stepSize="1"
             android:numStars="5"
-            android:rating="4"
+            android:rating="5"
             android:scaleX="0.5"
             android:scaleY="0.5" />
     </LinearLayout>
@@ -50,7 +50,7 @@
             android:background="#F3F3F3"
             android:hint="@string/evaluate_this_app"
             android:padding="5dp"
-            android:textColorHint="@color/black" />
+            android:textColorHint="@color/gray" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="70dp"
