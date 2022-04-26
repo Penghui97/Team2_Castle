@@ -250,7 +250,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //get data
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void getDataFromSpf(){
-        SharedPreferences spfRecord = getSharedPreferences("spfRecord", MODE_PRIVATE);
+        SharedPreferences spfRecord = getSharedPreferences("spfRecord"+username, MODE_PRIVATE);
         String image64 = spfRecord.getString("image_64","");
         imageView.setImageBitmap(ImageUtil.base64ToImage(image64));
         drawerImage.setImageBitmap(ImageUtil.base64ToImage(image64));

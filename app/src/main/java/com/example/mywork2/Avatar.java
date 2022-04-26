@@ -51,12 +51,17 @@ public class Avatar extends AppCompatActivity {
     File imageTemp;
     Bitmap bitmap;
     TextView savePhoto;
+    String username;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_avatar);
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        username = (String)extras.get("username");
 
         //set bottom view
         bottomSheetDialog = new BottomSheetDialog(Avatar.this,R.style.BottomSheetDialogTheme);
@@ -84,6 +89,7 @@ public class Avatar extends AppCompatActivity {
 
         imageView = findViewById(R.id.avatar);
         imageView.setOnClickListener(this::bottomSheet);
+
         initData();
         /*from_cam = findViewById(R.id.from_camera);
         from_cam.setOnClickListener(this::takePhoto);
@@ -314,7 +320,7 @@ public class Avatar extends AppCompatActivity {
     //method to save the photo
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void save(View view){
-        SharedPreferences spfRecord = getSharedPreferences("spfRecord", MODE_PRIVATE);
+        SharedPreferences spfRecord = getSharedPreferences("spfRecord"+username, MODE_PRIVATE);
         SharedPreferences.Editor edit = spfRecord.edit();
 
         edit.putString("image_64", imageBase64);
@@ -330,7 +336,7 @@ public class Avatar extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void getDataFromSpf() {
-        SharedPreferences spfRecord = getSharedPreferences("spfRecord", MODE_PRIVATE);
+        SharedPreferences spfRecord = getSharedPreferences("spfRecord"+username, MODE_PRIVATE);
         String image64 = spfRecord.getString("image_64","");
         imageView.setImageBitmap(ImageUtil.base64ToImage(image64));
     }
