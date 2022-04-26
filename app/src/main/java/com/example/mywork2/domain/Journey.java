@@ -40,6 +40,14 @@ public class Journey {
         }
         return res;
     }
+    //get the all the journey price
+    public int getJourneyPrice(){
+        int res = getSinglePrice();
+        for(Route route : returnRoutes){
+            res += route.getPrice();
+        }
+        return res;
+    }
     //get all the price including entrance and route fee
     public int getTotalPrice(){
         int res = getSinglePrice();

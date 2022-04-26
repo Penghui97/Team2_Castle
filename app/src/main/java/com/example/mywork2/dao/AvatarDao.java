@@ -13,11 +13,11 @@ public class AvatarDao {
     //or overload the old avatar
     public void addAvatar(String username, byte[] avatar){
         //if the user don't have a avatar
-        String sql = "insert into avatar(image, username) values(?,?)";
+        String sql = "insert into Avatars(image, username) values(?,?)";
         //if the user has a old avatar
         byte[] oldAvatar = getAvatarByUsername(username);
         if(oldAvatar == null || oldAvatar.length == 0){
-            sql = "update avatar set image = ? where username = ?";
+            sql = "update Avatars set image = ? where username = ?";
         }
         Connection connection = DBUtil.getConnection();
         PreparedStatement ps = null;
@@ -35,7 +35,7 @@ public class AvatarDao {
 
     //get the avatar by username
     public byte[] getAvatarByUsername(String username){
-        String sql = "select * from avatar where username=?";
+        String sql = "select * from Avatars where username=?";
         Connection connection = DBUtil.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;

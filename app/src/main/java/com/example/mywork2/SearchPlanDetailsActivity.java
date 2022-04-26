@@ -383,6 +383,12 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
             textView.setTextSize(15);
             returnRoutesLayout.addView(textView);
         }
+
+        //the price details
+//        currentJourney.getJourneyPrice();
+//        currentJourney.getCastle().getPrice();
+//        ticketNum;
+//        currentJourney.getTotalPrice();
     }
 
     public void timeNotAppropriate(){

@@ -23,6 +23,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.mywork2.Dialog.MyPlansDialoge;
 import com.example.mywork2.MainActivity;
 import com.example.mywork2.MyPlansInfoActivity;
 import com.example.mywork2.MyPlansInfoNearbyActivity;
@@ -56,6 +57,7 @@ public class MyPlansFragment extends Fragment{
     private ArrayList<DepartureTime> returnRouteDepartureTimes;
     public LinearLayout myPlanInfoLayout;
     public LinearLayout myPlanInfoRemoveNumLayout;
+    private MyPlansDialoge myPlansDialoge;
 
     public MyPlansFragment() {
         // Required empty public constructor
@@ -125,11 +127,14 @@ public class MyPlansFragment extends Fragment{
         //start to get the users information from the database
         getTickets();
 
+        myPlansDialoge = new MyPlansDialoge();
+        myPlansDialoge.setMyFragment(this);
         //set the click listeners in the info page
         //the return button
         this.view.findViewById(R.id.myPlanInfoReturn).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 myPlanInfoLayout.setVisibility(View.GONE);
             }
         });
@@ -162,6 +167,8 @@ public class MyPlansFragment extends Fragment{
                 }else{
                     //give the number user can choose
                     showRemoveNumLayout();
+                    myPlansDialoge.setTicketNums(myPlanInfoRemoveNum.getTabCount());
+                    myPlansDialoge.show(getParentFragmentManager(),"dialog");
                 }
             }
         });
@@ -202,7 +209,35 @@ public class MyPlansFragment extends Fragment{
             }
         });
 
+
+
         return view;
+    }
+
+    public void returnTicketsInDialog(int removeNum){
+        int boughtNum = currentTicket.getQuantity();
+        if(removeNum > boughtNum) return;
+        //the user remove all tickets
+        if(removeNum == boughtNum){
+            if (currentTicket.isPaid()) {
+                horseRefundAllTickets(currentTicket.getUsername());
+            } else {
+                removeAllTicketsById(currentTicket.getTicketId());
+                myPlansDialoge.dismiss();
+                alertMessage("remove success");
+            }
+        }
+        //the user remove not all tickets
+        if(removeNum < boughtNum){
+            if (currentTicket.isPaid()) {
+                horseRefundTickets(currentTicket.getUsername(), removeNum);
+            } else {
+                removeTicketsById(currentTicket.getTicketId(), removeNum);
+                myPlansDialoge.dismiss();
+                alertMessage("remove success");
+            }
+        }
+
     }
 
     //flush my plan list
@@ -449,7 +484,7 @@ public class MyPlansFragment extends Fragment{
 
     //user can choose the num to remove or refund
     public void showRemoveNumLayout(){
-        myPlanInfoRemoveNumLayout.setVisibility(View.VISIBLE);
+        //myPlanInfoRemoveNumLayout.setVisibility(View.VISIBLE);
         int labelNum = myPlanInfoRemoveNum.getTabCount();
         //show all the labels
         for(int i = labelNum; i < 5; i++){
@@ -597,12 +632,19 @@ public class MyPlansFragment extends Fragment{
             Button removeButton2 = this.view.findViewById(R.id.myPlanInfoRemoveNumButton);
             removeButton.setText("refund");
             removeButton2.setText("refund");
+            myPlansDialoge.setDialogTitle("How many tickets are you going to delete ?");
+            myPlansDialoge.setRemoveOrRefund("refund");
+
         }else{
             this.view.findViewById(R.id.myPlanInfoBuy).setVisibility(View.VISIBLE);
             Button removeButton = this.view.findViewById(R.id.myPlanInfoRemove);
             Button removeButton2 = this.view.findViewById(R.id.myPlanInfoRemoveNumButton);
             removeButton.setText("remove");
             removeButton2.setText("remove");
+            myPlansDialoge.setDialogTitle("How many plans are you going to remove ?");
+            myPlansDialoge.setRemoveOrRefund("remove");
+
+
         }
     }
 
