@@ -226,7 +226,7 @@ public class Avatar extends AppCompatActivity {
     }
 
     private void resolveMSDContent(Uri uri,String id) {
-        File file = new File(getCacheDir(),"temp_file"+getContentResolver().getType(uri).split("/")[1]);
+        File file = new File(getExternalCacheDir(),"temp_file"+getContentResolver().getType(uri).split("/")[1]);
         try {
             InputStream inputStream = getContentResolver().openInputStream(uri);
             OutputStream outputStream = new FileOutputStream(file);
@@ -270,7 +270,8 @@ public class Avatar extends AppCompatActivity {
     private void displayImage(String imagePath){
 
         if(imagePath!=null){
-            Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+            bitmap = BitmapFactory.decodeFile(imagePath);
+
             imageView.setImageBitmap(bitmap);
             //now we can save the photo from album
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -293,8 +294,19 @@ public class Avatar extends AppCompatActivity {
     }
 
     private void openAlbum() {
+        //open the Dir
         Intent intent = new Intent("android.intent.action.GET_CONTENT");
+        //set IMG type
         intent.setType("image/*");
+        //imageTemp = new File(getExternalCacheDir(),"imageOut.jpeg");
+        //check if there is already a cache photo. If yes, delete it.
+//            if(imageTemp.exists())
+//                imageTemp.delete();
+//            try {
+//                imageTemp.createNewFile();
+//            }catch (IOException e){
+//                e.printStackTrace();
+//            }
         startActivityForResult(intent,REQUEST_CODE_CHOOSE);
     }
 
