@@ -100,7 +100,7 @@
     <string name="update_language">选择语言后，您需要点击刷新以便初始化应用语言</string>
     <string name="sign_in_to_your_account">登入你的账号</string>
     <string name="refresh">刷新</string>
-    <string name="language_warn">After selecting a language, you need to refresh to initialize the app language</string>
+    <string name="language_warn">After selecting a language, you need to click the refresh button below to initialize the app language</string>
     <string name="editMyaccount">编辑账号信息</string>
     <string name="About_this_app">关于</string>
     <string name="team_2">2 小组</string>

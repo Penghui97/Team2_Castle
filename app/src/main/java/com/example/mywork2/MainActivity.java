@@ -17,10 +17,13 @@ import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -46,6 +49,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private DrawerLayout drawer;
@@ -55,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView nickname_v, email_v;
     public User user, customer;
     public String username, nickname;
+    String lang;
 
 
     //receive the data from the database
@@ -83,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         username = (String)extras.get("username");
-        if(username == null || username == ""){
+        if(username == null || username.equals("")){
             username = "root";
         }
         //show the particular user's info
@@ -194,6 +199,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.account_avatar_head:
                 Intent intent1 = new Intent(MainActivity.this,Avatar.class);
+                intent1.putExtra("username", username);
                 startActivity(intent1);
             default:
                 break;
@@ -208,12 +214,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageView = findViewById(R.id.avatar);
     }
 
+    private void setLocale(String lang) {
+        //Initialize resources
+        Resources resources = getResources();
+        //Initialize metrics
+        DisplayMetrics metrics = resources.getDisplayMetrics();
+        //initialize configurations
+        Configuration configuration = resources.getConfiguration();
+        //initialize locale
+        configuration.locale = new Locale(lang);
+        //update configuration
+        resources.updateConfiguration(configuration,metrics);
+        onConfigurationChanged(configuration);
+
+    }
+
     /**
      * methods to initialize data
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void initData(){
-
+        SharedPreferences spfLang = getSharedPreferences("spfLang", MODE_PRIVATE);
+        lang = spfLang.getString("Lang","");
+        if (lang.equals("en")){//setting language
+            setLocale(lang);
+        }else if (lang.equals("zh")){
+            setLocale(lang);
+        }else {
+            setLocale("en");
+        }
         showUserInfo();
         getDataFromSpf();
     }

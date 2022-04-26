@@ -128,10 +128,10 @@
     <string name="log_out">Log out</string>
     <string name="castles">Castles</string>
     <string name="book">Book</string>
-    <string name="update_language">After selecting a language, you need to refresh to initialize the app language</string>
+    <string name="update_language">After selecting a language, you need to click the refresh button below to initialize the app language</string>
     <string name="sign_in_to_your_account">Sign in to your account</string>
     <string name="refresh">Refresh</string>
-    <string name="language_warn">选择语言后，您需要点击刷新以便初始化应用语言</string>
+    <string name="language_warn">选择语言后，您需要点击下方刷新按钮以便初始化应用语言</string>
     <string name="editMyaccount">Edit My Account</string>
     <string name="About_this_app">About this app</string>
     <string name="team_2">Team 2</string>

@@ -226,7 +226,7 @@ public class Avatar extends AppCompatActivity {
     }
 
     private void resolveMSDContent(Uri uri,String id) {
-        File file = new File(getExternalCacheDir(),"temp_file"+getContentResolver().getType(uri).split("/")[1]);
+        File file = new File(getCacheDir(),"temp_file"+getContentResolver().getType(uri).split("/")[1]);
         try {
             InputStream inputStream = getContentResolver().openInputStream(uri);
             OutputStream outputStream = new FileOutputStream(file);
