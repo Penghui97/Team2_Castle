@@ -34,7 +34,7 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
     private View bottomView;
     private ConstraintLayout username,email,account_username, password_edit;
     private TextView bottomHeader,warningMessage, account_nickname, account_email,
-            password_w, confirm_w;
+            password_w, confirm_w, username_tv;
     private EditText change, password, confirm;
     private Button bottomSaveButton, bottomCancelButton;
     private User user, customer;
@@ -62,12 +62,12 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
             }else if (msg.what == 0x44){
                 bottomSheetDialog.dismiss();
                 emailNotChanged();
+
             }else if (msg.what == 0x55){
                 bottomSheetDialog.dismiss();
                 passwordChanged();
                 hideEditPassword();
             }
-            super.handleMessage(msg);
         }
     };
 
@@ -103,6 +103,8 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
         account_email = findViewById(R.id.account_email_address);
         account_username = findViewById(R.id.account_username_show);
         account_username.setOnClickListener(this);
+        username_tv = findViewById(R.id.account_username);
+        username_tv.setText(username_);
 
         password_edit = findViewById(R.id.account_password_edit);
         password_edit.setOnClickListener(this);
@@ -233,7 +235,6 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
             case R.id.account_password_edit:
                 showEditPassword();
                 bottomHeader.setText(R.string.changepassword);
-                change.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 change.setHint(R.string.enter_you_old_password_here);
                 bottomSheetDialog.show();
                 bottomSaveButton.setOnClickListener(view1 -> {
@@ -296,7 +297,7 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
 
     //show the edit views of password
     public void showEditPassword(){
-        change.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        change.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
         change.setText("");
         password.setText("");
         confirm.setText("");

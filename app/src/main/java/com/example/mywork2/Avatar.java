@@ -3,10 +3,12 @@ package com.example.mywork2;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -21,6 +23,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.text.TextUtils;
@@ -53,6 +57,28 @@ public class Avatar extends AppCompatActivity {
     Bitmap bitmap;
     TextView savePhoto;
     String username;
+
+    //receive the data from the database
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler() {
+        @RequiresApi(api = Build.VERSION_CODES.O)
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            if (msg.what == 0x11) {
+                imageView.setImageBitmap(ImageUtil.base64ToImage(imageBase64));
+                initData();
+            }else if (msg.what == 0x22){
+                noAvatar();
+            }
+        }
+    };
+
+    private void noAvatar() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.noavatar).setNegativeButton("OK"
+                , (dialogInterface,i) -> dialogInterface.dismiss()).show();
+        bottomSheetDialog.dismiss();
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -305,15 +331,6 @@ public class Avatar extends AppCompatActivity {
         Intent intent = new Intent("android.intent.action.GET_CONTENT");
         //set IMG type
         intent.setType("image/*");
-        //imageTemp = new File(getExternalCacheDir(),"imageOut.jpeg");
-        //check if there is already a cache photo. If yes, delete it.
-//            if(imageTemp.exists())
-//                imageTemp.delete();
-//            try {
-//                imageTemp.createNewFile();
-//            }catch (IOException e){
-//                e.printStackTrace();
-//            }
         startActivityForResult(intent,REQUEST_CODE_CHOOSE);
     }
 
@@ -350,7 +367,33 @@ public class Avatar extends AppCompatActivity {
     public void getDataFromSpf() {
         SharedPreferences spfRecord = getSharedPreferences("spfRecord"+username, MODE_PRIVATE);
         String image64 = spfRecord.getString("image_64","");
-        imageView.setImageBitmap(ImageUtil.base64ToImage(image64));
+        if (image64.length()!=0){//if there is the avatar in local cache
+            imageView.setImageBitmap(ImageUtil.base64ToImage(image64));
+        }else {//if there is no avatar in local
+            getIMGFromDB();
+        }
+
+    }
+
+    private void getIMGFromDB() {
+        new Thread(()->{
+            AvatarDao avatarDao = new AvatarDao();
+            byte[] bytes = avatarDao.getAvatarByUsername(username);
+            if(bytes!=null){//if the user has an avatar in DB
+                imageBase64 = ImageUtil.ByteArray2Base64(bytes);
+                SharedPreferences spfRecord = getSharedPreferences("spfRecord"+username, MODE_PRIVATE);
+                SharedPreferences.Editor edit = spfRecord.edit();
+                edit.putString("image_64", imageBase64);
+                edit.apply();
+                Message message = handler.obtainMessage();
+                message.what = 0x11;
+                handler.sendMessage(message);
+            }else {//if the user has no avatar in DB
+                Message message = handler.obtainMessage();
+                message.what = 0x22;
+                handler.sendMessage(message);
+            }
+        }).start();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

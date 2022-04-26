@@ -194,6 +194,8 @@
     <string name="passwordchanged">Password changed successfully !!!</string>
     <string name="changepassword">Change your password</string>
     <string name="wrongdatabase">There is something wrong with our database</string>
+    <string name="noavatar">You haven\'t uploaded an avatar</string>
+    <string name="click_the_photo_to_upload_your_avatar">Click the photo to upload your avatar</string>
 
 
 </resources>

@@ -163,6 +163,8 @@
     <string name="passwordchanged">密码更改成功 !!!</string>
     <string name="changepassword">修改密码</string>
     <string name="wrongdatabase">数据库错误</string>
+    <string name="noavatar">您未上传过头像</string>
+    <string name="click_the_photo_to_upload_your_avatar">点击图片以上传您的头像</string>
 
 
 </resources>
