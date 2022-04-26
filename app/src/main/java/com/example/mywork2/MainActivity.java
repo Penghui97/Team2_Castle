@@ -50,6 +50,7 @@ import com.google.android.material.navigation.NavigationView;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private DrawerLayout drawer;
@@ -252,8 +253,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void getDataFromSpf(){
         SharedPreferences spfRecord = getSharedPreferences("spfRecord"+username, MODE_PRIVATE);
         String image64 = spfRecord.getString("image_64","");
-        imageView.setImageBitmap(ImageUtil.base64ToImage(image64));
-        drawerImage.setImageBitmap(ImageUtil.base64ToImage(image64));
+        if(image64!=null){//if the avatar is found locally, set it without accessing database
+            imageView.setImageBitmap(ImageUtil.base64ToImage(image64));
+            drawerImage.setImageBitmap(ImageUtil.base64ToImage(image64));
+        }else {//get avatar from Database
+            getAvatarFromDB();
+        }
 
         //change avatars in other layouts
         //created by Penghui
@@ -265,7 +270,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-
+    private void getAvatarFromDB() {
+    }
 
 
     @Override

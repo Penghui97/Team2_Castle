@@ -44,8 +44,9 @@ public class AvatarDao {
             ps = connection.prepareStatement(sql);
             ps.setString(1, username);
             rs = ps.executeQuery();
-            rs.next();
-            bytes = rs.getBytes("image");
+            while (rs.next()){
+                bytes = rs.getBytes("image");
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }finally {

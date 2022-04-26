@@ -31,6 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mywork2.Util.ImageUtil;
+import com.example.mywork2.dao.AvatarDao;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.io.File;
@@ -322,9 +323,11 @@ public class Avatar extends AppCompatActivity {
     public void save(View view){
         SharedPreferences spfRecord = getSharedPreferences("spfRecord"+username, MODE_PRIVATE);
         SharedPreferences.Editor edit = spfRecord.edit();
-
         edit.putString("image_64", imageBase64);
         edit.apply();
+        //save avatar in db
+        saveToDB();
+
         //if no photo chosen and you click save, it will close the bottom sheet
         savePhoto.setOnClickListener(view1 -> {
             bottomSheetDialog.dismiss();
@@ -332,6 +335,15 @@ public class Avatar extends AppCompatActivity {
         this.finish();
         bottomSheetDialog.dismiss();
 
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void saveToDB() {
+        byte [] bytes = ImageUtil.Base64ToByteArray(imageBase64);
+        new Thread(()->{
+            AvatarDao avatarDao = new AvatarDao();
+            avatarDao.addAvatar(username,bytes);
+        }).start();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
