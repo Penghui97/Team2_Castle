@@ -3,6 +3,7 @@ package com.example.mywork2;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -52,6 +53,8 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
     private String time;
     private String username;
     private int ticketNum;
+    private String departure;
+    private String destination;
 
     //receive the data from the database
     @SuppressLint("HandlerLeak")
@@ -107,8 +110,8 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         //get the input of the user
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        String departure = (String) extras.get("departure");
-        String destination = (String) extras.get("destination");
+        departure = (String) extras.get("departure");
+        destination = (String) extras.get("destination");
         time = (String) extras.get("time");
         date = (String) extras.get("date");
         username = (String) extras.get("username");
@@ -330,6 +333,9 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         Time currentTime = new Time(time);
 
         LinearLayout routesLayout = bottomView.findViewById(R.id.searchPlanInfoRoutes);
+        TextView goCost = new TextView(bottomView.getContext());
+        goCost.setText("transportation cost: "+""+" ￡\n");
+        routesLayout.addView(goCost);
         for (int i = 0; i < journey.getRoutes().size(); i++) {
             Route route = journey.getRoutes().get(i);
 
@@ -403,11 +409,27 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
 
         }
 
+        //show castle info
+        LinearLayout castleDetails = bottomView.findViewById(R.id.castle_plan);
+        LinearLayout castleView = new LinearLayout(bottomView.getContext());
+        castleView.setPadding(20,20,20,20);
+        ImageView castleImage = new ImageView(bottomView.getContext());
+        castleImage.setImageResource(R.drawable.icons8_castle_32);
+        TextView castleTitle = new TextView(bottomView.getContext());
+        castleTitle.setText("   "+destination+"        "+currentJourney.getCastle().getPrice()+ " ￡");
+        castleView.addView(castleImage);
+        castleView.addView(castleTitle);
+        castleDetails.addView(castleView);
+
+
         //give 2 hours to explore the castle
         currentTime.add(120);
         returnTime = currentTime.toString();
         //show the return routes
         LinearLayout returnRoutesLayout = bottomView.findViewById(R.id.searchPlanInfoReturnRoutes);
+        TextView returnCost = new TextView(bottomView.getContext());
+        returnCost.setText("transportation cost: "+""+" ￡\n");
+        returnRoutesLayout.addView(returnCost);
 
         for (int i = 0; i < journey.getReturnRoutes().size(); i++) {
             Route route = journey.getReturnRoutes().get(i);
@@ -490,6 +512,11 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
             returnRoutesLayout.addView(arrowLayout);
             returnRoutesLayout.addView(endPoint);
         }
+
+        LinearLayout totalCost = bottomView.findViewById(R.id.totoalCost_plan);
+        TextView totalCostText = new TextView(bottomView.getContext());
+        totalCostText.setText("Total price: "+""+" ￡");
+        totalCost.addView(totalCostText);
 
         //the price details
 //        currentJourney.getJourneyPrice();

@@ -28,6 +28,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/castle_Name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="18dp"
@@ -52,7 +53,7 @@
 
                     <EditText
                         style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:duplicateParentState="false"
@@ -71,10 +72,11 @@
                         android:importantForAutofill="no" />
 
                     <EditText
+                        android:id="@+id/create_time"
                         style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="2"
                         android:duplicateParentState="false"
                         android:ems="10"
                         android:enabled="false"
@@ -101,11 +103,11 @@
 
                         android:layout_marginLeft="12dp"
                         android:layout_marginRight="12dp"
-                        android:src="@android:drawable/ic_menu_today" />
+                        android:src="@drawable/ic_baseline_location_on_24" />
 
                     <EditText
                         style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:duplicateParentState="false"
@@ -123,10 +125,11 @@
                         android:textSize="14sp" />
 
                     <EditText
+                        android:id="@+id/castleLocation"
                         style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="2"
                         android:duplicateParentState="false"
                         android:editable="false"
                         android:ems="10"
@@ -166,13 +169,13 @@
 
 
                     <TextView
+                        android:id="@+id/brief_intro"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="6dp"
                         android:layout_weight="1"
                         android:duplicateParentState="false"
                         android:ems="10"
-
                         android:padding="5dp"
                         android:shadowColor="@color/white"
                         android:singleLine="false"
