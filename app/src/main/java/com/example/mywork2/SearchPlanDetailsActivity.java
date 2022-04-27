@@ -138,14 +138,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         save.setOnClickListener(this);
         bottomSheetDialog.setContentView(bottomView);
 
-        if(routeDepartureTimes == null || returnRouteDepartureTimes == null){
-            //if there is no bus or train at this time at this stop
-            //make the route views disappear
-            //show a signal to the user
-            //and break this loop
-            alertTime();
-            return;
-        }
+
 
     }
 
@@ -334,12 +327,20 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         fromView.append(journey.getDeparture());
         toView.append(journey.getCastle().getName());
 
+//        if(routeDepartureTimes == null || returnRouteDepartureTimes == null){
+//            //if there is no bus or train at this time at this stop
+//            //make the route views disappear
+//            //show a signal to the user
+//            //and break this loop
+//            timeNotAppropriate();
+//            return;
+//        }
         if(routeDepartureTimes == null || returnRouteDepartureTimes == null){
             //if there is no bus or train at this time at this stop
             //make the route views disappear
             //show a signal to the user
             //and break this loop
-            timeNotAppropriate();
+            alertTime();
             return;
         }
         //create a time object to log the time
@@ -571,7 +572,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
             @Override
             public void run() {
                 if(currentJourney != null){
-                    date = transferTimeFormat(date);
+//                    date = transferTimeFormat(date);
                     Ticket ticket = currentJourney.toTicket(username, date, time, returnTime, ticketNum);
                     TicketDao ticketDao = new TicketDao();
                     ticketDao.addTicket(ticket);
