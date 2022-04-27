@@ -49,7 +49,7 @@ public class CastleDetails extends AppCompatActivity implements View.OnClickList
                 , FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
 
         castleViewPageAdapter.addFragment(new PanelOverCastleFragment(castleName,linkAbout),"castle");
-        castleViewPageAdapter.addFragment(new PanelTicketsFragment(),"tickets");
+        castleViewPageAdapter.addFragment(new PanelTicketsFragment(castleName),"tickets");
         castleViewPageAdapter.addFragment(new CastleMapFragment(),"map");
         viewPager.setAdapter(castleViewPageAdapter);
 

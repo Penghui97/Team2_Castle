@@ -82,9 +82,13 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
                     //the ticket is saved successfully
                     alertSuccess();
                     break;
+                case 0x98:
+                    //check the time of the journeys
+                    journeys = (ArrayList<Journey>) msg.obj;
+                    checkJourneysTime();
+                    break;
                 case 0x99:
                     //receive the searched journeys
-                    journeys = (ArrayList<Journey>) msg.obj;
                     showJourneys(journeys);
                     break;
             }
@@ -172,8 +176,60 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
                         journeys.remove(i);
                 }
                 Message message = handler.obtainMessage();
-                message.what = 0x99;
+                message.what = 0x98;
                 message.obj = journeys;
+                handler.sendMessage(message);
+            }
+        }).start();
+    }
+
+    //check the times of the journeys
+    public void checkJourneysTime(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                a:for (int i = journeys.size() - 1; i >= 0; i--) {
+                    ArrayList<DepartureTime> tempRouteDepartureTimes = new ArrayList<>();
+                    ArrayList<DepartureTime> tempReturnRouteDepartureTimes = new ArrayList<>();
+                    DepartureTimeDao departureTimeDao = new DepartureTimeDao();
+                    Time currentTime = new Time(time);
+                    for (Route route : journeys.get(i).getRoutes()) {
+                        //if this route is not by walk
+                        //check the time of the vehicle
+                        if (!route.getTransport().getType().equals("walk")) {
+                            DepartureTime departureTime = departureTimeDao.getDepartureTimeByRouteId(route.getRouteId(), currentTime.toString());
+                            if (departureTime == null) {
+                                //there is no appropriate bus
+                                //check next journey
+                                journeys.remove(i);
+                                continue a;
+                            }
+                            tempRouteDepartureTimes.add(departureTime);
+                            currentTime.setTime(departureTime.getDepTime());
+                        }
+                        currentTime.add(route.getDuration());
+                    }
+                    //give 2 hours to explore the castle
+                    currentTime.add(120);
+                    for (Route route : journeys.get(i).getReturnRoutes()) {
+                        //if this route is not by walk
+                        //check the time of the vehicle
+                        if (!route.getTransport().getType().equals("walk")) {
+                            DepartureTime departureTime = departureTimeDao.getDepartureTimeByRouteId(route.getRouteId(), currentTime.toString());
+                            if (departureTime == null) {
+                                //there is no appropriate bus
+                                //check next journey
+                                journeys.remove(i);
+                                continue a;
+                            }
+                            tempReturnRouteDepartureTimes.add(departureTime);
+                            currentTime.setTime(departureTime.getDepTime());
+                        }
+                        currentTime.add(route.getDuration());
+                    }
+                }
+                Message message = handler.obtainMessage();
+                message.what = 0x99;
                 handler.sendMessage(message);
             }
         }).start();
@@ -182,6 +238,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
     //show the required journeys
     public void showJourneys(ArrayList<Journey> journeys) {
         if (journeys == null || journeys.size() == 0) {
+//            alertTime();
             TextView textView = new TextView(this);
             textView.setText("Sorry, no results fit your requirements.");
             searchPlanDetailsLayout.addView(textView);
