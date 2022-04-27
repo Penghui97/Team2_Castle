@@ -49,14 +49,14 @@ public class LogInMainFragment extends Fragment implements View.OnClickListener{
         TextView newAccount = view.findViewById(R.id.create_account);
         newAccount.setOnClickListener(this);
 
-        TextView facebook = view.findViewById(R.id.facebook_sign_in);
-        facebook.setOnClickListener(this);
-
-        TextView google = view.findViewById(R.id.google_sign_in);
-        google.setOnClickListener(this);
-
-        TextView twitter = view.findViewById(R.id.twitter_sign_in);
-        twitter.setOnClickListener(this);
+//        TextView facebook = view.findViewById(R.id.facebook_sign_in);
+//        facebook.setOnClickListener(this);
+//
+//        TextView google = view.findViewById(R.id.google_sign_in);
+//        google.setOnClickListener(this);
+//
+//        TextView twitter = view.findViewById(R.id.twitter_sign_in);
+//        twitter.setOnClickListener(this);
 
 
 
@@ -75,18 +75,18 @@ public class LogInMainFragment extends Fragment implements View.OnClickListener{
             case R.id.create_account:
                 navController.navigate(R.id.action_logInMainFragment_to_newAccountFragment);
                 break;
-            case R.id.facebook_sign_in:
-                navController.navigate(R.id.action_logInMainFragment_to_googleTwitterFacebookLogIn);
-                GoogleTwitterFacebookLogIn.setTypes("facebook");
-                break;
-            case R.id.google_sign_in:
-                navController.navigate(R.id.action_logInMainFragment_to_googleTwitterFacebookLogIn);
-                GoogleTwitterFacebookLogIn.setTypes("google");
-                break;
-            case R.id.twitter_sign_in:
-                navController.navigate(R.id.action_logInMainFragment_to_googleTwitterFacebookLogIn);
-                GoogleTwitterFacebookLogIn.setTypes("twitter");
-                break;
+//            case R.id.facebook_sign_in:
+//                navController.navigate(R.id.action_logInMainFragment_to_googleTwitterFacebookLogIn);
+//                GoogleTwitterFacebookLogIn.setTypes("facebook");
+//                break;
+//            case R.id.google_sign_in:
+//                navController.navigate(R.id.action_logInMainFragment_to_googleTwitterFacebookLogIn);
+//                GoogleTwitterFacebookLogIn.setTypes("google");
+//                break;
+//            case R.id.twitter_sign_in:
+//                navController.navigate(R.id.action_logInMainFragment_to_googleTwitterFacebookLogIn);
+//                GoogleTwitterFacebookLogIn.setTypes("twitter");
+//                break;
             default:
                 break;
 
