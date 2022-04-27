@@ -138,6 +138,15 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         save.setOnClickListener(this);
         bottomSheetDialog.setContentView(bottomView);
 
+        if(routeDepartureTimes == null || returnRouteDepartureTimes == null){
+            //if there is no bus or train at this time at this stop
+            //make the route views disappear
+            //show a signal to the user
+            //and break this loop
+            alertTime();
+            return;
+        }
+
     }
 
     @Override
@@ -305,11 +314,15 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         TextView toView = bottomView.findViewById(R.id.searchPlanInfoTo);
         LinearLayout routesLayout = bottomView.findViewById(R.id.searchPlanInfoRoutes);
         LinearLayout returnRoutesLayout = bottomView.findViewById(R.id.searchPlanInfoReturnRoutes);
+        LinearLayout castleDetails = bottomView.findViewById(R.id.castle_plan);
+        LinearLayout totalCost = bottomView.findViewById(R.id.totoalCost_plan);
 
         fromView.setText("");
         toView.setText("");
         routesLayout.removeAllViews();
         returnRoutesLayout.removeAllViews();
+        castleDetails.removeAllViews();
+        totalCost.removeAllViews();
     }
 
     //show the journey information
@@ -591,6 +604,19 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
                 .create()
                 .show();
     }
+    //when time is not suitable
+    public void alertTime(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("your depart time is too late !!! please select another time")
+                .setPositiveButton(R.string.return_page, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                })
+                .create().show();
+    }
+
 
     //transfer dd/MM/yyyy to yyyy/MM/dd
     public String transferTimeFormat(String strDate) {
