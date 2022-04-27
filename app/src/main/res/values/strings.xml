@@ -197,6 +197,7 @@
     <string name="noavatar">You haven\'t uploaded an avatar</string>
     <string name="click_the_photo_to_upload_your_avatar">Click the photo to upload your avatar</string>
     <string name="return_page">return</string>
+    <string name="ticket">ticket</string>
 
 
 </resources>

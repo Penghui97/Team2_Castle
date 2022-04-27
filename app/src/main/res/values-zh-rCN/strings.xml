@@ -166,6 +166,7 @@
     <string name="noavatar">您未上传过头像</string>
     <string name="click_the_photo_to_upload_your_avatar">点击图片以上传您的头像</string>
     <string name="return_page">返回</string>
+    <string name="ticket">门票</string>
 
 
 </resources>

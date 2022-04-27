@@ -136,7 +136,18 @@ public class SearchFragment extends Fragment {
         onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int i, int i1) {
-                String time = i+":" +i1;
+                String iString = "";
+                if(i<10){
+                    iString += "0";
+                }
+                iString += i;
+
+                String i1String ="";
+                if(i1<10){
+                    i1String += "0";
+                }
+                i1String += i1;
+                String time = iString+":" +i1String;
                 mDisplayTime.setText( time);
             }
         };
