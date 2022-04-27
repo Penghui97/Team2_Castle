@@ -13,7 +13,7 @@ public class POIDao {
 
     //get the pois by the castle name
     public ArrayList<NearbyPOI> getPOIsByCastleName(String castleName){
-        String sql = "select * from NearbyPOI where castleName = ?";
+        String sql = "select * from NearbyPOI where castleName = ? order by rating desc";
         ArrayList<NearbyPOI> nearbyPOIs = new ArrayList<>();
         Connection connection = DBUtil.getConnection();
         PreparedStatement ps = null;

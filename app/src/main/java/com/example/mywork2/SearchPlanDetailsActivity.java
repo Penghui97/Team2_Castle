@@ -519,7 +519,11 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         totalCost.addView(totalCostText);
 
         //the price details
-//        currentJourney.getJourneyPrice();
+        //the go price
+//        currentJourney.getSinglePrice();
+        //the return price
+//        currentJourney.getJourneyPrice() - currentJourney.getSinglePrice();
+        //the castle price
 //        currentJourney.getCastle().getPrice();
 //        ticketNum;
 //        currentJourney.getTotalPrice();
@@ -544,6 +548,8 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         searchPlanInfoLateSignal.addView(textView);
         searchPlanInfoLateSignal.addView(button);
         findViewById(R.id.searchPlanInfoDisappear).setVisibility(View.GONE);
+
+        bottomSheetDialog.dismiss();
     }
 
     //save the journey as a ticket into the database
