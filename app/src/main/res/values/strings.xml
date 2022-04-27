@@ -198,6 +198,9 @@
     <string name="click_the_photo_to_upload_your_avatar">Click the photo to upload your avatar</string>
     <string name="return_page">return</string>
     <string name="ticket">ticket</string>
+    <string name="nowifi">No WiFi connected</string>
+    <string name="campuswifi">You should connect Newcastle University\'s WiFi such as newcastle-university or eduroam to use this app</string>
+    <string name="yourssid">Your WiFi ssid is: </string>
 
 
 </resources>
