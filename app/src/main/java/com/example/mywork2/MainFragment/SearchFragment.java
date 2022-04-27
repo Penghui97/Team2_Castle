@@ -95,7 +95,19 @@ public class SearchFragment extends Fragment {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month+1;
-                String date = month+"/"+day+"/"+year;
+                String m = "";
+                if(month<10){
+                    m+= 0;
+                }
+                m +=month;
+
+                String d = "";
+                if(day<10){
+                    d+= 0;
+                }
+                d +=day;
+
+                String date = year+"/"+m+"/"+d;
                 mDisplayDate.setText(date);
             }
         };
