@@ -1,8 +1,10 @@
 package com.example.mywork2.Util;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
@@ -11,6 +13,8 @@ import android.util.Log;
 import androidx.annotation.RequiresApi;
 
 import com.example.mywork2.LogInActivity;
+
+import java.util.List;
 
 import static androidx.core.content.ContextCompat.getSystemService;
 
@@ -33,9 +37,16 @@ public class WiFiUtil {
     //check wifi ssid
     public static String getConnectWifiSsid(WifiManager wifiManager){
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+        String ssid = wifiInfo.getSSID();
+        int networkId = wifiInfo.getNetworkId();
+        @SuppressLint("MissingPermission") List<WifiConfiguration> configuredNetworks = wifiManager.getConfiguredNetworks();
+        for (WifiConfiguration wifiConfiguration : configuredNetworks){
+            if(wifiConfiguration.networkId==networkId)
+                ssid = wifiConfiguration.SSID;
+        }
         Log.e("wifiInfo", wifiInfo.toString());
         Log.e("SSID",wifiInfo.getSSID());
-        return wifiInfo.getSSID();
+        return ssid.replace("\"","");
     }
 
 

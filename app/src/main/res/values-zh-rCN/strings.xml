@@ -170,6 +170,7 @@
     <string name="nowifi">WiFi未连接</string>
     <string name="campuswifi">需要连接纽卡斯尔大学的网络比如newcastle-university或者eduroam以使用此应用</string>
     <string name="yourssid">您的WiFi名称是： </string>
+    <string name="cannotgetwifi">无法获取您的WiFi名称，可能是由于您的设备安全性很高</string>
 
 
 </resources>

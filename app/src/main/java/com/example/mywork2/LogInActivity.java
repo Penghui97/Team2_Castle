@@ -46,19 +46,28 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     private void checkWifi() {
         //if wifi is not connected
          wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+         assert wifiManager != null;
         if (WiFiUtil.isWifiConnected(getApplicationContext()).equals("false")){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage(R.string.nowifi).setNegativeButton("OK"
                     , (dialogInterface,i) -> dialogInterface.dismiss()).show();
         }else {//wifi connected, check wifi ssid
-            WiFiUtil wiFiUtil = new WiFiUtil();
             ssid = WiFiUtil.getConnectWifiSsid(wifiManager);
-            if (!(ssid.contains("newcastle")||ssid.contains("eduroam"))){//not campus wifi
+            Log.e("-----------",ssid);
+            if(ssid.equals("<unknown ssid>")){//cannot get ssid
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(getString(R.string.yourssid)+ ssid+
+                builder.setMessage(getString(R.string.cannotgetwifi)+
                         ". "+getString(R.string.campuswifi)).setNegativeButton("OK"
                         , (dialogInterface,i) -> dialogInterface.dismiss()).show();
+            }else {
+                if (!(ssid.contains("newcastle")||ssid.contains("eduroam"))){//not campus wifi
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setMessage(getString(R.string.yourssid)+ ssid+
+                            ". "+getString(R.string.campuswifi)).setNegativeButton("OK"
+                            , (dialogInterface,i) -> dialogInterface.dismiss()).show();
+                }
             }
+
         }
     }
 
