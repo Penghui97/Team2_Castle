@@ -12,6 +12,7 @@ import android.database.Cursor;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -44,13 +45,18 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void checkWifi() {
-        //if wifi is not connected
+
          wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
          assert wifiManager != null;
-        if (WiFiUtil.isWifiConnected(getApplicationContext()).equals("false")){
+        if (WiFiUtil.isWifiConnected(getApplicationContext()).equals("false")){//if wifi is not connected
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage(R.string.nowifi).setNegativeButton("OK"
-                    , (dialogInterface,i) -> dialogInterface.dismiss()).show();
+            builder.setMessage(R.string.nowifi).setNegativeButton(getString(R.string.wlansetting)
+                    , (dialogInterface,i) -> {
+                        dialogInterface.dismiss();
+                        //open WiFi setting
+                        startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+                        finish();
+                    }).show();
         }else {//wifi connected, check wifi ssid
             ssid = WiFiUtil.getConnectWifiSsid(wifiManager);
             Log.e("-----------",ssid);
@@ -63,8 +69,15 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                 if (!(ssid.contains("newcastle")||ssid.contains("eduroam"))){//not campus wifi
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
                     builder.setMessage(getString(R.string.yourssid)+ ssid+
-                            ". "+getString(R.string.campuswifi)).setNegativeButton("OK"
-                            , (dialogInterface,i) -> dialogInterface.dismiss()).show();
+                            ". "+getString(R.string.campuswifi)).setNegativeButton(getString(R.string.wlansetting)
+                            , (dialogInterface,i) -> {
+                                dialogInterface.dismiss();
+                                //open WiFi setting
+                                startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+                                finish();
+
+                            }).setPositiveButton(getString(R.string.withoutwifi),((dialogInterface, i)
+                            -> dialogInterface.dismiss())).show();
                 }
             }
 

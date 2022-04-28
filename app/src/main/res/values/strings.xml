@@ -199,9 +199,12 @@
     <string name="return_page">return</string>
     <string name="ticket">ticket</string>
     <string name="nowifi">No WiFi connected</string>
-    <string name="campuswifi">You should connect Newcastle University\'s WiFi such as newcastle-university or eduroam to use this app</string>
+    <string name="campuswifi">You should connect Newcastle University\'s WiFi such as newcastle-university or eduroam to use this app.
+        If you select Continue without Campus WiFi, you may not be able to login this App</string>
     <string name="yourssid">Your WiFi ssid is: </string>
     <string name="cannotgetwifi">Cannot get your WiFi ssid. Perhaps because your phone is of a high safety protection</string>
+    <string name="wlansetting">Open WLAN setting</string>
+    <string name="withoutwifi">Continue without Campus WiFi</string>
 
 
 </resources>
