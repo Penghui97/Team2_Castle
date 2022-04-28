@@ -3,6 +3,7 @@ package com.example.mywork2;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
@@ -39,6 +40,7 @@ import com.example.mywork2.MyAccount.AppSettingsActivity;
 import com.example.mywork2.MyAccount.CommentsActivity;
 import com.example.mywork2.Util.ImageUtil;
 import com.example.mywork2.Util.UserThreadLocal;
+import com.example.mywork2.dao.AvatarDao;
 import com.example.mywork2.dao.UserDao;
 import com.example.mywork2.domain.DepartureTime;
 import com.example.mywork2.domain.Journey;
@@ -60,12 +62,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView nickname_v, email_v;
     public User user, customer;
     public String username, nickname;
-    String lang;
+    String lang, image64;
 
 
     //receive the data from the database
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
+        @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         public void handleMessage(@NonNull Message msg) {
             switch (msg.what) {
@@ -77,9 +80,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     nickname_v.setText(customer.getNickname());//set the customer's username on the view
                     email_v.setText(customer.getEmail());//set the customer's email on the view
                     break;
+                case 0x33:
+                    imageView.setImageBitmap(ImageUtil.base64ToImage(image64));
+                    drawerImage.setImageBitmap(ImageUtil.base64ToImage(image64));
+                    initData();
+                    break;
+                case 0x44:
+                    noAvatar();
             }
         }
     };
+
+    private void noAvatar() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.noavatar).setNegativeButton("OK"
+                , (dialogInterface,i) -> dialogInterface.dismiss()).show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -252,10 +268,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void getDataFromSpf(){
         SharedPreferences spfRecord = getSharedPreferences("spfRecord"+username, MODE_PRIVATE);
-        String image64 = spfRecord.getString("image_64","");
-        if(image64!=null){//if the avatar is found locally, set it without accessing database
+        image64 = spfRecord.getString("image_64","");
+        if(image64!=null){//if the avatar is found locally, set it without accessing database firstly
+
             imageView.setImageBitmap(ImageUtil.base64ToImage(image64));
             drawerImage.setImageBitmap(ImageUtil.base64ToImage(image64));
+            //and then, update avatar from DB to make sure the latest avatar
+            getAvatarFromDB();
         }else {//get avatar from Database
             getAvatarFromDB();
         }
@@ -271,6 +290,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void getAvatarFromDB() {
+        new Thread(()->{
+            AvatarDao avatarDao = new AvatarDao();
+            byte[] bytes = avatarDao.getAvatarByUsername(username);
+            if(bytes!=null){//if the user has an avatar in DB
+                image64 = ImageUtil.ByteArray2Base64(bytes);
+                SharedPreferences spfRecord = getSharedPreferences("spfRecord"+username, MODE_PRIVATE);
+                SharedPreferences.Editor edit = spfRecord.edit();
+                edit.putString("image_64", image64);
+                edit.apply();
+                Message message = handler.obtainMessage();
+                message.what = 0x33;
+                handler.sendMessage(message);
+            }else {//if the user has no avatar in DB
+                Message message = handler.obtainMessage();
+                message.what = 0x44;
+                handler.sendMessage(message);
+            }
+        }).start();
     }
 
 
