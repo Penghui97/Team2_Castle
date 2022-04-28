@@ -94,7 +94,7 @@
     <string name="date">Date</string>
     <string name="please_select_date">Select Date</string>
     <string name="please_select_time">Select Time</string>
-    <string name="ticket_count">Number of Tickets</string>
+    <string name="ticket_count">Tickets</string>
     <string name="find_plans">find plans</string>
     <string name="username_email">Username/Email</string>
     <string name="login">login</string>
@@ -205,6 +205,11 @@
     <string name="cannotgetwifi">Cannot get your WiFi ssid. Perhaps because your phone is of a high safety protection</string>
     <string name="wlansetting">Open WLAN setting</string>
     <string name="withoutwifi">Continue without Campus WiFi</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
 
 
 </resources>

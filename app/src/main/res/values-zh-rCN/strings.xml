@@ -174,6 +174,11 @@
     <string name="cannotgetwifi">无法获取您的WiFi名称，可能是由于您的设备安全性很高</string>
     <string name="wlansetting">打开WLAN设置</string>
     <string name="withoutwifi">不使用校园网</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
 
 
 </resources>
