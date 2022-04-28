@@ -167,6 +167,13 @@
     <string name="click_the_photo_to_upload_your_avatar">点击图片以上传您的头像</string>
     <string name="return_page">返回</string>
     <string name="ticket">门票</string>
+    <string name="nowifi">WiFi未连接</string>
+    <string name="campuswifi">需要连接纽卡斯尔大学的网络比如newcastle-university或者eduroam以使用此应用。
+    如果您选择不使用校园网，您可能无法登录这个应用</string>
+    <string name="yourssid">您的WiFi名称是： </string>
+    <string name="cannotgetwifi">无法获取您的WiFi名称，可能是由于您的设备安全性很高</string>
+    <string name="wlansetting">打开WLAN设置</string>
+    <string name="withoutwifi">不使用校园网</string>
 
 
 </resources>
