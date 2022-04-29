@@ -3,6 +3,7 @@ package com.example.mywork2;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -51,6 +53,8 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
     private String time;
     private String username;
     private int ticketNum;
+    private String departure;
+    private String destination;
 
     //receive the data from the database
     @SuppressLint("HandlerLeak")
@@ -78,9 +82,13 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
                     //the ticket is saved successfully
                     alertSuccess();
                     break;
+                case 0x98:
+                    //check the time of the journeys
+                    journeys = (ArrayList<Journey>) msg.obj;
+                    checkJourneysTime();
+                    break;
                 case 0x99:
                     //receive the searched journeys
-                    journeys = (ArrayList<Journey>) msg.obj;
                     showJourneys(journeys);
                     break;
             }
@@ -106,8 +114,8 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         //get the input of the user
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        String departure = (String) extras.get("departure");
-        String destination = (String) extras.get("destination");
+        departure = (String) extras.get("departure");
+        destination = (String) extras.get("destination");
         time = (String) extras.get("time");
         date = (String) extras.get("date");
         username = (String) extras.get("username");
@@ -133,6 +141,8 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         save = bottomView.findViewById(R.id.searchPlanInfoSave);
         save.setOnClickListener(this);
         bottomSheetDialog.setContentView(bottomView);
+
+
 
     }
 
@@ -166,8 +176,60 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
                         journeys.remove(i);
                 }
                 Message message = handler.obtainMessage();
-                message.what = 0x99;
+                message.what = 0x98;
                 message.obj = journeys;
+                handler.sendMessage(message);
+            }
+        }).start();
+    }
+
+    //check the times of the journeys
+    public void checkJourneysTime(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                a:for (int i = journeys.size() - 1; i >= 0; i--) {
+                    ArrayList<DepartureTime> tempRouteDepartureTimes = new ArrayList<>();
+                    ArrayList<DepartureTime> tempReturnRouteDepartureTimes = new ArrayList<>();
+                    DepartureTimeDao departureTimeDao = new DepartureTimeDao();
+                    Time currentTime = new Time(time);
+                    for (Route route : journeys.get(i).getRoutes()) {
+                        //if this route is not by walk
+                        //check the time of the vehicle
+                        if (!route.getTransport().getType().equals("walk")) {
+                            DepartureTime departureTime = departureTimeDao.getDepartureTimeByRouteId(route.getRouteId(), currentTime.toString());
+                            if (departureTime == null) {
+                                //there is no appropriate bus
+                                //check next journey
+                                journeys.remove(i);
+                                continue a;
+                            }
+                            tempRouteDepartureTimes.add(departureTime);
+                            currentTime.setTime(departureTime.getDepTime());
+                        }
+                        currentTime.add(route.getDuration());
+                    }
+                    //give 2 hours to explore the castle
+                    currentTime.add(120);
+                    for (Route route : journeys.get(i).getReturnRoutes()) {
+                        //if this route is not by walk
+                        //check the time of the vehicle
+                        if (!route.getTransport().getType().equals("walk")) {
+                            DepartureTime departureTime = departureTimeDao.getDepartureTimeByRouteId(route.getRouteId(), currentTime.toString());
+                            if (departureTime == null) {
+                                //there is no appropriate bus
+                                //check next journey
+                                journeys.remove(i);
+                                continue a;
+                            }
+                            tempReturnRouteDepartureTimes.add(departureTime);
+                            currentTime.setTime(departureTime.getDepTime());
+                        }
+                        currentTime.add(route.getDuration());
+                    }
+                }
+                Message message = handler.obtainMessage();
+                message.what = 0x99;
                 handler.sendMessage(message);
             }
         }).start();
@@ -176,6 +238,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
     //show the required journeys
     public void showJourneys(ArrayList<Journey> journeys) {
         if (journeys == null || journeys.size() == 0) {
+//            alertTime();
             TextView textView = new TextView(this);
             textView.setText("Sorry, no results fit your requirements.");
             searchPlanDetailsLayout.addView(textView);
@@ -301,11 +364,15 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         TextView toView = bottomView.findViewById(R.id.searchPlanInfoTo);
         LinearLayout routesLayout = bottomView.findViewById(R.id.searchPlanInfoRoutes);
         LinearLayout returnRoutesLayout = bottomView.findViewById(R.id.searchPlanInfoReturnRoutes);
+        LinearLayout castleDetails = bottomView.findViewById(R.id.castle_plan);
+        LinearLayout totalCost = bottomView.findViewById(R.id.totoalCost_plan);
 
         fromView.setText("");
         toView.setText("");
         routesLayout.removeAllViews();
         returnRoutesLayout.removeAllViews();
+        castleDetails.removeAllViews();
+        totalCost.removeAllViews();
     }
 
     //show the journey information
@@ -317,18 +384,29 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         fromView.append(journey.getDeparture());
         toView.append(journey.getCastle().getName());
 
+//        if(routeDepartureTimes == null || returnRouteDepartureTimes == null){
+//            //if there is no bus or train at this time at this stop
+//            //make the route views disappear
+//            //show a signal to the user
+//            //and break this loop
+//            timeNotAppropriate();
+//            return;
+//        }
         if(routeDepartureTimes == null || returnRouteDepartureTimes == null){
             //if there is no bus or train at this time at this stop
             //make the route views disappear
             //show a signal to the user
             //and break this loop
-            timeNotAppropriate();
+            alertTime();
             return;
         }
         //create a time object to log the time
         Time currentTime = new Time(time);
 
         LinearLayout routesLayout = bottomView.findViewById(R.id.searchPlanInfoRoutes);
+        TextView goCost = new TextView(bottomView.getContext());
+        goCost.setText("transportation cost: "+""+" ￡\n");
+        routesLayout.addView(goCost);
         for (int i = 0; i < journey.getRoutes().size(); i++) {
             Route route = journey.getRoutes().get(i);
 
@@ -339,6 +417,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
                 DepartureTime departureTime = routeDepartureTimes.remove(0);
                 currentTime.setTime(departureTime.getDepTime());
             }
+            /*
             TextView textView = new TextView(bottomView.getContext());
             //set the bus stops' name
             textView.setText("from: " + route.getStart() + " (" + currentTime + ")" + "\n");
@@ -346,14 +425,82 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
             textView.append(route.getTransport().getType() + " (" + route.getTransport().getTransportId() + ")   ");
             textView.append(route.getDuration() + " min\n ");
             textView.setTextSize(15);
-            routesLayout.addView(textView);
+            routesLayout.addView(textView);*/
+            ImageView transIcon = new ImageView(bottomView.getContext());
+            switch (route.getTransport().getType()){
+                case "walk":
+                    transIcon.setImageResource(R.drawable.icons8_walking_24);
+                    break;
+                case "Train":
+                    transIcon.setImageResource(R.drawable.icons8_train_24);
+                    break;
+                case "Bus":
+                    transIcon.setImageResource(R.drawable.icons8_bus_24);
+                    break;
+                default:
+                    break;
+            }
+            //trans route details
+            TextView routeId = new TextView(bottomView.getContext());
+            routeId.setPadding(15,10,0,0);
+            routeId.setText(route.getTransport().getType() + " ("
+                    + route.getTransport().getTransportId() + ")                          "
+                    +route.getDuration() + " min\n ");
+            //linear layout for trans
+            LinearLayout transportLayout = new LinearLayout(bottomView.getContext());
+            transportLayout.setOrientation(LinearLayout.HORIZONTAL);
+            transportLayout.addView(transIcon);
+            transportLayout.addView(routeId);
+
+            //set start point of trans
+            TextView startPoint = new TextView(bottomView.getContext());
+            startPoint.setText(route.getStart() + " (" + currentTime + ")" + "");
+            startPoint.setTextSize(15);
+
+            //arrow image
+            ImageView downArrow = new ImageView(bottomView.getContext());
+            downArrow.setPadding(0,20,0,20);
+            downArrow.setImageResource(R.drawable.icons8_down_arrow_48);
+
+            //arrow layout
+            LinearLayout arrowLayout = new LinearLayout(bottomView.getContext());
+            arrowLayout.addView(downArrow);
+            //set end point of trans
+            TextView endPoint = new TextView(bottomView.getContext());
+            endPoint.setText(route.getStop() + " (" + currentTime.add(route.getDuration()) + ")" + "\n");
+            endPoint.setTextSize(15);
+            //textView.append(route.getTransport().getType() + " (" + route.getTransport().getTransportId() + ")   ");
+            //textView.append(route.getDuration() + " min\n ");
+
+            // structure the layout
+            routesLayout.addView(transportLayout);
+            routesLayout.addView(startPoint);
+            routesLayout.addView(arrowLayout);
+            routesLayout.addView(endPoint);
+
         }
+
+        //show castle info
+        LinearLayout castleDetails = bottomView.findViewById(R.id.castle_plan);
+        LinearLayout castleView = new LinearLayout(bottomView.getContext());
+        castleView.setPadding(20,20,20,20);
+        ImageView castleImage = new ImageView(bottomView.getContext());
+        castleImage.setImageResource(R.drawable.icons8_castle_32);
+        TextView castleTitle = new TextView(bottomView.getContext());
+        castleTitle.setText("   "+destination+"        "+currentJourney.getCastle().getPrice()+ " ￡");
+        castleView.addView(castleImage);
+        castleView.addView(castleTitle);
+        castleDetails.addView(castleView);
+
 
         //give 2 hours to explore the castle
         currentTime.add(120);
         returnTime = currentTime.toString();
         //show the return routes
         LinearLayout returnRoutesLayout = bottomView.findViewById(R.id.searchPlanInfoReturnRoutes);
+        TextView returnCost = new TextView(bottomView.getContext());
+        returnCost.setText("transportation cost: "+""+" ￡\n");
+        returnRoutesLayout.addView(returnCost);
 
         for (int i = 0; i < journey.getReturnRoutes().size(); i++) {
             Route route = journey.getReturnRoutes().get(i);
@@ -373,7 +520,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
                 currentTime.setTime(departureTime.getDepTime());
             }
 
-            TextView textView = new TextView(bottomView.getContext());
+            /*TextView textView = new TextView(bottomView.getContext());
 
             //set the bus stops' name
             textView.setText("from: " + route.getStart() + " (" + currentTime + ")" + "\n");
@@ -381,8 +528,76 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
             textView.append(route.getTransport().getType() + " (" + route.getTransport().getTransportId() + ")   ");
             textView.append(route.getDuration() + " min\n ");
             textView.setTextSize(15);
-            returnRoutesLayout.addView(textView);
+            returnRoutesLayout.addView(textView);*/
+
+            // trans type
+            ImageView transIcon = new ImageView(bottomView.getContext());
+            switch (route.getTransport().getType()){
+                case "walk":
+                    transIcon.setImageResource(R.drawable.icons8_walking_24);
+                    break;
+                case "Train":
+                    transIcon.setImageResource(R.drawable.icons8_train_24);
+                    break;
+                case "Bus":
+                    transIcon.setImageResource(R.drawable.icons8_bus_24);
+                    break;
+                default:
+                    break;
+            }
+            //trans route details
+            TextView routeId = new TextView(bottomView.getContext());
+            routeId.setPadding(15,10,0,0);
+            routeId.setText(route.getTransport().getType() + " ("
+                    + route.getTransport().getTransportId() + ")                          "
+                    +route.getDuration() + " min\n ");
+            //linear layout for trans
+            LinearLayout transportLayout = new LinearLayout(bottomView.getContext());
+            transportLayout.setOrientation(LinearLayout.HORIZONTAL);
+            transportLayout.addView(transIcon);
+            transportLayout.addView(routeId);
+
+            //set start point of trans
+            TextView startPoint = new TextView(bottomView.getContext());
+            startPoint.setText(route.getStart() + " (" + currentTime + ")" + "");
+            startPoint.setTextSize(15);
+
+            //arrow image
+            ImageView downArrow = new ImageView(bottomView.getContext());
+            downArrow.setPadding(0,20,0,20);
+            downArrow.setImageResource(R.drawable.icons8_down_arrow_48);
+
+            //arrow layout
+            LinearLayout arrowLayout = new LinearLayout(bottomView.getContext());
+            arrowLayout.addView(downArrow);
+            //set end point of trans
+            TextView endPoint = new TextView(bottomView.getContext());
+            endPoint.setText(route.getStop() + " (" + currentTime.add(route.getDuration()) + ")" + "\n");
+            endPoint.setTextSize(15);
+            //textView.append(route.getTransport().getType() + " (" + route.getTransport().getTransportId() + ")   ");
+            //textView.append(route.getDuration() + " min\n ");
+
+            // structure the layout
+            returnRoutesLayout.addView(transportLayout);
+            returnRoutesLayout.addView(startPoint);
+            returnRoutesLayout.addView(arrowLayout);
+            returnRoutesLayout.addView(endPoint);
         }
+
+        LinearLayout totalCost = bottomView.findViewById(R.id.totoalCost_plan);
+        TextView totalCostText = new TextView(bottomView.getContext());
+        totalCostText.setText("Total price: "+""+" ￡");
+        totalCost.addView(totalCostText);
+
+        //the price details
+        //the go price
+//        currentJourney.getSinglePrice();
+        //the return price
+//        currentJourney.getJourneyPrice() - currentJourney.getSinglePrice();
+        //the castle price
+//        currentJourney.getCastle().getPrice();
+//        ticketNum;
+//        currentJourney.getTotalPrice();
     }
 
     public void timeNotAppropriate(){
@@ -404,6 +619,8 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         searchPlanInfoLateSignal.addView(textView);
         searchPlanInfoLateSignal.addView(button);
         findViewById(R.id.searchPlanInfoDisappear).setVisibility(View.GONE);
+
+        bottomSheetDialog.dismiss();
     }
 
     //save the journey as a ticket into the database
@@ -412,7 +629,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
             @Override
             public void run() {
                 if(currentJourney != null){
-                    date = transferTimeFormat(date);
+//                    date = transferTimeFormat(date);
                     Ticket ticket = currentJourney.toTicket(username, date, time, returnTime, ticketNum);
                     TicketDao ticketDao = new TicketDao();
                     ticketDao.addTicket(ticket);
@@ -445,6 +662,19 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
                 .create()
                 .show();
     }
+    //when time is not suitable
+    public void alertTime(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("your depart time is too late !!! please select another time")
+                .setPositiveButton(R.string.return_page, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                })
+                .create().show();
+    }
+
 
     //transfer dd/MM/yyyy to yyyy/MM/dd
     public String transferTimeFormat(String strDate) {

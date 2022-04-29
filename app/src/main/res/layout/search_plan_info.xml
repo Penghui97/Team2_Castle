@@ -101,6 +101,19 @@
                         android:layout_marginBottom="5dp"
                         android:background="@color/gray" />
 
+                    <LinearLayout
+                        android:id="@+id/castle_plan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:orientation="vertical" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="2dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/gray" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -120,6 +133,18 @@
                     android:layout_height="2dp"
                     android:layout_marginVertical="5dp"
                     android:background="@color/gray" />
+                <LinearLayout
+                    android:id="@+id/totoalCost_plan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:orientation="vertical" />
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="2dp"
+                    android:layout_marginVertical="5dp"
+                    android:background="@color/gray" />
+
 
                 <!--            <LinearLayout-->
                 <!--                android:layout_width="match_parent"-->

@@ -45,16 +45,24 @@ public class CastlesFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.castle1:
-                CastleDetails.startCastleActivity(getActivity(),"alnwic");
+                startActivity(new Intent(getActivity(),CastleDetails.class)
+                        .putExtra("castle name","alnwic")
+                        .putExtra("links","https://www.alnwickcastle.com/"));
                 break;
             case R.id.castle2:
-                CastleDetails.startCastleActivity(getActivity(),"auckland");
+                startActivity(new Intent(getActivity(),CastleDetails.class)
+                        .putExtra("castle name","auckland")
+                        .putExtra("links","https://aucklandproject.org/"));
                 break;
             case R.id.castle3:
-                CastleDetails.startCastleActivity(getActivity(),"barnard");
+                startActivity(new Intent(getActivity(),CastleDetails.class)
+                        .putExtra("castle name","barnard")
+                        .putExtra("links","https://www.bamburghcastle.com/"));
                 break;
             case R.id.castle4:
-                CastleDetails.startCastleActivity(getActivity(),"bamburgh");
+                startActivity(new Intent(getActivity(),CastleDetails.class)
+                        .putExtra("castle name","bamburgh")
+                        .putExtra("links","https://www.english-heritage.org.uk/visit/places/barnard-castle/?utm_source=Trip%20Advisor&utm_campaign=Local%20Listings&utm_medium=Trip%20Advisor%20Profiles&utm_content=barnard%20castle&utm_source=Trip%20Advisor&utm_campaign=Local%20Listings&utm_medium=Trip%20Advisor%20Profiles&utm_content=barnard%20castle"));
                 break;
             default:
                 break;

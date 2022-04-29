@@ -100,7 +100,7 @@
     <string name="update_language">选择语言后，您需要点击刷新以便初始化应用语言</string>
     <string name="sign_in_to_your_account">登入你的账号</string>
     <string name="refresh">刷新</string>
-    <string name="language_warn">After selecting a language, you need to refresh to initialize the app language</string>
+    <string name="language_warn">After selecting a language, you need to click the refresh button below to initialize the app language</string>
     <string name="editMyaccount">编辑账号信息</string>
     <string name="About_this_app">关于</string>
     <string name="team_2">2 小组</string>
@@ -163,6 +163,22 @@
     <string name="passwordchanged">密码更改成功 !!!</string>
     <string name="changepassword">修改密码</string>
     <string name="wrongdatabase">数据库错误</string>
+    <string name="noavatar">您未上传过头像</string>
+    <string name="click_the_photo_to_upload_your_avatar">点击图片以上传您的头像</string>
+    <string name="return_page">返回</string>
+    <string name="ticket">门票</string>
+    <string name="nowifi">WiFi未连接</string>
+    <string name="campuswifi">需要连接纽卡斯尔大学的网络比如newcastle-university或者eduroam以使用此应用。
+    如果您选择不使用校园网，您可能无法登录这个应用</string>
+    <string name="yourssid">您的WiFi名称是： </string>
+    <string name="cannotgetwifi">无法获取您的WiFi名称，可能是由于您的设备安全性很高</string>
+    <string name="wlansetting">打开WLAN设置</string>
+    <string name="withoutwifi">不使用校园网</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
 
 
 </resources>
