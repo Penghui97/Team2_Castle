@@ -22,12 +22,18 @@ import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 public class CastleDetails extends AppCompatActivity implements View.OnClickListener{
-    private static String castleName;
+    private String castleName;
+    private String linkAbout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_castle_details);
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        castleName = (String) bundle.get("castle name");
+        linkAbout = (String)bundle.get("links");
 
         TextView header = findViewById(R.id.header_title);
         header.setText(castleName);
@@ -42,8 +48,8 @@ public class CastleDetails extends AppCompatActivity implements View.OnClickList
         CastleViewPageAdapter castleViewPageAdapter = new CastleViewPageAdapter(getSupportFragmentManager()
                 , FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
 
-        castleViewPageAdapter.addFragment(new PanelOverCastleFragment(castleName),"castle");
-        castleViewPageAdapter.addFragment(new PanelTicketsFragment(),"tickets");
+        castleViewPageAdapter.addFragment(new PanelOverCastleFragment(castleName,linkAbout),"castle");
+        castleViewPageAdapter.addFragment(new PanelTicketsFragment(castleName),"tickets");
         castleViewPageAdapter.addFragment(new CastleMapFragment(),"map");
         viewPager.setAdapter(castleViewPageAdapter);
 
@@ -52,12 +58,6 @@ public class CastleDetails extends AppCompatActivity implements View.OnClickList
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_baseline_map_24);
     }
 
-    // transmit parameters
-    public static void startCastleActivity(Context context,String inputCastleName){
-        Intent intent = new Intent(context,CastleDetails.class);
-        castleName = inputCastleName;
-        context.startActivity(intent);
-    }
 
     @Override
     public void onClick(View view) {

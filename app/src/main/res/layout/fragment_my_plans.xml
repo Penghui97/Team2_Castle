@@ -57,11 +57,7 @@
                 android:id="@+id/myPlansListView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:divider="#6200EE"
-                android:dividerHeight="3dp"
                 >
-
-
             </ListView>
 
 
@@ -71,12 +67,14 @@
             android:id="@+id/myPlanInfoAllContentLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:visibility="gone"
             android:layout_weight="1"
             android:background="#F3F3F3"
             android:orientation="vertical"
             android:paddingHorizontal="10dp">
             <include layout="@layout/my_plans_info"/>
         </LinearLayout>
+
 
 
     </LinearLayout>

@@ -95,7 +95,19 @@ public class SearchFragment extends Fragment {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month+1;
-                String date = month+"/"+day+"/"+year;
+                String m = "";
+                if(month<10){
+                    m+= 0;
+                }
+                m +=month;
+
+                String d = "";
+                if(day<10){
+                    d+= 0;
+                }
+                d +=day;
+
+                String date = year+"/"+m+"/"+d;
                 mDisplayDate.setText(date);
             }
         };
@@ -124,7 +136,18 @@ public class SearchFragment extends Fragment {
         onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int i, int i1) {
-                String time = i+":" +i1;
+                String iString = "";
+                if(i<10){
+                    iString += "0";
+                }
+                iString += i;
+
+                String i1String ="";
+                if(i1<10){
+                    i1String += "0";
+                }
+                i1String += i1;
+                String time = iString+":" +i1String;
                 mDisplayTime.setText( time);
             }
         };
@@ -138,6 +161,8 @@ public class SearchFragment extends Fragment {
         Spinner destination = this.view.findViewById(R.id.destination);
         TextView departureDate = this.view.findViewById(R.id.departure_date);
         TextView departureTime = this.view.findViewById(R.id.departure_time);
+        TabLayout ticketNumLayout = this.view.findViewById(R.id.ticket_num);
+        int ticketNum = ticketNumLayout.getSelectedTabPosition() + 1;
         //check if the user has selected date and time
         String strDate = (String) departureDate.getText();
         if(!strDate.contains("/")) {
@@ -157,6 +182,7 @@ public class SearchFragment extends Fragment {
         }
         intent.putExtra("time", strTime);
         intent.putExtra("date", strDate);
+        intent.putExtra("ticketNum", ticketNum);
         if(user == null) intent.putExtra("username", "root");
         else intent.putExtra("username", user.getUsername());
 

@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 
 import com.example.mywork2.R;
+import com.example.mywork2.Util.PasswordUtil;
 import com.example.mywork2.dao.UserDao;
 import com.example.mywork2.domain.User;
 
@@ -43,7 +44,7 @@ public class ForgetPasswordFragment extends Fragment {
         @Override
         public void handleMessage(@NonNull Message msg) {
             if (msg.what == 0x11) {
-                password = NewAccountFragment.hex2Str(user.getPassword());
+                password = PasswordUtil.hex2Str(user.getPassword());
                 remind_password.setText("Your password is: "+password);
             }
         }
@@ -88,21 +89,21 @@ public class ForgetPasswordFragment extends Fragment {
         remind_password.setText("");
     }
 
-    @SuppressLint("SetTextI18n")
     private void checkLocalInfo() {
         boolean information = false;
         while (!information) {
             //regex to check email
             //referenced from https://blog.csdn.net/qq_60750453/article/details/123709670
-            String reg = "^[A-Za-z\\d]+([-_.][A-Za-z\\d]+)*@([A-Za-z\\d]+[-.])+[A-Za-z\\d]{2,4}$";
+            String reg = getString(R.string.reg);
             if (username_v.getText().toString().length() == 0) {//no username found
-                username_w.setText("Please enter a username !!!");
+                username_w.setText(R.string.please_enter_username);
                 return;
             } else if (username_v.getText().toString().length() > 25) {//username's length should be less than 25
-                username_w.setText("Username's length should not be longer than 25 !!!");
+                username_w.setText(R.string.username_too_long);
                 return;
-            } else if(email_v.getText().toString().contains("@")&&!email_v.getText().toString().matches(reg)){//wrong email address
-                email_w.setText("Email address is incorrect !!!");
+            } else if(!email_v.getText().toString().matches(reg)
+            ||!email_v.getText().toString().endsWith(".ac.uk")){//wrong email address
+                email_w.setText(R.string.email_end);
                 return;
             } else {
                 username = username_v.getText().toString();

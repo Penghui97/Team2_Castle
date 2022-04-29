@@ -112,30 +112,30 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/adult_number" />
+                    android:text="@string/ticket_count" />
                 <TextView
-                    android:id="@+id/myPlanInfoAdultNum"
+                    android:id="@+id/myPlanInfoTicketCount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/adult_number" />
+                    android:text="@string/ticket_count" />
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/kid_number" />
-                <TextView
-                    android:id="@+id/myPlanInfoKidsNum"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/kid_number" />
-            </LinearLayout>
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:text="@string/kid_number" />-->
+<!--                <TextView-->
+<!--                    android:id="@+id/myPlanInfoKidsNum"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:text="@string/kid_number" />-->
+<!--            </LinearLayout>-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -230,7 +230,61 @@
                     android:text="@string/buy"
                     tools:ignore="UsingOnClickInXml" />
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/myPlanInfoRemoveNumLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="how many tickets are you going to delete"/>
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/myPlanInfoRemoveNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="80dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/black_line">
+
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/myPlanInfoRemoveNumItem1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1" />
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/myPlanInfoRemoveNumItem2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2" />
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/myPlanInfoRemoveNumItem3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3" />
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/myPlanInfoRemoveNumItem4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="4" />
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/myPlanInfoRemoveNumItem5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5" />
+                </com.google.android.material.tabs.TabLayout>
+                <Button
+                    android:id="@+id/myPlanInfoRemoveNumButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/remove"
+                    android:onClick="onClick"/>
+            </LinearLayout>
         </LinearLayout>
+
+
     </ScrollView>
 
 </LinearLayout>

@@ -3,6 +3,7 @@ package com.example.mywork2;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
@@ -17,10 +18,14 @@ import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -30,9 +35,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.mywork2.MyAccount.AccountEditActivity;
 import com.example.mywork2.MyAccount.AppSettingsActivity;
+import com.example.mywork2.MyAccount.CommentsActivity;
 import com.example.mywork2.Util.ImageUtil;
 import com.example.mywork2.Util.UserThreadLocal;
+import com.example.mywork2.dao.AvatarDao;
 import com.example.mywork2.dao.UserDao;
 import com.example.mywork2.domain.DepartureTime;
 import com.example.mywork2.domain.Journey;
@@ -41,57 +49,72 @@ import com.example.mywork2.domain.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private DrawerLayout drawer;
     //drawerImage is the imageview in the drawerlayout.
     private ImageView imageView, drawerImage;
-    //username_v is the username textview.
-    private TextView username_v, email_v;
+    //nickname_v is the username textview.
+    private TextView nickname_v, email_v;
     public User user, customer;
-    public String username;
+    public String username, nickname;
+    String lang, image64;
 
 
     //receive the data from the database
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
+        @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         public void handleMessage(@NonNull Message msg) {
             switch (msg.what) {
                 case 0x11:
-                    username_v.setText(username);//set the username on the view
+                    nickname_v.setText(nickname);//set the username on the view
                     email_v.setText(user.getEmail());//set the email on the view
                     break;
                 case 0x22:
-                    username_v.setText(customer.getUsername());//set the customer's username on the view
+                    nickname_v.setText(customer.getNickname());//set the customer's username on the view
                     email_v.setText(customer.getEmail());//set the customer's email on the view
                     break;
+                case 0x33:
+                    imageView.setImageBitmap(ImageUtil.base64ToImage(image64));
+                    drawerImage.setImageBitmap(ImageUtil.base64ToImage(image64));
+                    initData();
+                    break;
+                case 0x44:
+                    noAvatar();
             }
         }
     };
+
+    private void noAvatar() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.noavatar).setNegativeButton("OK"
+                , (dialogInterface,i) -> dialogInterface.dismiss()).show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /**
-         * (Jing)
-         * get the user by username
-         */
+        //get username from login page
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         username = (String)extras.get("username");
+        if(username == null || username.equals("")){
+            username = "root";
+        }
         //show the particular user's info
+
         showUserInfo();
 
-        //
-        Intent intent2 = new Intent(MainActivity.this, AppSettingsActivity.class);
-        intent2.putExtra("username", username);
 
 
-
-        setContentView(R.layout.drawer_main);//avatar
+        setContentView(R.layout.drawer_main);
 
         //init view, 23.2
         initView();
@@ -124,9 +147,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         drawerImage = drawerView.getHeaderView(0).findViewById(R.id.avatar);
 
-        username_v = drawerView.getHeaderView(0).findViewById(R.id.username_profile);
+        nickname_v = drawerView.getHeaderView(0).findViewById(R.id.nickname_profile);
 
         email_v = drawerView.getHeaderView(0).findViewById(R.id.user_email);
+
+        drawerView.setNavigationItemSelectedListener(item -> {
+            if(item.getItemId()==R.id.app_logout){//logout
+                startActivity(new Intent(MainActivity.this,LogInActivity.class)
+                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK));
+            }else if (item.getItemId()==R.id.accountEditActivity){//my account
+                //transmit
+                Intent intent3 = new Intent(MainActivity.this, AccountEditActivity.class);
+                if(username == null) {
+                    intent3.putExtra("username", customer.getUsername());
+                    intent3.putExtra("email", customer.getEmail());
+                }else {
+                    intent3.putExtra("username", username);
+                    intent3.putExtra("email",email_v.getText().toString());
+                }
+                startActivity(intent3);
+            }else if (item.getItemId()==R.id.appSettingsActivity) {
+                //transmit
+                Intent intent2 = new Intent(MainActivity.this, AppSettingsActivity.class);
+                if(username == null)
+                    intent2.putExtra("username", customer.getUsername());
+                else
+                    intent2.putExtra("username", username);
+                startActivity(intent2);
+            }else if (item.getItemId() == R.id.menu_comment){
+                //give the username to the commentsActivity
+                Intent intent1 = new Intent(MainActivity.this, CommentsActivity.class);
+                intent1.putExtra("username", username);
+                startActivity(intent1);
+            }
+            return true;
+        });
 
 
     }
@@ -161,6 +216,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.account_avatar_head:
                 Intent intent1 = new Intent(MainActivity.this,Avatar.class);
+                intent1.putExtra("username", username);
                 startActivity(intent1);
             default:
                 break;
@@ -175,12 +231,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageView = findViewById(R.id.avatar);
     }
 
+    private void setLocale(String lang) {
+        //Initialize resources
+        Resources resources = getResources();
+        //Initialize metrics
+        DisplayMetrics metrics = resources.getDisplayMetrics();
+        //initialize configurations
+        Configuration configuration = resources.getConfiguration();
+        //initialize locale
+        configuration.locale = new Locale(lang);
+        //update configuration
+        resources.updateConfiguration(configuration,metrics);
+        onConfigurationChanged(configuration);
+
+    }
+
     /**
      * methods to initialize data
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void initData(){
-
+        SharedPreferences spfLang = getSharedPreferences("spfLang", MODE_PRIVATE);
+        lang = spfLang.getString("Lang","");
+        if (lang.equals("en")){//setting language
+            setLocale(lang);
+        }else if (lang.equals("zh")){
+            setLocale(lang);
+        }else {
+            setLocale("en");
+        }
         showUserInfo();
         getDataFromSpf();
     }
@@ -188,10 +267,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //get data
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void getDataFromSpf(){
-        SharedPreferences spfRecord = getSharedPreferences("spfRecord", MODE_PRIVATE);
-        String image64 = spfRecord.getString("image_64","");
-        imageView.setImageBitmap(ImageUtil.base64ToImage(image64));
-        drawerImage.setImageBitmap(ImageUtil.base64ToImage(image64));
+        SharedPreferences spfRecord = getSharedPreferences("spfRecord"+username, MODE_PRIVATE);
+        image64 = spfRecord.getString("image_64","");
+        if(image64!=null){//if the avatar is found locally, set it without accessing database firstly
+
+            imageView.setImageBitmap(ImageUtil.base64ToImage(image64));
+            drawerImage.setImageBitmap(ImageUtil.base64ToImage(image64));
+            //and then, update avatar from DB to make sure the latest avatar
+            getAvatarFromDB();
+        }else {//get avatar from Database
+            getAvatarFromDB();
+        }
 
         //change avatars in other layouts
         //created by Penghui
@@ -203,7 +289,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-
+    private void getAvatarFromDB() {
+        new Thread(()->{
+            AvatarDao avatarDao = new AvatarDao();
+            byte[] bytes = avatarDao.getAvatarByUsername(username);
+            if(bytes!=null){//if the user has an avatar in DB
+                image64 = ImageUtil.ByteArray2Base64(bytes);
+                SharedPreferences spfRecord = getSharedPreferences("spfRecord"+username, MODE_PRIVATE);
+                SharedPreferences.Editor edit = spfRecord.edit();
+                edit.putString("image_64", image64);
+                edit.apply();
+                Message message = handler.obtainMessage();
+                message.what = 0x33;
+                handler.sendMessage(message);
+            }else {//if the user has no avatar in DB
+                Message message = handler.obtainMessage();
+                message.what = 0x44;
+                handler.sendMessage(message);
+            }
+        }).start();
+    }
 
 
     @Override
@@ -225,13 +330,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             user = userDao.getUserByUsername(username);
             customer = userDao.getUserByUsername("root");
 
+
             if(user != null){
                 Message message = handler.obtainMessage();
                 message.what = 0x11;
+                nickname = user.getNickname();
                 handler.sendMessage(message);
             }else {
                 Message message = handler.obtainMessage();
                 message.what = 0x22;
+                nickname = customer.getNickname();
                 handler.sendMessage(message);
             }
         }).start();
