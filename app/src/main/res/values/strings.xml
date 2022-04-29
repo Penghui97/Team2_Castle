@@ -210,6 +210,7 @@
     <string name="_3">3</string>
     <string name="_4">4</string>
     <string name="_5">5</string>
+    <string name="emulator">We detect that you are using Android Emulator to run this App. Please make sure your PC connects Campus WiFi</string>
 
 
 </resources>

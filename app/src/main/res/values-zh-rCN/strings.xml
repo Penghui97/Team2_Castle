@@ -179,6 +179,7 @@
     <string name="_3">3</string>
     <string name="_4">4</string>
     <string name="_5">5</string>
+    <string name="emulator">检测到您正在使用模拟器，请确保您的电脑连接了校园网</string>
 
 
 </resources>

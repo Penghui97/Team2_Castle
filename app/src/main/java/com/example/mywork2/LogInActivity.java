@@ -60,12 +60,19 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         }else {//wifi connected, check wifi ssid
             ssid = WiFiUtil.getConnectWifiSsid(wifiManager);
             Log.e("-----------",ssid);
-            if(ssid.equals("<unknown ssid>")){//cannot get ssid
+            if(ssid.contains("unknown ssid")){//cannot get ssid
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage(getString(R.string.cannotgetwifi)+
                         ". "+getString(R.string.campuswifi)).setNegativeButton("OK"
                         , (dialogInterface,i) -> dialogInterface.dismiss()).show();
-            }else {
+            }else if (ssid.contains("AndroidWifi")){//emulator
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage(getString(R.string.emulator))
+                        .setNegativeButton("OK"
+                        , (dialogInterface,i) -> dialogInterface.dismiss()).show();
+
+
+            } else {
                 if (!(ssid.contains("newcastle")||ssid.contains("eduroam"))){//not campus wifi
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
                     builder.setMessage(getString(R.string.yourssid)+ ssid+
