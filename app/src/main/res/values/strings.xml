@@ -199,10 +199,10 @@
     <string name="return_page">return</string>
     <string name="ticket">Entrance Price</string>
     <string name="nowifi">Not Connected to WiFi</string>
-    <string name="campuswifi">You need to connect to Newcastle University\'s WiFi such as newcastle-university or eduroam to use this app.
-        If you select Continue without Campus WiFi, you may not be able to login this App</string>
-    <string name="yourssid">Your WiFi ssid is: </string>
-    <string name="cannotgetwifi">Cannot get your WiFi ssid. Perhaps because your phone is of a high safety protection</string>
+    <string name="campuswifi">Ensure you are connected to either newcastle-university or eduroam.
+        If you select \'OK\' without Campus WiFi, you may not be able to log in</string>
+    <string name="yourssid">Your WiFi SSIS is: </string>
+    <string name="cannotgetwifi">We are unable to get your WiFi SSID. Check you security settings</string>
     <string name="wlansetting">Open WLAN setting</string>
     <string name="withoutwifi">Continue without Campus WiFi</string>
     <string name="_1">1</string>
@@ -210,7 +210,7 @@
     <string name="_3">3</string>
     <string name="_4">4</string>
     <string name="_5">5</string>
-    <string name="emulator">We detect that you are using Android Emulator to run this App. Please make sure your PC connects Campus WiFi</string>
+    <string name="emulator">We have detected that you are using Android Emulator to run this App. Please ensure sure your PC is connected to Newcastle Campus WiFi</string>
 
 
 </resources>
