@@ -201,7 +201,7 @@
     <string name="nowifi">Not Connected to WiFi</string>
     <string name="campuswifi">Ensure you are connected to either newcastle-university or eduroam.
         If you select \'OK\' without Campus WiFi, you may not be able to log in</string>
-    <string name="yourssid">Your WiFi SSIS is: </string>
+    <string name="yourssid">Your WiFi SSID is: </string>
     <string name="cannotgetwifi">We are unable to get your WiFi SSID. Check you security settings</string>
     <string name="wlansetting">Open WLAN setting</string>
     <string name="withoutwifi">Continue without Campus WiFi</string>
@@ -210,7 +210,7 @@
     <string name="_3">3</string>
     <string name="_4">4</string>
     <string name="_5">5</string>
-    <string name="emulator">We have detected that you are using Android Emulator to run this App. Please ensure sure your PC is connected to Newcastle Campus WiFi</string>
+    <string name="emulator">We have detected that you are using Android Emulator to run this App. Please ensure your PC is connected to Newcastle Campus WiFi</string>
 
 
 </resources>
