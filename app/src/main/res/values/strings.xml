@@ -103,8 +103,8 @@
     <string name="castlename">castleName</string>
     <string name="nearby">nearby</string>
     <string name="date_">Date :</string>
-    <string name="depart_time">Depart time :</string>
-    <string name="return_time">Return time :</string>
+    <string name="depart_time">Outbound :</string>
+    <string name="return_time">Return :</string>
     <string name="adult_number">Adult number :</string>
     <string name="kid_number">Kid number :</string>
     <string name="total_price">Total price :</string>
@@ -118,11 +118,11 @@
     <string name="rating">rating:</string>
     <string name="postcode">postcode:</string>
     <string name="castle_name">Castle name</string>
-    <string name="count">Count</string>
+    <string name="count">Ticket(s) : </string>
     <string name="status">Status:</string>
     <string name="view_details">View details</string>
     <string name="plan_1">Plan 1</string>
-    <string name="my_account">My account</string>
+    <string name="my_account">My Account</string>
     <string name="settings">Settings</string>
     <string name="help_center">Help Centre</string>
     <string name="log_out">Log out</string>
