@@ -10,15 +10,18 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.mywork2.CastleFragment.CastleMapFragment;
+import com.example.mywork2.CastleFragment.CastleGalleryFragment;
 import com.example.mywork2.CastleFragment.CastleViewPageAdapter;
 import com.example.mywork2.CastleFragment.PanelOverCastleFragment;
 import com.example.mywork2.CastleFragment.PanelNearbyFragment;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.ArrayList;
+
 public class CastleDetails extends AppCompatActivity implements View.OnClickListener{
     private String castleName;
     private String linkAbout;
+    private ArrayList<Integer> imageId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,7 @@ public class CastleDetails extends AppCompatActivity implements View.OnClickList
         Bundle bundle = intent.getExtras();
         castleName = (String) bundle.get("castle name");
         linkAbout = (String)bundle.get("links");
+        imageId = (ArrayList<Integer>) bundle.get("imageId");
 
         TextView header = findViewById(R.id.header_title);
         header.setText(castleName);
@@ -45,7 +49,7 @@ public class CastleDetails extends AppCompatActivity implements View.OnClickList
 
         castleViewPageAdapter.addFragment(new PanelOverCastleFragment(castleName,linkAbout),"castle");
         castleViewPageAdapter.addFragment(new PanelNearbyFragment(castleName),"nearby");
-        castleViewPageAdapter.addFragment(new CastleMapFragment(),"gallery");
+        castleViewPageAdapter.addFragment(new CastleGalleryFragment(imageId),"gallery");
         viewPager.setAdapter(castleViewPageAdapter);
 
         tabLayout.getTabAt(0).setIcon(R.drawable.icons8_castle_58);

@@ -13,11 +13,15 @@ import android.widget.LinearLayout;
 import com.example.mywork2.CastleDetails;
 import com.example.mywork2.R;
 
+import java.util.ArrayList;
+
 public class CastlesFragment extends Fragment implements View.OnClickListener {
     private View view;
+    private ArrayList<Integer> imageId;
 
 
     public CastlesFragment() {
+        imageId = new ArrayList<>();
         // Required empty public constructor
     }
 
@@ -45,24 +49,48 @@ public class CastlesFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.castle1:
+                imageId.add(R.drawable.alnwick_gallery_1);
+                imageId.add(R.drawable.alnwick_gallery_2);
+                imageId.add(R.drawable.alnwick_gallery_3);
+                imageId.add(R.drawable.alnwick_gallery_4);
+                imageId.add(R.drawable.alnwick_gallery_5);
                 startActivity(new Intent(getActivity(),CastleDetails.class)
                         .putExtra("castle name","alnwic")
-                        .putExtra("links","https://www.alnwickcastle.com/"));
+                        .putExtra("links","https://www.alnwickcastle.com/")
+                        .putExtra("imageId",imageId));
                 break;
             case R.id.castle2:
+                imageId.add(R.drawable.auckland_gallery_1);
+                imageId.add(R.drawable.auckland_gallery_2);
+                imageId.add(R.drawable.auckland_gallery_3);
+                imageId.add(R.drawable.auckland_gallery_4);
+                imageId.add(R.drawable.auckland_gallery_5);
                 startActivity(new Intent(getActivity(),CastleDetails.class)
                         .putExtra("castle name","auckland")
-                        .putExtra("links","https://aucklandproject.org/"));
+                        .putExtra("links","https://aucklandproject.org/")
+                        .putExtra("imageId",imageId));
                 break;
             case R.id.castle3:
+                imageId.add(R.drawable.barnard_gallery_1);
+                imageId.add(R.drawable.barnard_gallery_2);
+                imageId.add(R.drawable.barnard_gallery_3);
+                imageId.add(R.drawable.barnard_gallery_4);
+                imageId.add(R.drawable.barnard_gallery_5);
                 startActivity(new Intent(getActivity(),CastleDetails.class)
                         .putExtra("castle name","barnard")
-                        .putExtra("links","https://www.bamburghcastle.com/"));
+                        .putExtra("links","https://www.bamburghcastle.com/")
+                        .putExtra("imageId",imageId));
                 break;
             case R.id.castle4:
+                imageId.add(R.drawable.bamburgh_gallery_1);
+                imageId.add(R.drawable.bamburgh_gallery_2);
+                imageId.add(R.drawable.bamburgh_gallery_3);
+                imageId.add(R.drawable.bamburgh_gallery_4);
+                imageId.add(R.drawable.bamburgh_gallery_5);
                 startActivity(new Intent(getActivity(),CastleDetails.class)
                         .putExtra("castle name","bamburgh")
-                        .putExtra("links","https://www.english-heritage.org.uk/visit/places/barnard-castle/?utm_source=Trip%20Advisor&utm_campaign=Local%20Listings&utm_medium=Trip%20Advisor%20Profiles&utm_content=barnard%20castle&utm_source=Trip%20Advisor&utm_campaign=Local%20Listings&utm_medium=Trip%20Advisor%20Profiles&utm_content=barnard%20castle"));
+                        .putExtra("links","https://www.english-heritage.org.uk/visit/places/barnard-castle/?utm_source=Trip%20Advisor&utm_campaign=Local%20Listings&utm_medium=Trip%20Advisor%20Profiles&utm_content=barnard%20castle&utm_source=Trip%20Advisor&utm_campaign=Local%20Listings&utm_medium=Trip%20Advisor%20Profiles&utm_content=barnard%20castle")
+                        .putExtra("imageId",imageId));
                 break;
             default:
                 break;
