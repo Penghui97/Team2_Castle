@@ -21,6 +21,7 @@ public class CastlesFragment extends Fragment implements View.OnClickListener {
 
 
     public CastlesFragment() {
+        //the image source id from the drawer
         imageId = new ArrayList<>();
         // Required empty public constructor
     }
@@ -30,6 +31,7 @@ public class CastlesFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_castles, container, false);
 
+        //get the linear layout for the castles
         LinearLayout alnwic = view.findViewById(R.id.castle1);
         alnwic.setOnClickListener(this);
 
@@ -44,16 +46,18 @@ public class CastlesFragment extends Fragment implements View.OnClickListener {
 
         return view;
     }
-
+    //set the click listener for the castle
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.castle1:
+                //set the pictures display for ths castle alnwick
                 imageId.add(R.drawable.alnwick_gallery_1);
                 imageId.add(R.drawable.alnwick_gallery_2);
                 imageId.add(R.drawable.alnwick_gallery_3);
                 imageId.add(R.drawable.alnwick_gallery_4);
                 imageId.add(R.drawable.alnwick_gallery_5);
+                //start the new castle details activity
                 startActivity(new Intent(getActivity(),CastleDetails.class)
                         .putExtra("castle name","alnwic")
                         .putExtra("links","https://www.alnwickcastle.com/")
