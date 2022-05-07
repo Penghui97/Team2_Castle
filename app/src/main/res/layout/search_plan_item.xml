@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="150dp"
     android:orientation="vertical"
     app:cardCornerRadius="20dp"
     android:background="#F3F3F3">
@@ -49,6 +49,7 @@
             tools:layout_editor_absoluteY="55dp" />-->
 
         <TextView
+            android:id="@+id/searchPlanStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -80,6 +81,18 @@
                 android:textColor="@color/white" />
 
         </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/searchPlanTransportType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="205dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toStartOf="@+id/cardView3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchPlanStart" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

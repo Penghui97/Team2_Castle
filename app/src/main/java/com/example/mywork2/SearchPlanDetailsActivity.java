@@ -53,7 +53,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
     private String time;
     private String username;
     private int ticketNum;
-    private String departure;
+//    private String departure;
     private String destination;
 
     //receive the data from the database
@@ -114,7 +114,8 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         //get the input of the user
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        departure = (String) extras.get("departure");
+        //canceled this function
+//        departure = (String) extras.get("departure");
         destination = (String) extras.get("destination");
         time = (String) extras.get("time");
         date = (String) extras.get("date");
@@ -122,13 +123,14 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         ticketNum = (Integer) extras.get("ticketNum");
 
         //sort the journeys
-        getJourneys(departure, destination);
+        getJourneys(destination);
 
         /**@J Cheng
          * the destination and the departure place
          */
         TextView departurePlace = findViewById(R.id.journey_from);
-        departurePlace.setText(departure);
+        //canceled this function
+//        departurePlace.setText(departure);
         TextView destinationPlace = findViewById(R.id.journey_to);
         destinationPlace.setText(destination);
 
@@ -163,18 +165,19 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
 
 
     //get the journeys by departure and destination
-    public void getJourneys(String departure, String destination) {
+    public void getJourneys(String destination) {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 //sort the destination
                 JourneyDao journeyDao = new JourneyDao();
                 ArrayList<Journey> journeys = journeyDao.getJourneysByCastleName(destination);
+                //canceled this function
                 //sort the departure
-                for (int i = journeys.size() - 1; i >= 0; i--) {
-                    if (!journeys.get(i).getDeparture().equals(departure))
-                        journeys.remove(i);
-                }
+//                for (int i = journeys.size() - 1; i >= 0; i--) {
+//                    if (!journeys.get(i).getDeparture().equals(departure))
+//                        journeys.remove(i);
+//                }
                 Message message = handler.obtainMessage();
                 message.what = 0x98;
                 message.obj = journeys;
@@ -373,6 +376,10 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         returnRoutesLayout.removeAllViews();
         castleDetails.removeAllViews();
         totalCost.removeAllViews();
+
+        //the info can't be showed until loading is done
+        bottomView.findViewById(R.id.searchPlanLoading).setVisibility(View.VISIBLE);
+        bottomView.findViewById(R.id.searchPlanLoadingAfter).setVisibility(View.GONE);
     }
 
     //show the journey information
@@ -598,6 +605,10 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
 //        currentJourney.getCastle().getPrice();
 //        ticketNum;
 //        currentJourney.getTotalPrice();
+
+        //the info can't be showed until loading is done
+        bottomView.findViewById(R.id.searchPlanLoading).setVisibility(View.GONE);
+        bottomView.findViewById(R.id.searchPlanLoadingAfter).setVisibility(View.VISIBLE);
     }
 
     public void timeNotAppropriate(){

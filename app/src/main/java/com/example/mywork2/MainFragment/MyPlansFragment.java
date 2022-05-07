@@ -444,6 +444,10 @@ public class MyPlansFragment extends Fragment{
             returnRoutesLayout.addView(textView);
         }
 
+        //the layout not visible until the loading is done
+        this.view.findViewById(R.id.myPlanInfoLoading).setVisibility(View.GONE);
+        this.view.findViewById(R.id.myPlanInfoLoadingAfter).setVisibility(View.VISIBLE);
+
     }
 
     //delete all tickets by its id or refund it
@@ -643,9 +647,11 @@ public class MyPlansFragment extends Fragment{
             removeButton2.setText("remove");
             myPlansDialoge.setDialogTitle("How many plans are you going to remove ?");
             myPlansDialoge.setRemoveOrRefund("remove");
-
-
         }
+
+        //the layout not visible until the loading is done
+        this.view.findViewById(R.id.myPlanInfoLoading).setVisibility(View.VISIBLE);
+        this.view.findViewById(R.id.myPlanInfoLoadingAfter).setVisibility(View.GONE);
     }
 
 }

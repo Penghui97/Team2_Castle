@@ -174,7 +174,8 @@ public class SearchFragment extends Fragment {
             alert("Please select a time");
             return;
         }
-        intent.putExtra("departure", departure.getSelectedItem().toString());
+        //canceled this function
+//        intent.putExtra("departure", departure.getSelectedItem().toString());
         intent.putExtra("destination", destination.getSelectedItem().toString());
         //transfer the format of the time
         if(strTime.length() == 4){

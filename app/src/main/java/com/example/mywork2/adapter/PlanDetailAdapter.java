@@ -51,6 +51,8 @@ public class PlanDetailAdapter extends BaseAdapter {
             //set the list_item.xml as the view
             view = LayoutInflater.from(context).inflate(R.layout.search_plan_item, viewGroup, false);
             //put the textView of list_item to the viewHolder
+            viewHolder.start = view.findViewById(R.id.searchPlanStart);
+            viewHolder.transportType = view.findViewById(R.id.searchPlanTransportType);
             viewHolder.time = view.findViewById(R.id.planDetailTime);
             viewHolder.price = view.findViewById(R.id.planDetailPrice);
             viewHolder.viewDetails = view.findViewById(R.id.searchPlanViewDetailsButton);
@@ -68,6 +70,8 @@ public class PlanDetailAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
         }
         //set the content of the textView in the holder
+        viewHolder.start.setText(journeys.get(i).getDeparture());
+        viewHolder.transportType.setText(journeys.get(i).getRoutes().get(0).getTransport().getType());
         viewHolder.time.setText(journeys.get(i).getSingleDuration() + " min ");
         viewHolder.price.setText(" ￡ " + journeys.get(i).getTotalPrice() + " pp ");
 //        viewHolder.transferNum.setText(journeys.get(i).getRoutes().size() + "");
@@ -87,6 +91,8 @@ public class PlanDetailAdapter extends BaseAdapter {
 
     //the container to hold each cell in the list
     private final class ViewHolder{
+        TextView start;
+        TextView transportType;
         TextView time;
         TextView price;
 //        TextView transferNum;
