@@ -1,6 +1,7 @@
 package com.example.mywork2.Util;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -48,6 +49,12 @@ public class WiFiUtil {
         Log.e("SSID",wifiInfo.getSSID());
         return ssid.replace("\"","");
     }
+
+//    public static String getID(Context context){
+//        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+//        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+//        return networkInfo.getExtraInfo();
+//    }
 
 
 }

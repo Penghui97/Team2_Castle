@@ -9,11 +9,15 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
@@ -152,7 +156,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void checkWifi() {
-
          wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
          assert wifiManager != null;
         if (WiFiUtil.isWifiConnected(getApplicationContext()).equals("false")){//if wifi is not connected

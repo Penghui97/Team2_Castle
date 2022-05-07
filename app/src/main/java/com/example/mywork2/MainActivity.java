@@ -57,13 +57,14 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private DrawerLayout drawer;
+    @SuppressLint("StaticFieldLeak")
     private static NavController navController;
     //drawerImage is the imageview in the drawerlayout.
     private ImageView imageView, drawerImage;
     //nickname_v is the username textview.
     private TextView nickname_v, email_v;
     public User user, customer;
-    public String username, nickname;
+    public String username, nickname, passW;
     String lang, image64;
 
 
@@ -82,10 +83,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     nickname_v.setText(customer.getNickname());//set the customer's username on the view
                     email_v.setText(customer.getEmail());//set the customer's email on the view
                     break;
-                case 0x33:
+                case 0x33://set avatar
                     imageView.setImageBitmap(ImageUtil.base64ToImage(image64));
                     drawerImage.setImageBitmap(ImageUtil.base64ToImage(image64));
-                    initData();
                     break;
                 case 0x44:
                     noAvatar();
@@ -202,8 +202,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         SharedPreferences spfRecord = getSharedPreferences("remName", MODE_PRIVATE);
         SharedPreferences.Editor edit = spfRecord.edit();
-        edit.putString("remName", username);
-        edit.putString("RemPass", PasswordUtil.hex2Str(user.getPassword()));
+        try{
+            edit.putString("remName", username);
+            edit.putString("RemPass", PasswordUtil.hex2Str(user.getPassword()));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         edit.apply();
 
     }
@@ -351,6 +355,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         new Thread(() -> {
             UserDao userDao = new UserDao();
             user = userDao.getUserByUsername(username);
+            passW = PasswordUtil.hex2Str(user.getPassword());
             customer = userDao.getUserByUsername("root");
 
 
