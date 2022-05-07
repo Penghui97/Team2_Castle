@@ -73,11 +73,11 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         }
 
         //remember account
-        SharedPreferences spfRecord = getSharedPreferences("remName", MODE_PRIVATE);
-        SharedPreferences.Editor edit = spfRecord.edit();
-        edit.putString("remName", remName);
-        edit.putString("RemPass", RemPass);
-        edit.apply();
+//        SharedPreferences spfRecord = getSharedPreferences("remName", MODE_PRIVATE);
+//        SharedPreferences.Editor edit = spfRecord.edit();
+//        edit.putString("remName", remName);
+//        edit.putString("RemPass", RemPass);
+//        edit.apply();
 
         //check if wifi belongs to newcastle university
         checkWifi();
