@@ -211,6 +211,12 @@
     <string name="_4">4</string>
     <string name="_5">5</string>
     <string name="emulator">We have detected that you are using Android Emulator to run this App. Please ensure your PC is connected to Newcastle Campus WiFi</string>
+    <string name="newaccountsignin">Register successfully! Sign in?</string>
+    <string name="loginremember">Log in to a remembered account?</string>
+    <string name="usernameis">Your username is: </string>
+    <string name="passwordis">Your password is: </string>
+    <string name="loginornot">Do you want to log in?</string>
+    <string name="back">back</string>
 
 
 </resources>

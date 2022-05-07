@@ -202,9 +202,11 @@ public class NewAccountFragment extends Fragment {
                     message.what = 0x93;
                     handler.sendMessage(message);
                     return;
-                }else {
+                }else {//register successfully
                     information = true;
                     Intent intent = new Intent(getActivity(), LogInActivity.class);
+                    intent.putExtra("newUser",name);
+                    intent.putExtra("Password_",_password);
                     startActivity(intent);
 
                 }

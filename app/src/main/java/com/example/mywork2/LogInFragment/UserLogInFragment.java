@@ -1,6 +1,5 @@
 package com.example.mywork2.LogInFragment;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -17,10 +16,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.mywork2.LogInActivity;
 import com.example.mywork2.MainActivity;
 import com.example.mywork2.R;
 import com.example.mywork2.Util.PasswordUtil;
-import com.example.mywork2.Util.UserThreadLocal;
 import com.example.mywork2.dao.UserDao;
 import com.example.mywork2.domain.User;
 
@@ -29,8 +28,9 @@ import java.io.UnsupportedEncodingException;
 public class UserLogInFragment extends Fragment {
     private EditText username, password;
     private TextView username_warn, password_warn, forgot;
-    Button login;
+    Button login,back;
     NavController navController;
+    String rememberName, rememberPassword;
 
     public UserLogInFragment() {
         // Required empty public constructor
@@ -42,6 +42,7 @@ public class UserLogInFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_user__log__in_, container, false);
+
     }
 
     @Override
@@ -52,7 +53,19 @@ public class UserLogInFragment extends Fragment {
         username_warn = view.findViewById(R.id.username_login_warn);
         password = view.findViewById(R.id.password_login);
         password_warn = view.findViewById(R.id.password_login_warn);
-        
+
+
+        Bundle bundle = getArguments();
+        if(bundle!=null){
+            rememberName = bundle.getString("username");
+            rememberPassword = bundle.getString("password");
+            username.setText(rememberName);
+            password.setText(rememberPassword);
+        }
+        back = view.findViewById(R.id.btn_back_);
+        back.setOnClickListener(view1 -> {
+            startActivity(new Intent(getActivity(), LogInActivity.class));
+        });
         login = view.findViewById(R.id.btn_login);
         login.setOnClickListener(view1 -> {
             new Thread(() -> {

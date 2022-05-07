@@ -180,6 +180,12 @@
     <string name="_4">4</string>
     <string name="_5">5</string>
     <string name="emulator">检测到您正在使用模拟器，请确保您的电脑连接了校园网</string>
+    <string name="newaccountsignin">注册成功！是否登录？</string>
+    <string name="loginremember">是否登录已记住的账号？</string>
+    <string name="usernameis">你的用户名是：</string>
+    <string name="passwordis">你的密码是： </string>
+    <string name="loginornot">是否登录？</string>
+    <string name="back">返回</string>
 
 
 </resources>
