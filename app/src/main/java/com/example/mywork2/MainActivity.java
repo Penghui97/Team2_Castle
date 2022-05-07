@@ -56,6 +56,7 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private DrawerLayout drawer;
+    private static NavController navController;
     //drawerImage is the imageview in the drawerlayout.
     private ImageView imageView, drawerImage;
     //nickname_v is the username textview.
@@ -90,6 +91,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
     };
+
+    public static void toMyPlans(){
+        navController.navigate(R.id.myPlansFragment);
+    }
 
     private void noAvatar() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -128,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         FragmentContainerView fragmentContainerView = findViewById(R.id.mainpage_fragment_container_view_tag);
         NavHostFragment navHostFragment = fragmentContainerView.getFragment();
         //get Navigation Controller from the Host fragment
-        NavController navController = navHostFragment.getNavController();
+        navController = navHostFragment.getNavController();
         NavigationUI.setupWithNavController(botNavView,navController);
 
         //drawer Navigation
