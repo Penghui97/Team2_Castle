@@ -1,13 +1,9 @@
 package com.example.mywork2;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,8 +13,7 @@ import android.widget.TextView;
 import com.example.mywork2.CastleFragment.CastleMapFragment;
 import com.example.mywork2.CastleFragment.CastleViewPageAdapter;
 import com.example.mywork2.CastleFragment.PanelOverCastleFragment;
-import com.example.mywork2.CastleFragment.PanelTicketsFragment;
-import com.google.android.material.tabs.TabItem;
+import com.example.mywork2.CastleFragment.PanelNearbyFragment;
 import com.google.android.material.tabs.TabLayout;
 
 public class CastleDetails extends AppCompatActivity implements View.OnClickListener{
@@ -49,13 +44,13 @@ public class CastleDetails extends AppCompatActivity implements View.OnClickList
                 , FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
 
         castleViewPageAdapter.addFragment(new PanelOverCastleFragment(castleName,linkAbout),"castle");
-        castleViewPageAdapter.addFragment(new PanelTicketsFragment(castleName),"tickets");
-        castleViewPageAdapter.addFragment(new CastleMapFragment(),"map");
+        castleViewPageAdapter.addFragment(new PanelNearbyFragment(castleName),"nearby");
+        castleViewPageAdapter.addFragment(new CastleMapFragment(),"gallery");
         viewPager.setAdapter(castleViewPageAdapter);
 
         tabLayout.getTabAt(0).setIcon(R.drawable.icons8_castle_58);
-        tabLayout.getTabAt(1).setIcon(R.drawable.icons8_two_tickets_32);
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_baseline_map_24);
+        tabLayout.getTabAt(1).setIcon(R.drawable.icons8_nearby_64);
+        tabLayout.getTabAt(2).setIcon(R.drawable.icons8_picture_64);
     }
 
 

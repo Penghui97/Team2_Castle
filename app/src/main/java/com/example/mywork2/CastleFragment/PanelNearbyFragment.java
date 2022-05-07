@@ -17,11 +17,10 @@ import com.example.mywork2.R;
 import com.example.mywork2.adapter.NearbyPOIsAdapter;
 import com.example.mywork2.dao.POIDao;
 import com.example.mywork2.domain.NearbyPOI;
-import com.example.mywork2.domain.Ticket;
 
 import java.util.ArrayList;
 
-public class PanelTicketsFragment extends Fragment {
+public class PanelNearbyFragment extends Fragment {
     private String castleName;
     private ArrayList<NearbyPOI> pois;
     private View view;
@@ -39,7 +38,7 @@ public class PanelTicketsFragment extends Fragment {
         }
     };
 
-    public PanelTicketsFragment(String castleName) {
+    public PanelNearbyFragment(String castleName) {
         switch (castleName){
             case "alnwic":
                 this.castleName = "Alnwick Castle";
@@ -62,7 +61,7 @@ public class PanelTicketsFragment extends Fragment {
                              Bundle savedInstanceState) {
         getPOIs();
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_panel_tickets, container, false);
+        view = inflater.inflate(R.layout.fragment_panel_nearby, container, false);
         return view;
     }
 
