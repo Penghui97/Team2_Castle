@@ -11,6 +11,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ import com.example.mywork2.domain.User;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class SearchFragment extends Fragment {
 
@@ -37,6 +39,7 @@ public class SearchFragment extends Fragment {
     private TimePickerDialog.OnTimeSetListener onTimeSetListener;
     private View view;
     private User user;
+    private Calendar dateOfDeparture;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -65,6 +68,7 @@ public class SearchFragment extends Fragment {
             }
         });
 
+        dateOfDeparture = Calendar.getInstance();
         return view;
 
     }
@@ -88,13 +92,17 @@ public class SearchFragment extends Fragment {
                 );
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
+
             }
         });
 
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                dateOfDeparture.set(year,month,day);
                 month = month+1;
+
+
                 String m = "";
                 if(month<10){
                     m+= 0;
@@ -109,6 +117,7 @@ public class SearchFragment extends Fragment {
 
                 String date = year+"/"+m+"/"+d;
                 mDisplayDate.setText(date);
+
             }
         };
 
@@ -163,6 +172,17 @@ public class SearchFragment extends Fragment {
         TextView departureTime = this.view.findViewById(R.id.departure_time);
         TabLayout ticketNumLayout = this.view.findViewById(R.id.ticket_num);
         int ticketNum = ticketNumLayout.getSelectedTabPosition() + 1;
+
+        Log.d("debu",""+dateOfDeparture.getTime()+"po:"+departure.getSelectedItemPosition());
+
+        if(departure.getSelectedItemPosition() ==0){
+            if(dateOfDeparture.getTime().toString().contains("Tue")||
+                    dateOfDeparture.getTime().toString().contains("Mon")){
+                alert("this castle is closed in Monday and Tuesday!");
+                return;
+            }
+        }
+
         //check if the user has selected date and time
         String strDate = (String) departureDate.getText();
         if(!strDate.contains("/")) {
