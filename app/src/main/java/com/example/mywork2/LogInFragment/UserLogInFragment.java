@@ -63,29 +63,22 @@ public class UserLogInFragment extends Fragment {
             password.setText(rememberPassword);
         }
         back = view.findViewById(R.id.btn_back_);
-        back.setOnClickListener(view1 -> {
-            startActivity(new Intent(getActivity(), LogInActivity.class));
-        });
+        back.setOnClickListener(view1 -> startActivity(new Intent(getActivity(), LogInActivity.class)));
         login = view.findViewById(R.id.btn_login);
-        login.setOnClickListener(view1 -> {
-            new Thread(() -> {
-                initView();
-                try {
-                    checkInfoAndLogin();
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
+        login.setOnClickListener(view1 -> new Thread(() -> {
+            initView();
+            try {
+                checkInfoAndLogin();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
 
-            }).start();
-            
-        });
+        }).start());
 
 
         navController = Navigation.findNavController(view);
         forgot = view.findViewById(R.id.forget_password);
-        forgot.setOnClickListener(view1 -> {
-            navController.navigate(R.id.action_userLogInFragment_to_forgetPasswordFragment);
-        });
+        forgot.setOnClickListener(view1 -> navController.navigate(R.id.action_userLogInFragment_to_forgetPasswordFragment));
 
 
 
