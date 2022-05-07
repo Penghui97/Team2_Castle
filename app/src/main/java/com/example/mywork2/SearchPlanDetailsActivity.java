@@ -412,7 +412,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
 
         LinearLayout routesLayout = bottomView.findViewById(R.id.searchPlanInfoRoutes);
         TextView goCost = new TextView(bottomView.getContext());
-        goCost.setText("transportation cost: "+""+" ￡\n");
+        goCost.setText("transportation cost: "+""+" ￡ " + currentJourney.getSinglePrice() + "\n");
         routesLayout.addView(goCost);
         for (int i = 0; i < journey.getRoutes().size(); i++) {
             Route route = journey.getRoutes().get(i);
@@ -494,7 +494,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         ImageView castleImage = new ImageView(bottomView.getContext());
         castleImage.setImageResource(R.drawable.icons8_castle_32);
         TextView castleTitle = new TextView(bottomView.getContext());
-        castleTitle.setText("   "+destination+"        "+currentJourney.getCastle().getPrice()+ " ￡");
+        castleTitle.setText("   "+destination+"        ￡"+currentJourney.getCastle().getPrice());
         castleView.addView(castleImage);
         castleView.addView(castleTitle);
         castleDetails.addView(castleView);
@@ -506,7 +506,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         //show the return routes
         LinearLayout returnRoutesLayout = bottomView.findViewById(R.id.searchPlanInfoReturnRoutes);
         TextView returnCost = new TextView(bottomView.getContext());
-        returnCost.setText("transportation cost: "+""+" ￡\n");
+        returnCost.setText("transportation cost: " + " ￡ " + currentJourney.getSinglePrice() + "\n");
         returnRoutesLayout.addView(returnCost);
 
         for (int i = 0; i < journey.getReturnRoutes().size(); i++) {
@@ -593,7 +593,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
 
         LinearLayout totalCost = bottomView.findViewById(R.id.totoalCost_plan);
         TextView totalCostText = new TextView(bottomView.getContext());
-        totalCostText.setText("Total price: "+""+" ￡");
+        totalCostText.setText("Total price: " + " ￡ " + currentJourney.getTotalPrice() * ticketNum + " = " + currentJourney.getTotalPrice() + " * " + ticketNum);
         totalCost.addView(totalCostText);
 
         //the price details
