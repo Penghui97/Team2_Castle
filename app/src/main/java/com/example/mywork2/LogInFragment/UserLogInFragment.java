@@ -27,7 +27,8 @@ import java.io.UnsupportedEncodingException;
 
 public class UserLogInFragment extends Fragment {
     private EditText username, password;
-    private TextView username_warn, password_warn, forgot;
+    private TextView username_warn;
+    private TextView password_warn;
     Button login,back;
     NavController navController;
     String rememberName, rememberPassword;
@@ -54,7 +55,7 @@ public class UserLogInFragment extends Fragment {
         password = view.findViewById(R.id.password_login);
         password_warn = view.findViewById(R.id.password_login_warn);
 
-
+        //get data from login activity
         Bundle bundle = getArguments();
         if(bundle!=null){
             rememberName = bundle.getString("username");
@@ -62,6 +63,7 @@ public class UserLogInFragment extends Fragment {
             username.setText(rememberName);
             password.setText(rememberPassword);
         }
+        //buttons
         back = view.findViewById(R.id.btn_back_);
         back.setOnClickListener(view1 -> startActivity(new Intent(getActivity(), LogInActivity.class)));
         login = view.findViewById(R.id.btn_login);
@@ -77,7 +79,7 @@ public class UserLogInFragment extends Fragment {
 
 
         navController = Navigation.findNavController(view);
-        forgot = view.findViewById(R.id.forget_password);
+        TextView forgot = view.findViewById(R.id.forget_password);
         forgot.setOnClickListener(view1 -> navController.navigate(R.id.action_userLogInFragment_to_forgetPasswordFragment));
 
 
