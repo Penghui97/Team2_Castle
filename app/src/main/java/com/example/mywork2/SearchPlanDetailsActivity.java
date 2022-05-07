@@ -46,6 +46,8 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
     private LinearLayout searchPlanDetailsLayout;
     private Button save;
     public LinearLayout searchPlanInfoAllContent;
+    public LinearLayout searchPlanInfoLoading;
+    public LinearLayout getSearchPlanInfoLoadingAfter;
     public BottomSheetDialog bottomSheetDialog;
     private View bottomView;
     private ArrayList<Journey> journeys;
@@ -109,6 +111,8 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         //not show the info page until one particular plan is clicked
         searchPlanDetailsLayout = findViewById(R.id.searchPlanDetailsLayout);
         searchPlanInfoAllContent = findViewById(R.id.searchPlanInfoAllContent);
+        searchPlanInfoLoading = findViewById(R.id.searchPlanLoading);
+        getSearchPlanInfoLoadingAfter = findViewById(R.id.searchPlanLoadingAfter);
         searchPlanInfoAllContent.setVisibility(View.GONE);
 
         //get the input of the user
@@ -292,6 +296,10 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
 
     //get a particular journey by its id
     public void getJourneyById(String journeyId) {
+
+//        //show the loading page until info has been loaded
+//        searchPlanInfoLoading.setVisibility(View.VISIBLE);
+//        getSearchPlanInfoLoadingAfter.setVisibility(View.GONE);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -377,9 +385,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         castleDetails.removeAllViews();
         totalCost.removeAllViews();
 
-        //the info can't be showed until loading is done
-        bottomView.findViewById(R.id.searchPlanLoading).setVisibility(View.VISIBLE);
-        bottomView.findViewById(R.id.searchPlanLoadingAfter).setVisibility(View.GONE);
+
     }
 
     //show the journey information
@@ -632,6 +638,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         findViewById(R.id.searchPlanInfoDisappear).setVisibility(View.GONE);
 
         bottomSheetDialog.dismiss();
+
     }
 
     //save the journey as a ticket into the database

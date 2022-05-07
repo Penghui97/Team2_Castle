@@ -90,6 +90,9 @@ public class MyPlansAdapter extends BaseAdapter {
 
                 myPlansFragment.getTicketById(tickets.get(i).getTicketId());
                 myPlansFragment.myPlanInfoLayout.setVisibility(View.VISIBLE);
+                //show the loading page until info has been loaded
+                myPlansFragment.myPlanInfoLoading.setVisibility(View.VISIBLE);
+                myPlansFragment.myPlanInfoLoadingAfter.setVisibility(View.GONE);
 
             }
         });

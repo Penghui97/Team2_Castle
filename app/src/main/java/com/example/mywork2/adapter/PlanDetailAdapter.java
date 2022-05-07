@@ -79,6 +79,9 @@ public class PlanDetailAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
 //                context.toSearchPlanInfo(i);
+//                //show the loading page until info has been loaded
+                context.searchPlanInfoLoading.setVisibility(View.VISIBLE);
+                context.getSearchPlanInfoLoadingAfter.setVisibility(View.GONE);
                 //show the info page
                 //and update the content
                 context.getJourneyById(journeys.get(i).getJourneyId());

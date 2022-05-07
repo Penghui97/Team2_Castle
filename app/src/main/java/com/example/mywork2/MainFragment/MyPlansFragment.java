@@ -58,6 +58,8 @@ public class MyPlansFragment extends Fragment{
     public LinearLayout myPlanInfoLayout;
     public LinearLayout myPlanInfoRemoveNumLayout;
     private MyPlansDialoge myPlansDialoge;
+    public LinearLayout myPlanInfoLoading;
+    public LinearLayout myPlanInfoLoadingAfter;
 
     public MyPlansFragment() {
         // Required empty public constructor
@@ -116,6 +118,8 @@ public class MyPlansFragment extends Fragment{
         myPlanInfoLayout = this.view.findViewById(R.id.myPlanInfoAllContentLayout);
         myPlanInfoRemoveNumLayout = this.view.findViewById(R.id.myPlanInfoRemoveNumLayout);
         myPlanInfoRemoveNum = this.view.findViewById(R.id.myPlanInfoRemoveNum);
+        myPlanInfoLoading = this.view.findViewById(R.id.myPlanInfoLoading);
+        myPlanInfoLoadingAfter = this.view.findViewById(R.id.myPlanInfoLoadingAfter);
         myPlanInfoLayout.setVisibility(View.GONE);
         myPlanInfoRemoveNumLayout.setVisibility(View.GONE);
 
@@ -649,9 +653,9 @@ public class MyPlansFragment extends Fragment{
             myPlansDialoge.setRemoveOrRefund("remove");
         }
 
-        //the layout not visible until the loading is done
-        this.view.findViewById(R.id.myPlanInfoLoading).setVisibility(View.VISIBLE);
-        this.view.findViewById(R.id.myPlanInfoLoadingAfter).setVisibility(View.GONE);
+//        //the layout not visible until the loading is done
+//        this.view.findViewById(R.id.myPlanInfoLoading).setVisibility(View.VISIBLE);
+//        this.view.findViewById(R.id.myPlanInfoLoadingAfter).setVisibility(View.GONE);
     }
 
 }
