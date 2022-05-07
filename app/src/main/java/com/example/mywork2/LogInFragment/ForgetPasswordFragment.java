@@ -1,6 +1,7 @@
 package com.example.mywork2.LogInFragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
+import com.example.mywork2.LogInActivity;
 import com.example.mywork2.R;
 import com.example.mywork2.Util.PasswordUtil;
 import com.example.mywork2.dao.UserDao;
@@ -46,9 +48,17 @@ public class ForgetPasswordFragment extends Fragment {
             if (msg.what == 0x11) {
                 password = PasswordUtil.hex2Str(user.getPassword());
                 remind_password.setText("Your password is: "+password);
+                returnLoginPage();
             }
         }
     };
+
+    private void returnLoginPage() {
+        Intent intent = new Intent(getActivity(), LogInActivity.class);
+        intent.putExtra("password",password);
+        intent.putExtra("username",username);
+        startActivity(intent);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

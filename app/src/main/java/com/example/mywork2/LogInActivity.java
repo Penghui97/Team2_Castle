@@ -4,10 +4,13 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentContainerView;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -20,13 +23,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mywork2.LogInFragment.LogInMainFragment;
+import com.example.mywork2.LogInFragment.UserLogInFragment;
 import com.example.mywork2.Util.WiFiUtil;
 
 public class LogInActivity extends AppCompatActivity implements View.OnClickListener{
 
     //check wifi
     WifiManager wifiManager;
-    String ssid;
+    String ssid, username, password,remName, RemPass,forgetName, forgetPass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +43,110 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         //get Navigation Controller from the Host fragment
         NavController navController = navHostFragment.getNavController();
 
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        try{
+            //new account
+            username = (String) extras.get("newUser");
+            password = (String) extras.get("Password_");
+            //remember user
+            remName = (String) extras.get("remName");
+            RemPass = (String) extras.get("RemPass");
+            //forget password
+            forgetName = (String) extras.get("username");
+            forgetPass = (String) extras.get("password");
+
+            //remember username and password
+            SharedPreferences getUsername = getSharedPreferences("remName", MODE_PRIVATE);
+            remName = getUsername.getString("remName","");
+            RemPass = getUsername.getString("RemPass","");
+
+
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        //remember account
+        SharedPreferences spfRecord = getSharedPreferences("remName", MODE_PRIVATE);
+        SharedPreferences.Editor edit = spfRecord.edit();
+        edit.putString("remName", remName);
+        edit.putString("RemPass", RemPass);
+        edit.apply();
+
         //check if wifi belongs to newcastle university
         checkWifi();
+
+        //login with the new account
+        if (username!=null&&password!=null){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(getString(R.string.newaccountsignin)).setNegativeButton("Cancel"
+                    , (dialogInterface,i) -> dialogInterface.dismiss()).setPositiveButton("Ok",
+                    ((dialogInterface, i) -> {
+                        if(username!=null&&password!=null){
+                            //传参
+                            //transmit data to login fragment
+                            UserLogInFragment userLogInFragment = new UserLogInFragment();
+                            Bundle bundle = new Bundle();
+                            bundle.putString("username",username);
+                            bundle.putString("password",password);
+                            userLogInFragment.setArguments(bundle);
+                            FragmentManager fragmentManager = getSupportFragmentManager();
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            fragmentTransaction.replace(R.id.log_in_nav_host_frag,userLogInFragment);
+                            fragmentTransaction.commit();
+                        }
+                        navController.navigate(R.id.action_logInMainFragment_to_userLogInFragment);
+                    })).show();
+
+        }else if(forgetName!=null&&forgetPass!=null){//password is found
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(getString(R.string.usernameis)+forgetName+"\n"+getString(R.string.passwordis)
+            +forgetPass+"\n"+getString(R.string.loginornot)).setNegativeButton("Cancel"
+                    , (dialogInterface,i) -> dialogInterface.dismiss()).setPositiveButton("Ok",
+                    ((dialogInterface, i) -> {
+                        if(forgetPass!=null&&forgetName!=null){
+                            //传参
+                            //transmit data to login fragment
+                            UserLogInFragment userLogInFragment = new UserLogInFragment();
+                            Bundle bundle = new Bundle();
+                            bundle.putString("username",forgetName);
+                            bundle.putString("password",forgetPass);
+                            userLogInFragment.setArguments(bundle);
+                            FragmentManager fragmentManager = getSupportFragmentManager();
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            fragmentTransaction.replace(R.id.log_in_nav_host_frag,userLogInFragment);
+                            fragmentTransaction.commit();
+                        }
+                        navController.navigate(R.id.action_logInMainFragment_to_userLogInFragment);
+                    })).show();
+        }
+        else {
+            //remembered account
+            if (remName!=null&&RemPass!=null){
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage(getString(R.string.loginremember)).setNegativeButton("Cancel"
+                        , (dialogInterface,i) -> dialogInterface.dismiss()).setPositiveButton("Ok",
+                        ((dialogInterface, i) -> {
+                            if(remName!=null&&RemPass!=null){
+                                //传参
+                                //transmit data to login fragment
+                                UserLogInFragment userLogInFragment = new UserLogInFragment();
+                                Bundle bundle = new Bundle();
+                                bundle.putString("username",remName);
+                                bundle.putString("password",RemPass);
+                                userLogInFragment.setArguments(bundle);
+                                FragmentManager fragmentManager = getSupportFragmentManager();
+                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                fragmentTransaction.replace(R.id.log_in_nav_host_frag,userLogInFragment);
+                                fragmentTransaction.commit();
+                            }
+                            navController.navigate(R.id.action_logInMainFragment_to_userLogInFragment);
+                        })).show();
+            }
+        }
+
 
 
     }

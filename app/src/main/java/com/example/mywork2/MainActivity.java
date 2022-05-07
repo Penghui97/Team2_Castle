@@ -39,6 +39,7 @@ import com.example.mywork2.MyAccount.AccountEditActivity;
 import com.example.mywork2.MyAccount.AppSettingsActivity;
 import com.example.mywork2.MyAccount.CommentsActivity;
 import com.example.mywork2.Util.ImageUtil;
+import com.example.mywork2.Util.PasswordUtil;
 import com.example.mywork2.Util.UserThreadLocal;
 import com.example.mywork2.dao.AvatarDao;
 import com.example.mywork2.dao.UserDao;
@@ -106,6 +107,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
         //get username from login page
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
@@ -114,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             username = "root";
         }
         //show the particular user's info
+
 
         showUserInfo();
 
@@ -158,7 +162,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         drawerView.setNavigationItemSelectedListener(item -> {
             if(item.getItemId()==R.id.app_logout){//logout
-                startActivity(new Intent(MainActivity.this,LogInActivity.class)
+                Intent intent1 = new Intent(MainActivity.this,LogInActivity.class);
+                intent1.putExtra("remName",username);
+                intent1.putExtra("RemPass", PasswordUtil.hex2Str(user.getPassword()));
+                startActivity(intent1
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK));
             }else if (item.getItemId()==R.id.accountEditActivity){//my account
                 //transmit
@@ -188,6 +195,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return true;
         });
 
+        SharedPreferences spfRecord = getSharedPreferences("remName", MODE_PRIVATE);
+        SharedPreferences.Editor edit = spfRecord.edit();
+        edit.putString("remName", username);
+        edit.putString("RemPass", PasswordUtil.hex2Str(user.getPassword()));
+        edit.apply();
 
     }
 
