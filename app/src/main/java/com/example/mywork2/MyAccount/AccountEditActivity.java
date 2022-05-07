@@ -8,6 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -46,13 +47,20 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
-            if (msg.what == 0x11) {
+            if (msg.what == 0x11) {//update nickname
                 account_nickname.setText(nickname);
                 account_email.setText(email_);
-            }else if (msg.what == 0x22) {
+            } else if(msg.what == 0x12) {//wrong email
+                warningMessage.setText(R.string.email_end);
+            } else if (msg.what == 0x13) {//email used
+                warningMessage.setText(R.string.emailused);
+            } else if (msg.what == 0x14) {//email edittext changed
+                initWarn();//initialize
+            }
+            else if (msg.what == 0x22) {//update nickname
                 account_nickname.setText(customer.getNickname());
                 account_email.setText(customer.getEmail());
-            }else if (msg.what == 0x33) {
+            }else if (msg.what == 0x33) {//update email
                 bottomSheetDialog.dismiss();
                 account_email.setText(email_);
                 //show the alert dialog to tell user
@@ -67,6 +75,11 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
                 bottomSheetDialog.dismiss();
                 passwordChanged();
                 hideEditPassword();
+                //remember account
+                SharedPreferences spfRecord = getSharedPreferences("remName", MODE_PRIVATE);
+                SharedPreferences.Editor edit = spfRecord.edit();
+                edit.putString("RemPass",new_password);
+                edit.apply();
             }
         }
     };
@@ -195,20 +208,28 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
                     new Thread(() ->{
                         String reg = getString(R.string.reg);
                         if(!change.getText().toString().equals(email_)){//if email changed
-                            initWarn();//initialize
+                            Message message = handler.obtainMessage();
+                            message.what = 0x14;
+                            handler.sendMessage(message);
+
                             if(!change.getText().toString().matches(reg)||!change.getText().toString().endsWith(".ac.uk")
                                     ||!(change.getText().toString().length()<40)){//wrong email
-                                warningMessage.setText(R.string.email_end);
+                                message = handler.obtainMessage();
+                                message.what = 0x12;
+                                handler.sendMessage(message);
                             }else {//check and save to database
                                 //check
                                 user.setEmail(change.getText().toString());
                                 UserDao userDao = new UserDao();
                                 if(userDao.updateUser(user)==2){//email used
-                                    warningMessage.setText(R.string.emailused);
-                                    user.setEmail(email_);
+                                    user.setEmail(email_);//set email back
+                                    message = handler.obtainMessage();
+                                    message.what = 0x13;
+                                    handler.sendMessage(message);
+
                                 }else {//everything is ok. save the user to database and refresh
                                     email_ = change.getText().toString();
-                                    Message message = handler.obtainMessage();
+                                    message = handler.obtainMessage();
                                     message.what = 0x33;
                                     handler.sendMessage(message);
                                 }

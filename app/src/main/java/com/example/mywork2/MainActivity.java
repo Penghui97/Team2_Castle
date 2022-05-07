@@ -82,10 +82,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     nickname_v.setText(customer.getNickname());//set the customer's username on the view
                     email_v.setText(customer.getEmail());//set the customer's email on the view
                     break;
-                case 0x33:
+                case 0x33://set avatar
                     imageView.setImageBitmap(ImageUtil.base64ToImage(image64));
                     drawerImage.setImageBitmap(ImageUtil.base64ToImage(image64));
-                    initData();
                     break;
                 case 0x44:
                     noAvatar();
