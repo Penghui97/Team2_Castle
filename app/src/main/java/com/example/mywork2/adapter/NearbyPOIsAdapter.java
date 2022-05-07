@@ -1,10 +1,13 @@
 package com.example.mywork2.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.mywork2.R;
@@ -50,6 +53,7 @@ public class NearbyPOIsAdapter extends BaseAdapter {
             viewHolder.category = view.findViewById(R.id.poiCategory);
             viewHolder.rating = view.findViewById(R.id.poiRating);
             viewHolder.postcode = view.findViewById(R.id.poiPostcode);
+            viewHolder.ratingBar = view.findViewById(R.id.poiRatingStar);
             //put the holder into the view's tag
             //in case to use next time
             view.setTag(viewHolder);
@@ -59,15 +63,33 @@ public class NearbyPOIsAdapter extends BaseAdapter {
         }
         //set the content of the textView in the holder
         viewHolder.name.setText(nearbyPOIS.get(i).getPoiName() + "");
-        viewHolder.category.setText(nearbyPOIS.get(i).getCategory() + "");
+        switch (nearbyPOIS.get(i).getCategory()) {
+            case "Cafe":
+                viewHolder.category.setImageResource(R.drawable.icons8_cafe_50);
+                break;
+            case "Restaurant":
+                viewHolder.category.setImageResource(R.drawable.icons8_restaurant_50);
+                break;
+            case "Pub":
+                viewHolder.category.setImageResource(R.drawable.icons8_mini_bar_50);
+                break;
+            case "Other":
+                viewHolder.category.setImageResource(R.drawable.icons8_more_50);
+                break;
+            default:
+                break;
+        }
+
         viewHolder.rating.setText(nearbyPOIS.get(i).getRating() + "");
+        viewHolder.ratingBar.setRating(nearbyPOIS.get(i).getRating());
         viewHolder.postcode.setText(nearbyPOIS.get(i).getPostcode() + "");
         return view;
     }
 
     private final class ViewHolder{
         TextView name;
-        TextView category;
+        ImageView category;
+        RatingBar ratingBar;
         TextView rating;
         TextView postcode;
     }

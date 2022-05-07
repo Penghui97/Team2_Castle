@@ -43,26 +43,15 @@
                 android:id="@+id/text_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="92dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="105dp"
                 android:text="@string/alnwic"
                 android:textColor="@color/black"
                 android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/img1"
                 app:layout_constraintTop_toTopOf="@id/img1" />
-
-
-            <TextView
-                android:id="@+id/text_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="@string/_12_visitors"
-                android:textSize="13sp"
-                app:layout_constraintBottom_toBottomOf="@id/img1"
-                app:layout_constraintStart_toEndOf="@id/img1"
-                app:layout_constraintTop_toBottomOf="@id/text_name"
-                app:layout_constraintVertical_bias=".8" />
-
 
             <ImageView
                 android:layout_width="20dp"
