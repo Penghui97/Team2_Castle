@@ -51,6 +51,8 @@ public class PanelOverCastleFragment extends Fragment {
             Uri uri = Uri.parse(links);
             startActivity(new Intent(Intent.ACTION_VIEW,uri));
         } );
+
+        //display different page for different castles
         switch (castleName){
             case "alnwic":
                 imageView.setImageResource(R.drawable.alnwic1);

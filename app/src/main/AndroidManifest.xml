@@ -42,9 +42,7 @@
         <activity
             android:name=".AboutThisApp"
             android:exported="false" />
-        <activity
-            android:name=".SearchPlans"
-            android:exported="false" />
+
         <activity
             android:name=".CastleDetails"
             android:exported="false" />

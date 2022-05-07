@@ -145,21 +145,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         NavigationView drawerView = findViewById(R.id.drawerNavView);
         NavigationUI.setupWithNavController(drawerView,navController);
 
+        //the account avatar
         CardView account = findViewById(R.id.account_avatar);
         account.setOnClickListener(this);
 
+        //the more button
         ImageView more = findViewById(R.id.app_helper);
         more.setOnClickListener(this);
 
+        //the drawer navigation bar
         CardView account_avatar_head = drawerView.getHeaderView(0).findViewById(R.id.account_avatar_head);
         account_avatar_head.setOnClickListener(this);
 
+        // the user information in the drawer headeer
         drawerImage = drawerView.getHeaderView(0).findViewById(R.id.avatar);
 
         nickname_v = drawerView.getHeaderView(0).findViewById(R.id.nickname_profile);
 
         email_v = drawerView.getHeaderView(0).findViewById(R.id.user_email);
 
+        //set event listener for the navi item
         drawerView.setNavigationItemSelectedListener(item -> {
             if(item.getItemId()==R.id.app_logout){//logout
                 Intent intent1 = new Intent(MainActivity.this,LogInActivity.class);
@@ -220,6 +225,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initData();
     }
 
+    // set on click event
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {

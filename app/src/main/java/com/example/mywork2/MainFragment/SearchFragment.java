@@ -24,12 +24,10 @@ import android.widget.TimePicker;
 import com.example.mywork2.MainActivity;
 import com.example.mywork2.R;
 import com.example.mywork2.SearchPlanDetailsActivity;
-import com.example.mywork2.SearchPlans;
 import com.example.mywork2.domain.User;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.Calendar;
-import java.util.Date;
 
 public class SearchFragment extends Fragment {
 
@@ -68,11 +66,12 @@ public class SearchFragment extends Fragment {
             }
         });
 
+        //get the current date
         dateOfDeparture = Calendar.getInstance();
         return view;
 
     }
-
+    //set departure time
     public void setDepartureTime(){
         mDisplayDate = view.findViewById(R.id.departure_date);
 
@@ -84,6 +83,7 @@ public class SearchFragment extends Fragment {
                 int month = calendar.get(Calendar.MONTH);
                 int day = calendar.get(Calendar.DATE);
 
+                //use the date dialog to select the date
                 DatePickerDialog dialog = new DatePickerDialog(
                         getActivity(),
                         com.google.android.material.R.style.Theme_AppCompat_Dialog_MinWidth,
@@ -99,16 +99,17 @@ public class SearchFragment extends Fragment {
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+
                 dateOfDeparture.set(year,month,day);
+                // the month is 0-11, so add 1
                 month = month+1;
-
-
                 String m = "";
+                //if month <10, it should display add a 0
                 if(month<10){
                     m+= 0;
                 }
                 m +=month;
-
+                //if date <10 , it should display add a 0
                 String d = "";
                 if(day<10){
                     d+= 0;
@@ -146,11 +147,12 @@ public class SearchFragment extends Fragment {
             @Override
             public void onTimeSet(TimePicker timePicker, int i, int i1) {
                 String iString = "";
+                //if hour <10, it should display add a 0
                 if(i<10){
                     iString += "0";
                 }
                 iString += i;
-
+                //if min <10, it should display add a 0
                 String i1String ="";
                 if(i1<10){
                     i1String += "0";
@@ -173,8 +175,8 @@ public class SearchFragment extends Fragment {
         TabLayout ticketNumLayout = this.view.findViewById(R.id.ticket_num);
         int ticketNum = ticketNumLayout.getSelectedTabPosition() + 1;
 
-        Log.d("debu",""+dateOfDeparture.getTime()+"po:"+departure.getSelectedItemPosition());
-
+        //Log.d("debu",""+dateOfDeparture.getTime()+"po:"+departure.getSelectedItemPosition());
+        //one castle is closed in monday and Tuesday, check it in this if statement
         if(departure.getSelectedItemPosition() ==0){
             if(dateOfDeparture.getTime().toString().contains("Tue")||
                     dateOfDeparture.getTime().toString().contains("Mon")){
