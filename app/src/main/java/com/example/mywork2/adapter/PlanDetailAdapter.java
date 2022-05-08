@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.mywork2.R;
@@ -71,7 +72,11 @@ public class PlanDetailAdapter extends BaseAdapter {
         }
         //set the content of the textView in the holder
         viewHolder.start.setText(journeys.get(i).getDeparture());
-        viewHolder.transportType.setText(journeys.get(i).getRoutes().get(0).getTransport().getType());
+        if(journeys.get(i).getRoutes().get(0).getTransport().getType().contains("Bus")){
+            viewHolder.transportType.setImageResource(R.drawable.icons8_bus_24);
+        }else {
+            viewHolder.transportType.setImageResource(R.drawable.icons8_train_24);
+        }
         viewHolder.time.setText(journeys.get(i).getSingleDuration() + " min ");
         viewHolder.price.setText(" ￡ " + journeys.get(i).getTotalPrice() + " pp ");
 //        viewHolder.transferNum.setText(journeys.get(i).getRoutes().size() + "");
@@ -95,7 +100,7 @@ public class PlanDetailAdapter extends BaseAdapter {
     //the container to hold each cell in the list
     private final class ViewHolder{
         TextView start;
-        TextView transportType;
+        ImageView transportType;
         TextView time;
         TextView price;
 //        TextView transferNum;

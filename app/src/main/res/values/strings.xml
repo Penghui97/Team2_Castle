@@ -12,9 +12,7 @@
     <string name="previous">Previous</string>
 
     <array name="departure">
-        <item>Haymarket Bus Station</item>
-        <item>Eldon Square Bus Station</item>
-        <item>Newcastle Central</item>
+        <item>Newcastle</item>
     </array>
     <array name="direction">
         <item>Alnwick Castle</item>
@@ -217,6 +215,8 @@
     <string name="passwordis">Your password is: </string>
     <string name="loginornot">Do you want to log in?</string>
     <string name="back">back</string>
+    <string name="plan_your_trip">Plan your Trip</string>
+    <string name="newcastle">Newcastle</string>
 
 
 </resources>

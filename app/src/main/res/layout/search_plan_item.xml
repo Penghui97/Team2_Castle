@@ -82,15 +82,15 @@
 
         </androidx.cardview.widget.CardView>
 
-        <TextView
+        <ImageView
             android:id="@+id/searchPlanTransportType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="205dp"
-            android:text="TextView"
             app:layout_constraintEnd_toStartOf="@+id/cardView3"
+            app:layout_constraintHorizontal_bias="0.434"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchPlanStart" />
 
