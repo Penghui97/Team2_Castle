@@ -217,6 +217,7 @@
     <string name="back">back</string>
     <string name="plan_your_trip">Plan your Trip</string>
     <string name="newcastle">Newcastle</string>
+    <string name="findback">Press forgot password to show your password.If you want to find your password back, click back button and return to this page again, then click forgot password button</string>
 
 
 </resources>

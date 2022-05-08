@@ -188,6 +188,7 @@
     <string name="back">返回</string>
     <string name="plan_your_trip">发现行程</string>
     <string name="newcastle">纽卡斯尔</string>
+    <string name="findback">按住忘记密码可显示密码。如果您想找回密码，先点击返回按钮再重新进入本页面后，再点击忘记密码</string>
 
 
 </resources>
