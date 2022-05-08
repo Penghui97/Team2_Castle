@@ -34,7 +34,7 @@
                     android:layout_marginStart="18dp"
                     android:fontFamily="monospace"
                     android:text="@string/alnwic_castle"
-                    android:textColor="#585859"
+                    android:textColor="#6200EE"
                     android:textSize="20sp"
                     android:textStyle="normal|bold" />
 

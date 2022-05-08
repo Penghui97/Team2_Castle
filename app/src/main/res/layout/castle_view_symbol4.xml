@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -12,24 +13,18 @@
         app:cardCornerRadius="5dp">
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="5dp">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/img1"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:layout_margin="5dp"
                 android:scaleType="fitXY"
                 app:cardCornerRadius="5dp"
-                app:cardElevation="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent=".3">
+                >
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -38,31 +33,38 @@
                     android:src="@drawable/bamburgh" />
             </androidx.cardview.widget.CardView>
 
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <TextView
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bamburgh"
+                    android:textColor="#6200EE"
+                    android:textSize="20sp"
+                    />
 
-            <TextView
-                android:id="@+id/text_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="88dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="87dp"
-                android:text="@string/bamburgh"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/img1"
-                app:layout_constraintTop_toTopOf="@id/img1" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:text="&quot;Fantastic views over the Tees Gorge&quot;"
+                    android:textColor="@color/black"
+                    />
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_margin="10dp"
-                android:src="@drawable/round"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="#FFC107" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
