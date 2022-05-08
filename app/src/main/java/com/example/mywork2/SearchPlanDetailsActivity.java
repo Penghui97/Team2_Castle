@@ -48,6 +48,8 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
     public LinearLayout searchPlanInfoAllContent;
     public LinearLayout searchPlanInfoLoading;
     public LinearLayout getSearchPlanInfoLoadingAfter;
+    private ListView planListView;
+    private LinearLayout searchLoading;
     public BottomSheetDialog bottomSheetDialog;
     private View bottomView;
     private ArrayList<Journey> journeys;
@@ -113,6 +115,8 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         searchPlanInfoAllContent = findViewById(R.id.searchPlanInfoAllContent);
         searchPlanInfoLoading = findViewById(R.id.searchPlanLoading);
         getSearchPlanInfoLoadingAfter = findViewById(R.id.searchPlanLoadingAfter);
+        planListView = findViewById(R.id.planListView);
+        searchLoading = findViewById(R.id.searchLoading);
         searchPlanInfoAllContent.setVisibility(View.GONE);
 
         //get the input of the user
@@ -170,6 +174,9 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
 
     //get the journeys by departure and destination
     public void getJourneys(String destination) {
+        //show the loading page until info loaded
+        searchLoading.setVisibility(View.VISIBLE);
+        planListView.setVisibility(View.INVISIBLE);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -249,10 +256,14 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
             TextView textView = new TextView(this);
             textView.setText("Sorry, no results fit your requirements.");
             searchPlanDetailsLayout.addView(textView);
+            searchLoading.setVisibility(View.GONE);
         } else {
             //put the journey list into the listView
             ListView listView = findViewById(R.id.planListView);
             listView.setAdapter(new PlanDetailAdapter(journeys, this));
+            //show the loading page until info loaded
+            searchLoading.setVisibility(View.GONE);
+            planListView.setVisibility(View.VISIBLE);
             /**
              * (Jing)
              * the click listener is set on the button in the adapter
