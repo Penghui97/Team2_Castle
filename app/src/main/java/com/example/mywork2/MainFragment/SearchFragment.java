@@ -100,7 +100,14 @@ public class SearchFragment extends Fragment {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
 
+                //check if the date is before the current date
+                dateOfDeparture.set(year,month,day+1);
+                if(dateOfDeparture.before(Calendar.getInstance())){
+                   alert("please select a date before current date!");
+                   return;
+                }
                 dateOfDeparture.set(year,month,day);
+
                 // the month is 0-11, so add 1
                 month = month+1;
                 String m = "";

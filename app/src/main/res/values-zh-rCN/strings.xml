@@ -186,6 +186,8 @@
     <string name="passwordis">你的密码是： </string>
     <string name="loginornot">是否登录？</string>
     <string name="back">返回</string>
+    <string name="plan_your_trip">发现行程</string>
+    <string name="newcastle">纽卡斯尔</string>
 
 
 </resources>
