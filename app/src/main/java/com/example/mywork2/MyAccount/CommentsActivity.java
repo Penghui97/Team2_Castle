@@ -12,6 +12,7 @@ import android.text.Editable;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RatingBar;
@@ -35,6 +36,7 @@ public class CommentsActivity extends AppCompatActivity {
     private RatingBar inputRating;
     private ArrayList<Comment> comments = new ArrayList<>();
     private ListView commentsListView;
+    private LinearLayout commentLoading;
     private EditText inputContent;
     private String username;
     private int rating;
@@ -70,6 +72,7 @@ public class CommentsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_comments);
 
         commentsListView = findViewById(R.id.commentListView);
+        commentLoading = findViewById(R.id.commentLoading);
         inputContent = findViewById(R.id.commentInputContent);
         imm = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
         inputRating = findViewById(R.id.commentInputRating);
@@ -104,6 +107,9 @@ public class CommentsActivity extends AppCompatActivity {
 
     //init the page
     public void initPage(){
+        //show the loading page until the info has been loaded
+        commentLoading.setVisibility(View.VISIBLE);
+        commentsListView.setVisibility(View.INVISIBLE);
         //hide the virtual keyboard
         imm.hideSoftInputFromWindow(inputContent.getWindowToken(), 0);
         //clear the input text
@@ -154,6 +160,9 @@ public class CommentsActivity extends AppCompatActivity {
     //show the comments in the list view
     public void showComments(){
         commentsListView.setAdapter(new CommentsAdapter(comments, this, username));
+        //show the loading page until the info has been loaded
+        commentLoading.setVisibility(View.GONE);
+        commentsListView.setVisibility(View.VISIBLE);
     }
 
     //get the input comment
