@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         username = (String)extras.get("username");
+        passW = (String) extras.get("password");
         if(username == null || username.equals("")){
             username = "root";
         }
@@ -204,7 +205,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SharedPreferences.Editor edit = spfRecord.edit();
         try{
             edit.putString("remName", username);
-            edit.putString("RemPass", PasswordUtil.hex2Str(user.getPassword()));
+            if(passW==null) {
+                edit.putString("RemPass", PasswordUtil.hex2Str(user.getPassword()));
+                Log.e("-----------wu",PasswordUtil.hex2Str(user.getPassword()));
+            }else {
+                edit.putString("RemPass", passW);
+                Log.e("------------you", passW);
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -355,7 +362,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         new Thread(() -> {
             UserDao userDao = new UserDao();
             user = userDao.getUserByUsername(username);
-            passW = PasswordUtil.hex2Str(user.getPassword());
             customer = userDao.getUserByUsername("root");
 
 

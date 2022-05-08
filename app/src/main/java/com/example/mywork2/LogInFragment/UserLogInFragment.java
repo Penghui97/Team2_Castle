@@ -235,6 +235,7 @@ public class UserLogInFragment extends Fragment {
         //pass his username to the MainActivity
         Intent intent = new Intent(getActivity(), MainActivity.class);
         intent.putExtra("username", user.getUsername());
+        intent.putExtra("password",PasswordUtil.hex2Str(user.getPassword()));
         startActivity(intent);
 
     }
