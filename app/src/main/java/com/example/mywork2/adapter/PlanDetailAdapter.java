@@ -72,10 +72,12 @@ public class PlanDetailAdapter extends BaseAdapter {
         }
         //set the content of the textView in the holder
         viewHolder.start.setText(journeys.get(i).getDeparture());
-        if(journeys.get(i).getRoutes().get(0).getTransport().getType().contains("Bus")){
-            viewHolder.transportType.setImageResource(R.drawable.icons8_bus_24);
-        }else {
-            viewHolder.transportType.setImageResource(R.drawable.icons8_train_24);
+        if(journeys.get(i).getRoutes().size() > 0 && journeys.get(i).getReturnRoutes().size() > 0){
+            if(journeys.get(i).getRoutes().get(0).getTransport().getType().contains("Bus")){
+                viewHolder.transportType.setImageResource(R.drawable.icons8_bus_24);
+            }else {
+                viewHolder.transportType.setImageResource(R.drawable.icons8_train_24);
+            }
         }
         viewHolder.time.setText(journeys.get(i).getSingleDuration() + " min ");
         viewHolder.price.setText(" ￡ " + journeys.get(i).getTotalPrice() + " pp ");
