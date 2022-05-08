@@ -50,6 +50,7 @@
             android:background="#F3F3F3"
             android:hint="@string/evaluate_this_app"
             android:padding="5dp"
+            android:maxLength="400"
             android:textColorHint="@color/gray" />
 
         <androidx.cardview.widget.CardView

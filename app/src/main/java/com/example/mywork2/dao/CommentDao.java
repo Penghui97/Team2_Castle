@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CommentDao {
+    private AvatarDao avatarDao = new AvatarDao();
 
     //get all comments from the database
     public ArrayList<Comment> getAllComments(){
@@ -27,7 +28,8 @@ public class CommentDao {
                 int rating = rs.getInt("rating");
                 String content = rs.getString("content");
                 String time = rs.getString("date");
-                comments.add(new Comment(commentId, username, rating, content, time));
+                byte[] avatar = avatarDao.getAvatarByUsername(username);
+                comments.add(new Comment(avatar, commentId, username, rating, content, time));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -53,7 +55,8 @@ public class CommentDao {
                 int rating = rs.getInt("rating");
                 String content = rs.getString("content");
                 String time = rs.getString("date");
-                comments.add(new Comment(commentId, username, rating, content, time));
+                byte[] avatar = avatarDao.getAvatarByUsername(username);
+                comments.add(new Comment(avatar, commentId, username, rating, content, time));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -80,7 +83,8 @@ public class CommentDao {
                 int rating = rs.getInt("rating");
                 String content = rs.getString("content");
                 String time = rs.getString("date");
-                comments.add(new Comment(commentId, thisUsername, rating, content, time));
+                byte[] avatar = avatarDao.getAvatarByUsername(thisUsername);
+                comments.add(new Comment(avatar, commentId, thisUsername, rating, content, time));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -130,4 +134,6 @@ public class CommentDao {
             DBUtil.close(connection, ps, rs);
         }
     }
+
+    //get all comments
 }

@@ -169,7 +169,7 @@
     <string name="please_confirm">Please re-enter your password</string>
     <string name="confirm_failed">Passwords do not match</string>
     <string name="version_manager">Version manager</string>
-    <string name="evaluate_this_app">Review</string>
+    <string name="evaluate_this_app">Review (400 max)</string>
     <string name="app_rating">Rating</string>
     <string name="comment">App Reviews</string>
     <string name="evaluate_app">Review This App</string>

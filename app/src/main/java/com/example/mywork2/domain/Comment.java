@@ -3,6 +3,7 @@ package com.example.mywork2.domain;
 
 //the users' comments for our app
 public class Comment {
+    private byte[] avatar;
     private String commentId;
     private String username;
     private int rating;
@@ -15,6 +16,23 @@ public class Comment {
         this.rating = rating;
         this.content = content;
         this.time = time;
+    }
+
+    public Comment(byte[] avatar, String commentId, String username, int rating, String content, String time) {
+        this.avatar = avatar;
+        this.commentId = commentId;
+        this.username = username;
+        this.rating = rating;
+        this.content = content;
+        this.time = time;
+    }
+
+    public byte[] getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(byte[] avatar) {
+        this.avatar = avatar;
     }
 
     public String getCommentId() {

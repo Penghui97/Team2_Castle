@@ -85,7 +85,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 case 0x33:
                     imageView.setImageBitmap(ImageUtil.base64ToImage(image64));
                     drawerImage.setImageBitmap(ImageUtil.base64ToImage(image64));
-                    initData();
                     break;
                 case 0x44:
                     noAvatar();
