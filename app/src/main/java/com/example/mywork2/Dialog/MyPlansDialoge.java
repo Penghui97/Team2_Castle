@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,7 +25,7 @@ public class MyPlansDialoge extends AppCompatDialogFragment {
     private String removeOrRefund;
     private View view;
     private String dialogText;
-    public TabLayout myPlanInfoRemoveNum;
+    public TextView myPlanInfoRemoveNum;
     public TextView titleDia;
     private Fragment myFragment;
 
@@ -35,18 +36,28 @@ public class MyPlansDialoge extends AppCompatDialogFragment {
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         //dialog context view
         view = layoutInflater.inflate(R.layout.dialog_layout,null);
-        //tab item view
+        //Textview num
         myPlanInfoRemoveNum = view.findViewById(R.id.ticket_dia_count);
-        int labelNum = myPlanInfoRemoveNum.getTabCount();
-        //show all the labels
-        for(int i = labelNum; i < 5; i++){
-            TabLayout.Tab tab = myPlanInfoRemoveNum.newTab().setText((i + 1) + "");
-            myPlanInfoRemoveNum.addTab(tab, i, false);
-        }
-        //remove unnecessary labels
-        for(int i = 4; i >= getTicketNums(); i--){
-            myPlanInfoRemoveNum.removeTabAt(i);
-        }
+        myPlanInfoRemoveNum.setText(""+getTicketNums());
+
+        //int labelNum = Integer.parseInt(myPlanInfoRemoveNum.getText().toString());
+
+        ImageView add = view.findViewById(R.id.add_count);
+        add.setOnClickListener(view1 -> {
+            if(Integer.parseInt(myPlanInfoRemoveNum.getText().toString())!=getTicketNums()){
+                int i = Integer.parseInt(myPlanInfoRemoveNum.getText().toString())+1;
+                myPlanInfoRemoveNum.setText(""+i);
+            }
+        });
+
+        ImageView remove = view.findViewById(R.id.remove_count);
+        remove.setOnClickListener(view1 -> {
+            if(Integer.parseInt(myPlanInfoRemoveNum.getText().toString())!=1){
+                int i = Integer.parseInt(myPlanInfoRemoveNum.getText().toString())-1;
+                myPlanInfoRemoveNum.setText(""+i);
+            }
+        });
+
         //textView in dialog
         titleDia = view.findViewById(R.id.dia_title);
         titleDia.setText(getDialogText());
@@ -58,7 +69,7 @@ public class MyPlansDialoge extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         MyPlansFragment myPlansFragment = (MyPlansFragment) getMyFragment();
-                        myPlansFragment.returnTicketsInDialog(myPlanInfoRemoveNum.getSelectedTabPosition()+1);
+                        myPlansFragment.returnTicketsInDialog(Integer.parseInt(myPlanInfoRemoveNum.getText().toString()));
                     }
                 }));
 

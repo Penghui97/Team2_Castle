@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -38,6 +39,7 @@ public class SearchFragment extends Fragment {
     private View view;
     private User user;
     private Calendar dateOfDeparture;
+    private TextView  ticketNumLayout;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -65,7 +67,23 @@ public class SearchFragment extends Fragment {
                 toPlanDetails();
             }
         });
+        ticketNumLayout = view.findViewById(R.id.ticket_num);
 
+        ImageView add = view.findViewById(R.id.add_count);
+        add.setOnClickListener(view1 -> {
+            if(Integer.parseInt(ticketNumLayout.getText().toString())!=5){
+                int i = Integer.parseInt(ticketNumLayout.getText().toString())+1;
+                ticketNumLayout.setText(""+i);
+            }
+        });
+
+        ImageView min = view.findViewById(R.id.remove_count);
+        min.setOnClickListener(view1 -> {
+            if(Integer.parseInt(ticketNumLayout.getText().toString())!=1){
+                int i = Integer.parseInt(ticketNumLayout.getText().toString())-1;
+                ticketNumLayout.setText(""+i);
+            }
+        });
         //get the current date
         dateOfDeparture = Calendar.getInstance();
         return view;
@@ -179,8 +197,7 @@ public class SearchFragment extends Fragment {
         Spinner destination = this.view.findViewById(R.id.destination);
         TextView departureDate = this.view.findViewById(R.id.departure_date);
         TextView departureTime = this.view.findViewById(R.id.departure_time);
-        TabLayout ticketNumLayout = this.view.findViewById(R.id.ticket_num);
-        int ticketNum = ticketNumLayout.getSelectedTabPosition() + 1;
+        int ticketNum = Integer.parseInt(ticketNumLayout.getText().toString());
 
         //Log.d("debu",""+dateOfDeparture.getTime()+"po:"+departure.getSelectedItemPosition());
         //one castle is closed in monday and Tuesday, check it in this if statement
