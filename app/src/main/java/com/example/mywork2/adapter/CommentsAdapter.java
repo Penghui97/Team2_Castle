@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.mywork2.MyAccount.CommentsActivity;
 import com.example.mywork2.R;
+import com.example.mywork2.Util.ImageUtil;
 import com.example.mywork2.domain.Comment;
 
 import java.util.ArrayList;
@@ -52,6 +53,7 @@ public class CommentsAdapter extends BaseAdapter {
             //set the list_item.xml as the view
             view = LayoutInflater.from(context).inflate(R.layout.comment_item, viewGroup, false);
             //put the textViews of list_item to the viewHolder
+            viewHolder.avatar = view.findViewById(R.id.header_comment);
             viewHolder.username = view.findViewById(R.id.account_name_comment);
             viewHolder.content = view.findViewById(R.id.comments);
             viewHolder.ratingBar = view.findViewById(R.id.rating);
@@ -65,6 +67,7 @@ public class CommentsAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
         }
         //set the content of the textView in the holder
+        viewHolder.avatar.setImageBitmap(ImageUtil.byteArray2Img(comments.get(i).getAvatar()));
         viewHolder.username.setText(comments.get(i).getUsername() + "");
         viewHolder.content.setText(comments.get(i).getContent() + "");
         viewHolder.ratingBar.setRating(comments.get(i).getRating());
