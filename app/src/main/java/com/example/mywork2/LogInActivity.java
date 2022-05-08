@@ -35,6 +35,8 @@ import com.example.mywork2.LogInFragment.LogInMainFragment;
 import com.example.mywork2.LogInFragment.UserLogInFragment;
 import com.example.mywork2.Util.WiFiUtil;
 
+import java.util.Objects;
+
 public class LogInActivity extends AppCompatActivity implements View.OnClickListener{
 
     //check wifi
@@ -132,26 +134,28 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         }
         else {
             //remembered account
-            if (remName!=null&&RemPass!=null){
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(getString(R.string.loginremember)).setNegativeButton("Cancel"
-                        , (dialogInterface,i) -> dialogInterface.dismiss()).setPositiveButton("Ok",
-                        ((dialogInterface, i) -> {
-                            if(remName!=null&&RemPass!=null){
-                                //传参
-                                //transmit data to login fragment
-                                UserLogInFragment userLogInFragment = new UserLogInFragment();
-                                Bundle bundle = new Bundle();
-                                bundle.putString("username",remName);
-                                bundle.putString("password",RemPass);
-                                userLogInFragment.setArguments(bundle);
-                                FragmentManager fragmentManager = getSupportFragmentManager();
-                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                fragmentTransaction.replace(R.id.log_in_nav_host_frag,userLogInFragment);
-                                fragmentTransaction.commit();
-                            }
-                            navController.navigate(R.id.action_logInMainFragment_to_userLogInFragment);
-                        })).show();
+            if(!Objects.equals(remName, "") && !Objects.equals(RemPass, "")){
+                if (remName!=null&&RemPass!=null){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setMessage(getString(R.string.loginremember)).setNegativeButton("Cancel"
+                            , (dialogInterface,i) -> dialogInterface.dismiss()).setPositiveButton("Ok",
+                            ((dialogInterface, i) -> {
+                                if(remName!=null&&RemPass!=null){
+                                    //传参
+                                    //transmit data to login fragment
+                                    UserLogInFragment userLogInFragment = new UserLogInFragment();
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("username",remName);
+                                    bundle.putString("password",RemPass);
+                                    userLogInFragment.setArguments(bundle);
+                                    FragmentManager fragmentManager = getSupportFragmentManager();
+                                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                    fragmentTransaction.replace(R.id.log_in_nav_host_frag,userLogInFragment);
+                                    fragmentTransaction.commit();
+                                }
+                                navController.navigate(R.id.action_logInMainFragment_to_userLogInFragment);
+                            })).show();
+                }
             }
         }
 
