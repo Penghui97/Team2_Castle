@@ -13,7 +13,6 @@ public class PasswordUtil {
             sBuilder.append(chars[bit]);
             bit = b & 0x0f;
             sBuilder.append(chars[bit]);
-
         }
         return sBuilder.toString().trim();
     }

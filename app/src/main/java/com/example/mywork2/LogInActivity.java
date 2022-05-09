@@ -177,13 +177,11 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                     }).show();
         }else {
             //wifi connected, check wifi ssid
-            //安卓9.0以上版本进行定位权限获取
             if(Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {//if lower than android 9
                 ssid = WiFiUtil.getConnectWifiSsid(wifiManager);
-            }else {//higher than Android 9
+            }else {//higher than Android 9, apply for runtime permmison
                 if(ContextCompat.checkSelfPermission(LogInActivity.this,
-                        Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {//未开启定位权限
-                    //申请定位权限,200是标识码
+                        Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(LogInActivity.this,
                             new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 200);
                 }
