@@ -175,54 +175,58 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/departure_time" />
 
-                    <TextView
-                        android:id="@+id/textView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="36dp"
-                        android:text="@string/ticket_count"
-                        android:textColor="@color/black"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/black_line" />
-
-                    <ImageView
-                        android:padding="10dp"
-                        android:id="@+id/add_count"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="22dp"
-                        android:layout_marginEnd="60dp"
-                        android:layout_marginBottom="21dp"
-                        android:src="@drawable/ic_baseline_add_24"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/black_line" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/black_line">
+                        <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="36dp"
+                            android:gravity="center"
+                            android:text="@string/ticket_count"
+                            android:textColor="@color/black" />
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+                            <ImageView
+                                android:layout_marginStart="40dp"
+                                android:layout_alignParentLeft="true"
+                                android:id="@+id/remove_count"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:padding="10dp"
+                                android:src="@drawable/ic_baseline_remove_24" />
+                            <TextView
+                                android:layout_centerInParent="true"
+                                android:id="@+id/ticket_num"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="1" />
 
-                    <ImageView
-                        android:padding="10dp"
-                        android:id="@+id/remove_count"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="22dp"
-                        android:layout_marginEnd="63dp"
-                        android:layout_marginBottom="21dp"
-                        android:src="@drawable/ic_baseline_remove_24"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/ticket_num"
-                        app:layout_constraintTop_toBottomOf="@+id/black_line" />
+                            <ImageView
+                                android:id="@+id/add_count"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginEnd="40dp"
+                                android:padding="10dp"
+                                android:src="@drawable/ic_baseline_add_24" />
+                        </RelativeLayout>
 
-                    <TextView
-                        android:id="@+id/ticket_num"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="23dp"
-                        android:layout_marginEnd="61dp"
-                        android:layout_marginBottom="21dp"
-                        android:text="1"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/add_count"
-                        app:layout_constraintTop_toBottomOf="@+id/black_line" />
+
+
+
+
+
+                    </LinearLayout>
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

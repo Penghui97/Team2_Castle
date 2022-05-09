@@ -51,6 +51,7 @@ public class CastlesFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.castle1:
+                imageId.clear();
                 //set the pictures display for ths castle alnwick
                 imageId.add(R.drawable.alnwick_gallery_1);
                 imageId.add(R.drawable.alnwick_gallery_2);
@@ -64,6 +65,7 @@ public class CastlesFragment extends Fragment implements View.OnClickListener {
                         .putExtra("imageId",imageId));
                 break;
             case R.id.castle2:
+                imageId.clear();
                 imageId.add(R.drawable.auckland_gallery_1);
                 imageId.add(R.drawable.auckland_gallery_2);
                 imageId.add(R.drawable.auckland_gallery_3);
@@ -75,6 +77,7 @@ public class CastlesFragment extends Fragment implements View.OnClickListener {
                         .putExtra("imageId",imageId));
                 break;
             case R.id.castle3:
+                imageId.clear();
                 imageId.add(R.drawable.barnard_gallery_1);
                 imageId.add(R.drawable.barnard_gallery_2);
                 imageId.add(R.drawable.barnard_gallery_3);
@@ -86,6 +89,7 @@ public class CastlesFragment extends Fragment implements View.OnClickListener {
                         .putExtra("imageId",imageId));
                 break;
             case R.id.castle4:
+                imageId.clear();
                 imageId.add(R.drawable.bamburgh_gallery_1);
                 imageId.add(R.drawable.bamburgh_gallery_2);
                 imageId.add(R.drawable.bamburgh_gallery_3);

@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ public class CastleGalleryFragment extends Fragment {
 
     public CastleGalleryFragment(ArrayList<Integer> imageId) {
         this.imageId=imageId;
+        Log.d("sizec",""+imageId.size());
         // Required empty public constructor
     }
 
@@ -31,6 +33,7 @@ public class CastleGalleryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_castle_gallery, container, false);
+
     }
 
     @Override
@@ -38,6 +41,8 @@ public class CastleGalleryFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         LinearLayout linearLayout = view.findViewById(R.id.gallery_linear);
+        linearLayout.removeAllViews();
+        Log.d("ad",""+imageId.size());
         for(int i :imageId){
             ImageView imageView = new ImageView(linearLayout.getContext());
             imageView.setAdjustViewBounds(true);
