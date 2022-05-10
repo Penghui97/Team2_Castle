@@ -204,7 +204,7 @@ public class SearchFragment extends Fragment {
         if(departure.getSelectedItemPosition() ==0){
             if(dateOfDeparture.getTime().toString().contains("Tue")||
                     dateOfDeparture.getTime().toString().contains("Mon")){
-                alert("this castle is closed in Monday and Tuesday!");
+                alert("Auckland Castle is closed on Mondays and Tuesday. Sorry!");
                 return;
             }
         }
@@ -240,7 +240,7 @@ public class SearchFragment extends Fragment {
     public void alert(String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setMessage(message)
-                .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //no actions

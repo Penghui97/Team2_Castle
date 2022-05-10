@@ -38,7 +38,7 @@ public class Journey {
         for(Route route : routes){
             res += route.getPrice();
         }
-        return res;
+        return res / 2;
     }
     //get the all the journey price
     public int getJourneyPrice(){

@@ -75,7 +75,7 @@ public class MyPlansAdapter extends BaseAdapter {
         viewHolder.date.setText(tickets.get(i).getDate() + "");
         viewHolder.castle.setText(tickets.get(i).getCastleName() + "");
         viewHolder.ticketCount.setText(tickets.get(i).getQuantity() + "");
-        viewHolder.paidStatus.setText(tickets.get(i).isPaid() ? "paid":"notPaid");
+        viewHolder.paidStatus.setText(tickets.get(i).isPaid() ? "Paid":"Not Paid");
         viewHolder.viewDetailsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

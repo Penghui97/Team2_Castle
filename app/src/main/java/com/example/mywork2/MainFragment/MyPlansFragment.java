@@ -510,7 +510,7 @@ public class MyPlansFragment extends Fragment{
     public void alertMessage(String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
         builder.setMessage(message)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 //                        finish();
@@ -530,12 +530,12 @@ public class MyPlansFragment extends Fragment{
                 boolean paidSuccess = PayUtil.pay(customerId, "-" + currentTicket.getTotalPrice());
                 String resultMessage = "";
                 if (paidSuccess) {
-                    resultMessage = "total £ " + currentTicket.getTotalPrice() + "\npayment success";
+                    resultMessage = "Total £ " + currentTicket.getTotalPrice() + "\nPayment success";
                     //change isPaid status in the database
                     payTicket(currentTicket.getTicketId());
                     getTickets();
                 } else {
-                    resultMessage = "sorry, payment failed";
+                    resultMessage = "Sorry, payment failed";
                 }
                 Message message = handler.obtainMessage();
                 message.what = 0x33;
@@ -553,11 +553,11 @@ public class MyPlansFragment extends Fragment{
                 boolean paidSuccess = PayUtil.pay(customerId, "+" + currentTicket.getTotalPrice());
                 String resultMessage = "";
                 if (paidSuccess) {
-                    resultMessage = "total £ " + currentTicket.getTotalPrice() + "\nrefund success";
+                    resultMessage = "Total £ " + currentTicket.getTotalPrice() + "\nRefund success";
                     //remove the ticket in the database
                     removeAllTicketsById(currentTicket.getTicketId());
                 } else {
-                    resultMessage = "sorry, refund failed";
+                    resultMessage = "Sorry, refund failed";
                 }
                 Message message = handler.obtainMessage();
                 message.what = 0x44;
@@ -575,12 +575,12 @@ public class MyPlansFragment extends Fragment{
                 boolean paidSuccess = PayUtil.pay(customerId, "+" + (currentTicket.getSinglePrice() * ticketNum));
                 String resultMessage = "";
                 if (paidSuccess) {
-                    resultMessage = "£ " + (currentTicket.getSinglePrice() * ticketNum) + "\nrefund success";
+                    resultMessage = "£ " + (currentTicket.getSinglePrice() * ticketNum) + "\nRefund success";
                     //remove the ticket in the database
                     removeTicketsById(currentTicket.getTicketId(), ticketNum);
                     getTicketById(currentTicket.getTicketId());
                 } else {
-                    resultMessage = "sorry, refund failed";
+                    resultMessage = "Sorry, refund failed";
                 }
                 Message message = handler.obtainMessage();
                 message.what = 0x44;

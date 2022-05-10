@@ -429,7 +429,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
 
         LinearLayout routesLayout = bottomView.findViewById(R.id.searchPlanInfoRoutes);
         TextView goCost = new TextView(bottomView.getContext());
-        goCost.setText("transportation cost: "+""+" ￡ " + currentJourney.getSinglePrice() + "\n");
+        goCost.setText("Transport cost: " + " ￡ " + currentJourney.getSinglePrice() + "\n");
         routesLayout.addView(goCost);
         for (int i = 0; i < journey.getRoutes().size(); i++) {
             Route route = journey.getRoutes().get(i);
@@ -523,7 +523,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
         //show the return routes
         LinearLayout returnRoutesLayout = bottomView.findViewById(R.id.searchPlanInfoReturnRoutes);
         TextView returnCost = new TextView(bottomView.getContext());
-        returnCost.setText("transportation cost: " + " ￡ " + currentJourney.getSinglePrice() + "\n");
+        returnCost.setText("Transport cost: " + " ￡ " + currentJourney.getSinglePrice() + "\n");
         returnRoutesLayout.addView(returnCost);
 
         for (int i = 0; i < journey.getReturnRoutes().size(); i++) {
@@ -610,7 +610,7 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
 
         LinearLayout totalCost = bottomView.findViewById(R.id.totoalCost_plan);
         TextView totalCostText = new TextView(bottomView.getContext());
-        totalCostText.setText("Total price: " + " ￡ " + currentJourney.getTotalPrice() * ticketNum + " = " + currentJourney.getTotalPrice() + " * " + ticketNum);
+        totalCostText.setText("Total price: " + " ￡ " + currentJourney.getTotalPrice() * ticketNum + " = " + currentJourney.getTotalPrice() + " x " + ticketNum);
         totalCost.addView(totalCostText);
 
         //the price details
@@ -684,11 +684,11 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
     public void alertSuccess() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("succeed to save")
-                .setPositiveButton("stay", (dialogInterface, i) -> {
+                .setPositiveButton("Close", (dialogInterface, i) -> {
 //                        startActivity(new Intent(SearchPlanDetailsActivity.this, MainActivity.class));
                     //searchPlanInfoAllContent.setVisibility(View.GONE);
                 })
-                .setNegativeButton("myPlan", new DialogInterface.OnClickListener() {
+                .setNegativeButton("My Plan", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         finish();
