@@ -70,7 +70,7 @@ public class PanelOverCastleFragment extends Fragment {
                 openTime.setText("10:00 am");
                 entranceTime.setText("03:45 pm");
                 closeTime.setText("05:30 pm");
-                ticketValue.setText("19.5 ￡    ");
+                ticketValue.setText("￡ 19.5    ");
                 break;
             case "auckland":
                 imageView.setImageResource(R.drawable.auckland2);
@@ -86,7 +86,7 @@ public class PanelOverCastleFragment extends Fragment {
                 openTime.setText("11:00 am");
                 entranceTime.setText("04:00 pm");
                 closeTime.setText("05:00 pm");
-                ticketValue.setText("14 ￡    ");
+                ticketValue.setText("￡ 14.00   ");
                 break;
             case "barnard":
                 imageView.setImageResource(R.drawable.barnard);
@@ -101,7 +101,7 @@ public class PanelOverCastleFragment extends Fragment {
                 openTime.setText("10:00 am");
                 entranceTime.setText("04:30 pm");
                 closeTime.setText("05:00 pm");
-                ticketValue.setText("10 ￡    ");
+                ticketValue.setText("￡ 10.00   ");
                 break;
             case "bamburgh":
                 imageView.setImageResource(R.drawable.bamburgh2);
@@ -115,7 +115,7 @@ public class PanelOverCastleFragment extends Fragment {
                 openTime.setText("10:00 am");
                 entranceTime.setText("04:00 pm");
                 closeTime.setText("05:00 pm");
-                ticketValue.setText("14.1 ￡    ");
+                ticketValue.setText("￡ 14.10    ");
                 break;
             default:
                 break;
