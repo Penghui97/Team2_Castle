@@ -99,7 +99,7 @@ public class SearchFragment extends Fragment {
         return view;
 
     }
-    //set departure time
+    //set departure date
     public void setDepartureTime(){
         mDisplayDate = view.findViewById(R.id.departure_date);
 
@@ -158,7 +158,7 @@ public class SearchFragment extends Fragment {
         };
 
         mDisplayTime = view.findViewById(R.id.departure_time);
-
+        //set departure time
         mDisplayTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
