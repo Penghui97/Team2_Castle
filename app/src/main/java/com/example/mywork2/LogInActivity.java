@@ -36,7 +36,12 @@ import com.example.mywork2.LogInFragment.UserLogInFragment;
 import com.example.mywork2.Util.WiFiUtil;
 
 import java.util.Objects;
-
+/**
+ * @author Penghui Xiao
+ * function: check and set wifi condition, check and set remembered account,
+ * check and set new account, check and set password just found
+ * modification date and description can be found in github repository history
+ */
 public class LogInActivity extends AppCompatActivity implements View.OnClickListener{
 
     //check wifi

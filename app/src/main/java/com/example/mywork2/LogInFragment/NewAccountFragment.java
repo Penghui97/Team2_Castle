@@ -26,7 +26,11 @@ import java.io.UnsupportedEncodingException;
 
 import static com.example.mywork2.Util.PasswordUtil.str2Hex;
 
-
+/**
+ * @author Penghui Xiao
+ * function: Register a new account
+ * modification date and description can be found in github repository history
+ */
 public class NewAccountFragment extends Fragment {
     private EditText username;
     private EditText email;

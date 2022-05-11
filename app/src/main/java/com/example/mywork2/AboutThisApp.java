@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 /**
- * this activity is to display the about information for this app
+ * @author Penghui Xiao, JiaCheng Cheng
+ * function: display aboutus page
+ * modification date and description can be found in github repository history
  */
 public class AboutThisApp extends AppCompatActivity {
 

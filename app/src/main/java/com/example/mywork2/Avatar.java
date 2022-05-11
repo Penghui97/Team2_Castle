@@ -43,7 +43,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
+/**
+ * @author Penghui Xiao
+ * function: upload avatar from camera or album; update avatar from local cache or database.
+ * modification date and description can be found in github repository history
+ */
 public class Avatar extends AppCompatActivity {
 
     final int REQUEST_CODE_TAKE = 1;
@@ -258,6 +262,7 @@ public class Avatar extends AppCompatActivity {
         displayImage(imagePath);
     }
 
+    //deal with file path error
     private void resolveMSDContent(Uri uri,String id) {
         File file = new File(getCacheDir(),"temp_file"+getContentResolver().getType(uri).split("/")[1]);
         try {
@@ -326,6 +331,7 @@ public class Avatar extends AppCompatActivity {
         }
     }
 
+    //open album
     private void openAlbum() {
         //open the Dir
         Intent intent = new Intent("android.intent.action.GET_CONTENT");
@@ -354,6 +360,7 @@ public class Avatar extends AppCompatActivity {
 
     }
 
+    //save avatar to database
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void saveToDB() {
         byte [] bytes = ImageUtil.Base64ToByteArray(imageBase64);
@@ -363,6 +370,7 @@ public class Avatar extends AppCompatActivity {
         }).start();
     }
 
+    //get avatar from local cache
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void getDataFromSpf() {
         SharedPreferences spfRecord = getSharedPreferences("spfRecord"+username, MODE_PRIVATE);

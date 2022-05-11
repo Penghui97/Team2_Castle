@@ -29,7 +29,11 @@ import com.example.mywork2.Util.PasswordUtil;
 import com.example.mywork2.dao.UserDao;
 import com.example.mywork2.domain.User;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-
+/**
+ * @author Penghui Xiao
+ * function: for user to edit his account information
+ * modification date and description can be found in github repository history
+ */
 public class AccountEditActivity extends AppCompatActivity implements View.OnClickListener{
     private BottomSheetDialog bottomSheetDialog;
     private View bottomView;

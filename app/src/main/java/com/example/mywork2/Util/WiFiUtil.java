@@ -18,7 +18,11 @@ import com.example.mywork2.LogInActivity;
 import java.util.List;
 
 import static androidx.core.content.ContextCompat.getSystemService;
-
+/**
+ * @author  Penghui Xiao
+ * function: static methods to get WiFi connection information
+ * modification date and description can be found in github repository history
+ */
 
 public class WiFiUtil {
 

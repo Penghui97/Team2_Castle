@@ -1,9 +1,4 @@
 package com.example.mywork2.Util;
-/*
-By Penghui Xiao
-This class is used to convert an image to byte
-Reference from a blog: https://www.cnblogs.com/lizm166/p/15788518.html
- */
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,7 +8,12 @@ import androidx.annotation.RequiresApi;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Base64;
-
+/**
+ * @author  Penghui Xiao
+ * function: static methods to convert image format
+ * Reference from a blog: https://www.cnblogs.com/lizm166/p/15788518.html
+ * modification date and description can be found in github repository history
+ */
 public class ImageUtil {
 
     //static method to convert Base64 to byte Array

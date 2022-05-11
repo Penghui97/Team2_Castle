@@ -24,7 +24,11 @@ import com.example.mywork2.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.Locale;
-
+/**
+ * @author Penghui Xiao
+ * function: set App language
+ * modification date and description can be found in github repository history
+ */
 public class AppSettingsActivity extends AppCompatActivity implements View.OnClickListener{
     private BottomSheetDialog bottomSheetDialog;
     private TextView language,setting_warn, setting_cn;

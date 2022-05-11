@@ -19,7 +19,11 @@ import android.widget.TextView;
 import com.example.mywork2.LogInActivity;
 import com.example.mywork2.MainActivity;
 import com.example.mywork2.R;
-
+/**
+ * @author Penghui Xiao, JiaCheng Cheng
+ * function: display login fragment
+ * modification date and description can be found in github repository history
+ */
 public class LogInMainFragment extends Fragment implements View.OnClickListener{
     NavController navController;
 

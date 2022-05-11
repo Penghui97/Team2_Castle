@@ -24,6 +24,11 @@ import com.example.mywork2.Util.PasswordUtil;
 import com.example.mywork2.dao.UserDao;
 import com.example.mywork2.domain.User;
 
+/**
+ * @author Penghui Xiao
+ * function: verify user information and find the password back
+ * modification date and description can be found in github repository history
+ */
 
 public class ForgetPasswordFragment extends Fragment {
 

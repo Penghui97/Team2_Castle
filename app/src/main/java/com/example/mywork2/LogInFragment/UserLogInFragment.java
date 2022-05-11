@@ -34,7 +34,11 @@ import com.example.mywork2.dao.UserDao;
 import com.example.mywork2.domain.User;
 
 import java.io.UnsupportedEncodingException;
-
+/**
+ * @author Penghui Xiao
+ * function: verify user information and login
+ * modification date and description can be found in github repository history
+ */
 public class UserLogInFragment extends Fragment {
     private EditText username, password;
     private TextView username_warn;
