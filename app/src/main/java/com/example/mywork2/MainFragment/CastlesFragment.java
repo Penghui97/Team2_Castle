@@ -14,9 +14,15 @@ import com.example.mywork2.CastleDetails;
 import com.example.mywork2.R;
 
 import java.util.ArrayList;
-
+/**
+ * @author Jiacheng
+ * function: display castle fragment and set event listenner
+ * modification date and description can be found in github repository history
+ */
 public class CastlesFragment extends Fragment implements View.OnClickListener {
+    // the background view of this fragment
     private View view;
+    // the castle image id displayed in castle gallery
     private ArrayList<Integer> imageId;
 
 
@@ -51,6 +57,7 @@ public class CastlesFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.castle1:
+                //clear the former castle id
                 imageId.clear();
                 //set the pictures display for ths castle alnwick
                 imageId.add(R.drawable.alnwick_gallery_1);
@@ -65,6 +72,7 @@ public class CastlesFragment extends Fragment implements View.OnClickListener {
                         .putExtra("imageId",imageId));
                 break;
             case R.id.castle2:
+                //clear the former castle id
                 imageId.clear();
                 imageId.add(R.drawable.auckland_gallery_1);
                 imageId.add(R.drawable.auckland_gallery_2);
@@ -77,6 +85,7 @@ public class CastlesFragment extends Fragment implements View.OnClickListener {
                         .putExtra("imageId",imageId));
                 break;
             case R.id.castle3:
+                //clear the former castle id
                 imageId.clear();
                 imageId.add(R.drawable.barnard_gallery_1);
                 imageId.add(R.drawable.barnard_gallery_2);
@@ -89,6 +98,7 @@ public class CastlesFragment extends Fragment implements View.OnClickListener {
                         .putExtra("imageId",imageId));
                 break;
             case R.id.castle4:
+                //clear the former castle id
                 imageId.clear();
                 imageId.add(R.drawable.bamburgh_gallery_1);
                 imageId.add(R.drawable.bamburgh_gallery_2);

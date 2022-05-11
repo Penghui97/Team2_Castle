@@ -16,6 +16,11 @@ import android.widget.LinearLayout;
 import com.example.mywork2.R;
 
 import java.util.ArrayList;
+/**
+ * @author Jiacheng
+ * function: castle gallery fragment, displayed the picture
+ * modification date and description can be found in github repository history
+ */
 
 public class CastleGalleryFragment extends Fragment {
     private ArrayList<Integer> imageId;
@@ -40,6 +45,7 @@ public class CastleGalleryFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        //displayed the pictures for this castle
         LinearLayout linearLayout = view.findViewById(R.id.gallery_linear);
         linearLayout.removeAllViews();
         Log.d("ad",""+imageId.size());

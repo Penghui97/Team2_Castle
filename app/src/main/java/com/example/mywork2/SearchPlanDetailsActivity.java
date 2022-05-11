@@ -39,7 +39,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * this class is for showing the sorted plans based on the users' requirements
+ * @author  Jiacheng(UI behavior), Jing()
+ * this class is to show the search plans that based on departure date
+ * modification date and description can be found in github repository history
  */
 public class SearchPlanDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -50,7 +52,9 @@ public class SearchPlanDetailsActivity extends AppCompatActivity implements View
     public LinearLayout getSearchPlanInfoLoadingAfter;
     private ListView planListView;
     private LinearLayout searchLoading;
+    //bottom sheet dialog for a selected plan
     public BottomSheetDialog bottomSheetDialog;
+    // the view in the bottom sheet dialog
     private View bottomView;
     private ArrayList<Journey> journeys;
     private String date;

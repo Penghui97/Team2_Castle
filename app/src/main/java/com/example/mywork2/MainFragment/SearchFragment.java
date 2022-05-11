@@ -29,16 +29,26 @@ import com.example.mywork2.domain.User;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.Calendar;
-
+/**
+ * @author Jiacheng(UI behavior), Jing()
+ * function: the fragment for finding plans
+ * modification date and description can be found in github repository history
+ */
 public class SearchFragment extends Fragment {
-
+    // the textview of date selected displayed
     private TextView mDisplayDate;
+    // the textview of time selected displayed
     private TextView mDisplayTime;
+    // the date picker dialog used
     private DatePickerDialog.OnDateSetListener mDateSetListener;
+    // the time picker dialog used
     private TimePickerDialog.OnTimeSetListener onTimeSetListener;
+    // fragment view
     private View view;
     private User user;
+    //the selected date
     private Calendar dateOfDeparture;
+    // the textview of ticket nums
     private TextView  ticketNumLayout;
 
     public SearchFragment() {

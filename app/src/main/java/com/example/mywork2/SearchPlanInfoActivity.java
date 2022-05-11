@@ -32,7 +32,8 @@ import java.util.Date;
 import java.util.HashMap;
 
 /**
- * this class is for showing the detailed information of one particular plan
+ * @author  Jing()
+ * function: this class is for showing the detailed information of one particular plan
  * when the user choose one brief plan in the searching function
  */
 public class SearchPlanInfoActivity extends AppCompatActivity implements View.OnClickListener {

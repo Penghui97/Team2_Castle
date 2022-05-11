@@ -28,7 +28,9 @@ import com.example.mywork2.domain.Time;
 import java.util.ArrayList;
 
 /**
- * this activity is for dealing with the layout of one particular plan's information
+ * @author  Jiacheng(UI behavior), Jing()
+ * function this activity is for dealing with the layout of one particular plan's information
+ * modification date and description can be found in github repository history
  */
 public class MyPlansInfoActivity extends AppCompatActivity implements View.OnClickListener {
 

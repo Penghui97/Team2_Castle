@@ -18,14 +18,24 @@ import androidx.fragment.app.Fragment;
 import com.example.mywork2.MainFragment.MyPlansFragment;
 import com.example.mywork2.R;
 import com.google.android.material.tabs.TabLayout;
-
+/**
+ * @author Jiacheng
+ * function: the remove ticket dialog
+ * modification date and description can be found in github repository history
+ */
 public class MyPlansDialoge extends AppCompatDialogFragment {
+    //ticket nums that has been saved
     private int ticketNums;
+    //the title displayed in the dialog
     private String dialogTitle;
+    //remove or refund depends on whether the user has bought the ticket
     private String removeOrRefund;
     private View view;
+    // the text content displayed in dialog
     private String dialogText;
+    //the nums that user want to remove
     public TextView myPlanInfoRemoveNum;
+    // the content displayed textview
     public TextView titleDia;
     private Fragment myFragment;
 

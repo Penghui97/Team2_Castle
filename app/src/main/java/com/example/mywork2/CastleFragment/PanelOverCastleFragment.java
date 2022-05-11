@@ -16,9 +16,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.mywork2.R;
+/**
+ * @author Jiacheng
+ * function: castle info fragment, displayed the information about the castle
+ * modification date and description can be found in github repository history
+ */
 
 public class PanelOverCastleFragment extends Fragment {
+    //castle name to determine which castle
     private String castleName;
+    // the links that to the castles website
     private String links;
 
     public PanelOverCastleFragment(String castleName, String links) {

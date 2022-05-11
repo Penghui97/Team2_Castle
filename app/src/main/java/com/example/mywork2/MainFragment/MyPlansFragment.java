@@ -45,8 +45,13 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.Objects;
-
+/**
+ * @author Jiacheng(UI behavior), Jing()
+ * function: the fragment for the user saved plans
+ * modification date and description can be found in github repository history
+ */
 public class MyPlansFragment extends Fragment{
+    // the background view of this fragment
     private View view;
     private User user;
     private LinearLayout myPlansNoPlansLayout;
@@ -55,8 +60,11 @@ public class MyPlansFragment extends Fragment{
     private Journey currentJourney;
     private ArrayList<DepartureTime> routeDepartureTimes;
     private ArrayList<DepartureTime> returnRouteDepartureTimes;
+    // the layout for departure plan
     public LinearLayout myPlanInfoLayout;
+    // the layout for return plan
     public LinearLayout myPlanInfoRemoveNumLayout;
+    // the warning dialog when remove ticket
     private MyPlansDialoge myPlansDialoge;
     public LinearLayout myPlanInfoLoading;
     public LinearLayout myPlanInfoLoadingAfter;

@@ -18,10 +18,20 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
+/**
+ * @author  Jiacheng
+ * function: containner activity for the navigation hoster
+ * display the detail page for selected castle
+ * modification date and description can be found in github repository history
+ */
 public class CastleDetails extends AppCompatActivity implements View.OnClickListener{
+    //castle name
     private String castleName;
+    // the link to the castle website
     private String linkAbout;
+    // the R.drawable id for these local image
     private ArrayList<Integer> imageId;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

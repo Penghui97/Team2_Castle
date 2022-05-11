@@ -19,10 +19,16 @@ import com.example.mywork2.dao.POIDao;
 import com.example.mywork2.domain.NearbyPOI;
 
 import java.util.ArrayList;
-
+/**
+ * @author Jiacheng(UI behavior), Jing()
+ * function: displayed the nearby shops and cafes
+ * modification date and description can be found in github repository history
+ */
 public class PanelNearbyFragment extends Fragment {
+    // castle name to determine which castle
     private String castleName;
     private ArrayList<NearbyPOI> pois;
+    //fragment view
     private View view;
 
     //the handler to receive the data from the dao thread

@@ -8,9 +8,16 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 
-public class CastleViewPageAdapter extends FragmentPagerAdapter {
+/**
+ * @author Jiacheng
+ * function the tab adapter for the tab layout used in the main castle detail actitivity
+ * modification date and description can be found in github repository history
+ */
 
+public class CastleViewPageAdapter extends FragmentPagerAdapter {
+    // the fragments in this adapter
     private final ArrayList<Fragment> fragments = new ArrayList<>();
+    // the title of the fragment added
     private final ArrayList<String> fragmentTitle = new ArrayList<>();
 
     public CastleViewPageAdapter(@NonNull FragmentManager fm, int behavior) {

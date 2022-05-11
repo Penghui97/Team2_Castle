@@ -12,6 +12,7 @@ import com.example.mywork2.domain.NearbyPOI;
 
 import java.util.ArrayList;
 
+
 public class MyPlansInfoNearbyActivity extends AppCompatActivity implements View.OnClickListener {
     private ArrayList<NearbyPOI> nearbyPOIS;
 

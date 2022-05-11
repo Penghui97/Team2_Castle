@@ -12,6 +12,11 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 
 import com.example.mywork2.R;
+/**
+ * @author Jiacheng
+ * function: the activity to use the google Twitter facebook login (has been abandoned)
+ * modification date and description can be found in github repository history
+ */
 
 
 public class GoogleTwitterFacebookLogIn extends Fragment {

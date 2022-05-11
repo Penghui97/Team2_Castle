@@ -55,7 +55,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
 /**
- * @author Penghui Xiao
+ * @author Penghui Xiao(methods, function),Jiacheng(UI behavior)
  * function: show user main page, update user information from database and local cache,
  * navigate to other pages(with data transmissions)
  * modification date and description can be found in github repository history
