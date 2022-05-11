@@ -3,7 +3,10 @@ package com.example.mywork2.domain;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+/**
+ * @author Jing
+ * function: used for store a temp time object in the program
+ */
 public class Time {
     private int hour;
     private int minute;

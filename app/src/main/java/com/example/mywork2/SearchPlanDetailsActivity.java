@@ -39,8 +39,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * @author  Jiacheng(UI behavior), Jing()
- * this class is to show the search plans that based on departure date
+ * @author  Jiacheng(UI behavior), Jing(Back-end code)
+ * function: this class is to show the search plans that based on departure date
  * modification date and description can be found in github repository history
  */
 public class SearchPlanDetailsActivity extends AppCompatActivity implements View.OnClickListener {

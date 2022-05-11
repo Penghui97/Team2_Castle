@@ -32,7 +32,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 /**
- * @author  Jing()
+ * @author  Jing
  * function: this class is for showing the detailed information of one particular plan
  * when the user choose one brief plan in the searching function
  */

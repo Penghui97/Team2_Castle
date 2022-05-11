@@ -9,6 +9,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * @author Jing
+ * function: used for get particular data from route table in database
+ */
 public class RouteDao {
     //to get the transport
     private TransportDao transportDao = new TransportDao();

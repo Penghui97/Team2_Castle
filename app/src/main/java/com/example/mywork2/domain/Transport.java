@@ -1,5 +1,8 @@
 package com.example.mywork2.domain;
-
+/**
+ * @author Jing
+ * function: used for store a temp transport object in the program
+ */
 public class Transport {
     private String transportId;
     private String operator;

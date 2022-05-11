@@ -2,6 +2,10 @@ package com.example.mywork2.domain;
 
 import java.util.ArrayList;
 
+/**
+ * @author Jing
+ * function: used for store a temp castle object in the program
+ */
 public class Castle {
     private String name;
     private String postcode;

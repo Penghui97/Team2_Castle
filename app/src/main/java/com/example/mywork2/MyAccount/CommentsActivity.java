@@ -29,7 +29,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-
+/**
+ * @author Jing
+ * used for showing the comments of users
+ * and insert a new comment to the database
+ */
 public class CommentsActivity extends AppCompatActivity {
     private InputMethodManager imm;
     private CommentsAdapter commentsAdapter;

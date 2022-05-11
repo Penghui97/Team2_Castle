@@ -30,7 +30,7 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.Calendar;
 /**
- * @author Jiacheng(UI behavior), Jing()
+ * @author Jiacheng(UI behavior), Jing(Back-end)
  * function: the fragment for finding plans
  * modification date and description can be found in github repository history
  */

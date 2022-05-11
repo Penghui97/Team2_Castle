@@ -18,7 +18,10 @@ import com.example.mywork2.domain.*;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-
+/**
+ * @author Jing
+ * function: handle the information of the plan listView
+ */
 public class PlanDetailAdapter extends BaseAdapter {
     private ArrayList<Journey> journeys;
     private SearchPlanDetailsActivity context;

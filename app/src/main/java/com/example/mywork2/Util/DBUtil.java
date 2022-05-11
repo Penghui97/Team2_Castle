@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- * this class is for connecting the remote database
+/**@author Jing
+ * function: this class is for connecting the remote database
  * using jdbc
  */
 public class DBUtil {

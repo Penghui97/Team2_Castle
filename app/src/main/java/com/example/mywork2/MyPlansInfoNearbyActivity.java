@@ -12,7 +12,10 @@ import com.example.mywork2.domain.NearbyPOI;
 
 import java.util.ArrayList;
 
-
+/**
+ * @author Jing
+ * function: used for handling the behaviors of the nearby information
+ */
 public class MyPlansInfoNearbyActivity extends AppCompatActivity implements View.OnClickListener {
     private ArrayList<NearbyPOI> nearbyPOIS;
 

@@ -9,6 +9,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * @author Jing
+ * function: used for get particular data from castle table in database
+ */
 public class CastleDao {
     //to get the poi of this castle
     private POIDao poiDao = new POIDao();

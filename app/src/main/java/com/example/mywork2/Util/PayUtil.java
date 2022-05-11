@@ -12,8 +12,8 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * this class is for connecting the horsePay api
+/**@author Jing
+ * function: this class is for connecting the horsePay api
  * using http protocol connection
  */
 public class PayUtil {

@@ -7,7 +7,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+/**
+ * @author Jing
+ * function: used for get particular data from transport table in database
+ */
 public class TransportDao {
 
     //get a particular transport by its id

@@ -1,5 +1,8 @@
 package com.example.mywork2.domain;
-
+/**
+ * @author Jing
+ * function: used for store a temp ticket object in the program
+ */
 public class Ticket {
     private String ticketId;
     private String castleName;

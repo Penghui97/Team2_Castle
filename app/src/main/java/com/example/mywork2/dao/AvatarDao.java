@@ -7,6 +7,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * @author Jing
+ * function: used for get particular data from avatar table in database
+ */
 public class AvatarDao {
 
     //add a new avatar into database

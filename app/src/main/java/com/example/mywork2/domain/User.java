@@ -1,7 +1,10 @@
 package com.example.mywork2.domain;
 
 import java.util.ArrayList;
-
+/**
+ * @author Jing
+ * function: used for store a temp user object in the program
+ */
 public class User {
     private String username;
     private String profileId;

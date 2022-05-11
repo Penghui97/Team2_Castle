@@ -8,7 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+/**
+ * @author Jing
+ * function: used for get particular data from user table in database
+ */
 public class UserDao {
 
 

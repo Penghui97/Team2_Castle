@@ -1,7 +1,10 @@
 package com.example.mywork2.domain;
 
 import java.util.ArrayList;
-
+/**
+ * @author Jing
+ * function: used for store a temp journey object in the program
+ */
 public class Journey {
     private String journeyId;
     private Castle castle;

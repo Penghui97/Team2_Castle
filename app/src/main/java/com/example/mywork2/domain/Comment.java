@@ -1,6 +1,9 @@
 package com.example.mywork2.domain;
 
-
+/**
+ * @author Jing
+ * function: used for store a temp comment object in the program
+ */
 //the users' comments for our app
 public class Comment {
     private byte[] avatar;

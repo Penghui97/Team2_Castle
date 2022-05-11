@@ -15,7 +15,10 @@ import com.example.mywork2.domain.NearbyPOI;
 
 import java.util.ArrayList;
 
-
+/**
+ * @author Jing
+ * function: handle the information of the nearby listView
+ */
 public class NearbyPOIsAdapter extends BaseAdapter {
     private ArrayList<NearbyPOI> nearbyPOIS;
     private Context context;

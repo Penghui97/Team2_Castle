@@ -18,7 +18,10 @@ import com.example.mywork2.R;
 import com.example.mywork2.domain.*;
 
 import java.util.ArrayList;
-
+/**
+ * @author Jing
+ * function: handle the information of the my plans listView
+ */
 public class MyPlansAdapter extends BaseAdapter {
     private ArrayList<Ticket> tickets;
     private Context context;

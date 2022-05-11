@@ -1,7 +1,10 @@
 package com.example.mywork2.domain;
 
 import java.io.Serializable;
-
+/**
+ * @author Jing
+ * function: used for store a temp nearbyPOI object in the program
+ */
 public class NearbyPOI implements Serializable {
     private String castleName;
     private String poiName;

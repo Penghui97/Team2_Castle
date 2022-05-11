@@ -17,6 +17,10 @@ import com.example.mywork2.domain.Comment;
 
 import java.util.ArrayList;
 
+/**
+ * @author Jing
+ * function: handle the information of the comment listView
+ */
 public class CommentsAdapter extends BaseAdapter {
     private ArrayList<Comment> comments;
     private Context context;

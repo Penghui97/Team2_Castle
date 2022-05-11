@@ -1,5 +1,8 @@
 package com.example.mywork2.domain;
-
+/**
+ * @author Jing
+ * function: used for store a temp route object in the program
+ */
 public class Route {
     private String routeId;
     private String journeyId;

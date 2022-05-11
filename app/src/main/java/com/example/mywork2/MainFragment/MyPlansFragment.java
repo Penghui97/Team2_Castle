@@ -46,7 +46,7 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 import java.util.Objects;
 /**
- * @author Jiacheng(UI behavior), Jing()
+ * @author Jiacheng(UI behavior), Jing(Back-end)
  * function: the fragment for the user saved plans
  * modification date and description can be found in github repository history
  */

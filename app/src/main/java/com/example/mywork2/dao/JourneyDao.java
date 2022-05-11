@@ -8,7 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+/**
+ * @author Jing
+ * function: used for get particular data from journey table in database
+ */
 public class JourneyDao {
     //to get the routes of this journey
     private RouteDao routeDao = new RouteDao();

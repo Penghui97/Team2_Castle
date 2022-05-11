@@ -14,7 +14,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * this class is for get the depart time of the buses or the trains
+ * @author Jing
+ * function: this class is for get the depart time of the buses or the trains
  * at the particular route
  */
 public class DepartureTimeDao {

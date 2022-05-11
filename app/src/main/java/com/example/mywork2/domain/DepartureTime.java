@@ -3,7 +3,10 @@ package com.example.mywork2.domain;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+/**
+ * @author Jing
+ * function: used for store a temp departureTime object in the program
+ */
 public class DepartureTime {
     private String routeId;
     private int depNo;
