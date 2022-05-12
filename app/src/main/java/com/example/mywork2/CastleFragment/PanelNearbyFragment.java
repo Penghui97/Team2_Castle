@@ -46,16 +46,16 @@ public class PanelNearbyFragment extends Fragment {
 
     public PanelNearbyFragment(String castleName) {
         switch (castleName){
-            case "alnwic":
+            case "Alnwic":
                 this.castleName = "Alnwick Castle";
                 break;
-            case "auckland":
+            case "Auckland":
                 this.castleName = "Auckland Castle";
                 break;
-            case "barnard":
+            case "Barnard":
                 this.castleName = "Barnard Castle";
                 break;
-            case "bamburgh":
+            case "Bamburgh":
                 this.castleName = "Bamburgh Castle";
                 break;
         }

@@ -61,7 +61,7 @@ public class PanelOverCastleFragment extends Fragment {
 
         //display different page for different castles
         switch (castleName){
-            case "alnwic":
+            case "Alnwic":
                 imageView.setImageResource(R.drawable.alnwic1);
                 castleTitle.setText(R.string.alnwic_castle);
                 castleLocation.setText("Northumberland NE66 1NQ");
@@ -79,7 +79,7 @@ public class PanelOverCastleFragment extends Fragment {
                 closeTime.setText("05:30 pm");
                 ticketValue.setText("￡ 19.5    ");
                 break;
-            case "auckland":
+            case "Auckland":
                 imageView.setImageResource(R.drawable.auckland2);
                 castleTitle.setText(R.string.auckland);
                 castleLocation.setText("Bishop Auckland DL14 7NR");
@@ -95,7 +95,7 @@ public class PanelOverCastleFragment extends Fragment {
                 closeTime.setText("05:00 pm");
                 ticketValue.setText("￡ 14.00   ");
                 break;
-            case "barnard":
+            case "Barnard":
                 imageView.setImageResource(R.drawable.barnard);
                 castleTitle.setText(R.string.barnard);
                 castleLocation.setText("Barnard Castle DL12 8PR");
@@ -110,7 +110,7 @@ public class PanelOverCastleFragment extends Fragment {
                 closeTime.setText("05:00 pm");
                 ticketValue.setText("￡ 10.00   ");
                 break;
-            case "bamburgh":
+            case "Bamburgh":
                 imageView.setImageResource(R.drawable.bamburgh2);
                 castleTitle.setText(R.string.bamburgh);
                 castleLocation.setText("Bamburgh NE69 7DF");

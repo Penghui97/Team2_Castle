@@ -9,8 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 /**
- * @author Jing
- * function: used for get particular data from comment table in database
+ * @author Jing, Penghui
+ * function: used for get particular data from comment table in database including setting default avatar
+ * for a user who has not uploaded an avatar.
  */
 public class CommentDao {
     private AvatarDao avatarDao = new AvatarDao();
@@ -32,6 +33,7 @@ public class CommentDao {
                 String content = rs.getString("content");
                 String time = rs.getString("date");
                 byte[] avatar = avatarDao.getAvatarByUsername(username);
+                if (avatar  == null) avatar = avatarDao.getAvatarByUsername("root");
                 comments.add(new Comment(avatar, commentId, username, rating, content, time));
             }
         } catch (SQLException throwables) {
@@ -59,6 +61,7 @@ public class CommentDao {
                 String content = rs.getString("content");
                 String time = rs.getString("date");
                 byte[] avatar = avatarDao.getAvatarByUsername(username);
+                if (avatar  == null) avatar = avatarDao.getAvatarByUsername("root");
                 comments.add(new Comment(avatar, commentId, username, rating, content, time));
             }
         } catch (SQLException throwables) {
@@ -87,6 +90,7 @@ public class CommentDao {
                 String content = rs.getString("content");
                 String time = rs.getString("date");
                 byte[] avatar = avatarDao.getAvatarByUsername(thisUsername);
+                if (avatar  == null) avatar = avatarDao.getAvatarByUsername("root");
                 comments.add(new Comment(avatar, commentId, thisUsername, rating, content, time));
             }
         } catch (SQLException throwables) {

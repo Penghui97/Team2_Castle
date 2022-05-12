@@ -67,7 +67,7 @@ public class CastlesFragment extends Fragment implements View.OnClickListener {
                 imageId.add(R.drawable.alnwick_gallery_5);
                 //start the new castle details activity
                 startActivity(new Intent(getActivity(),CastleDetails.class)
-                        .putExtra("castle name","alnwic")
+                        .putExtra("castle name","Alnwic")
                         .putExtra("links","https://www.alnwickcastle.com/")
                         .putExtra("imageId",imageId));
                 break;
@@ -80,7 +80,7 @@ public class CastlesFragment extends Fragment implements View.OnClickListener {
                 imageId.add(R.drawable.auckland_gallery_4);
                 imageId.add(R.drawable.auckland_gallery_5);
                 startActivity(new Intent(getActivity(),CastleDetails.class)
-                        .putExtra("castle name","auckland")
+                        .putExtra("castle name","Auckland")
                         .putExtra("links","https://aucklandproject.org/")
                         .putExtra("imageId",imageId));
                 break;
@@ -93,7 +93,7 @@ public class CastlesFragment extends Fragment implements View.OnClickListener {
                 imageId.add(R.drawable.barnard_gallery_4);
                 imageId.add(R.drawable.barnard_gallery_5);
                 startActivity(new Intent(getActivity(),CastleDetails.class)
-                        .putExtra("castle name","barnard")
+                        .putExtra("castle name","Barnard")
                         .putExtra("links","https://www.bamburghcastle.com/")
                         .putExtra("imageId",imageId));
                 break;
@@ -106,7 +106,7 @@ public class CastlesFragment extends Fragment implements View.OnClickListener {
                 imageId.add(R.drawable.bamburgh_gallery_4);
                 imageId.add(R.drawable.bamburgh_gallery_5);
                 startActivity(new Intent(getActivity(),CastleDetails.class)
-                        .putExtra("castle name","bamburgh")
+                        .putExtra("castle name","Bamburgh")
                         .putExtra("links","https://www.english-heritage.org.uk/visit/places/barnard-castle/?utm_source=Trip%20Advisor&utm_campaign=Local%20Listings&utm_medium=Trip%20Advisor%20Profiles&utm_content=barnard%20castle&utm_source=Trip%20Advisor&utm_campaign=Local%20Listings&utm_medium=Trip%20Advisor%20Profiles&utm_content=barnard%20castle")
                         .putExtra("imageId",imageId));
                 break;
