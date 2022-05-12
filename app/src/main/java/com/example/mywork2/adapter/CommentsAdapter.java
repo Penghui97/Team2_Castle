@@ -71,6 +71,7 @@ public class CommentsAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
         }
         //set the content of the textView in the holder
+        if(comments.get(i).getAvatar() != null)
         viewHolder.avatar.setImageBitmap(ImageUtil.byteArray2Img(comments.get(i).getAvatar()));
         viewHolder.username.setText(comments.get(i).getUsername() + "");
         viewHolder.content.setText(comments.get(i).getContent() + "");
