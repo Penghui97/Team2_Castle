@@ -364,9 +364,10 @@ public class Avatar extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void saveToDB() {
         byte [] bytes = ImageUtil.Base64ToByteArray(imageBase64);
+        byte[] little = ImageUtil.imageToByteArrayLittle(bitmap);
         new Thread(()->{
             AvatarDao avatarDao = new AvatarDao();
-            avatarDao.addAvatar(username,bytes);
+            avatarDao.addAvatar(username,bytes,little);
         }).start();
     }
 
@@ -378,9 +379,27 @@ public class Avatar extends AppCompatActivity {
         if (image64.length()!=0){//if there is the avatar in local cache
             imageView.setImageBitmap(ImageUtil.base64ToImage(image64));
         }else {//if there is no avatar in local
+            getSmallIMGFromDB();
             getIMGFromDB();
         }
 
+    }
+
+    private void getSmallIMGFromDB() {
+        new Thread(()->{
+            AvatarDao avatarDao = new AvatarDao();
+            byte[] small = avatarDao.getAvatarByUsername(username);
+            if(small!=null){//if the user has an avatar in DB
+                imageBase64 = ImageUtil.ByteArray2Base64(small);
+                Message message = handler.obtainMessage();
+                message.what = 0x11;
+                handler.sendMessage(message);
+            }else {//if the user has no avatar in DB
+                Message message = handler.obtainMessage();
+                message.what = 0x22;
+                handler.sendMessage(message);
+            }
+        }).start();
     }
 
     private void getIMGFromDB() {

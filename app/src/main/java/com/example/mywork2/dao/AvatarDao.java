@@ -33,7 +33,7 @@ public class AvatarDao {
             }
         } else {
             //if the user has an old avatar
-            sql = "update Avatars set image = ? little = ? where username = ?";
+            sql = "update Avatars set image = ? , little = ? where username = ?";
             Connection connection = DBUtil.getConnection();
             PreparedStatement ps = null;
             try {
@@ -50,6 +50,8 @@ public class AvatarDao {
             }
         }
     }
+
+
 
     //get the avatar by username
     public byte[] getAvatarByUsername(String username) {

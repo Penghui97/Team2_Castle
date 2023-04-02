@@ -46,7 +46,7 @@ public class ImageUtil {
         //define an output stream
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         //compress img
-        bitmap.compress(Bitmap.CompressFormat.JPEG,5,byteArrayOutputStream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG,2,byteArrayOutputStream);
         //create a byte array to receive the output.
         return byteArrayOutputStream.toByteArray();
     }
