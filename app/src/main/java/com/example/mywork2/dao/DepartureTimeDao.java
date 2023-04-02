@@ -13,11 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- * @author Jing
- * function: this class is for get the depart time of the buses or the trains
- * at the particular route
- */
+
 public class DepartureTimeDao {
 
     public DepartureTime getDepartureTimeByRouteId(String routeId, String arriveTime){

@@ -302,7 +302,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             drawerImage.setImageBitmap(ImageUtil.base64ToImage(image64));
             //and then, update avatar from DB to make sure the latest avatar
         }
+        getSmallFromDB();
         getAvatarFromDB();
+    }
+
+    private void getSmallFromDB() {
+        new Thread(()->{
+            AvatarDao avatarDao = new AvatarDao();
+            byte[] bytes = avatarDao.getLittleByUsername(username);
+            if(bytes!=null){//if the user has an avatar in DB
+                image64 = ImageUtil.ByteArray2Base64(bytes);
+                Message message = handler.obtainMessage();
+                message.what = 0x33;
+                handler.sendMessage(message);
+            }else {//if the user has no avatar in DB
+                Message message = handler.obtainMessage();
+                message.what = 0x44;
+                handler.sendMessage(message);
+            }
+        }).start();
     }
 
     private void getAvatarFromDB() {
@@ -347,17 +365,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             customer = userDao.getUserByUsername("root");
 
 
+            Message message = handler.obtainMessage();
             if(user != null){
-                Message message = handler.obtainMessage();
                 message.what = 0x11;
                 nickname = user.getNickname();
-                handler.sendMessage(message);
             }else {
-                Message message = handler.obtainMessage();
                 message.what = 0x22;
                 nickname = customer.getNickname();
-                handler.sendMessage(message);
             }
+            handler.sendMessage(message);
         }).start();
     }
 }
