@@ -31,12 +31,15 @@ public class UserDao {
             while(rs.next()){
                 String nickname = rs.getString("nickname");
                 String email = rs.getString("email");
-                String password = rs.getString("password");
+                String mi = new String(rs.getBytes("password"));
+                DES des = new DES(new StringBuffer(mi),new StringBuffer("11111111"),1);
+                des.start();
+                String password = des.getPlaintext().toString();
                 user = new User(username, nickname, email, password);
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             //close the resources
             DBUtil.close(connection, ps, rs);
         }
@@ -59,12 +62,15 @@ public class UserDao {
             while(rs.next()){
                 String username = rs.getString("username");
                 String nickname = rs.getString("nickname");
-                String password = rs.getString("password");
+                String mi = new String(rs.getBytes("password"));
+                DES des = new DES(new StringBuffer(mi),new StringBuffer("11111111"),1);
+                des.start();
+                String password = des.getPlaintext().toString();
                 user = new User(username, nickname, email, password);
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             //close the resources
             DBUtil.close(connection, ps, rs);
         }
@@ -96,11 +102,14 @@ public class UserDao {
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getNickname());
             ps.setString(3, user.getEmail());
-            ps.setString(4, user.getPassword());
+            DES des = new DES(new StringBuffer(user.getPassword()),new StringBuffer("11111111"),0);
+            des.start();
+            byte[] password = des.getCiphertextbyte();
+            ps.setBytes(4, password);
             res = ps.executeUpdate() == 1 ? 0 : -1;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             //close the resources
             DBUtil.close(connection, ps, null);
         }
@@ -156,15 +165,19 @@ public class UserDao {
             ps = connection.prepareStatement(sql);
             ps.setString(1, newUser.getNickname());
             ps.setString(2, newUser.getEmail());
-            ps.setString(3, newUser.getPassword());
+            DES des = new DES(new StringBuffer(newUser.getPassword()),new StringBuffer("11111111"),0);
+            des.start();
+            byte[] password = des.getCiphertextbyte();
+            ps.setBytes(3, password);
             ps.setString(4, newUser.getUsername());
             res = ps.executeUpdate() == 1 ? 0 : -1;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             //close the resources
             DBUtil.close(connection, ps, null);
         }
         return res;
     }
+
 }

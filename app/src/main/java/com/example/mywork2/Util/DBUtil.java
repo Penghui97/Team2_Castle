@@ -14,9 +14,9 @@ public class DBUtil {
 
     //the ip is from cs-db.ncl.ac.uk
     //note: we need to use the campus network(USB WIFI) to connect the remote database
-    private static String url = "jdbc:mysql://10.3.224.183:3306/csc8019_team02";
-    private static String user = "csc8019_team02";
-    private static String password = "Vex,Fur,;Box";
+//    private static String url = "jdbc:mysql://10.3.224.183:3306/csc8019_team02";
+//    private static String user = "csc8019_team02";
+//    private static String password = "Vex,Fur,;Box";
 
     //local test ip
 
@@ -24,9 +24,9 @@ public class DBUtil {
 //    private static String user = "root";
 //    private static String password = "333";
 
-//    private static String url = "jdbc:mysql://192.168.1.105:3306/csc8019_team02";//Penghui's ip
-//    private static String user = "root";
-//    private static String password = "1234";
+    private static String url = "jdbc:mysql://192.168.1.18:3306/csc8019_team02";//Penghui's ip
+    private static String user = "root";
+    private static String password = "1234";
 
     //load the driver
     static {

@@ -24,7 +24,6 @@ import com.example.mywork2.domain.User;
 
 import java.io.UnsupportedEncodingException;
 
-import static com.example.mywork2.Util.PasswordUtil.str2Hex;
 
 /**
  * @author Penghui Xiao
@@ -187,7 +186,7 @@ public class NewAccountFragment extends Fragment {
                 String emailAddress = email.getText().toString();
                 String _password = password.getText().toString();
                 //save the user into database, convert the password to hex
-                User user = new User(name,name,emailAddress,str2Hex(_password));
+                User user = new User(name,name,emailAddress,_password);
 
                 //check the database
                 UserDao userDao = new UserDao();

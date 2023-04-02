@@ -76,8 +76,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
             remName = getUsername.getString("remName","");
             RemPass = getUsername.getString("RemPass","");
 
-
-
         }
         catch (Exception e){
             e.printStackTrace();
@@ -100,7 +98,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                     , (dialogInterface,i) -> dialogInterface.dismiss()).setPositiveButton("Ok",
                     ((dialogInterface, i) -> {
                         if(username!=null&&password!=null){
-                            //传参
                             //transmit data to login fragment
                             UserLogInFragment userLogInFragment = new UserLogInFragment();
                             Bundle bundle = new Bundle();
@@ -122,7 +119,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                     , (dialogInterface,i) -> dialogInterface.dismiss()).setPositiveButton("Ok",
                     ((dialogInterface, i) -> {
                         if(forgetPass!=null&&forgetName!=null){
-                            //传参
                             //transmit data to login fragment
                             UserLogInFragment userLogInFragment = new UserLogInFragment();
                             Bundle bundle = new Bundle();
@@ -146,7 +142,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                             , (dialogInterface,i) -> dialogInterface.dismiss()).setPositiveButton("Ok",
                             ((dialogInterface, i) -> {
                                 if(remName!=null&&RemPass!=null){
-                                    //传参
                                     //transmit data to login fragment
                                     UserLogInFragment userLogInFragment = new UserLogInFragment();
                                     Bundle bundle = new Bundle();
@@ -163,8 +158,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                 }
             }
         }
-
-
 
     }
 

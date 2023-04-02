@@ -6,26 +6,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.InputType;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.mywork2.LogInFragment.ForgetPasswordFragment;
-import com.example.mywork2.LogInFragment.NewAccountFragment;
 import com.example.mywork2.MainActivity;
 import com.example.mywork2.R;
-import com.example.mywork2.Util.PasswordUtil;
 import com.example.mywork2.dao.UserDao;
 import com.example.mywork2.domain.User;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -270,7 +264,7 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
                             warningMessage.setText(R.string.enter_oldpassword);
                         }else {
                             //verify password
-                            if (!old_password.equals(PasswordUtil.hex2Str(user.getPassword()))){
+                            if (!old_password.equals(user.getPassword())){
                                 //if password is wrong
                                 warningMessage.setText(R.string.passwordwrong);
                             }else {
@@ -292,7 +286,7 @@ public class AccountEditActivity extends AppCompatActivity implements View.OnCli
                                     }else {
                                         //confirmation succeed
                                         //save it to database
-                                        user.setPassword(PasswordUtil.str2Hex(new_password));
+                                        user.setPassword(new_password);
                                         UserDao userDao = new UserDao();
                                         userDao.updateUser(user);
                                         Message message = handler.obtainMessage();

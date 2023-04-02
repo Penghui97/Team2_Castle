@@ -23,13 +23,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.mywork2.LogInActivity;
 import com.example.mywork2.MainActivity;
 import com.example.mywork2.R;
-import com.example.mywork2.Util.ImageUtil;
-import com.example.mywork2.Util.PasswordUtil;
 import com.example.mywork2.dao.UserDao;
 import com.example.mywork2.domain.User;
 
@@ -46,7 +43,6 @@ public class UserLogInFragment extends Fragment {
     Button login,back;
     NavController navController;
     String rememberName, rememberPassword;
-
     public UserLogInFragment() {
         // Required empty public constructor
     }
@@ -197,7 +193,7 @@ public class UserLogInFragment extends Fragment {
                             handler.sendMessage(message);
                             return;
                         }else {
-                            if (!plain_password.equals(PasswordUtil.hex2Str(user.getPassword()))){//password is wrong
+                            if (!plain_password.equals(user.getPassword())){//password is wrong
                                 Message message = handler.obtainMessage();
                                 message.what = 0x77;
                                 handler.sendMessage(message);
@@ -219,7 +215,7 @@ public class UserLogInFragment extends Fragment {
                             handler.sendMessage(message);
                             return;
                         }else {
-                            if (!plain_password.equals(PasswordUtil.hex2Str(user.getPassword()))){//password is wrong
+                            if (!plain_password.equals(user.getPassword())){//password is wrong
                                 Message message = handler.obtainMessage();
                                 message.what = 0x77;
                                 handler.sendMessage(message);
@@ -239,7 +235,7 @@ public class UserLogInFragment extends Fragment {
         //pass his username to the MainActivity
         Intent intent = new Intent(getActivity(), MainActivity.class);
         intent.putExtra("username", user.getUsername());
-        intent.putExtra("password",PasswordUtil.hex2Str(user.getPassword()));
+        intent.putExtra("password",user.getPassword());
         startActivity(intent);
 
     }

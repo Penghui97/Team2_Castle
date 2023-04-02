@@ -20,7 +20,6 @@ import android.widget.TextView;
 
 import com.example.mywork2.LogInActivity;
 import com.example.mywork2.R;
-import com.example.mywork2.Util.PasswordUtil;
 import com.example.mywork2.dao.UserDao;
 import com.example.mywork2.domain.User;
 
@@ -51,7 +50,7 @@ public class ForgetPasswordFragment extends Fragment {
         @Override
         public void handleMessage(@NonNull Message msg) {
             if (msg.what == 0x11) {
-                password = PasswordUtil.hex2Str(user.getPassword());
+                password = user.getPassword();
                 remind_password.setText("Your password is: "+password);
                 returnLoginPage();
             }

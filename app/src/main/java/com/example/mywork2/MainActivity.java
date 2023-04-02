@@ -15,7 +15,6 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import android.annotation.SuppressLint;
-import android.content.ClipData;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -27,33 +26,23 @@ import android.os.Message;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.example.mywork2.MyAccount.AccountEditActivity;
 import com.example.mywork2.MyAccount.AppSettingsActivity;
 import com.example.mywork2.MyAccount.CommentsActivity;
 import com.example.mywork2.Util.ImageUtil;
-import com.example.mywork2.Util.PasswordUtil;
-import com.example.mywork2.Util.UserThreadLocal;
 import com.example.mywork2.dao.AvatarDao;
 import com.example.mywork2.dao.UserDao;
-import com.example.mywork2.domain.DepartureTime;
-import com.example.mywork2.domain.Journey;
-import com.example.mywork2.domain.Ticket;
 import com.example.mywork2.domain.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Locale;
-import java.util.Objects;
+
 /**
  * @author Penghui Xiao(methods, function),Jiacheng(UI behavior)
  * function: show user main page, update user information from database and local cache,
@@ -127,8 +116,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         showUserInfo();
 
-
-
         setContentView(R.layout.drawer_main);
 
         //init view, 23.2
@@ -163,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         CardView account_avatar_head = drawerView.getHeaderView(0).findViewById(R.id.account_avatar_head);
         account_avatar_head.setOnClickListener(this);
 
-        // the user information in the drawer headeer
+        // the user information in the drawer header
         drawerImage = drawerView.getHeaderView(0).findViewById(R.id.avatar);
 
         nickname_v = drawerView.getHeaderView(0).findViewById(R.id.nickname_profile);
@@ -175,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if(item.getItemId()==R.id.app_logout){//logout
                 Intent intent1 = new Intent(MainActivity.this,LogInActivity.class);
                 intent1.putExtra("remName",username);
-                intent1.putExtra("RemPass", PasswordUtil.hex2Str(user.getPassword()));
+                intent1.putExtra("RemPass", user.getPassword());
                 startActivity(intent1
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK));
             }else if (item.getItemId()==R.id.accountEditActivity){//my account
@@ -211,8 +198,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         try{
             edit.putString("remName", username);
             if(passW==null) {
-                edit.putString("RemPass", PasswordUtil.hex2Str(user.getPassword()));
-                Log.e("-----------wu",PasswordUtil.hex2Str(user.getPassword()));
+                edit.putString("RemPass", user.getPassword());
+                Log.e("-----------wu",user.getPassword());
             }else {
                 edit.putString("RemPass", passW);
                 Log.e("------------you", passW);
@@ -314,19 +301,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             imageView.setImageBitmap(ImageUtil.base64ToImage(image64));
             drawerImage.setImageBitmap(ImageUtil.base64ToImage(image64));
             //and then, update avatar from DB to make sure the latest avatar
-            getAvatarFromDB();
-        }else {//get avatar from Database
-            getAvatarFromDB();
         }
-
-        //change avatars in other layouts
-        //created by Penghui
-        //reference from https://blog.csdn.net/yu_qiushui/article/details/84784958
-//        LayoutInflater inflater1 = LayoutInflater.from(MainActivity.this);
-//        View v = inflater1.inflate(R.layout.activity_avatar,null);
-//        avatar2 = (ImageView) v.findViewById(R.id.avatar);
-//        avatar2.setImageBitmap(ImageUtil.base64ToImage(image64));
-
+        getAvatarFromDB();
     }
 
     private void getAvatarFromDB() {

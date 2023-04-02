@@ -41,6 +41,16 @@ public class ImageUtil {
         return byteArrayOutputStream.toByteArray();
     }
 
+    //static method to convert IMG to byte[]
+    public static byte[] imageToByteArrayLittle(Bitmap bitmap) {
+        //define an output stream
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        //compress img
+        bitmap.compress(Bitmap.CompressFormat.JPEG,20,byteArrayOutputStream);
+        //create a byte array to receive the output.
+        return byteArrayOutputStream.toByteArray();
+    }
+
 
     //static method to convert IMG to Base64
     public static String imageToBase64(Bitmap bitmap) {
