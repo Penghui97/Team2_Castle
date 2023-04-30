@@ -59,7 +59,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView nickname_v, email_v;
     public User user, customer;
     public String username, nickname, passW;
-    String lang, image64;
+    String lang, imageBase64;
+    int version;
 
 
     //receive the data from the database
@@ -78,8 +79,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     email_v.setText(customer.getEmail());//set the customer's email on the view
                     break;
                 case 0x33://set avatar
-                    imageView.setImageBitmap(ImageUtil.base64ToImage(image64));
-                    drawerImage.setImageBitmap(ImageUtil.base64ToImage(image64));
+                    imageView.setImageBitmap(ImageUtil.base64ToImage(imageBase64));
+                    drawerImage.setImageBitmap(ImageUtil.base64ToImage(imageBase64));
+                    getAvatarFromDB();
+                    imageView.setImageBitmap(ImageUtil.base64ToImage(imageBase64));
+                    drawerImage.setImageBitmap(ImageUtil.base64ToImage(imageBase64));
                     break;
                 case 0x44:
                     noAvatar();
@@ -295,31 +299,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void getDataFromSpf(){
         SharedPreferences spfRecord = getSharedPreferences("spfRecord"+username, MODE_PRIVATE);
-        image64 = spfRecord.getString("image_64","");
-        if(image64!=null){//if the avatar is found locally, set it without accessing database firstly
-
+        String image64 = spfRecord.getString("image_64","");
+        SharedPreferences.Editor edit = spfRecord.edit();
+        if (image64.length()!=0) {
             imageView.setImageBitmap(ImageUtil.base64ToImage(image64));
             drawerImage.setImageBitmap(ImageUtil.base64ToImage(image64));
-            //and then, update avatar from DB to make sure the latest avatar
         }
-        getSmallFromDB();
-        getAvatarFromDB();
+        new Thread(()->{
+            AvatarDao avatarDao = new AvatarDao();
+            int temp = avatarDao.getAvatarVersionByUsername(username);
+            if (temp!=0&&temp!=version) {
+                version = avatarDao.getAvatarVersionByUsername(username);
+                edit.putInt("imageVersion",version);
+                edit.apply();
+                getSmallFromDB();
+            }
+            else if (temp==0) {
+                Message message = handler.obtainMessage();
+                message.what = 0x44;
+                handler.sendMessage(message);
+            }
+        }).start();
+
     }
 
     private void getSmallFromDB() {
         new Thread(()->{
             AvatarDao avatarDao = new AvatarDao();
             byte[] bytes = avatarDao.getLittleByUsername(username);
-            if(bytes!=null){//if the user has an avatar in DB
-                image64 = ImageUtil.ByteArray2Base64(bytes);
-                Message message = handler.obtainMessage();
-                message.what = 0x33;
-                handler.sendMessage(message);
-            }else {//if the user has no avatar in DB
-                Message message = handler.obtainMessage();
-                message.what = 0x44;
-                handler.sendMessage(message);
-            }
+            imageBase64 = ImageUtil.ByteArray2Base64(bytes);
+            Message message = handler.obtainMessage();
+            message.what = 0x33;
+            handler.sendMessage(message);
         }).start();
     }
 
@@ -328,18 +339,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             AvatarDao avatarDao = new AvatarDao();
             byte[] bytes = avatarDao.getAvatarByUsername(username);
             if(bytes!=null){//if the user has an avatar in DB
-                image64 = ImageUtil.ByteArray2Base64(bytes);
+                imageBase64 = ImageUtil.ByteArray2Base64(bytes);
                 SharedPreferences spfRecord = getSharedPreferences("spfRecord"+username, MODE_PRIVATE);
                 SharedPreferences.Editor edit = spfRecord.edit();
-                edit.putString("image_64", image64);
+                edit.putString("image_64", imageBase64);
                 edit.apply();
-                Message message = handler.obtainMessage();
-                message.what = 0x33;
-                handler.sendMessage(message);
-            }else {//if the user has no avatar in DB
-                Message message = handler.obtainMessage();
-                message.what = 0x44;
-                handler.sendMessage(message);
             }
         }).start();
     }
@@ -359,6 +363,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //show the particular user's info
     public void showUserInfo(){
+        SharedPreferences spfRecord = getSharedPreferences("spfRecord"+username, MODE_PRIVATE);
+        version = spfRecord.getInt("imageVersion",0);
         new Thread(() -> {
             UserDao userDao = new UserDao();
             user = userDao.getUserByUsername(username);

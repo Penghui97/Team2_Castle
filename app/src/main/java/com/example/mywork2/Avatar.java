@@ -28,6 +28,7 @@ import android.os.Message;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -61,6 +62,7 @@ public class Avatar extends AppCompatActivity {
     Bitmap bitmap;
     TextView savePhoto;
     String username;
+    int version;
 
     //receive the data from the database
     @SuppressLint("HandlerLeak")
@@ -69,6 +71,8 @@ public class Avatar extends AppCompatActivity {
         @Override
         public void handleMessage(@NonNull Message msg) {
             if (msg.what == 0x11) {
+                imageView.setImageBitmap(ImageUtil.base64ToImage(imageBase64));
+                getIMGFromDB();
                 imageView.setImageBitmap(ImageUtil.base64ToImage(imageBase64));
                 initData();
             }else if (msg.what == 0x22){
@@ -100,9 +104,9 @@ public class Avatar extends AppCompatActivity {
                 R.layout.bottom_sheet_avatar,
                 findViewById(R.id.avatar_bottom_sheet)
         );
-
-
-
+        SharedPreferences spfRecord = getSharedPreferences("spfRecord"+username, MODE_PRIVATE);
+        version = spfRecord.getInt("imageVersion",0);
+        Log.e("version",version+"");
         //set the listener for take a photo
         bottomView.findViewById(R.id.from_camera).setOnClickListener(this::takePhoto);
 
@@ -120,7 +124,6 @@ public class Avatar extends AppCompatActivity {
 
         imageView = findViewById(R.id.avatar);
         imageView.setOnClickListener(this::bottomSheet);
-
         initData();
         /*from_cam = findViewById(R.id.from_camera);
         from_cam.setOnClickListener(this::takePhoto);
@@ -347,6 +350,7 @@ public class Avatar extends AppCompatActivity {
         SharedPreferences spfRecord = getSharedPreferences("spfRecord"+username, MODE_PRIVATE);
         SharedPreferences.Editor edit = spfRecord.edit();
         edit.putString("image_64", imageBase64);
+
         edit.apply();
         //save avatar in db
         saveToDB();
@@ -368,6 +372,11 @@ public class Avatar extends AppCompatActivity {
         new Thread(()->{
             AvatarDao avatarDao = new AvatarDao();
             avatarDao.addAvatar(username,bytes,little);
+            version = avatarDao.getAvatarVersionByUsername(username);
+            SharedPreferences spfRecord = getSharedPreferences("spfRecord"+username, MODE_PRIVATE);
+            SharedPreferences.Editor edit = spfRecord.edit();
+            edit.putInt("imageVersion",version);
+            edit.apply();
         }).start();
     }
 
@@ -376,25 +385,20 @@ public class Avatar extends AppCompatActivity {
     public void getDataFromSpf() {
         SharedPreferences spfRecord = getSharedPreferences("spfRecord"+username, MODE_PRIVATE);
         String image64 = spfRecord.getString("image_64","");
-        if (image64.length()!=0){//if there is the avatar in local cache
+        SharedPreferences.Editor edit = spfRecord.edit();
+        if (image64.length()!=0) {
             imageView.setImageBitmap(ImageUtil.base64ToImage(image64));
-        }else {//if there is no avatar in local
-            getSmallIMGFromDB();
-            getIMGFromDB();
         }
-
-    }
-
-    private void getSmallIMGFromDB() {
         new Thread(()->{
             AvatarDao avatarDao = new AvatarDao();
-            byte[] small = avatarDao.getAvatarByUsername(username);
-            if(small!=null){//if the user has an avatar in DB
-                imageBase64 = ImageUtil.ByteArray2Base64(small);
-                Message message = handler.obtainMessage();
-                message.what = 0x11;
-                handler.sendMessage(message);
-            }else {//if the user has no avatar in DB
+            int temp = avatarDao.getAvatarVersionByUsername(username);
+            if (temp!=0&&temp!=version) {
+                version = temp;
+                edit.putInt("imageVersion",temp);
+                edit.apply();
+                getSmallIMGFromDB();
+            }
+            else if (temp==0) {
                 Message message = handler.obtainMessage();
                 message.what = 0x22;
                 handler.sendMessage(message);
@@ -402,7 +406,18 @@ public class Avatar extends AppCompatActivity {
         }).start();
     }
 
-    private void getIMGFromDB() {
+    private void getSmallIMGFromDB() {//获取缩略图并更新version缓存
+        new Thread(()->{
+            AvatarDao avatarDao = new AvatarDao();
+            byte[] small = avatarDao.getAvatarByUsername(username);
+            imageBase64 = ImageUtil.ByteArray2Base64(small);
+            Message message = handler.obtainMessage();
+            message.what = 0x11;
+            handler.sendMessage(message);
+        }).start();
+    }
+
+    private void getIMGFromDB() {//获取高清图并更新图片缓存
         new Thread(()->{
             AvatarDao avatarDao = new AvatarDao();
             byte[] bytes = avatarDao.getAvatarByUsername(username);
@@ -412,13 +427,6 @@ public class Avatar extends AppCompatActivity {
                 SharedPreferences.Editor edit = spfRecord.edit();
                 edit.putString("image_64", imageBase64);
                 edit.apply();
-                Message message = handler.obtainMessage();
-                message.what = 0x11;
-                handler.sendMessage(message);
-            }else {//if the user has no avatar in DB
-                Message message = handler.obtainMessage();
-                message.what = 0x22;
-                handler.sendMessage(message);
             }
         }).start();
     }
